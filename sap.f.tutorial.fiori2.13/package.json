@@ -1,16 +1,41 @@
 {
-  "name": "sap.f.tutorial.fiori2.13",
-  "version": "1.0.0",
+  "name": "sap.ui.demo.fiori2",
+  "version": "0.0.1",
   "author": "SAP SE",
   "description": "Sample: Flexible Column Layout App - Step 13 - Setting the Master-Detail Pattern",
   "scripts": {
-    "start": "ui5 serve",
-    "build": "ui5 build"
+    "start_old": "ui5 serve",
+    "build_old": "ui5 build",
+    "start": "fiori run --open test/flpSandbox.html#app-tile",
+    "start-local": "fiori run --config ./ui5-local.yaml --open test/flpSandboxMockServer.html#app-tile",
+    "start-noflp": "fiori run --open 'index.html'",
+    "start-variants-management": "fiori run --open \"preview.html?fiori-tools-rta-mode=true&sap-ui-rta-skip-flex-validation=true#preview-app\"",
+    "build": "ui5 build -a --clean-dest --include-task=generateManifestBundle generateCachebusterInfo",
+    "deploy": "fiori verify",
+    "deploy-config": "fiori add deploy-config",
+    "start-mock": "fiori run --open 'test/flpSandboxMockServer.html#app-tile'"
   },
   "dependencies": {
     "@openui5/themelib_sap_fiori_3": "^1"
   },
   "devDependencies": {
-    "@ui5/cli": "^2.0.0"
+    "@ui5/cli": "^2.11.1",
+    "@ui5/fs": "^2.0.6",
+    "@ui5/logger": "^2.0.1",
+    "@sap/ux-ui5-tooling": "1",
+    "rimraf": "3.0.2"
+  },
+  "private": true,
+  "sapuxLayer": "CUSTOMER_BASE",
+  "keywords": [
+    "ui5",
+    "openui5",
+    "sapui5"
+  ],
+  "main": "webapp/index.html",
+  "ui5": {
+    "dependencies": [
+      "@sap/ux-ui5-tooling"
+    ]
   }
 }
