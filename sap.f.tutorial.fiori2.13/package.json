@@ -1,0 +1,16 @@
+{
+  "name": "sap.f.tutorial.fiori2.13",
+  "version": "1.0.0",
+  "author": "SAP SE",
+  "description": "Sample: Flexible Column Layout App - Step 13 - Setting the Master-Detail Pattern",
+  "scripts": {
+    "start": "ui5 serve",
+    "build": "ui5 build"
+  },
+  "dependencies": {
+    "@openui5/themelib_sap_fiori_3": "^1"
+  },
+  "devDependencies": {
+    "@ui5/cli": "^2.0.0"
+  }
+}
