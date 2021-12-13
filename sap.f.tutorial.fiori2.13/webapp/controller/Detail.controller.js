@@ -36,6 +36,11 @@ sap.ui.define([
 				path: "/ProductCollection/" + this._product,
 				model: "products"
 			});
+			// TODO
+			// this.getView().bindElement({
+			// 	path: "/ProductCollection/" + this._product + "?$expand=ToGroup/ToItem,ToPrice&$format=json",
+			// 	model: "invoice"
+			// });
 		},
 
 		onEditToggleButtonPress: function() {

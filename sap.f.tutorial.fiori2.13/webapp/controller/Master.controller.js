@@ -40,7 +40,7 @@ sap.ui.define([
 		},
 
 		onListItemPress: function (oEvent) {
-			var productPath = oEvent.getSource().getBindingContext("products").getPath(),
+			var productPath = oEvent.getSource().getBindingContext("invoice").getPath(),
 				product = productPath.split("/").slice(-1).pop(),
 				oNextUIState;
 			this.getOwnerComponent().getHelper().then(function (oHelper) {
