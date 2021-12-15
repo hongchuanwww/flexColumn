@@ -2,63 +2,27 @@
 	controllerName="sap.ui.demo.fiori2.controller.Master"
 	xmlns="sap.m"
 	xmlns:f="sap.f"
+	xmlns:core="sap.ui.core"
 	xmlns:mvc="sap.ui.core.mvc">
-	<f:DynamicPage id="dynamicPageId" toggleHeaderOnTitleClick="false">
+	<f:DynamicPage id="dynamicPageId" toggleHeaderOnTitleClick="false" showFooter="true">
 		<!-- DynamicPage Title -->
-		<!-- <f:title>
+		<f:title>
 			<f:DynamicPageTitle>
 				<f:heading>
-					<Title text="Products ({products>/ProductCollectionStats/Counts/Total})"/>
+					<Title text="{i18n>masterHeader}"/>
 				</f:heading>
 			</f:DynamicPageTitle>
-		</f:title> -->
+		</f:title>
 
 		<!-- DynamicPage Content -->
 		<f:content>
 			<VBox fitContainer="true">
-				<!-- <OverflowToolbar class="sapFDynamicPageAlignContent">
-					<ToolbarSpacer/>
-					<SearchField search=".onSearch" width="17.5rem"/>
-					<OverflowToolbarButton icon="sap-icon://add" text="Add" type="Transparent" press=".onAdd"/>
-					<OverflowToolbarButton icon="sap-icon://sort" text="Sort" type="Transparent" press=".onSort"/>
-				</OverflowToolbar> -->
-				<!-- <Table
-					id="productsTable"
-					inset="false"
-					items="{
-						path: 'products>/ProductCollection',
-						sorter: {
-							path: 'Name'
-						}
-					}"
-					class="sapFDynamicPageAlignContent"
-					width="auto">
-					<columns>
-						<Column width="12em">
-							<Text text="Product"/>
-						</Column>
-						<Column	hAlign="End">
-							<Text text="Price"/>
-						</Column>
-					</columns>
-					<items>
-						<ColumnListItem type="Navigation" press=".onListItemPress">
-							<cells>
-								<ObjectIdentifier title="{products>Name}" text="{products>ProductId}"/>
-								<ObjectNumber
-									number="{
-										parts:[
-											{path:'products>Price'},
-											{path:'products>CurrencyCode'}
-										],
-										type: 'sap.ui.model.type.Currency',
-										formatOptions: {showMeasure: false}
-									}"
-									unit="{products>CurrencyCode}"/>
-							</cells>
-						</ColumnListItem>
-					</items>
-				</Table> -->
+				<OverflowToolbar class="sapFDynamicPageAlignContent">
+					<!-- <ToolbarSpacer/> -->
+					<SearchField search=".onSearch" width="100%"/>
+					<!-- <OverflowToolbarButton icon="sap-icon://add" text="Add" type="Transparent" press=".onAdd"/> -->
+					<!-- <OverflowToolbarButton icon="sap-icon://sort" text="Sort" type="Transparent" press=".onSort"/> -->
+				</OverflowToolbar>
 				<Table
 					id="productsTable"
 					inset="false"
@@ -69,26 +33,47 @@
 					width="auto">
 					<columns>
 						<Column width="12em">
-							<Text text="Product"/>
+							<!-- <Text text="{i18n>masterListHeader}"/> -->
 						</Column>
 						<Column	hAlign="End">
-							<Text text="Price"/>
+							<!-- <Text text="Price"/> -->
 						</Column>
 					</columns>
 					<items>
 						<ColumnListItem type="Navigation" press=".onListItemPress">
 							<cells>
-								<ObjectIdentifier title="{invoice>GrpCode}" text="{invoice>SalesOrgResp}"/>
-								<!-- <ObjectNumber
-									number="{
-										parts:[
-											{path:'products>Price'},
-											{path:'products>CurrencyCode'}
-										],
-										type: 'sap.ui.model.type.Currency',
-										formatOptions: {showMeasure: false}
-									}"
-									unit="{products>CurrencyCode}"/> -->
+								<VBox>
+									<Label text="{i18n>masterListItemHeader}"/>
+									<HBox>
+										<core:Icon
+											src="sap-icon://sap-box"
+											size="3rem"
+											color="#1C4C98">
+											<core:layoutData>
+												<FlexItemData growFactor="1" />
+											</core:layoutData>
+										</core:Icon>
+										<Text text="{invoice>HeadId}"/>
+									</HBox>
+									<Text text="{i18n>masterListItemValidFrom} : {
+										path: 'invoice>ValidFrom',
+										type: 'sap.ui.model.type.Date',
+										formatOptions: {
+											style: 'medium'
+										}
+									}" />
+									<Text text="{i18n>masterListItemValidTo} : {
+										path: 'invoice>ValidTo',
+										type: 'sap.ui.model.type.Date',
+										formatOptions: {
+											style: 'medium'
+										}
+									}" />
+								</VBox>
+								<VBox>
+									<Label text="CRMD 套装1"/>
+									<Text text="总价套包"/>
+								</VBox>
 							</cells>
 						</ColumnListItem>
 					</items>
@@ -99,9 +84,10 @@
 		<!-- DynamicPage Footer -->
 		<f:footer>
 			<OverflowToolbar>
-				<ToolbarSpacer/>
+				<Button text="{i18n>footerCreate}" type="Emphasized" icon="sap-icon://add" press=".onCreateButtonPress"/>
+				<!-- <ToolbarSpacer/>
 				<Button type="Accept" text="Accept"/>
-				<Button type="Reject" text="Reject"/>
+				<Button type="Reject" text="Reject"/> -->
 			</OverflowToolbar>
 		</f:footer>
 	</f:DynamicPage>

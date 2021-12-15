@@ -53,7 +53,7 @@
 					]
 				},
 				{
-					"pattern": "detail/{product}/{layout}",
+					"pattern": "detail/{bundle}/{layout}",
 					"name": "detail",
 					"target": [
 						"master",

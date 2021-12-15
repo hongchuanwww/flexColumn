@@ -3,6 +3,7 @@
 	xmlns="sap.uxap"
 	xmlns:m="sap.m"
 	xmlns:f="sap.f"
+	xmlns:core="sap.ui.core"
 	xmlns:form="sap.ui.layout.form"
 	xmlns:mvc="sap.ui.core.mvc">
 	<ObjectPageLayout
@@ -12,22 +13,23 @@
 		preserveHeaderStateOnScroll="false"
 		headerContentPinnable="true"
 		isChildPage="true"
+		showFooter="true"
 		upperCaseAnchorBar="false">
 		<headerTitle>
 			<ObjectPageDynamicHeaderTitle>
 				<expandedHeading>
-					<m:Title text="{products>Name}" wrapping="true" class="sapUiSmallMarginEnd"/>
+					<m:Title text="{i18n>detailHeader}" wrapping="true" class="sapUiSmallMarginEnd"/>
 				</expandedHeading>
 
 				<snappedHeading>
 					<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
 						<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
-							<f:Avatar
+							<!-- <f:Avatar
 								src="https://sapui5.hana.ondemand.com/{products>ProductPicUrl}"
 								displaySize="S"
 								displayShape="Square"
-								class="sapUiTinyMarginEnd"/>
-							<m:Title text="{products>Name}" wrapping="true"/>
+								class="sapUiTinyMarginEnd"/> -->
+							<m:Title text="{invoice>HeadId}" wrapping="true"/>
 						</m:FlexBox>
 					</m:FlexBox>
 				</snappedHeading>
@@ -53,7 +55,7 @@
 						visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
 				</navigationActions>
 
-				<actions>
+				<!-- <actions>
 					<m:ToggleButton
 						text="Edit"
 						type="Emphasized"
@@ -67,12 +69,12 @@
 					<m:Button
 						icon="sap-icon://action"
 						type="Transparent"/>
-				</actions>
+				</actions> -->
 			</ObjectPageDynamicHeaderTitle>
 		</headerTitle>
 
 		<headerContent>
-			<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
+			<!-- <m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
 				<f:Avatar
 					src="https://sapui5.hana.ondemand.com/{products>ProductPicUrl}"
 					displaySize="L"
@@ -91,15 +93,63 @@
 					<m:Label text="Price"/>
 					<m:ObjectNumber number="{products>CurrencyCode} {products>Price}" emphasized="false"/>
 				</m:VBox>
-			</m:FlexBox>
+			</m:FlexBox> -->
+			<m:HBox>
+				<core:Icon
+					src="sap-icon://sap-box"
+					size="3rem"
+					color="#1C4C98">
+					<core:layoutData>
+						<m:FlexItemData growFactor="1" />
+					</core:layoutData>
+				</core:Icon>
+				<m:Text text="{invoice>HeadId}"/>
+			</m:HBox>
+			<m:HBox justifyContent="SpaceBetween">
+				<m:HBox>
+					<m:Label text="{i18n>BuDesc}:"/>
+					<m:Text text="{invoice>BuDesc}"/>
+				</m:HBox>
+				<m:HBox>
+					<m:Label text="促销类型:"/>
+					<m:Text text="总价"/>
+				</m:HBox>
+			</m:HBox>
+			<m:HBox justifyContent="SpaceBetween">
+				<m:HBox>
+					<m:Label text="定价: "/>
+					<m:Text text="套包折扣"/>
+				</m:HBox>
+				<m:HBox>
+					<m:Label text="组织架构:"/>
+					<m:Text text="{invoice>SalesOrg}"/>
+				</m:HBox>
+			</m:HBox>
+			<m:HBox justifyContent="SpaceBetween">
+				<m:Text text="{i18n>masterListItemValidFrom} : {
+					path: 'invoice>ValidFrom',
+					type: 'sap.ui.model.type.Date',
+					formatOptions: {
+						style: 'medium'
+					}
+				}" />
+				<m:Text text="{i18n>masterListItemValidTo} : {
+					path: 'invoice>ValidTo',
+					type: 'sap.ui.model.type.Date',
+					formatOptions: {
+						style: 'medium'
+					}
+				}" />
+				<m:CheckBox text="统一发货" selected="true" editable="false"/>
+				<m:CheckBox text="机器设备" selected="true" editable="false"/>
+			</m:HBox>
 		</headerContent>
-
 		<sections>
-			<ObjectPageSection title="General Information">
+			<ObjectPageSection title="组件定义">
 				<subSections>
 					<ObjectPageSubSection>
 						<blocks>
-							<form:SimpleForm
+							<!-- <form:SimpleForm
 								maxContainerCols="2"
 								editable="false"
 								layout="ResponsiveGridLayout"
@@ -117,26 +167,42 @@
 									<m:Label text="Supplier"/>
 									<m:Text text="{products>SupplierName}"/>
 								</form:content>
-							</form:SimpleForm>
-						</blocks>
-					</ObjectPageSubSection>
-				</subSections>
-			</ObjectPageSection>
-
-			<ObjectPageSection title="Suppliers">
-				<subSections>
-					<ObjectPageSubSection>
-						<blocks>
+							</form:SimpleForm> -->
 							<m:Table
-								id="suppliersTable"
-								items="{path : 'products>/ProductCollectionStats/Filters/1/values'}">
+								items="{path : 'invoice>ToGroup'}">
 								<m:columns>
-									<m:Column/>
+									<m:Column>
+										<m:Text text="组编号"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="销售数量"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="产品类型"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="免费项"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="发货组"/>
+									</m:Column>
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem type="Navigation" press=".onSupplierPress">
 										<m:cells>
-											<m:ObjectIdentifier text="{products>text}"/>
+											<m:ObjectIdentifier text="{invoice>GrpId}"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>GrpQty}"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>GrpScope}"/>
+										</m:cells>
+										<m:cells>
+											<m:CheckBox selected="{!!invoice>GrpFree}"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>CreatedBy}"/>
 										</m:cells>
 									</m:ColumnListItem>
 								</m:items>
@@ -145,13 +211,114 @@
 					</ObjectPageSubSection>
 				</subSections>
 			</ObjectPageSection>
+
+			<ObjectPageSection title="套包定价">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<m:Table
+								items="{path : 'invoice>ToPrice'}">
+								<m:columns>
+									<m:Column>
+										<m:Text text="产品行号"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="单价"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="限额"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="经销商"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="客户号"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="省份"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="编码"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="有效期从"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="有效期至"/>
+									</m:Column>
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem>
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>PrcGuid}"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>GrpQty}"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>Rate}{invoice>RateUnit}"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>CreatedBy}"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>AgreeId}"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>Province}"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>PriceType}"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{
+												path: 'invoice>ValidFrom',
+												type: 'sap.ui.model.type.Date',
+												formatOptions: {
+													style: 'medium'
+												}
+											}"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text=" {
+												path: 'invoice>ValidTo',
+												type: 'sap.ui.model.type.Date',
+												formatOptions: {
+													style: 'medium'
+												}
+											}"/>
+										</m:cells>
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<!-- 当前容器不支持IconTabBar-->
+			<!-- <m:IconTabBar>
+				<m:items>
+					<m:IconTabFilter 
+						key="info" 
+						icon="sap-icon://hint"
+						text="组件定义">
+						<m:Text text="Info content goes here ..." />
+					</m:IconTabFilter>
+					<m:IconTabFilter
+						key="attachments"
+						text="套包定价"
+						icon="sap-icon://attachment">
+						<m:Text text="Attachments go here ..." />
+					</m:IconTabFilter>
+				</m:items>
+			</m:IconTabBar> -->
 		</sections>
 
 		<footer>
 			<m:OverflowToolbar>
 				<m:ToolbarSpacer/>
-				<m:Button type="Accept" text="Save"/>
-				<m:Button type="Reject" text="Cancel"/>
+				<m:Button type="Emphasized" text="Save"/>
+				<m:Button text="Cancel"/>
 			</m:OverflowToolbar>
 		</footer>
 	</ObjectPageLayout>

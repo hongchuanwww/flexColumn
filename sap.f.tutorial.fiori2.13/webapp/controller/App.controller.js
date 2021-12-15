@@ -1,7 +1,8 @@
 sap.ui.define([
 	"sap/ui/model/json/JSONModel",
-	"sap/ui/core/mvc/Controller"
-], function (JSONModel, Controller) {
+	"sap/ui/core/mvc/Controller",
+	"sap/ui/model/resource/ResourceModel"
+], function (JSONModel, Controller, ResourceModel) {
 	"use strict";
 
 	return Controller.extend("sap.ui.demo.fiori2.controller.App", {
@@ -9,6 +10,11 @@ sap.ui.define([
 			this.oOwnerComponent = this.getOwnerComponent();
 			this.oRouter = this.oOwnerComponent.getRouter();
 			this.oRouter.attachRouteMatched(this.onRouteMatched, this);
+			// set i18n model on view
+			var i18nModel = new ResourceModel({
+				bundleName: "sap.ui.demo.fiori2.i18n.i18n"
+			 });
+			 this.getView().setModel(i18nModel, "i18n");
 		},
 
 		onRouteMatched: function (oEvent) {

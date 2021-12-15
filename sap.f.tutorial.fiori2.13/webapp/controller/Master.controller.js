@@ -40,16 +40,31 @@ sap.ui.define([
 		},
 
 		onListItemPress: function (oEvent) {
-			var productPath = oEvent.getSource().getBindingContext("invoice").getPath(),
-				product = productPath.split("/").slice(-1).pop(),
+			// TODO
+			// var productPath = oEvent.getSource().getBindingContext("invoice").getPath(),
+			// 	product = productPath.split("/").slice(-1).pop(),
+			// 	oNextUIState;
+			// this.getOwnerComponent().getHelper().then(function (oHelper) {
+			// 	oNextUIState = oHelper.getNextUIState(1);
+			// 	this.oRouter.navTo("detail", {
+			// 		layout: oNextUIState.layout,
+			// 		product: product
+			// 	});
+			// }.bind(this));
+			var path = oEvent.getSource().getBindingContext("invoice").getPath(),
+				bundle = path.split("/").slice(-1).pop().replace('BundleListSet','BundleHeadSet'),
 				oNextUIState;
 			this.getOwnerComponent().getHelper().then(function (oHelper) {
 				oNextUIState = oHelper.getNextUIState(1);
 				this.oRouter.navTo("detail", {
 					layout: oNextUIState.layout,
-					product: product
+					bundle: bundle
 				});
 			}.bind(this));
-		}
+		},
+
+		onCreateButtonPress: function (oEvent) {
+			//TODO
+		},
 	});
 });
