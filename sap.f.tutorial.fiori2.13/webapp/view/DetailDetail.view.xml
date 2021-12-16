@@ -1,17 +1,18 @@
 <mvc:View
 	controllerName="sap.ui.demo.fiori2.controller.DetailDetail"
-	xmlns="sap.f"
+	xmlns="sap.uxap"
 	xmlns:m="sap.m"
+	xmlns:core="sap.ui.core"
 	xmlns:mvc="sap.ui.core.mvc">
-	<DynamicPage toggleHeaderOnTitleClick="false">
-		<title>
-			<DynamicPageTitle>
-				<heading>
-					<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
-						<m:Title text="{products>text}" wrapping="true" class="sapUiTinyMarginEnd"/>
-					</m:FlexBox>
-				</heading>
-
+	<ObjectPageLayout
+		showTitleInHeaderContent="true"
+		alwaysShowContentHeader="false"
+		preserveHeaderStateOnScroll="false"
+		headerContentPinnable="true"
+		isChildPage="true"
+		upperCaseAnchorBar="false">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
 				<navigationActions>
 					<m:OverflowToolbarButton
 						type="Transparent"
@@ -32,10 +33,89 @@
 						tooltip="Close column"
 						visible="{= ${/actionButtonsInfo/endColumn/closeColumn} !== null }"/>
 				</navigationActions>
-			</DynamicPageTitle>
-		</title>
-		<content>
-			<m:Link text="Navigate to next page…" press=".handleAboutPress"/>
-		</content>
-	</DynamicPage>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+
+		<headerContent>
+			<m:HBox>
+				<core:Icon
+					src="sap-icon://add-coursebook"
+					size="4rem"
+					backgroundColor="cornflowerblue"
+					color="white">
+					<core:layoutData>
+						<m:FlexItemData growFactor="1" />
+					</core:layoutData>
+				</core:Icon>
+				<m:VBox>
+					<m:Label text="BD0001"/>
+					<m:Text text="组编号: GRP01"/>
+					<m:Text text="产品编号: 01-MAT"/>
+					<m:Text text="{i18n>masterListItemValidFrom} : {
+						path: 'invoice>ValidFrom',
+						type: 'sap.ui.model.type.Date',
+						formatOptions: {
+							style: 'medium'
+						}
+					}" />
+					<m:Text text="{i18n>masterListItemValidTo} : {
+						path: 'invoice>ValidTo',
+						type: 'sap.ui.model.type.Date',
+						formatOptions: {
+							style: 'medium'
+						}
+					}" />
+				</m:VBox>
+			</m:HBox>
+		</headerContent>
+		<sections>
+			<ObjectPageSection title="添加产品">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<m:Table
+								items="{path : 'invoice>ToGroup'}">
+								<m:columns>
+									<m:Column>
+										<m:Text text="行号"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="ZFIN ONLY"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="Code"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="有效期从"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="有效期至"/>
+									</m:Column>
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem>
+										<m:cells>
+											<m:ObjectIdentifier text="1"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="true"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="001"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="2021.01.01"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="2021.01.01"/>
+										</m:cells>
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	</ObjectPageLayout>
 </mvc:View>

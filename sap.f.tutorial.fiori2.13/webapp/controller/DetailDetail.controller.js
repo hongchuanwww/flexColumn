@@ -23,28 +23,35 @@ sap.ui.define([
 		},
 
 		_onPatternMatch: function (oEvent) {
-			this._supplier = oEvent.getParameter("arguments").supplier || this._supplier || "0";
-			this._product = oEvent.getParameter("arguments").product || this._product || "0";
+			// this._supplier = oEvent.getParameter("arguments").supplier || this._supplier || "0";
+			// this._product = oEvent.getParameter("arguments").product || this._product || "0";
 
-			this.getView().bindElement({
-				path: "/ProductCollectionStats/Filters/1/values/" + this._supplier,
-				model: "products"
-			});
+			this._bundle = oEvent.getParameter("arguments").bundle;
+			// this.getView().bindElement({
+			// 	path: "/ProductCollectionStats/Filters/1/values/" + this._supplier,
+			// 	model: "products"
+			// });
+			if(this._bundle) {
+				this.getView().bindElement({
+					path: "/" + this._bundle + "?$expand=ToGroup/ToItem,ToPrice&$format=json",
+					model: "invoice"
+				});
+			}
 		},
 
 		handleFullScreen: function () {
 			var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/endColumn/fullScreen");
-			this.oRouter.navTo("detailDetail", {layout: sNextLayout, product: this._product, supplier: this._supplier});
+			this.oRouter.navTo("detailDetail", {layout: sNextLayout, bundle: this._bundle});
 		},
 
 		handleExitFullScreen: function () {
 			var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/endColumn/exitFullScreen");
-			this.oRouter.navTo("detailDetail", {layout: sNextLayout, product: this._product, supplier: this._supplier});
+			this.oRouter.navTo("detailDetail", {layout: sNextLayout, bundle: this._bundle});
 		},
 
 		handleClose: function () {
 			var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/endColumn/closeColumn");
-			this.oRouter.navTo("detail", {layout: sNextLayout, product: this._product});
+			this.oRouter.navTo("detail", {layout: sNextLayout, bundle: this._bundle});
 		},
 
 		onExit: function () {
