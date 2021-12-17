@@ -68,6 +68,14 @@
 						"detail",
 						"detailDetail"
 					]
+				},
+				{
+					"pattern": "create/{layout}",
+					"name": "create",
+					"target": [
+						"master",
+						"create"
+					]
 				}
 			],
 			"targets": {
@@ -86,6 +94,10 @@
 				"page2": {
 					"viewName": "AboutPage",
 					"controlAggregation": "endColumnPages"
+				},
+				"create": {
+					"viewName": "Create",
+					"controlAggregation": "midColumnPages"
 				}
 			}
 		}

@@ -64,7 +64,13 @@ sap.ui.define([
 		},
 
 		onCreateButtonPress: function (oEvent) {
-			//TODO
+			var oNextUIState;
+			this.getOwnerComponent().getHelper().then(function (oHelper) {
+				oNextUIState = oHelper.getNextUIState(1);
+				this.oRouter.navTo("create", {
+					layout: oNextUIState.layout
+				});
+			}.bind(this));
 		},
 	});
 });

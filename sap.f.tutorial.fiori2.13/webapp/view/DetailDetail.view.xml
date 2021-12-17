@@ -72,6 +72,24 @@
 			<ObjectPageSection title="添加产品">
 				<subSections>
 					<ObjectPageSubSection>
+						<actions>
+                            <m:OverflowToolbarButton
+                                type="Transparent"
+                                icon="sap-icon://sort"
+                                press="handleButtonPress" />
+                            <m:OverflowToolbarButton
+                                type="Transparent"
+                                icon="sap-icon://filter"
+                                press="handleButtonPress" />
+							<m:OverflowToolbarButton
+                                type="Transparent"
+                                icon="sap-icon://group-2"
+                                press="handleButtonPress" />
+							<m:OverflowToolbarButton
+                                type="Transparent"
+                                icon="sap-icon://action-settings"
+                                press="handleButtonPress" />
+                        </actions>
 						<blocks>
 							<m:Table
 								items="{path : 'invoice>ToGroup'}">
