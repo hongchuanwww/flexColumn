@@ -105,27 +105,22 @@
 				</core:Icon>
 				<m:Text text="{invoice>HeadId}"/>
 			</m:HBox>
-			<m:HBox justifyContent="SpaceBetween">
+			<m:HBox justifyContent="Start">
 				<m:HBox>
-					<m:Label text="{i18n>BuDesc}:"/>
-					<m:Text text="{invoice>BuDesc}"/>
-				</m:HBox>
-				<m:HBox>
-					<m:Label text="促销类型:"/>
-					<m:Text text="总价"/>
-				</m:HBox>
-			</m:HBox>
-			<m:HBox justifyContent="SpaceBetween">
-				<m:HBox>
-					<m:Label text="定价: "/>
-					<m:Text text="套包折扣"/>
-				</m:HBox>
-				<m:HBox>
-					<m:Label text="组织架构:"/>
+					<m:Label text="{i18n>salesOrg}: "/>
 					<m:Text text="{invoice>SalesOrg}"/>
 				</m:HBox>
+				<m:HBox>
+					<m:Label text="{i18n>promotionType}: "/>
+					<m:Text text="{invoice>BdPromType}"/>
+				</m:HBox>
+				<m:HBox>
+					<m:Label text="{i18n>promotionTypeDesc}:"/>
+					<m:Text text="{invoice>BdPromTypeDesc}"/>
+				</m:HBox>
 			</m:HBox>
-			<m:HBox justifyContent="SpaceBetween">
+
+			<m:HBox justifyContent="Start">
 				<m:Text text="{i18n>masterListItemValidFrom} : {
 					path: 'invoice>ValidFrom',
 					type: 'sap.ui.model.type.Date',
@@ -140,8 +135,22 @@
 						style: 'medium'
 					}
 				}" />
-				<m:CheckBox text="统一发货" selected="true" editable="false"/>
-				<m:CheckBox text="机器设备" selected="true" editable="false"/>
+			</m:HBox>
+
+			<m:HBox justifyContent="Start">
+				<m:CheckBox text="统一发货" selected="{invoice>Delivery}" editable="false"/>
+				<m:CheckBox text="机器设备" selected="{invoice>Eqip}" editable="false"/>
+			</m:HBox>
+
+			<m:HBox justifyContent="Start">
+				<m:HBox>
+					<m:Label text="销售数量: "/>
+					<m:Text text="{invoice>Qty}"/>
+				</m:HBox>
+				<m:HBox>
+					<m:Label text="状态: "/>
+					<m:Text text="{invoice>Status}"/>
+				</m:HBox>
 			</m:HBox>
 		</headerContent>
 		<sections>
@@ -185,10 +194,13 @@
 										<m:Text text="组编号"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="销售数量"/>
+										<m:Text text="组范围"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="产品类型"/>
+										<m:Text text="组范围描述"/>
+									</m:Column>									
+									<m:Column>
+										<m:Text text="销售数量"/>
 									</m:Column>
 									<m:Column>
 										<m:Text text="免费项"/>
@@ -196,24 +208,39 @@
 									<m:Column>
 										<m:Text text="发货组"/>
 									</m:Column>
+									<m:Column>
+										<m:Text text="发货数量检查"/>
+									</m:Column>	
+									<m:Column>
+										<m:Text text="组描述"/>
+									</m:Column>									
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem type="Navigation" press=".onSupplierPress">
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>GrpId}"/>
-										</m:cells>
-										<m:cells>
-											<m:ObjectIdentifier text="{invoice>GrpQty}"/>
+											<m:ObjectIdentifier text="{invoice>GrpCode}"/>
 										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{invoice>GrpScope}"/>
 										</m:cells>
 										<m:cells>
+											<m:ObjectIdentifier text="{invoice>GrpScopeDesc}"/>
+										</m:cells>										
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>GrpQty}"/>
+										</m:cells>
+										<m:cells>
 											<m:CheckBox selected="{!!invoice>GrpFree}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>CreatedBy}"/>
+											<m:ObjectIdentifier text="{invoice>GrpDelvery}"/>
 										</m:cells>
+										<m:cells>
+											<m:CheckBox selected="true"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="描述"/>
+										</m:cells>								
 									</m:ColumnListItem>
 								</m:items>
 							</m:Table>

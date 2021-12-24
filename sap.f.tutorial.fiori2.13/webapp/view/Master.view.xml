@@ -71,8 +71,15 @@
 									}" />
 								</VBox>
 								<VBox>
-									<Label text="CRMD 套装1"/>
-									<Text text="总价套包"/>
+									<Text text="{i18n>BUID} : {
+										path: 'invoice>BuId',
+										formatOptions: {
+											style: 'medium'
+										}
+									}" />
+									<Label text="{invoice>BuDesc}"/>
+									<Label text="{invoice>BdDesc}"/>
+									<Text text="{invoice>SortCode}"/>
 								</VBox>
 							</cells>
 						</ColumnListItem>
