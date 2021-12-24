@@ -10,32 +10,38 @@ sap.ui.define([
 			this.oRouter = this.oOwnerComponent.getRouter();
 			this.oModel = this.oOwnerComponent.getModel();
 
-			this.oRouter.getRoute("master").attachPatternMatched(this._onProductMatched, this);
+			// this.oRouter.getRoute("master").attachPatternMatched(this._onProductMatched, this);
 			this.oRouter.getRoute("detail").attachPatternMatched(this._onProductMatched, this);
 			this.oRouter.getRoute("detailDetail").attachPatternMatched(this._onProductMatched, this);
 		},
 
 		onSupplierPress: function (oEvent) {
-			var supplierPath = oEvent.getSource().getBindingContext("products").getPath(),
-				supplier = supplierPath.split("/").slice(-1).pop(),
-				oNextUIState;
-
+			// var supplierPath = oEvent.getSource().getBindingContext("invoice").getPath(),
+				// supplier = supplierPath.split("/").slice(-1).pop(),
+			var	oNextUIState;
 			this.oOwnerComponent.getHelper().then(function (oHelper) {
 				oNextUIState = oHelper.getNextUIState(2);
 				this.oRouter.navTo("detailDetail", {
 					layout: oNextUIState.layout,
-					supplier: supplier,
-					product: this._product
+					// supplier: supplier,
+					bundle: this._bundle
 				});
 			}.bind(this));
 		},
 
 		_onProductMatched: function (oEvent) {
-			this._product = oEvent.getParameter("arguments").product || this._product || "0";
-			this.getView().bindElement({
-				path: "/ProductCollection/" + this._product,
-				model: "products"
-			});
+			// this._product = oEvent.getParameter("arguments").product || this._product || "0";
+			// this.getView().bindElement({
+			// 	path: "/ProductCollection/" + this._product,
+			// 	model: "products"
+			// });
+			this._bundle = oEvent.getParameter("arguments").bundle;
+			if(this._bundle) {
+				this.getView().bindElement({
+					path: "/" + this._bundle + "?$expand=ToGroup/ToItem,ToPrice&$format=json",
+					model: "invoice"
+				});
+			}
 		},
 
 		onEditToggleButtonPress: function() {

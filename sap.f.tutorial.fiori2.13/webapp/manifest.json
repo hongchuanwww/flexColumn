@@ -53,7 +53,7 @@
 					]
 				},
 				{
-					"pattern": "detail/{product}/{layout}",
+					"pattern": "detail/{bundle}/{layout}",
 					"name": "detail",
 					"target": [
 						"master",
@@ -61,12 +61,20 @@
 					]
 				},
 				{
-					"pattern": "detail/{product}/detailDetail/{supplier}/{layout}",
+					"pattern": "detailDetail/{bundle}/{layout}",
 					"name": "detailDetail",
 					"target": [
 						"master",
 						"detail",
 						"detailDetail"
+					]
+				},
+				{
+					"pattern": "create/{layout}",
+					"name": "create",
+					"target": [
+						"master",
+						"create"
 					]
 				}
 			],
@@ -86,6 +94,10 @@
 				"page2": {
 					"viewName": "AboutPage",
 					"controlAggregation": "endColumnPages"
+				},
+				"create": {
+					"viewName": "Create",
+					"controlAggregation": "midColumnPages"
 				}
 			}
 		}

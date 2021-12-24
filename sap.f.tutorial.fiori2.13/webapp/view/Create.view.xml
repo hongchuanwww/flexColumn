@@ -18,17 +18,12 @@
 		<headerTitle>
 			<ObjectPageDynamicHeaderTitle>
 				<expandedHeading>
-					<m:Title text="{i18n>detailHeader}" wrapping="true" class="sapUiSmallMarginEnd"/>
+					<m:Title text="{i18n>创建套包}" wrapping="true" class="sapUiSmallMarginEnd"/>
 				</expandedHeading>
 
 				<snappedHeading>
 					<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
 						<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
-							<!-- <f:Avatar
-								src="https://sapui5.hana.ondemand.com/{products>ProductPicUrl}"
-								displaySize="S"
-								displayShape="Square"
-								class="sapUiTinyMarginEnd"/> -->
 							<m:Title text="{invoice>HeadId}" wrapping="true"/>
 						</m:FlexBox>
 					</m:FlexBox>
@@ -54,46 +49,10 @@
 						tooltip="Close column"
 						visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
 				</navigationActions>
-
-				<!-- <actions>
-					<m:ToggleButton
-						text="Edit"
-						type="Emphasized"
-						press=".onEditToggleButtonPress"/>
-					<m:Button
-						text="Delete"
-						type="Transparent"/>
-					<m:Button
-						text="Copy"
-						type="Transparent"/>
-					<m:Button
-						icon="sap-icon://action"
-						type="Transparent"/>
-				</actions> -->
 			</ObjectPageDynamicHeaderTitle>
 		</headerTitle>
 
 		<headerContent>
-			<!-- <m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
-				<f:Avatar
-					src="https://sapui5.hana.ondemand.com/{products>ProductPicUrl}"
-					displaySize="L"
-					displayShape="Square"
-					class="sapUiTinyMarginEnd">
-				</f:Avatar>
-				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-					<m:Label text="Main Category"/>
-					<m:Text text="{products>MainCategory}"/>
-				</m:VBox>
-				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-					<m:Label text="Subcategory"/>
-					<m:Text text="{products>Category}"/>
-				</m:VBox>
-				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-					<m:Label text="Price"/>
-					<m:ObjectNumber number="{products>CurrencyCode} {products>Price}" emphasized="false"/>
-				</m:VBox>
-			</m:FlexBox> -->
 			<m:HBox>
 				<core:Icon
 					src="sap-icon://sap-box"
@@ -103,61 +62,37 @@
 						<m:FlexItemData growFactor="1" />
 					</core:layoutData>
 				</core:Icon>
-				<m:Text text="{invoice>HeadId}"/>
 			</m:HBox>
-			<m:HBox justifyContent="Start">
+			<m:HBox>
 				<m:HBox>
-					<m:Label text="{i18n>salesOrg}: "/>
-					<m:Text text="{invoice>SalesOrg}"/>
+					<m:Label text="{i18n>组织架构}"/>
+					<m:Input/>
 				</m:HBox>
 				<m:HBox>
-					<m:Label text="{i18n>promotionType}: "/>
-					<m:Text text="{invoice>BdPromType}"/>
-				</m:HBox>
-				<m:HBox>
-					<m:Label text="{i18n>promotionTypeDesc}:"/>
-					<m:Text text="{invoice>BdPromTypeDesc}"/>
+					<m:Label text="促销类型"/>
+					<m:Select/>
 				</m:HBox>
 			</m:HBox>
-
-			<m:HBox justifyContent="Start">
-				<m:Text text="{i18n>masterListItemValidFrom} : {
-					path: 'invoice>ValidFrom',
-					type: 'sap.ui.model.type.Date',
-					formatOptions: {
-						style: 'medium'
-					}
-				}" />
-				<m:Text text="{i18n>masterListItemValidTo} : {
-					path: 'invoice>ValidTo',
-					type: 'sap.ui.model.type.Date',
-					formatOptions: {
-						style: 'medium'
-					}
-				}" />
-			</m:HBox>
-
-			<m:HBox justifyContent="Start">
-				<m:CheckBox text="统一发货" selected="{invoice>Delivery}" editable="false"/>
-				<m:CheckBox text="机器设备" selected="{invoice>Eqip}" editable="false"/>
-			</m:HBox>
-
-			<m:HBox justifyContent="Start">
+			<m:HBox>
 				<m:HBox>
-					<m:Label text="销售数量: "/>
-					<m:Text text="{invoice>Qty}"/>
+					<m:Label text="有效期从"/>
+					<m:DatePicker/>
 				</m:HBox>
 				<m:HBox>
-					<m:Label text="状态: "/>
-					<m:Text text="{invoice>Status}"/>
+					<m:Label text="有效期至"/>
+					<m:DatePicker/>
 				</m:HBox>
+			</m:HBox>
+			<m:HBox>
+				<m:CheckBox text="统一发货"/>
+				<m:CheckBox text="机器设备"/>
 			</m:HBox>
 		</headerContent>
 		<sections>
 			<ObjectPageSection title="组件定义">
 				<subSections>
 					<ObjectPageSubSection>
-						<actions>
+                        <actions>
                             <m:OverflowToolbarButton
                                 type="Transparent"
                                 icon="sap-icon://add"
@@ -168,25 +103,6 @@
                                 press="handleButtonPress" />
                         </actions>
 						<blocks>
-							<!-- <form:SimpleForm
-								maxContainerCols="2"
-								editable="false"
-								layout="ResponsiveGridLayout"
-								labelSpanL="12"
-								labelSpanM="12"
-								emptySpanL="0"
-								emptySpanM="0"
-								columnsL="1"
-								columnsM="1">
-								<form:content>
-									<m:Label text="Product ID"/>
-									<m:Text text="{products>ProductId}"/>
-									<m:Label text="Description"/>
-									<m:Text text="{products>Description}"/>
-									<m:Label text="Supplier"/>
-									<m:Text text="{products>SupplierName}"/>
-								</form:content>
-							</form:SimpleForm> -->
 							<m:Table
 								items="{path : 'invoice>ToGroup'}">
 								<m:columns>
@@ -194,13 +110,10 @@
 										<m:Text text="组编号"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="组范围"/>
+										<m:Text text="销售数量"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="组范围描述"/>
-									</m:Column>									
-									<m:Column>
-										<m:Text text="销售数量"/>
+										<m:Text text="产品类型"/>
 									</m:Column>
 									<m:Column>
 										<m:Text text="免费项"/>
@@ -208,39 +121,24 @@
 									<m:Column>
 										<m:Text text="发货组"/>
 									</m:Column>
-									<m:Column>
-										<m:Text text="发货数量检查"/>
-									</m:Column>	
-									<m:Column>
-										<m:Text text="组描述"/>
-									</m:Column>									
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem type="Navigation" press=".onSupplierPress">
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>GrpCode}"/>
+											<m:ObjectIdentifier text="{invoice>GrpId}"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>GrpQty}"/>
 										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{invoice>GrpScope}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>GrpScopeDesc}"/>
-										</m:cells>										
-										<m:cells>
-											<m:ObjectIdentifier text="{invoice>GrpQty}"/>
-										</m:cells>
-										<m:cells>
 											<m:CheckBox selected="{!!invoice>GrpFree}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>GrpDelvery}"/>
+											<m:ObjectIdentifier text="{invoice>CreatedBy}"/>
 										</m:cells>
-										<m:cells>
-											<m:CheckBox selected="true"/>
-										</m:cells>
-										<m:cells>
-											<m:ObjectIdentifier text="描述"/>
-										</m:cells>								
 									</m:ColumnListItem>
 								</m:items>
 							</m:Table>
@@ -252,16 +150,6 @@
 			<ObjectPageSection title="套包定价">
 				<subSections>
 					<ObjectPageSubSection>
-						<actions>
-                            <m:OverflowToolbarButton
-                                type="Transparent"
-                                icon="sap-icon://upload"
-                                press="handleButtonPress" />
-                            <m:OverflowToolbarButton
-                                type="Transparent"
-                                icon="sap-icon://add-activity-2"
-                                press="handleButtonPress" />
-                        </actions>
 						<blocks>
 							<m:Table
 								items="{path : 'invoice>ToPrice'}">
@@ -342,23 +230,6 @@
 					</ObjectPageSubSection>
 				</subSections>
 			</ObjectPageSection>
-			<!-- 当前容器不支持IconTabBar-->
-			<!-- <m:IconTabBar>
-				<m:items>
-					<m:IconTabFilter 
-						key="info" 
-						icon="sap-icon://hint"
-						text="组件定义">
-						<m:Text text="Info content goes here ..." />
-					</m:IconTabFilter>
-					<m:IconTabFilter
-						key="attachments"
-						text="套包定价"
-						icon="sap-icon://attachment">
-						<m:Text text="Attachments go here ..." />
-					</m:IconTabFilter>
-				</m:items>
-			</m:IconTabBar> -->
 		</sections>
 
 		<footer>
