@@ -267,25 +267,16 @@
 								items="{path : 'invoice>ToPrice'}">
 								<m:columns>
 									<m:Column>
-										<m:Text text="产品行号"/>
+										<m:Text text="省份编号"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="单价"/>
+										<m:Text text="省份描述"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="限额"/>
-									</m:Column>
-									<m:Column>
-										<m:Text text="经销商"/>
+										<m:Text text="协议号"/>
 									</m:Column>
 									<m:Column>
 										<m:Text text="客户号"/>
-									</m:Column>
-									<m:Column>
-										<m:Text text="省份"/>
-									</m:Column>
-									<m:Column>
-										<m:Text text="编码"/>
 									</m:Column>
 									<m:Column>
 										<m:Text text="有效期从"/>
@@ -293,29 +284,27 @@
 									<m:Column>
 										<m:Text text="有效期至"/>
 									</m:Column>
+									<m:Column>
+										<m:Text text="数量（单位）"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="CAP"/>
+									</m:Column>
+
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>PrcGuid}"/>
+											<m:ObjectIdentifier text="{invoice>Province}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>GrpQty}"/>
-										</m:cells>
-										<m:cells>
-											<m:ObjectIdentifier text="{invoice>Rate}{invoice>RateUnit}"/>
-										</m:cells>
-										<m:cells>
-											<m:ObjectIdentifier text="{invoice>CreatedBy}"/>
+											<m:ObjectIdentifier text="{invoice>RegionDesc}"/>
 										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{invoice>AgreeId}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>Province}"/>
-										</m:cells>
-										<m:cells>
-											<m:ObjectIdentifier text="{invoice>PriceType}"/>
+											<m:ObjectIdentifier text="{invoice>BpCodeInAgree}"/>
 										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{
@@ -335,6 +324,13 @@
 												}
 											}"/>
 										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>Rate} {invoice>RateUnit}"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>Cap}"/>
+										</m:cells>
+
 									</m:ColumnListItem>
 								</m:items>
 							</m:Table>

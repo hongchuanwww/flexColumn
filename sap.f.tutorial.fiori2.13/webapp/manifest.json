@@ -61,7 +61,7 @@
 					]
 				},
 				{
-					"pattern": "detailDetail/{bundle}/{layout}",
+					"pattern": "detailDetail/{bundle}/{item}/{layout}",
 					"name": "detailDetail",
 					"target": [
 						"master",

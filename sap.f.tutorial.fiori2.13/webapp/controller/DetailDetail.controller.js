@@ -26,14 +26,14 @@ sap.ui.define([
 			// this._supplier = oEvent.getParameter("arguments").supplier || this._supplier || "0";
 			// this._product = oEvent.getParameter("arguments").product || this._product || "0";
 
-			this._bundle = oEvent.getParameter("arguments").bundle;
+			this._item = oEvent.getParameter("arguments").item;
 			// this.getView().bindElement({
 			// 	path: "/ProductCollectionStats/Filters/1/values/" + this._supplier,
 			// 	model: "products"
 			// });
-			if(this._bundle) {
+			if(this._item) {
 				this.getView().bindElement({
-					path: "/" + this._bundle + "?$expand=ToGroup/ToItem,ToPrice&$format=json",
+					path: "/" + this._item + "",
 					model: "invoice"
 				});
 			}

@@ -18,12 +18,15 @@ sap.ui.define([
 		onSupplierPress: function (oEvent) {
 			// var supplierPath = oEvent.getSource().getBindingContext("invoice").getPath(),
 				// supplier = supplierPath.split("/").slice(-1).pop(),
+			var itemPath = oEvent.getSource().getBindingContext('invoice').getPath(),
+			item = itemPath.split("/").slice(-1).pop();
 			var	oNextUIState;
 			this.oOwnerComponent.getHelper().then(function (oHelper) {
 				oNextUIState = oHelper.getNextUIState(2);
 				this.oRouter.navTo("detailDetail", {
 					layout: oNextUIState.layout,
 					// supplier: supplier,
+					item: item,
 					bundle: this._bundle
 				});
 			}.bind(this));
@@ -38,7 +41,8 @@ sap.ui.define([
 			this._bundle = oEvent.getParameter("arguments").bundle;
 			if(this._bundle) {
 				this.getView().bindElement({
-					path: "/" + this._bundle + "?$expand=ToGroup/ToItem,ToPrice&$format=json",
+					// path: "/" + this._bundle + "?$expand=ToGroup/ToItem,ToPrice&$format=json",
+					path: "/" + this._bundle + "?$expand=ToGroup/ToItem,ToPrice",
 					model: "invoice"
 				});
 			}

@@ -48,10 +48,9 @@
 					</core:layoutData>
 				</core:Icon>
 				<m:VBox>
-					<m:Label text="BD0001"/>
-					<m:Text text="组编号: GRP01"/>
-					<m:Text text="产品编号: 01-MAT"/>
-					<m:Text text="{i18n>masterListItemValidFrom} : {
+					<m:Label text="{invoice>HeadId}"/>
+					<m:Text text="组编号: {invoice>GrpScopeDesc}{invoice>GrpScope}"/>
+					<!-- <m:Text text="{i18n>masterListItemValidFrom} : {
 						path: 'invoice>ValidFrom',
 						type: 'sap.ui.model.type.Date',
 						formatOptions: {
@@ -64,7 +63,7 @@
 						formatOptions: {
 							style: 'medium'
 						}
-					}" />
+					}" /> -->
 				</m:VBox>
 			</m:HBox>
 		</headerContent>
@@ -92,16 +91,13 @@
                         </actions>
 						<blocks>
 							<m:Table
-								items="{path : 'invoice>ToGroup'}">
+								items="{path : 'invoice>ToItem'}">
 								<m:columns>
 									<m:Column>
-										<m:Text text="行号"/>
+										<m:Text text="产品"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="ZFIN ONLY"/>
-									</m:Column>
-									<m:Column>
-										<m:Text text="Code"/>
+										<m:Text text="产品描述"/>
 									</m:Column>
 									<m:Column>
 										<m:Text text="有效期从"/>
@@ -109,23 +105,35 @@
 									<m:Column>
 										<m:Text text="有效期至"/>
 									</m:Column>
+									<m:Column>
+										<m:Text text="ZFIN"/>
+									</m:Column>
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem>
 										<m:cells>
-											<m:ObjectIdentifier text="1"/>
+											<m:ObjectIdentifier text="{invoice>Product}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="true"/>
+											<m:ObjectIdentifier text="{invoice>ProducDesc}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="001"/>
+											<m:ObjectIdentifier text="{
+												path: 'invoice>ValidFrom',
+												type: 'sap.ui.model.type.Date',
+												formatOptions: {
+													style: 'medium'
+												}
+											}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="2021.01.01"/>
-										</m:cells>
-										<m:cells>
-											<m:ObjectIdentifier text="2021.01.01"/>
+											<m:ObjectIdentifier text="{
+												path: 'invoice>ValidTo',
+												type: 'sap.ui.model.type.Date',
+												formatOptions: {
+													style: 'medium'
+												}
+											}"/>
 										</m:cells>
 									</m:ColumnListItem>
 								</m:items>

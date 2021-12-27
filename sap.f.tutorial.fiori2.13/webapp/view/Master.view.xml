@@ -71,7 +71,6 @@
 									}" />
 								</VBox>
 								<VBox>
-
 									<Text text="{i18n>BUID} : {
 										path: 'invoice>BuId',
 										formatOptions: {
