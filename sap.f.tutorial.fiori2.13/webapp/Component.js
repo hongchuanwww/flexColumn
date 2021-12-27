@@ -28,10 +28,10 @@ sap.ui.define([
 			oProductsModel.setSizeLimit(1000);
 			this.setModel(oProductsModel, 'products');
 			
-			var sServiceUrl = "https://dev.abbott-md.cn:4443/sap/opu/odata/SAP/ZYCHCN_API_ORDER_002_SRV/",
-				bJSON = true,
-				sUser = "huangs03",
-				sPwd = "3edc!QAZ";
+			var sServiceUrl = "/sap/opu/odata/SAP/ZYCHCN_API_ORDER_002_SRV/",
+				bJSON = true;
+				// sUser = "huangs03",
+				// sPwd = "3edc!QAZ";
 			oODataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, bJSON, sUser, sPwd);
 			this.setModel(oODataModel,'invoice');
 
