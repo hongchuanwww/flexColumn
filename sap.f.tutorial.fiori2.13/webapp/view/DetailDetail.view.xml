@@ -48,8 +48,9 @@
 					</core:layoutData>
 				</core:Icon>
 				<m:VBox>
-					<m:Label text="{invoice>HeadId}"/>
+					<m:Label text="{invoice>GrpId}"/>
 					<m:Text text="组编号: {invoice>GrpScopeDesc}{invoice>GrpScope}"/>
+					<m:Text text="组说明: 暂缺"/>
 					<!-- <m:Text text="{i18n>masterListItemValidFrom} : {
 						path: 'invoice>ValidFrom',
 						type: 'sap.ui.model.type.Date',
@@ -106,8 +107,8 @@
 										<m:Text text="有效期至"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="ZFIN"/>
-									</m:Column>
+										<m:Text text="产品不可选"/>
+									</m:Column>									
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem>
@@ -134,6 +135,9 @@
 													style: 'medium'
 												}
 											}"/>
+										</m:cells>
+										<m:cells>
+											<m:CheckBox selected="true"/>
 										</m:cells>
 									</m:ColumnListItem>
 								</m:items>

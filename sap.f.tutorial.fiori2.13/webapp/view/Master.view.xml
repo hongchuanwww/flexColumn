@@ -43,7 +43,7 @@
 						<ColumnListItem type="Navigation" press=".onListItemPress">
 							<cells>
 								<VBox>
-									<Label text="{i18n>masterListItemHeader}"/>
+									<Label text="{invoice>BdHeadNumber}"/>
 									<HBox>
 										<core:Icon
 											src="sap-icon://sap-box"
@@ -53,7 +53,7 @@
 												<FlexItemData growFactor="1" />
 											</core:layoutData>
 										</core:Icon>
-										<Text text="{invoice>HeadId}"/>
+										<Text text="{invoice>SortCode} {invoice>BdDesc}"/>
 									</HBox>
 									<Text text="{i18n>masterListItemValidFrom} : {
 										path: 'invoice>ValidFrom',
@@ -71,15 +71,14 @@
 									}" />
 								</VBox>
 								<VBox>
-									<Text text="{i18n>BUID} : {
+									<!-- <Text text="{i18n>BUID} : {
 										path: 'invoice>BuId',
 										formatOptions: {
 											style: 'medium'
 										}
-									}" />
+									}" /> -->
 									<Label text="{invoice>BuDesc}"/>
-									<Label text="{invoice>BdDesc}"/>
-									<Text text="{invoice>SortCode}"/>
+									<Label text="{invoice>BdPromType} {invoice>BdPromTypeDesc}"/>
 								</VBox>
 							</cells>
 						</ColumnListItem>
