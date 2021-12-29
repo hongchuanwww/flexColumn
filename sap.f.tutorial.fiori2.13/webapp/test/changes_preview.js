@@ -180,7 +180,7 @@ if (parseInt(version[0]) <= 1 && parseInt(version[1]) < 78) {
                                             oResult.changes = aProcessedChanges;
                                             var oLrepChange = {
                                                 changes: oResult,
-                                                componentClassName: 'sap.ui.demo.fiori2'
+                                                componentClassName: 'zychcn.zbundle01'
                                             };
                                             resolve(oLrepChange);
                                         });
@@ -191,7 +191,7 @@ if (parseInt(version[0]) <= 1 && parseInt(version[1]) < 78) {
                                         oResult.changes = aProcessedChanges;
                                         var oLrepChange = {
                                             changes: oResult,
-                                            componentClassName: 'sap.ui.demo.fiori2'
+                                            componentClassName: 'zychcn.zbundle01'
                                         };
                                         resolve(oLrepChange);
                                     }

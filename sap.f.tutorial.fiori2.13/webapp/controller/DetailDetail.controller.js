@@ -4,7 +4,7 @@ sap.ui.define([
 ], function (JSONModel, Controller) {
 	"use strict";
 
-	return Controller.extend("sap.ui.demo.fiori2.controller.DetailDetail", {
+	return Controller.extend("zychcn.zbundle01.controller.DetailDetail", {
 		onInit: function () {
 			this.oOwnerComponent = this.getOwnerComponent();
 

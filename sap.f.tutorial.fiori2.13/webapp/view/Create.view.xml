@@ -1,5 +1,5 @@
 <mvc:View
-	controllerName="sap.ui.demo.fiori2.controller.Detail"
+	controllerName="zychcn.zbundle01.controller.Detail"
 	xmlns="sap.uxap"
 	xmlns:m="sap.m"
 	xmlns:f="sap.f"
