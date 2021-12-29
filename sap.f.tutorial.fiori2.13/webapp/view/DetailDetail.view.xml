@@ -49,8 +49,8 @@
 				</core:Icon>
 				<m:VBox>
 					<m:Label text="{invoice>GrpId}"/>
-					<m:Text text="组编号: {invoice>GrpScopeDesc}{invoice>GrpScope}"/>
-					<m:Text text="组说明: 暂缺"/>
+					<m:Text text="{i18n>groupID}: {invoice>GrpScopeDesc}{invoice>GrpScope}"/>
+					<m:Text text="{i18n>groupDesc}: NA for now"/>
 					<!-- <m:Text text="{i18n>masterListItemValidFrom} : {
 						path: 'invoice>ValidFrom',
 						type: 'sap.ui.model.type.Date',
@@ -69,7 +69,7 @@
 			</m:HBox>
 		</headerContent>
 		<sections>
-			<ObjectPageSection title="添加产品">
+			<ObjectPageSection title="{i18n>addProduct}">
 				<subSections>
 					<ObjectPageSubSection>
 						<actions>

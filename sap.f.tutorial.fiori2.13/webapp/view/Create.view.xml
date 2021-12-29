@@ -18,7 +18,7 @@
 		<headerTitle>
 			<ObjectPageDynamicHeaderTitle>
 				<expandedHeading>
-					<m:Title text="{i18n>创建套包}" wrapping="true" class="sapUiSmallMarginEnd"/>
+					<m:Title text="{i18n>CreateHeader}" wrapping="true" class="sapUiSmallMarginEnd"/>
 				</expandedHeading>
 
 				<snappedHeading>
@@ -65,31 +65,31 @@
 			</m:HBox>
 			<m:HBox>
 				<m:HBox>
-					<m:Label text="{i18n>组织架构}"/>
+					<m:Label text="{i18n>Organization}"/>
 					<m:Input/>
 				</m:HBox>
 				<m:HBox>
-					<m:Label text="促销类型"/>
+					<m:Label text="{i18n>promotionTypeDesc}"/>
 					<m:Select/>
 				</m:HBox>
 			</m:HBox>
 			<m:HBox>
 				<m:HBox>
-					<m:Label text="有效期从"/>
+					<m:Label text="{i18n>ValidFrom}"/>
 					<m:DatePicker/>
 				</m:HBox>
 				<m:HBox>
-					<m:Label text="有效期至"/>
+					<m:Label text="{i18n>ValidTo}"/>
 					<m:DatePicker/>
 				</m:HBox>
 			</m:HBox>
 			<m:HBox>
-				<m:CheckBox text="统一发货"/>
-				<m:CheckBox text="机器设备"/>
+				<m:CheckBox text="{i18n>UnifiedDelivery}"/>
+				<m:CheckBox text="{i18n>MechanicalEquipment}"/>
 			</m:HBox>
 		</headerContent>
 		<sections>
-			<ObjectPageSection title="组件定义">
+			<ObjectPageSection title="{i18n>ComponentDefinition}">
 				<subSections>
 					<ObjectPageSubSection>
                         <actions>
@@ -107,19 +107,19 @@
 								items="{path : 'invoice>ToGroup'}">
 								<m:columns>
 									<m:Column>
-										<m:Text text="组编号"/>
+										<m:Text text="{i18n>groupID}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="销售数量"/>
+										<m:Text text="{i18n>salesNo}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="产品类型"/>
+										<m:Text text="{i18n>ProductType}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="免费项"/>
+										<m:Text text="{i18n>FreeItem}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="发货组"/>
+										<m:Text text="{i18n>shipmentGroup}"/>
 									</m:Column>
 								</m:columns>
 								<m:items>
@@ -147,7 +147,7 @@
 				</subSections>
 			</ObjectPageSection>
 
-			<ObjectPageSection title="套包定价">
+			<ObjectPageSection title="{i18n>HeaderPrice}">
 				<subSections>
 					<ObjectPageSubSection>
 						<blocks>
@@ -155,31 +155,31 @@
 								items="{path : 'invoice>ToPrice'}">
 								<m:columns>
 									<m:Column>
-										<m:Text text="产品行号"/>
+										<m:Text text="{i18n>ProductLineNo}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="单价"/>
+										<m:Text text="{i18n>Price}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="限额"/>
+										<m:Text text="{i18n>Limit}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="经销商"/>
+										<m:Text text="{i18n>Dealer}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="客户号"/>
+										<m:Text text="{i18n>CustomerNo}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="省份"/>
+										<m:Text text="{i18n>Province}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="编码"/>
+										<m:Text text="{i18n>code}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="有效期从"/>
+										<m:Text text="{i18n>ValidFrom}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="有效期至"/>
+										<m:Text text="{i18n>ValidTo}"/>
 									</m:Column>
 								</m:columns>
 								<m:items>

@@ -112,15 +112,15 @@
 						<m:Text text="{invoice>SalesOrg}"/>
 					</m:HBox>
 					<m:HBox>
-						<m:Label text="销售渠道: "/>
+						<m:Label text="{i18n>SalesChannels}: "/>
 						<m:Text text="{invoice>DistrChan}"/>
 					</m:HBox>
 					<m:HBox>
-						<m:Label text="供应商ID: "/>
+						<m:Label text="{i18n>Supplier}ID: "/>
 						<m:Text text="{invoice>BuId}"/>
 					</m:HBox>
 					<m:HBox>
-						<m:Label text="供应商: "/>
+						<m:Label text="{i18n>HeaderDesc}: "/>
 						<m:Text text="{invoice>BuDesc}"/>
 					</m:HBox>
 				</m:VBox>
@@ -130,7 +130,7 @@
 						<m:Text text="{invoice>SortCode}"/>
 					</m:HBox>
 					<m:HBox>
-						<m:Label text="套包描述: "/>
+						<m:Label text="{i18n>Supplier}: "/>
 						<m:Text text="{invoice>BdDesc}"/>
 					</m:HBox>
 					<m:HBox>
@@ -159,17 +159,17 @@
 							}
 						}" />
 						<m:HBox justifyContent="Start">
-							<m:Label text="销售数量: "/>
+							<m:Label text="{i18n>SalesVolume}: "/>
 							<m:Text text="{invoice>Qty}"/>
 						</m:HBox>
 					</m:VBox>
 				</m:VBox>
 				<m:VBox>
 					<m:VBox justifyContent="Start">
-						<m:CheckBox text="统一发货" selected="{invoice>Delivery}" editable="false"/>
-						<m:CheckBox text="机器设备" selected="{invoice>Eqip}" editable="false"/>
+						<m:CheckBox text="{i18n>UnifiedDelivery}" selected="{invoice>Delivery}" editable="false"/>
+						<m:CheckBox text="{i18n>MechanicalEquipment}" selected="{invoice>Eqip}" editable="false"/>
 						<m:HBox>
-							<m:Label text="状态: "/>
+							<m:Label text="{i18n>Status}: "/>
 							<m:Text text="{invoice>Status}"/>
 						</m:HBox>
 					</m:VBox>
@@ -183,7 +183,7 @@
 			</m:HBox>
 		</headerContent>
 		<sections>
-			<ObjectPageSection title="组件定义">
+			<ObjectPageSection title="{i18n>Status}组件定义">
 				<subSections>
 					<ObjectPageSubSection>
 						<actions>
