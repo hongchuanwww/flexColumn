@@ -95,19 +95,19 @@
 								items="{path : 'invoice>ToItem'}">
 								<m:columns>
 									<m:Column>
-										<m:Text text="产品"/>
+										<m:Text text="{i18n>Product}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="产品描述"/>
+										<m:Text text="{i18n>ProductDesc}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="有效期从"/>
+										<m:Text text="{i18n>ValidFrom}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="有效期至"/>
+										<m:Text text="{i18n>ValidTo}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="产品不可选"/>
+										<m:Text text="{i18n>Productcannotbeselected}"/>
 									</m:Column>									
 								</m:columns>
 								<m:items>

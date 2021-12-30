@@ -183,7 +183,7 @@
 			</m:HBox>
 		</headerContent>
 		<sections>
-			<ObjectPageSection title="{i18n>Status}组件定义">
+			<ObjectPageSection title="{i18n>ComponentDefinition}">
 				<subSections>
 					<ObjectPageSubSection>
 						<actions>
@@ -220,28 +220,28 @@
 								items="{path : 'invoice>ToGroup'}">
 								<m:columns>
 									<m:Column>
-										<m:Text text="组编号"/>
+										<m:Text text="{i18n>groupID}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="组范围"/>
+										<m:Text text="{i18n>GruopScope}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="组范围描述"/>
+										<m:Text text="{i18n>GruopScopeDesc}"/>
 									</m:Column>									
 									<m:Column>
-										<m:Text text="数量系数"/>
+										<m:Text text="{i18n>QuantityCoefficient}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="免费项"/>
+										<m:Text text="{i18n>FreeItem}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="发货组"/>
+										<m:Text text="{i18n>ShipmentGroup}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="数量检查"/>
+										<m:Text text="{i18n>QuantityCheck}"/>
 									</m:Column>	
 									<!-- <m:Column>
-										<m:Text text="组描述"/>
+										<m:Text text="{i18n>GroupDesc}"/>
 									</m:Column>									 -->
 								</m:columns>
 								<m:items>
@@ -268,7 +268,7 @@
 											<m:CheckBox selected="true"/>
 										</m:cells>
 										<!-- <m:cells>
-											<m:ObjectIdentifier text="描述"/>
+											<m:ObjectIdentifier text="{i18n>Desc}"/>
 										</m:cells>								 -->
 									</m:ColumnListItem>
 								</m:items>
@@ -278,7 +278,7 @@
 				</subSections>
 			</ObjectPageSection>
 
-			<ObjectPageSection title="套包定价">
+			<ObjectPageSection title="{i18n>HeaderPrice}">
 				<subSections>
 					<ObjectPageSubSection>
 						<actions>
@@ -296,25 +296,25 @@
 								items="{path : 'invoice>ToPrice'}">
 								<m:columns>
 									<m:Column>
-										<m:Text text="省份编号"/>
+										<m:Text text="{i18n>ProvinceID}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="省份描述"/>
+										<m:Text text="{i18n>ProvinceDesc}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="协议号"/>
+										<m:Text text="{i18n>ProtocolID}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="客户号"/>
+										<m:Text text="{i18n>CustomerID}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="客户描述"/>
+										<m:Text text="{i18n>CustomerDesc}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="有效期从"/>
+										<m:Text text="{i18n>ValidFrom}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="有效期至"/>
+										<m:Text text="{i18n>ValidTo}"/>
 									</m:Column>
 									<m:Column>
 										<m:Text text="Rate"/>
@@ -339,7 +339,7 @@
 											<m:ObjectIdentifier text="{invoice>BpCodeInAgree}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="客户描述"/>
+											<m:ObjectIdentifier text="{i18n>CustomerDesc}"/>
 										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{
