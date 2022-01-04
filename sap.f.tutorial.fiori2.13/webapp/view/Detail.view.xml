@@ -18,7 +18,7 @@
 		<headerTitle>
 			<ObjectPageDynamicHeaderTitle>
 				<expandedHeading>
-					<m:Title text="{i18n>detailHeader}" wrapping="true" class="sapUiSmallMarginEnd"/>
+					<m:Title text="{i18n>detailHeader}" wrapping="true" class="sapUiSmallMarginEnd" design="bold"/>
 				</expandedHeading>
 
 				<snappedHeading>
@@ -108,37 +108,37 @@
 			<m:HBox justifyContent="SpaceBetween">
 				<m:VBox>
 					<m:HBox>
-						<m:Label text="{i18n>salesOrg}: "/>
-						<m:Text text="{invoice>SalesOrg}"/>
+						<m:Label text="{i18n>Supplier}ID : " design="Bold"/>
+						<m:Text text=" {invoice>BuId}"/>
 					</m:HBox>
 					<m:HBox>
-						<m:Label text="{i18n>SalesChannels}: "/>
-						<m:Text text="{invoice>DistrChan}"/>
+						<m:Label text="{i18n>salesOrg} : " design="Bold"/>
+						<m:Text text=" {invoice>SalesOrg}"/>
 					</m:HBox>
 					<m:HBox>
-						<m:Label text="{i18n>Supplier}ID: "/>
-						<m:Text text="{invoice>BuId}"/>
+						<m:Label text="{i18n>SalesChannels} : " design="Bold"/>
+						<m:Text text=" {invoice>DistrChan}"/>
 					</m:HBox>
 					<m:HBox>
-						<m:Label text="{i18n>HeaderDesc}: "/>
-						<m:Text text="{invoice>BuDesc}"/>
+						<m:Label text="{i18n>HeaderDesc} : " design="Bold"/>
+						<m:Text text=" {invoice>BuDesc}"/>
 					</m:HBox>
 				</m:VBox>
 				<m:VBox>
 					<m:HBox>
-						<m:Label text="Sort Code "/>
+						<m:Label text="Sort Code : " design="Bold"/>
 						<m:Text text="{invoice>SortCode}"/>
 					</m:HBox>
 					<m:HBox>
-						<m:Label text="{i18n>Supplier}: "/>
+						<m:Label text="{i18n>Supplier} : " design="Bold"/>
 						<m:Text text="{invoice>BdDesc}"/>
 					</m:HBox>
 					<m:HBox>
-						<m:Label text="{i18n>promotionType}: "/>
+						<m:Label text="{i18n>promotionType} : " design="Bold"/>
 						<m:Text text="{invoice>BdPromType}"/>
 					</m:HBox>
 					<m:HBox>
-						<m:Label text="{i18n>promotionTypeDesc}:"/>
+						<m:Label text="{i18n>promotionTypeDesc} :" design="Bold"/>
 						<m:Text text="{invoice>BdPromTypeDesc}"/>
 					</m:HBox>
 				</m:VBox>
@@ -146,30 +146,32 @@
 					<m:VBox justifyContent="Start">
 						<m:Text text="{i18n>masterListItemValidFrom} : {
 							path: 'invoice>ValidFrom',
+							design: 'bold',
 							type: 'sap.ui.model.type.Date',
 							formatOptions: {
 								style: 'medium'
 							}
-						}" />
+						}"/>
 						<m:Text text="{i18n>masterListItemValidTo} : {
 							path: 'invoice>ValidTo',
+							design: 'bold',
 							type: 'sap.ui.model.type.Date',
 							formatOptions: {
 								style: 'medium'
 							}
-						}" />
+						}"/>
 						<m:HBox justifyContent="Start">
-							<m:Label text="{i18n>SalesVolume}: "/>
+							<m:Label text="{i18n>SalesVolume} : " design="Bold"/>
 							<m:Text text="{invoice>Qty}"/>
 						</m:HBox>
 					</m:VBox>
 				</m:VBox>
 				<m:VBox>
 					<m:VBox justifyContent="Start">
-						<m:CheckBox text="{i18n>UnifiedDelivery}" selected="{invoice>Delivery}" editable="false"/>
-						<m:CheckBox text="{i18n>MechanicalEquipment}" selected="{invoice>Eqip}" editable="false"/>
+						<m:CheckBox text="{i18n>UnifiedDelivery}" design="Bold" selected="{invoice>Delivery}" editable="false"/>
+						<m:CheckBox text="{i18n>MechanicalEquipment}" design="Bold" selected="{invoice>Eqip}" editable="false"/>
 						<m:HBox>
-							<m:Label text="{i18n>Status}: "/>
+							<m:Label text="{i18n>Status} : " design="Bold"/>
 							<m:Text text="{invoice>Status}"/>
 						</m:HBox>
 					</m:VBox>
@@ -223,11 +225,11 @@
 										<m:Text text="{i18n>groupID}"/>
 									</m:Column>
 									<m:Column>
+										<m:Text text="{i18n>GroupDesc}"/>
+									</m:Column>	
+									<m:Column>
 										<m:Text text="{i18n>GruopScope}"/>
 									</m:Column>
-									<m:Column>
-										<m:Text text="{i18n>GruopScopeDesc}"/>
-									</m:Column>									
 									<m:Column>
 										<m:Text text="{i18n>QuantityCoefficient}"/>
 									</m:Column>
@@ -240,9 +242,7 @@
 									<m:Column>
 										<m:Text text="{i18n>QuantityCheck}"/>
 									</m:Column>	
-									<!-- <m:Column>
-										<m:Text text="{i18n>GroupDesc}"/>
-									</m:Column>									 -->
+								
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem type="Navigation" press=".onSupplierPress">
@@ -250,26 +250,24 @@
 											<m:ObjectIdentifier text="{invoice>GrpCode}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>GrpScope}"/>
-										</m:cells>
+											<m:ObjectIdentifier text="{invoice>GrpText}"/>
+										</m:cells>		
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>GrpScopeDesc}"/>
-										</m:cells>										
+											<m:ObjectIdentifier text="{invoice>GrpScope}-{invoice>GrpScopeDesc}"/>
+										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{invoice>GrpQty}"/>
 										</m:cells>
 										<m:cells>
-											<m:CheckBox selected="{!!invoice>GrpFree}"/>
+											<!-- <m:CheckBox selected="{!!invoice>GrpFree}"/> -->
+											<m:CheckBox selected="true"/>
 										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{invoice>GrpDelvery}"/>
 										</m:cells>
 										<m:cells>
 											<m:CheckBox selected="true"/>
-										</m:cells>
-										<!-- <m:cells>
-											<m:ObjectIdentifier text="{i18n>Desc}"/>
-										</m:cells>								 -->
+										</m:cells>						
 									</m:ColumnListItem>
 								</m:items>
 							</m:Table>

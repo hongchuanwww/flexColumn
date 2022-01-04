@@ -1,5 +1,5 @@
 <mvc:View
-	controllerName="zychcn.zbundle01.controller.Detail"
+	controllerName="zychcn.zbundle01.controller.Create"
 	xmlns="sap.uxap"
 	xmlns:m="sap.m"
 	xmlns:f="sap.f"
@@ -65,13 +65,15 @@
 			</m:HBox>
 			<m:HBox>
 				<m:HBox>
-					<m:Label text="{i18n>Organization}"/>
+					<!-- <m:Label text="{i18n>Organization}"/> -->
+					<!-- <SearchField search=".onSearch" width="50%" text="BU ID"/> -->
+					<m:Label text="BU ID"/>
 					<m:Input/>
 				</m:HBox>
-				<m:HBox>
+				<!-- <m:HBox>
 					<m:Label text="{i18n>promotionTypeDesc}"/>
 					<m:Select/>
-				</m:HBox>
+				</m:HBox> -->
 			</m:HBox>
 			<m:HBox>
 				<m:HBox>
@@ -96,15 +98,22 @@
                             <m:OverflowToolbarButton
                                 type="Transparent"
                                 icon="sap-icon://add"
-                                press="handleButtonPress" />
-                            <m:OverflowToolbarButton
+                                press="handleAddPress" />
+							<m:OverflowToolbarButton
                                 type="Transparent"
                                 icon="sap-icon://edit"
+                                press="handleAddPress" />
+                            <m:OverflowToolbarButton
+								id="editButton"
+                                type="Transparent"
+                                icon="sap-icon://paste"
                                 press="handleButtonPress" />
                         </actions>
 						<blocks>
 							<m:Table
-								items="{path : 'invoice>ToGroup'}">
+								id="table"
+								items="{path : 'new>/'}"
+								paste=".onPaste">
 								<m:columns>
 									<m:Column>
 										<m:Text text="{i18n>groupID}"/>
@@ -123,7 +132,7 @@
 									</m:Column>
 								</m:columns>
 								<m:items>
-									<m:ColumnListItem type="Navigation" press=".onSupplierPress">
+									<!-- <m:ColumnListItem type="Navigation" press=".onSupplierPress">
 										<m:cells>
 											<m:ObjectIdentifier text="{invoice>GrpId}"/>
 										</m:cells>
@@ -138,6 +147,23 @@
 										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{invoice>CreatedBy}"/>
+										</m:cells>
+									</m:ColumnListItem> -->
+									<m:ColumnListItem>
+										<m:cells>
+											<m:Input value="{new>col0}"/>
+										</m:cells>
+										<m:cells>
+											<m:Input value="{new>col1}"/>
+										</m:cells>
+										<m:cells>
+											<m:Input value="{new>col2}"/>
+										</m:cells>
+										<m:cells>
+											<m:CheckBox selected="{!!new>col3}"/>
+										</m:cells>
+										<m:cells>
+											<m:Input value="{new>col4}"/>
 										</m:cells>
 									</m:ColumnListItem>
 								</m:items>
@@ -235,7 +261,7 @@
 		<footer>
 			<m:OverflowToolbar>
 				<m:ToolbarSpacer/>
-				<m:Button type="Emphasized" text="Save"/>
+				<m:Button type="Emphasized" text="Save" press=".onSave"/>
 				<m:Button text="Cancel"/>
 			</m:OverflowToolbar>
 		</footer>
