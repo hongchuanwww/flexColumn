@@ -30,8 +30,7 @@ sap.ui.define([
 			
 			var sServiceUrl = "/sap/opu/odata/SAP/ZYCHCN_API_ORDER_002_SRV/",
 				bJSON = true;
-				// sUser = "huangs03",
-				// sPwd = "3edc!QAZ";
+			
 			oODataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, bJSON);
 			this.setModel(oODataModel,'invoice');
 
