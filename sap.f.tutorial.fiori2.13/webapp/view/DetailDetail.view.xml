@@ -49,7 +49,9 @@
 				</core:Icon>
 				<m:VBox>
 					<m:Label text="{invoice>GrpId}"/>
-					<m:Text text="{i18n>groupID}: {invoice>GrpScopeDesc}{invoice>GrpScope}"/>
+					<m:Text text="{i18n>groupID}: {invoice>GrpCode}"/>
+					<m:Text text="{i18n>GruopScope}: {invoice>GrpScopeDesc}-{invoice>GrpScope}"/>
+
 					<m:Text text="{i18n>groupDesc}: NA for now"/>
 					<!-- <m:Text text="{i18n>masterListItemValidFrom} : {
 						path: 'invoice>ValidFrom',

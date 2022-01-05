@@ -108,8 +108,12 @@
 			<m:HBox justifyContent="SpaceBetween">
 				<m:VBox>
 					<m:HBox>
-						<m:Label text="{i18n>Supplier}ID : " design="Bold"/>
+						<m:Label text="BU ID : " design="Bold"/>
 						<m:Text text=" {invoice>BuId}"/>
+					</m:HBox>
+					<m:HBox>
+						<m:Label text="{i18n>HeaderDesc} : " design="Bold"/>
+						<m:Text text=" {invoice>BuDesc}"/>
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="{i18n>salesOrg} : " design="Bold"/>
@@ -118,10 +122,6 @@
 					<m:HBox>
 						<m:Label text="{i18n>SalesChannels} : " design="Bold"/>
 						<m:Text text=" {invoice>DistrChan}"/>
-					</m:HBox>
-					<m:HBox>
-						<m:Label text="{i18n>HeaderDesc} : " design="Bold"/>
-						<m:Text text=" {invoice>BuDesc}"/>
 					</m:HBox>
 				</m:VBox>
 				<m:VBox>
