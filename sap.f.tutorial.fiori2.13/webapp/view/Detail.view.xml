@@ -1,5 +1,5 @@
 <mvc:View
-	controllerName="sap.ui.demo.fiori2.controller.Detail"
+	controllerName="zychcn.zbundle01.controller.Detail"
 	xmlns="sap.uxap"
 	xmlns:m="sap.m"
 	xmlns:f="sap.f"
@@ -18,7 +18,7 @@
 		<headerTitle>
 			<ObjectPageDynamicHeaderTitle>
 				<expandedHeading>
-					<m:Title text="{i18n>detailHeader}" wrapping="true" class="sapUiSmallMarginEnd"/>
+					<m:Title text="{i18n>detailHeader}" wrapping="true" class="sapUiSmallMarginEnd" design="bold"/>
 				</expandedHeading>
 
 				<snappedHeading>
@@ -103,58 +103,89 @@
 						<m:FlexItemData growFactor="1" />
 					</core:layoutData>
 				</core:Icon>
-				<m:Text text="{invoice>HeadId}"/>
+				<m:Text text="{invoice>BdHeadNumber}"/>
 			</m:HBox>
-			<m:HBox justifyContent="Start">
-				<m:HBox>
-					<m:Label text="{i18n>salesOrg}: "/>
-					<m:Text text="{invoice>SalesOrg}"/>
-				</m:HBox>
-				<m:HBox>
-					<m:Label text="{i18n>promotionType}: "/>
-					<m:Text text="{invoice>BdPromType}"/>
-				</m:HBox>
-				<m:HBox>
-					<m:Label text="{i18n>promotionTypeDesc}:"/>
-					<m:Text text="{invoice>BdPromTypeDesc}"/>
-				</m:HBox>
-			</m:HBox>
+			<m:HBox justifyContent="SpaceBetween">
+				<m:VBox>
+					<m:HBox>
+						<m:Label text="BU ID : " design="Bold"/>
+						<m:Text text=" {invoice>BuId}"/>
+					</m:HBox>
+					<m:HBox>
+						<m:Label text="BU {i18n>HeaderDesc} : " design="Bold"/>
+						<m:Text text=" {invoice>BuDesc}"/>
+					</m:HBox>
+					<m:HBox>
+						<m:Label text="{i18n>salesOrg} : " design="Bold"/>
+						<m:Text text=" {invoice>SalesOrg}"/>
+					</m:HBox>
+					<m:HBox>
+						<m:Label text="{i18n>SalesChannels} : " design="Bold"/>
+						<m:Text text=" {invoice>DistrChan}"/>
+					</m:HBox>
+				</m:VBox>
+				<m:VBox>
+					<m:HBox>
+						<m:Label text="Sort Code : " design="Bold"/>
+						<m:Text text="{invoice>SortCode}"/>
+					</m:HBox>
+					<m:HBox>
+						<m:Label text="{i18n>Supplier} : " design="Bold"/>
+						<m:Text text="{invoice>BdDesc}"/>
+					</m:HBox>
+					<m:HBox>
+						<m:Label text="{i18n>promotionType} : " design="Bold"/>
+						<m:Text text="{invoice>BdPromType}"/>
+					</m:HBox>
+					<m:HBox>
+						<m:Label text="{i18n>promotionTypeDesc} :" design="Bold"/>
+						<m:Text text="{invoice>BdPromTypeDesc}"/>
+					</m:HBox>
+				</m:VBox>
+				<m:VBox>
+					<m:VBox justifyContent="Start">
+						<m:Text text="{i18n>masterListItemValidFrom} : {
+							path: 'invoice>ValidFrom',
+							design: 'bold',
+							type: 'sap.ui.model.type.Date',
+							formatOptions: {
+								style: 'medium'
+							}
+						}"/>
+						<m:Text text="{i18n>masterListItemValidTo} : {
+							path: 'invoice>ValidTo',
+							design: 'bold',
+							type: 'sap.ui.model.type.Date',
+							formatOptions: {
+								style: 'medium'
+							}
+						}"/>
+						<m:HBox justifyContent="Start">
+							<m:Label text="{i18n>SalesVolume} : " design="Bold"/>
+							<m:Text text="{invoice>Qty}"/>
+						</m:HBox>
+					</m:VBox>
+				</m:VBox>
+				<m:VBox>
+					<m:VBox justifyContent="Start">
+						<m:CheckBox text="{i18n>UnifiedDelivery}" design="Bold" selected="{invoice>Delivery}" editable="false"/>
+						<m:CheckBox text="{i18n>MechanicalEquipment}" design="Bold" selected="{invoice>Eqip}" editable="false"/>
+						<m:HBox>
+							<m:Label text="{i18n>Status} : " design="Bold"/>
+							<m:Text text="{invoice>Status}"/>
+						</m:HBox>
+					</m:VBox>
+				</m:VBox>
+				<m:VBox>
+					<m:VBox justifyContent="Start">
 
-			<m:HBox justifyContent="Start">
-				<m:Text text="{i18n>masterListItemValidFrom} : {
-					path: 'invoice>ValidFrom',
-					type: 'sap.ui.model.type.Date',
-					formatOptions: {
-						style: 'medium'
-					}
-				}" />
-				<m:Text text="{i18n>masterListItemValidTo} : {
-					path: 'invoice>ValidTo',
-					type: 'sap.ui.model.type.Date',
-					formatOptions: {
-						style: 'medium'
-					}
-				}" />
-			</m:HBox>
 
-			<m:HBox justifyContent="Start">
-				<m:CheckBox text="统一发货" selected="{invoice>Delivery}" editable="false"/>
-				<m:CheckBox text="机器设备" selected="{invoice>Eqip}" editable="false"/>
-			</m:HBox>
-
-			<m:HBox justifyContent="Start">
-				<m:HBox>
-					<m:Label text="销售数量: "/>
-					<m:Text text="{invoice>Qty}"/>
-				</m:HBox>
-				<m:HBox>
-					<m:Label text="状态: "/>
-					<m:Text text="{invoice>Status}"/>
-				</m:HBox>
+					</m:VBox>
+				</m:VBox>
 			</m:HBox>
 		</headerContent>
 		<sections>
-			<ObjectPageSection title="组件定义">
+			<ObjectPageSection title="{i18n>ComponentDefinition}">
 				<subSections>
 					<ObjectPageSubSection>
 						<actions>
@@ -191,29 +222,27 @@
 								items="{path : 'invoice>ToGroup'}">
 								<m:columns>
 									<m:Column>
-										<m:Text text="组编号"/>
+										<m:Text text="{i18n>groupID}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="组范围"/>
-									</m:Column>
-									<m:Column>
-										<m:Text text="组范围描述"/>
-									</m:Column>									
-									<m:Column>
-										<m:Text text="销售数量"/>
-									</m:Column>
-									<m:Column>
-										<m:Text text="免费项"/>
-									</m:Column>
-									<m:Column>
-										<m:Text text="发货组"/>
-									</m:Column>
-									<m:Column>
-										<m:Text text="发货数量检查"/>
+										<m:Text text="{i18n>GroupDesc}"/>
 									</m:Column>	
 									<m:Column>
-										<m:Text text="组描述"/>
-									</m:Column>									
+										<m:Text text="{i18n>GruopScope}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>QuantityCoefficient}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>FreeItem}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>ShipmentGroup}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>QuantityCheck}"/>
+									</m:Column>	
+								
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem type="Navigation" press=".onSupplierPress">
@@ -221,26 +250,24 @@
 											<m:ObjectIdentifier text="{invoice>GrpCode}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>GrpScope}"/>
-										</m:cells>
+											<m:ObjectIdentifier text="{invoice>GrpText}"/>
+										</m:cells>		
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>GrpScopeDesc}"/>
-										</m:cells>										
+											<m:ObjectIdentifier text="{invoice>GrpScope}-{invoice>GrpScopeDesc}"/>
+										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{invoice>GrpQty}"/>
 										</m:cells>
 										<m:cells>
-											<m:CheckBox selected="{!!invoice>GrpFree}"/>
+											<!-- <m:CheckBox selected="{!!invoice>GrpFree}"/> -->
+											<m:CheckBox selected="true"/>
 										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{invoice>GrpDelvery}"/>
 										</m:cells>
 										<m:cells>
 											<m:CheckBox selected="true"/>
-										</m:cells>
-										<m:cells>
-											<m:ObjectIdentifier text="描述"/>
-										</m:cells>								
+										</m:cells>						
 									</m:ColumnListItem>
 								</m:items>
 							</m:Table>
@@ -249,7 +276,7 @@
 				</subSections>
 			</ObjectPageSection>
 
-			<ObjectPageSection title="套包定价">
+			<ObjectPageSection title="{i18n>HeaderPrice}">
 				<subSections>
 					<ObjectPageSubSection>
 						<actions>
@@ -267,55 +294,50 @@
 								items="{path : 'invoice>ToPrice'}">
 								<m:columns>
 									<m:Column>
-										<m:Text text="产品行号"/>
+										<m:Text text="{i18n>ProvinceID}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="单价"/>
+										<m:Text text="{i18n>ProvinceDesc}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="限额"/>
+										<m:Text text="{i18n>ProtocolID}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="经销商"/>
+										<m:Text text="{i18n>CustomerID}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="客户号"/>
+										<m:Text text="{i18n>CustomerDesc}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="省份"/>
+										<m:Text text="{i18n>ValidFrom}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="编码"/>
+										<m:Text text="{i18n>ValidTo}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="有效期从"/>
+										<m:Text text="Rate"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="有效期至"/>
+										<m:Text text="CAP"/>
 									</m:Column>
+
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>PrcGuid}"/>
+											<m:ObjectIdentifier text="{invoice>Province}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>GrpQty}"/>
-										</m:cells>
-										<m:cells>
-											<m:ObjectIdentifier text="{invoice>Rate}{invoice>RateUnit}"/>
-										</m:cells>
-										<m:cells>
-											<m:ObjectIdentifier text="{invoice>CreatedBy}"/>
+											<m:ObjectIdentifier text="{invoice>RegionDesc}"/>
 										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{invoice>AgreeId}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>Province}"/>
+											<m:ObjectIdentifier text="{invoice>BpCodeInAgree}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>PriceType}"/>
+											<m:ObjectIdentifier text="{i18n>CustomerDesc}"/>
 										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{
@@ -335,6 +357,13 @@
 												}
 											}"/>
 										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>Rate} {invoice>RateUnit}"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>Cap}"/>
+										</m:cells>
+
 									</m:ColumnListItem>
 								</m:items>
 							</m:Table>

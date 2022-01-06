@@ -1,7 +1,7 @@
 {
 	"_version": "1.12.0",
 	"sap.app": {
-		"id": "sap.ui.demo.fiori2",
+		"id": "zychcn.zbundle01",
 		"type": "application",
 		"applicationVersion": {
 			"version": "1.0.0"
@@ -9,7 +9,7 @@
 	},
 	"sap.ui5": {
 		"rootView": {
-			"viewName": "sap.ui.demo.fiori2.view.App",
+			"viewName": "zychcn.zbundle01.view.App",
 			"type": "XML",
 			"async": true,
 			"id": "fcl"
@@ -30,7 +30,7 @@
 			"config": {
 				"routerClass": "sap.f.routing.Router",
 				"viewType": "XML",
-				"viewPath": "sap.ui.demo.fiori2.view",
+				"viewPath": "zychcn.zbundle01.view",
 				"controlId": "flexibleColumnLayout",
 				"transition": "slide",
 				"bypassed": {

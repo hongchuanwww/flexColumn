@@ -6,7 +6,7 @@ sap.ui.define([
 ], function(UIComponent, JSONModel, FlexibleColumnLayoutSemanticHelper, fioriLibrary) {
 	'use strict';
 
-	return UIComponent.extend('sap.ui.demo.fiori2.Component', {
+	return UIComponent.extend('zychcn.zbundle01.Component', {
 
 		metadata: {
 			manifest: 'json'
@@ -24,15 +24,14 @@ sap.ui.define([
 			this.setModel(oModel);
 
 			// set products demo model on this sample
-			oProductsModel = new JSONModel(sap.ui.require.toUrl('sap/ui/demo/fiori2/localService/mockdata/products.json'));
+			oProductsModel = new JSONModel(sap.ui.require.toUrl('zychcn/zbundle01/localService/mockdata/products.json'));
 			oProductsModel.setSizeLimit(1000);
 			this.setModel(oProductsModel, 'products');
 			
-			var sServiceUrl = "https://dev.abbott-md.cn:4443/sap/opu/odata/SAP/ZYCHCN_API_ORDER_002_SRV/",
-				bJSON = true,
-				sUser = "huangs03",
-				sPwd = "3edc!QAZ";
-			oODataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, bJSON, sUser, sPwd);
+			var sServiceUrl = "/sap/opu/odata/SAP/ZYCHCN_API_ORDER_002_SRV/",
+				bJSON = true;
+			
+			oODataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, bJSON);
 			this.setModel(oODataModel,'invoice');
 
 			oRouter = this.getRouter();

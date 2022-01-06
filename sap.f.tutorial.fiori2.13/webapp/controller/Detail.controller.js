@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (Controller) {
 	"use strict";
 
-	return Controller.extend("sap.ui.demo.fiori2.controller.Detail", {
+	return Controller.extend("zychcn.zbundle01.controller.Detail", {
 		onInit: function () {
 			this.oOwnerComponent = this.getOwnerComponent();
 
@@ -44,6 +44,12 @@ sap.ui.define([
 					// path: "/" + this._bundle + "?$expand=ToGroup/ToItem,ToPrice&$format=json",
 					path: "/" + this._bundle + "?$expand=ToGroup/ToItem,ToPrice",
 					model: "invoice"
+				});
+
+				this.getView().bindElement({
+					// path: "/" + this._bundle + "?$expand=ToGroup/ToItem,ToPrice&$format=json",
+					path: "/" + this._bundle + "?$expand=ToGroup",
+					model: "head"
 				});
 			}
 		},

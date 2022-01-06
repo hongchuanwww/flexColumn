@@ -5,14 +5,14 @@ sap.ui.define([
 ], function (JSONModel, Controller, ResourceModel) {
 	"use strict";
 
-	return Controller.extend("sap.ui.demo.fiori2.controller.App", {
+	return Controller.extend("zychcn.zbundle01.controller.App", {
 		onInit: function () {
 			this.oOwnerComponent = this.getOwnerComponent();
 			this.oRouter = this.oOwnerComponent.getRouter();
 			this.oRouter.attachRouteMatched(this.onRouteMatched, this);
 			// set i18n model on view
 			var i18nModel = new ResourceModel({
-				bundleName: "sap.ui.demo.fiori2.i18n.i18n"
+				bundleName: "zychcn.zbundle01.i18n.i18n"
 			 });
 			 this.getView().setModel(i18nModel, "i18n");
 		},

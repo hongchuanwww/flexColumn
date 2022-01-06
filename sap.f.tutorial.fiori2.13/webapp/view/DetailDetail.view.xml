@@ -1,5 +1,5 @@
 <mvc:View
-	controllerName="sap.ui.demo.fiori2.controller.DetailDetail"
+	controllerName="zychcn.zbundle01.controller.DetailDetail"
 	xmlns="sap.uxap"
 	xmlns:m="sap.m"
 	xmlns:core="sap.ui.core"
@@ -48,10 +48,11 @@
 					</core:layoutData>
 				</core:Icon>
 				<m:VBox>
-					<m:Label text="BD0001"/>
-					<m:Text text="组编号: GRP01"/>
-					<m:Text text="产品编号: 01-MAT"/>
-					<m:Text text="{i18n>masterListItemValidFrom} : {
+					<!-- <m:Label text="{invoice>GrpId}"/> -->
+					<m:Text text="{i18n>groupID}: {invoice>GrpCode}"/>
+					<m:Text text="{i18n>GruopScope}: {invoice>GrpScopeDesc}-{invoice>GrpScope}"/>
+					<m:Text text="{i18n>groupDesc}: NA for now"/>
+					<!-- <m:Text text="{i18n>masterListItemValidFrom} : {
 						path: 'invoice>ValidFrom',
 						type: 'sap.ui.model.type.Date',
 						formatOptions: {
@@ -64,12 +65,12 @@
 						formatOptions: {
 							style: 'medium'
 						}
-					}" />
+					}" /> -->
 				</m:VBox>
 			</m:HBox>
 		</headerContent>
 		<sections>
-			<ObjectPageSection title="添加产品">
+			<ObjectPageSection title="{i18n>addProduct}">
 				<subSections>
 					<ObjectPageSubSection>
 						<actions>
@@ -95,31 +96,28 @@
 								items="{path : 'invoice>ToItem'}">
 								<m:columns>
 									<m:Column>
-										<m:Text text="行号"/>
+										<m:Text text="{i18n>Product}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="ZFIN ONLY"/>
+										<m:Text text="{i18n>ProductDesc}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="Code"/>
+										<m:Text text="{i18n>ValidFrom}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="有效期从"/>
+										<m:Text text="{i18n>ValidTo}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="有效期至"/>
-									</m:Column>
+										<m:Text text="{i18n>Productcannotbeselected}"/>
+									</m:Column>									
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>ItemId}"/>
+											<m:ObjectIdentifier text="{invoice>Product}"/>
 										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{invoice>ProducDesc}"/>
-										</m:cells>
-										<m:cells>
-											<m:ObjectIdentifier text="{invoice>Product}"/>
 										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{
@@ -138,6 +136,9 @@
 													style: 'medium'
 												}
 											}"/>
+										</m:cells>
+										<m:cells>
+											<m:CheckBox selected="true"/>
 										</m:cells>
 									</m:ColumnListItem>
 								</m:items>
