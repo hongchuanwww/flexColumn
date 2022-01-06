@@ -103,11 +103,16 @@
                                 type="Transparent"
                                 icon="sap-icon://edit"
                                 press="handleAddPress" />
-                            <m:OverflowToolbarButton
+                            <!-- <m:OverflowToolbarButton
 								id="editButton"
                                 type="Transparent"
                                 icon="sap-icon://paste"
-                                press="handleButtonPress" />
+                                press="handleButtonPress" /> -->
+							<m:OverflowToolbarButton
+								id="editButton"
+                                type="Transparent"
+                                icon="sap-icon://paste"
+                                press="firePaste" />
                         </actions>
 						<blocks>
 							<m:Table
