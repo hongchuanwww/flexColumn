@@ -23,32 +23,20 @@ sap.ui.define([
 			// }));
 		},
 
-		// onPaste: function(oEvent) {
-		// 	if (!oEvent.getSource().getBindingContext().getProperty("READONLY")) {
-		// 		var oItems = oEvent.getParameter("data");
-		// 		oItems.forEach(function(item) {
-		// 			var _oData = {};
-		// 			_oData.PRODUCT_ID = item[0];
-		// 			_oData.QUANTITY = item[1];
-		// 			this.addItemCust(_oData);
-		// 		}.bind(this));
-		// 	}
-		// },
 		firePaste: function(oEvent) {
-			// var oTable1 = this.getView().byId("__table1");
-			navigator.clipboard.readText();
-			// navigator.clipboard.readText().then(
-			// 	function(text) {
-			// 		var _arr = text.split('\r\n');
-			// 		_arr.pop();
-			// 		for (var i in _arr) {
-			// 			_arr[i] = _arr[i].split('\t');
-			// 		}
-			// 		oTable1.firePaste({
-			// 			"data": _arr
-			// 		});
-			// 	}.bind(this)
-			// );
+			var oTable = this.getView().byId("table");
+			navigator.clipboard.readText().then(
+				function(text) {
+					console.log(text);
+					var _arr = text.split('\r\n');
+					for (var i in _arr) {
+						_arr[i] = _arr[i].split('\t');
+					}
+					oTable.firePaste({
+						"data": _arr
+					});
+				}.bind(this)
+			);
 		},
 
 		onSupplierPress: function (oEvent) {
@@ -83,16 +71,16 @@ sap.ui.define([
 			this.getView().getModel('new').setData(data);
 		},
 
-		// onPaste: function (e) {
-		// 	var data = e.getParameters().data;
-		// 	this.getView().getModel('new').setData(data.map(row => {
-		// 		var obj = {};
-		// 		for(var i = 0; i < row.length; i++) {
-		// 			obj['col' + i] = row[i];
-		// 		}
-		// 		return obj;
-		// 	}));
-		// },
+		onPaste: function (e) {
+			var data = e.getParameters().data;
+			this.getView().getModel('new').setData(data.map(row => {
+				var obj = {};
+				for(var i = 0; i < row.length; i++) {
+					obj['col' + i] = row[i];
+				}
+				return obj;
+			}));
+		},
 		
 		onSave:  function () {
 			var fnSuccess = function () {
