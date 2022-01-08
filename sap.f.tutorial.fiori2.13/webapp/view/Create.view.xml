@@ -100,6 +100,7 @@
 						<m:Label text="{i18n>promotionType} : " design="Bold"/>
 						<m:Select
 							selectedKey="{new>/BdPromType}"
+							forceSelection="false"
 							items="{
 								path: 'invoice>/SHConfigSet',
 								filters:[{path: 'SubName', operator: 'EQ', value1: 'PROM_TYPE'}]
@@ -187,6 +188,7 @@
 										<m:cells>
 											<m:Select
 												selectedKey="{new>/BdPromType}"
+												forceSelection="false"
 												items="{
 													path: 'invoice>/SHConfigSet',
 													filters:[{path: 'SubName', operator: 'EQ', value1: 'PROD_SCOPE'}]
