@@ -16,8 +16,6 @@ sap.ui.define([
 		},
 
 		onSupplierPress: function (oEvent) {
-			// var supplierPath = oEvent.getSource().getBindingContext("invoice").getPath(),
-				// supplier = supplierPath.split("/").slice(-1).pop(),
 			var itemPath = oEvent.getSource().getBindingContext('invoice').getPath(),
 			item = itemPath.split("/").slice(-1).pop();
 			var	oNextUIState;
@@ -33,11 +31,6 @@ sap.ui.define([
 		},
 
 		_onProductMatched: function (oEvent) {
-			// this._product = oEvent.getParameter("arguments").product || this._product || "0";
-			// this.getView().bindElement({
-			// 	path: "/ProductCollection/" + this._product,
-			// 	model: "products"
-			// });
 			this._bundle = oEvent.getParameter("arguments").bundle;
 			if(this._bundle) {
 				this.getView().bindElement({
@@ -63,12 +56,12 @@ sap.ui.define([
 
 		handleFullScreen: function () {
 			var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/midColumn/fullScreen");
-			this.oRouter.navTo("detail", {layout: sNextLayout, product: this._product});
+			this.oRouter.navTo("detail", {layout: sNextLayout, bundle: this._bundle});
 		},
 
 		handleExitFullScreen: function () {
 			var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/midColumn/exitFullScreen");
-			this.oRouter.navTo("detail", {layout: sNextLayout, product: this._product});
+			this.oRouter.navTo("detail", {layout: sNextLayout, bundle: this._bundle});
 		},
 
 		handleClose: function () {
