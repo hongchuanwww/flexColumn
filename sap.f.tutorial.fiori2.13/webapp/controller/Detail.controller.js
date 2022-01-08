@@ -1,6 +1,8 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function (Controller) {
+	"sap/ui/core/mvc/Controller",
+	'sap/m/MessageToast',
+	"sap/m/MessageBox"
+], function (Controller, MessageToast, MessageBox) {
 	"use strict";
 
 	return Controller.extend("zychcn.zbundle01.controller.Detail", {
@@ -16,8 +18,6 @@ sap.ui.define([
 		},
 
 		onSupplierPress: function (oEvent) {
-			// var supplierPath = oEvent.getSource().getBindingContext("invoice").getPath(),
-				// supplier = supplierPath.split("/").slice(-1).pop(),
 			var itemPath = oEvent.getSource().getBindingContext('invoice').getPath(),
 			item = itemPath.split("/").slice(-1).pop();
 			var	oNextUIState;
@@ -25,7 +25,6 @@ sap.ui.define([
 				oNextUIState = oHelper.getNextUIState(2);
 				this.oRouter.navTo("detailDetail", {
 					layout: oNextUIState.layout,
-					// supplier: supplier,
 					item: item,
 					bundle: this._bundle
 				});
@@ -33,23 +32,12 @@ sap.ui.define([
 		},
 
 		_onProductMatched: function (oEvent) {
-			// this._product = oEvent.getParameter("arguments").product || this._product || "0";
-			// this.getView().bindElement({
-			// 	path: "/ProductCollection/" + this._product,
-			// 	model: "products"
-			// });
 			this._bundle = oEvent.getParameter("arguments").bundle;
 			if(this._bundle) {
+				this.cancel();
 				this.getView().bindElement({
-					// path: "/" + this._bundle + "?$expand=ToGroup/ToItem,ToPrice&$format=json",
 					path: "/" + this._bundle + "?$expand=ToGroup/ToItem,ToPrice",
 					model: "invoice"
-				});
-
-				this.getView().bindElement({
-					// path: "/" + this._bundle + "?$expand=ToGroup/ToItem,ToPrice&$format=json",
-					path: "/" + this._bundle + "?$expand=ToGroup",
-					model: "head"
 				});
 			}
 		},
@@ -63,12 +51,12 @@ sap.ui.define([
 
 		handleFullScreen: function () {
 			var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/midColumn/fullScreen");
-			this.oRouter.navTo("detail", {layout: sNextLayout, product: this._product});
+			this.oRouter.navTo("detail", {layout: sNextLayout, bundle: this._bundle});
 		},
 
 		handleExitFullScreen: function () {
 			var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/midColumn/exitFullScreen");
-			this.oRouter.navTo("detail", {layout: sNextLayout, product: this._product});
+			this.oRouter.navTo("detail", {layout: sNextLayout, bundle: this._bundle});
 		},
 
 		handleClose: function () {
@@ -79,6 +67,35 @@ sap.ui.define([
 		onExit: function () {
 			this.oRouter.getRoute("master").detachPatternMatched(this._onProductMatched, this);
 			this.oRouter.getRoute("detail").detachPatternMatched(this._onProductMatched, this);
+		},
+
+		cancel: function () {
+			this.oModel.setProperty('/bEdit', false);
+		},
+
+		edit: function () {
+			this.oModel.setProperty('/bEdit', true);
+		},
+
+		save: function () {
+			var fnSuccess = function () {
+				MessageToast.show('success');
+				this.handleClose();
+				this.cancel();
+			}.bind(this);
+
+			var fnError = function (oError) {
+				MessageBox.error(oError.message);
+			}.bind(this);
+			var sPath = "/" + this._bundle;
+			var mParameters = {
+				error: fnError,
+				success: fnSuccess
+			};
+			
+			var oDataModel = this.getView().getModel('invoice');
+			var data = oDataModel.getProperty(sPath);
+			oDataModel.update(sPath, data, mParameters);
 		}
 	});
 });

@@ -16,12 +16,16 @@ sap.ui.define([
 			var oModel,
 				oProductsModel,
 				oODataModel,
+				oCreateModel,
 				oRouter;
 
 			UIComponent.prototype.init.apply(this, arguments);
 
 			oModel = new JSONModel();
 			this.setModel(oModel);
+
+			oCreateModel = new JSONModel();
+			this.setModel(oCreateModel, 'new');
 
 			// set products demo model on this sample
 			oProductsModel = new JSONModel(sap.ui.require.toUrl('zychcn/zbundle01/localService/mockdata/products.json'));
@@ -32,6 +36,11 @@ sap.ui.define([
 				bJSON = true;
 			
 			oODataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, bJSON);
+			var sServiceUrl = "https://dev.abbott-md.cn:4443/sap/opu/odata/SAP/ZYCHCN_API_ORDER_002_SRV/",
+				bJSON = true,
+				sUser = "huangs03",
+				sPwd = "3edc!QAZ";
+			oODataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, bJSON, sUser, sPwd);
 			this.setModel(oODataModel,'invoice');
 
 			oRouter = this.getRouter();
@@ -44,7 +53,7 @@ sap.ui.define([
 				var oSettings = {
 					defaultTwoColumnLayoutType: fioriLibrary.LayoutType.TwoColumnsMidExpanded,
 					defaultThreeColumnLayoutType: fioriLibrary.LayoutType.ThreeColumnsMidExpanded,
-					initialColumnsCount: 2,
+					initialColumnsCount: 1,
 					maxColumnsCount: 3
 				};
 				return (FlexibleColumnLayoutSemanticHelper.getInstanceFor(oFCL, oSettings));
