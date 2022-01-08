@@ -9,7 +9,7 @@
 		<f:title>
 			<f:DynamicPageTitle>
 				<f:heading>
-					<Title text="{i18n>masterHeader}" design="bold"/>
+					<Title text="{i18n>masterHeader}"/>
 				</f:heading>
 			</f:DynamicPageTitle>
 		</f:title>

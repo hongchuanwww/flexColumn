@@ -18,17 +18,12 @@
 		<headerTitle>
 			<ObjectPageDynamicHeaderTitle>
 				<expandedHeading>
-					<m:Title text="{i18n>detailHeader}" wrapping="true" class="sapUiSmallMarginEnd" design="bold"/>
+					<m:Title text="{i18n>detailHeader}" wrapping="true" class="sapUiSmallMarginEnd"/>
 				</expandedHeading>
 
 				<snappedHeading>
 					<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
 						<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
-							<!-- <f:Avatar
-								src="https://sapui5.hana.ondemand.com/{products>ProductPicUrl}"
-								displaySize="S"
-								displayShape="Square"
-								class="sapUiTinyMarginEnd"/> -->
 							<m:Title text="{invoice>HeadId}" wrapping="true"/>
 						</m:FlexBox>
 					</m:FlexBox>
@@ -54,46 +49,10 @@
 						tooltip="Close column"
 						visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
 				</navigationActions>
-
-				<!-- <actions>
-					<m:ToggleButton
-						text="Edit"
-						type="Emphasized"
-						press=".onEditToggleButtonPress"/>
-					<m:Button
-						text="Delete"
-						type="Transparent"/>
-					<m:Button
-						text="Copy"
-						type="Transparent"/>
-					<m:Button
-						icon="sap-icon://action"
-						type="Transparent"/>
-				</actions> -->
 			</ObjectPageDynamicHeaderTitle>
 		</headerTitle>
 
 		<headerContent>
-			<!-- <m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
-				<f:Avatar
-					src="https://sapui5.hana.ondemand.com/{products>ProductPicUrl}"
-					displaySize="L"
-					displayShape="Square"
-					class="sapUiTinyMarginEnd">
-				</f:Avatar>
-				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-					<m:Label text="Main Category"/>
-					<m:Text text="{products>MainCategory}"/>
-				</m:VBox>
-				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-					<m:Label text="Subcategory"/>
-					<m:Text text="{products>Category}"/>
-				</m:VBox>
-				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-					<m:Label text="Price"/>
-					<m:ObjectNumber number="{products>CurrencyCode} {products>Price}" emphasized="false"/>
-				</m:VBox>
-			</m:FlexBox> -->
 			<m:HBox>
 				<core:Icon
 					src="sap-icon://sap-box"
@@ -168,8 +127,8 @@
 				</m:VBox>
 				<m:VBox>
 					<m:VBox justifyContent="Start">
-						<m:CheckBox text="{i18n>UnifiedDelivery}" design="Bold" selected="{invoice>Delivery}" editable="false"/>
-						<m:CheckBox text="{i18n>MechanicalEquipment}" design="Bold" selected="{invoice>Eqip}" editable="false"/>
+						<m:CheckBox text="{i18n>UnifiedDelivery}" selected="{!!invoice>Delivery}" editable="false"/>
+						<m:CheckBox text="{i18n>MechanicalEquipment}" selected="{!!invoice>Eqip}" editable="false"/>
 						<m:HBox>
 							<m:Label text="{i18n>Status} : " design="Bold"/>
 							<m:Text text="{invoice>Status}"/>
@@ -199,25 +158,6 @@
                                 press="handleButtonPress" />
                         </actions>
 						<blocks>
-							<!-- <form:SimpleForm
-								maxContainerCols="2"
-								editable="false"
-								layout="ResponsiveGridLayout"
-								labelSpanL="12"
-								labelSpanM="12"
-								emptySpanL="0"
-								emptySpanM="0"
-								columnsL="1"
-								columnsM="1">
-								<form:content>
-									<m:Label text="Product ID"/>
-									<m:Text text="{products>ProductId}"/>
-									<m:Label text="Description"/>
-									<m:Text text="{products>Description}"/>
-									<m:Label text="Supplier"/>
-									<m:Text text="{products>SupplierName}"/>
-								</form:content>
-							</form:SimpleForm> -->
 							<m:Table
 								items="{path : 'invoice>ToGroup'}">
 								<m:columns>
@@ -371,23 +311,6 @@
 					</ObjectPageSubSection>
 				</subSections>
 			</ObjectPageSection>
-			<!-- 当前容器不支持IconTabBar-->
-			<!-- <m:IconTabBar>
-				<m:items>
-					<m:IconTabFilter 
-						key="info" 
-						icon="sap-icon://hint"
-						text="组件定义">
-						<m:Text text="Info content goes here ..." />
-					</m:IconTabFilter>
-					<m:IconTabFilter
-						key="attachments"
-						text="套包定价"
-						icon="sap-icon://attachment">
-						<m:Text text="Attachments go here ..." />
-					</m:IconTabFilter>
-				</m:items>
-			</m:IconTabBar> -->
 		</sections>
 
 		<footer>
