@@ -1,7 +1,6 @@
 sap.ui.define([
-	"sap/ui/model/json/JSONModel",
 	"sap/ui/core/mvc/Controller"
-], function (JSONModel, Controller) {
+], function (Controller) {
 	"use strict";
 
 	return Controller.extend("zychcn.zbundle01.controller.DetailDetail", {
@@ -23,14 +22,8 @@ sap.ui.define([
 		},
 
 		_onPatternMatch: function (oEvent) {
-			// this._supplier = oEvent.getParameter("arguments").supplier || this._supplier || "0";
-			// this._product = oEvent.getParameter("arguments").product || this._product || "0";
-
 			this._item = oEvent.getParameter("arguments").item;
-			// this.getView().bindElement({
-			// 	path: "/ProductCollectionStats/Filters/1/values/" + this._supplier,
-			// 	model: "products"
-			// });
+			this._bundle = oEvent.getParameter("arguments").bundle;
 			if(this._item) {
 				this.getView().bindElement({
 					path: "/" + this._item + "",
@@ -41,12 +34,12 @@ sap.ui.define([
 
 		handleFullScreen: function () {
 			var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/endColumn/fullScreen");
-			this.oRouter.navTo("detailDetail", {layout: sNextLayout, bundle: this._bundle});
+			this.oRouter.navTo("detailDetail", {layout: sNextLayout, bundle: this._bundle, item: this._item});
 		},
 
 		handleExitFullScreen: function () {
 			var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/endColumn/exitFullScreen");
-			this.oRouter.navTo("detailDetail", {layout: sNextLayout, bundle: this._bundle});
+			this.oRouter.navTo("detailDetail", {layout: sNextLayout, bundle: this._bundle, item: this._item});
 		},
 
 		handleClose: function () {
