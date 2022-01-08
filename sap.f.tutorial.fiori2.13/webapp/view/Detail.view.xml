@@ -102,8 +102,9 @@
 					</m:HBox>
 				</m:VBox>
 				<m:VBox>
-					<m:VBox justifyContent="Start">
-						<m:Text text="{i18n>masterListItemValidFrom} : {
+					<m:HBox>
+						<m:Label text="{i18n>masterListItemValidFrom} :" design="Bold"/>
+						<m:Text text=" {
 							path: 'invoice>ValidFrom',
 							design: 'bold',
 							type: 'sap.ui.model.type.Date',
@@ -111,7 +112,10 @@
 								style: 'medium'
 							}
 						}"/>
-						<m:Text text="{i18n>masterListItemValidTo} : {
+					</m:HBox>
+					<m:HBox>
+						<m:Label text="{i18n>masterListItemValidTo} :" design="Bold"/>
+						<m:Text text="{
 							path: 'invoice>ValidTo',
 							design: 'bold',
 							type: 'sap.ui.model.type.Date',
@@ -119,11 +123,11 @@
 								style: 'medium'
 							}
 						}"/>
-						<m:HBox justifyContent="Start">
-							<m:Label text="{i18n>SalesVolume} : " design="Bold"/>
-							<m:Text text="{invoice>Qty}"/>
-						</m:HBox>
-					</m:VBox>
+					</m:HBox>
+					<m:HBox>
+						<m:Label text="{i18n>SalesVolume} : " design="Bold"/>
+						<m:Text text="{invoice>Qty}"/>
+					</m:HBox>
 				</m:VBox>
 				<m:VBox>
 					<m:VBox justifyContent="Start">

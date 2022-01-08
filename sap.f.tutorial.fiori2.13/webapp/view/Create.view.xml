@@ -63,31 +63,67 @@
 					</core:layoutData>
 				</core:Icon>
 			</m:HBox>
-			<m:HBox>
-				<m:HBox>
-					<!-- <m:Label text="{i18n>Organization}"/> -->
-					<!-- <SearchField search=".onSearch" width="50%" text="BU ID"/> -->
-					<m:Label text="BU ID"/>
-					<m:Input/>
-				</m:HBox>
-				<!-- <m:HBox>
-					<m:Label text="{i18n>promotionTypeDesc}"/>
-					<m:Select/>
-				</m:HBox> -->
-			</m:HBox>
-			<m:HBox>
-				<m:HBox>
-					<m:Label text="{i18n>ValidFrom}"/>
-					<m:DatePicker/>
-				</m:HBox>
-				<m:HBox>
-					<m:Label text="{i18n>ValidTo}"/>
-					<m:DatePicker/>
-				</m:HBox>
-			</m:HBox>
-			<m:HBox>
-				<m:CheckBox text="{i18n>UnifiedDelivery}"/>
-				<m:CheckBox text="{i18n>MechanicalEquipment}"/>
+			<m:HBox justifyContent="SpaceBetween">
+				<m:VBox>
+					<m:HBox alignItems="Center">
+						<m:Label text="BU ID : " design="Bold"/>
+						<m:Input value="{invoice>BuId}"/>
+					</m:HBox>
+					<m:HBox alignItems="Center">
+						<m:Label text="BU {i18n>HeaderDesc} : " design="Bold"/>
+						<m:Input value="{invoice>BuDesc}"/>
+					</m:HBox>
+					<m:HBox alignItems="Center">
+						<m:Label text="{i18n>salesOrg} : " design="Bold"/>
+						<m:Input value=" {invoice>SalesOrg}"/>
+					</m:HBox>
+					<m:HBox alignItems="Center">
+						<m:Label text="{i18n>SalesChannels} : " design="Bold"/>
+						<m:Input value=" {invoice>DistrChan}"/>
+					</m:HBox>
+				</m:VBox>
+				<m:VBox>
+					<m:HBox alignItems="Center">
+						<m:Label text="Sort Code : " design="Bold"/>
+						<m:Input value="{invoice>SortCode}"/>
+					</m:HBox>
+					<m:HBox alignItems="Center">
+						<m:Label text="{i18n>Supplier} : " design="Bold"/>
+						<m:Input value="{invoice>BdDesc}"/>
+					</m:HBox>
+					<m:HBox alignItems="Center">
+						<m:Label text="{i18n>promotionType} : " design="Bold"/>
+						<m:Input value="{invoice>BdPromType}"/>
+					</m:HBox>
+					<m:HBox alignItems="Center">
+						<m:Label text="{i18n>promotionTypeDesc} :" design="Bold"/>
+						<m:Input value="{invoice>BdPromTypeDesc}"/>
+					</m:HBox>
+				</m:VBox>
+				<m:VBox>
+					<m:HBox alignItems="Center">
+						<m:Label text="{i18n>masterListItemValidFrom} :" design="Bold"/>
+						<m:DatePicker value="{invoice>ValidFrom}"/>
+					</m:HBox>
+					<m:HBox alignItems="Center">
+						<m:Label text="{i18n>masterListItemValidTo} :" design="Bold"/>
+						<m:DatePicker value="{invoice>ValidTo}"/>
+					</m:HBox>
+					<m:HBox alignItems="Center">
+						<m:Label text="{i18n>SalesVolume} : " design="Bold"/>
+						<m:Input value="{invoice>Qty}"/>
+					</m:HBox>
+				</m:VBox>
+				<m:VBox>
+					<m:VBox justifyContent="Start">
+						<m:CheckBox text="{i18n>UnifiedDelivery}" selected="{invoice>Delivery}"/>
+						<m:CheckBox text="{i18n>MechanicalEquipment}" selected="{invoice>Eqip}"/>
+						<m:HBox alignItems="Center">
+							<m:Label text="{i18n>Status} : " design="Bold"/>
+							<m:Input value="{invoice>Status}"/>
+						</m:HBox>
+					</m:VBox>
+				</m:VBox>
 			</m:HBox>
 		</headerContent>
 		<sections>
@@ -103,11 +139,6 @@
                                 type="Transparent"
                                 icon="sap-icon://edit"
                                 press="handleAddPress" />
-                            <!-- <m:OverflowToolbarButton
-								id="editButton"
-                                type="Transparent"
-                                icon="sap-icon://paste"
-                                press="handleButtonPress" /> -->
 							<m:OverflowToolbarButton
 								id="editButton"
                                 type="Transparent"
@@ -137,24 +168,7 @@
 									</m:Column>
 								</m:columns>
 								<m:items>
-									<!-- <m:ColumnListItem type="Navigation" press=".onSupplierPress">
-										<m:cells>
-											<m:ObjectIdentifier text="{invoice>GrpId}"/>
-										</m:cells>
-										<m:cells>
-											<m:ObjectIdentifier text="{invoice>GrpQty}"/>
-										</m:cells>
-										<m:cells>
-											<m:ObjectIdentifier text="{invoice>GrpScope}"/>
-										</m:cells>
-										<m:cells>
-											<m:CheckBox selected="{!!invoice>GrpFree}"/>
-										</m:cells>
-										<m:cells>
-											<m:ObjectIdentifier text="{invoice>CreatedBy}"/>
-										</m:cells>
-									</m:ColumnListItem> -->
-									<m:ColumnListItem>
+									<m:ColumnListItem type="Navigation" press=".onGroupPress">
 										<m:cells>
 											<m:Input value="{new>col0}"/>
 										</m:cells>

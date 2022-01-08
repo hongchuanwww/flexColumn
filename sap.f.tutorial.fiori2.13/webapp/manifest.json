@@ -76,6 +76,15 @@
 						"master",
 						"create"
 					]
+				},
+				{
+					"pattern": "createDetail/{layout}",
+					"name": "createDetail",
+					"target": [
+						"master",
+						"create",
+						"createDetail"
+					]
 				}
 			],
 			"targets": {
@@ -98,6 +107,10 @@
 				"create": {
 					"viewName": "Create",
 					"controlAggregation": "midColumnPages"
+				},
+				"createDetail": {
+					"viewName": "createDetail",
+					"controlAggregation": "endColumnPages"
 				}
 			}
 		}

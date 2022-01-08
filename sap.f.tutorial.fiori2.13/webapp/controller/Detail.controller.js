@@ -23,7 +23,6 @@ sap.ui.define([
 				oNextUIState = oHelper.getNextUIState(2);
 				this.oRouter.navTo("detailDetail", {
 					layout: oNextUIState.layout,
-					// supplier: supplier,
 					item: item,
 					bundle: this._bundle
 				});

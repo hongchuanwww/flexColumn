@@ -1,8 +1,7 @@
 sap.ui.define([
 	"sap/ui/model/json/JSONModel",
-	"sap/ui/core/mvc/Controller",
-	"sap/m/plugins/PasteProvider"
-], function (JSONModel, Controller, PasteProvider) {
+	"sap/ui/core/mvc/Controller"
+], function (JSONModel, Controller) {
 	"use strict";
 
 	return Controller.extend("zychcn.zbundle01.controller.Create", {
@@ -11,16 +10,8 @@ sap.ui.define([
 
 			this.oRouter = this.oOwnerComponent.getRouter();
 			this.oModel = this.oOwnerComponent.getModel();
-
-			this.oRouter.getRoute("master").attachPatternMatched(this._onProductMatched, this);
-			this.oRouter.getRoute("create").attachPatternMatched(this._onProductMatched, this);
 			var oNewModel = new JSONModel([]);
 			this.getView().setModel(oNewModel, "new");
-			// var pasteButton = this.getView().byId('editButton');
-			// var oTable = this.getView().byId('table');
-			// pasteButton.addDependent(new PasteProvider({
-			// 	pasteFor: oTable.getId() // Reference to the control the paste is associated with, e.g. a sap.m.Table
-			// }));
 		},
 
 		firePaste: function(oEvent) {
@@ -39,10 +30,14 @@ sap.ui.define([
 			);
 		},
 
-		onSupplierPress: function (oEvent) {
-		},
-
-		_onProductMatched: function (oEvent) {
+		onGroupPress: function (oEvent) {
+			var	oNextUIState;
+			this.oOwnerComponent.getHelper().then(function (oHelper) {
+				oNextUIState = oHelper.getNextUIState(2);
+				this.oRouter.navTo("createDetail", {
+					layout: oNextUIState.layout
+				});
+			}.bind(this));
 		},
 
 		handleFullScreen: function () {
@@ -58,11 +53,6 @@ sap.ui.define([
 		handleClose: function () {
 			var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/midColumn/closeColumn");
 			this.oRouter.navTo("master", {layout: sNextLayout});
-		},
-
-		onExit: function () {
-			this.oRouter.getRoute("master").detachPatternMatched(this._onProductMatched, this);
-			this.oRouter.getRoute("create").detachPatternMatched(this._onProductMatched, this);
 		},
 
 		handleAddPress: function () {
