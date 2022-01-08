@@ -33,15 +33,8 @@ sap.ui.define([
 			this._bundle = oEvent.getParameter("arguments").bundle;
 			if(this._bundle) {
 				this.getView().bindElement({
-					// path: "/" + this._bundle + "?$expand=ToGroup/ToItem,ToPrice&$format=json",
 					path: "/" + this._bundle + "?$expand=ToGroup/ToItem,ToPrice",
 					model: "invoice"
-				});
-
-				this.getView().bindElement({
-					// path: "/" + this._bundle + "?$expand=ToGroup/ToItem,ToPrice&$format=json",
-					path: "/" + this._bundle + "?$expand=ToGroup",
-					model: "head"
 				});
 			}
 		},

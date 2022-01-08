@@ -21,13 +21,13 @@
 					<m:Title text="{i18n>CreateHeader}" wrapping="true" class="sapUiSmallMarginEnd"/>
 				</expandedHeading>
 
-				<snappedHeading>
+				<!-- <snappedHeading>
 					<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
 						<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
 							<m:Title text="{invoice>HeadId}" wrapping="true"/>
 						</m:FlexBox>
 					</m:FlexBox>
-				</snappedHeading>
+				</snappedHeading> -->
 
 				<navigationActions>
 					<m:OverflowToolbarButton
@@ -67,60 +67,73 @@
 				<m:VBox>
 					<m:HBox alignItems="Center">
 						<m:Label text="BU ID : " design="Bold"/>
-						<m:Input value="{invoice>BuId}"/>
+						<m:Select
+							selectedKey="{new>/BuId}"
+							items="{path: 'invoice>/SHBusinessUnitSet'}"
+						>
+							<core:Item key="{invoice>Sobid}" text="{invoice>Stext}" />
+						</m:Select>
 					</m:HBox>
 					<m:HBox alignItems="Center">
 						<m:Label text="BU {i18n>HeaderDesc} : " design="Bold"/>
-						<m:Input value="{invoice>BuDesc}"/>
+						<m:Input value="{new>/BuDesc}"/>
 					</m:HBox>
 					<m:HBox alignItems="Center">
 						<m:Label text="{i18n>salesOrg} : " design="Bold"/>
-						<m:Input value=" {invoice>SalesOrg}"/>
+						<m:Input value="{new>/SalesOrg}"/>
 					</m:HBox>
 					<m:HBox alignItems="Center">
 						<m:Label text="{i18n>SalesChannels} : " design="Bold"/>
-						<m:Input value=" {invoice>DistrChan}"/>
+						<m:Input value="{new>/DistrChan}"/>
 					</m:HBox>
 				</m:VBox>
 				<m:VBox>
 					<m:HBox alignItems="Center">
 						<m:Label text="Sort Code : " design="Bold"/>
-						<m:Input value="{invoice>SortCode}"/>
+						<m:Input value="{new>/SortCode}"/>
 					</m:HBox>
 					<m:HBox alignItems="Center">
 						<m:Label text="{i18n>Supplier} : " design="Bold"/>
-						<m:Input value="{invoice>BdDesc}"/>
+						<m:Input value="{new>/BdDesc}"/>
 					</m:HBox>
 					<m:HBox alignItems="Center">
 						<m:Label text="{i18n>promotionType} : " design="Bold"/>
-						<m:Input value="{invoice>BdPromType}"/>
+						<m:Select
+							selectedKey="{new>/BdPromType}"
+							items="{
+								path: 'invoice>/SHConfigSet',
+								filters:[{path: 'SubName', operator: 'EQ', value1: 'PROM_TYPE'}]
+							}"
+						>
+							<core:Item key="{invoice>Numb}" text="{invoice>High}" />
+						</m:Select>
 					</m:HBox>
 					<m:HBox alignItems="Center">
 						<m:Label text="{i18n>promotionTypeDesc} :" design="Bold"/>
-						<m:Input value="{invoice>BdPromTypeDesc}"/>
+						<m:Input value="{new>/BdPromTypeDesc}"/>
 					</m:HBox>
 				</m:VBox>
 				<m:VBox>
 					<m:HBox alignItems="Center">
 						<m:Label text="{i18n>masterListItemValidFrom} :" design="Bold"/>
-						<m:DatePicker value="{invoice>ValidFrom}"/>
+						<m:DatePicker value="{new>/ValidFrom}"/>
 					</m:HBox>
 					<m:HBox alignItems="Center">
 						<m:Label text="{i18n>masterListItemValidTo} :" design="Bold"/>
-						<m:DatePicker value="{invoice>ValidTo}"/>
+						<m:DatePicker value="{new>/ValidTo}"/>
 					</m:HBox>
 					<m:HBox alignItems="Center">
 						<m:Label text="{i18n>SalesVolume} : " design="Bold"/>
-						<m:Input value="{invoice>Qty}"/>
+						<m:Input value="{new>/Qty}"/>
 					</m:HBox>
 				</m:VBox>
 				<m:VBox>
 					<m:VBox justifyContent="Start">
-						<m:CheckBox text="{i18n>UnifiedDelivery}" selected="{invoice>Delivery}"/>
-						<m:CheckBox text="{i18n>MechanicalEquipment}" selected="{invoice>Eqip}"/>
+						<m:CheckBox text="{i18n>UnifiedDelivery}" selected="{new>/Delivery}"/>
+						<m:CheckBox text="{i18n>MechanicalEquipment}" selected="{new>/Eqip}"/>
 						<m:HBox alignItems="Center">
 							<m:Label text="{i18n>Status} : " design="Bold"/>
-							<m:Input value="{invoice>Status}"/>
+							<m:Input value="{new>/Status}"/>
 						</m:HBox>
 					</m:VBox>
 				</m:VBox>
@@ -134,56 +147,66 @@
                             <m:OverflowToolbarButton
                                 type="Transparent"
                                 icon="sap-icon://add"
-                                press="handleAddPress" />
-							<m:OverflowToolbarButton
-                                type="Transparent"
-                                icon="sap-icon://edit"
-                                press="handleAddPress" />
-							<m:OverflowToolbarButton
-								id="editButton"
-                                type="Transparent"
-                                icon="sap-icon://paste"
-                                press="firePaste" />
+                                press=".addGroup" />
                         </actions>
 						<blocks>
 							<m:Table
-								id="table"
-								items="{path : 'new>/'}"
-								paste=".onPaste">
+								items="{path : 'new>/ToGroup'}">
 								<m:columns>
 									<m:Column>
 										<m:Text text="{i18n>groupID}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="{i18n>salesNo}"/>
+										<m:Text text="{i18n>GroupDesc}"/>
+									</m:Column>	
+									<m:Column>
+										<m:Text text="{i18n>GruopScope}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="{i18n>ProductType}"/>
+										<m:Text text="{i18n>QuantityCoefficient}"/>
 									</m:Column>
 									<m:Column>
 										<m:Text text="{i18n>FreeItem}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="{i18n>shipmentGroup}"/>
+										<m:Text text="{i18n>ShipmentGroup}"/>
 									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>QuantityCheck}"/>
+									</m:Column>	
+								
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem type="Navigation" press=".onGroupPress">
 										<m:cells>
-											<m:Input value="{new>col0}"/>
+											<m:ObjectIdentifier text="{new>GrpCode}"/>
 										</m:cells>
 										<m:cells>
-											<m:Input value="{new>col1}"/>
+											<m:Input value="{new>GrpText}"/>
+										</m:cells>		
+										<m:cells>
+											<m:Select
+												selectedKey="{new>/BdPromType}"
+												items="{
+													path: 'invoice>/SHConfigSet',
+													filters:[{path: 'SubName', operator: 'EQ', value1: 'PROD_SCOPE'}]
+												}"
+											>
+												<core:Item key="{invoice>Numb}" text="{invoice>High}" />
+											</m:Select>
 										</m:cells>
 										<m:cells>
-											<m:Input value="{new>col2}"/>
+											<m:Input value="{new>GrpQty}"/>
 										</m:cells>
 										<m:cells>
-											<m:CheckBox selected="{!!new>col3}"/>
+											<m:CheckBox selected="{new>GrpFree}"/>
 										</m:cells>
 										<m:cells>
-											<m:Input value="{new>col4}"/>
+											<m:Input value="{new>GrpDelvery}"/>
 										</m:cells>
+										<m:cells>
+											<m:CheckBox selected="{new>GrpQtycheck}"/>
+										</m:cells>						
 									</m:ColumnListItem>
 								</m:items>
 							</m:Table>
@@ -195,9 +218,15 @@
 			<ObjectPageSection title="{i18n>HeaderPrice}">
 				<subSections>
 					<ObjectPageSubSection>
+						<actions>
+                            <m:OverflowToolbarButton
+                                type="Transparent"
+                                icon="sap-icon://add"
+                                press=".addPrice" />
+                        </actions>
 						<blocks>
 							<m:Table
-								items="{path : 'invoice>ToPrice'}">
+								items="{path : 'new>/ToPrice'}">
 								<m:columns>
 									<m:Column>
 										<m:Text text="{i18n>ProductLineNo}"/>
@@ -230,43 +259,32 @@
 								<m:items>
 									<m:ColumnListItem>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>PrcGuid}"/>
+											<m:Input value="{new>PrcGuid}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>GrpQty}"/>
+											<m:Input value="{new>GrpQty}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>Rate}{invoice>RateUnit}"/>
+											<m:Input value="{new>Rate}"/>
+											<!-- <m:Input value="{new>RateUnit}"/> -->
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>CreatedBy}"/>
+											<m:Input value="{new>CreatedBy}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>AgreeId}"/>
+											<m:Input value="{new>AgreeId}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>Province}"/>
+											<m:Input value="{new>Province}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>PriceType}"/>
+											<m:Input value="{new>PriceType}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{
-												path: 'invoice>ValidFrom',
-												type: 'sap.ui.model.type.Date',
-												formatOptions: {
-													style: 'medium'
-												}
-											}"/>
+											<m:DatePicker value="{new>ValidFrom}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text=" {
-												path: 'invoice>ValidTo',
-												type: 'sap.ui.model.type.Date',
-												formatOptions: {
-													style: 'medium'
-												}
-											}"/>
+											<m:DatePicker value="{new>ValidTo}"/>
 										</m:cells>
 									</m:ColumnListItem>
 								</m:items>
@@ -281,7 +299,7 @@
 			<m:OverflowToolbar>
 				<m:ToolbarSpacer/>
 				<m:Button type="Emphasized" text="Save" press=".onSave"/>
-				<m:Button text="Cancel"/>
+				<m:Button text="Cancel" press=".handleClose"/>
 			</m:OverflowToolbar>
 		</footer>
 	</ObjectPageLayout>

@@ -78,7 +78,7 @@
 					]
 				},
 				{
-					"pattern": "createDetail/{layout}",
+					"pattern": "createDetail/{group}/{layout}",
 					"name": "createDetail",
 					"target": [
 						"master",

@@ -48,8 +48,8 @@
 					</core:layoutData>
 				</core:Icon>
 				<m:VBox>
-					<m:Text text="{i18n>groupID}: {invoice>GrpCode}"/>
-					<m:Text text="{i18n>GruopScope}: {invoice>GrpScopeDesc}-{invoice>GrpScope}"/>
+					<m:Text text="{i18n>groupID}: {new>GrpCode}"/>
+					<m:Text text="{i18n>GruopScope}: {new>GrpScopeDesc}-{new>GrpScope}"/>
 					<m:Text text="{i18n>groupDesc}: NA for now"/>
 				</m:VBox>
 			</m:HBox>
@@ -60,25 +60,16 @@
 					<ObjectPageSubSection>
 						<actions>
                             <m:OverflowToolbarButton
+								id="pasteButton"
                                 type="Transparent"
-                                icon="sap-icon://sort"
-                                press="handleButtonPress" />
-                            <m:OverflowToolbarButton
-                                type="Transparent"
-                                icon="sap-icon://filter"
-                                press="handleButtonPress" />
-							<m:OverflowToolbarButton
-                                type="Transparent"
-                                icon="sap-icon://group-2"
-                                press="handleButtonPress" />
-							<m:OverflowToolbarButton
-                                type="Transparent"
-                                icon="sap-icon://action-settings"
-                                press="handleButtonPress" />
+                                icon="sap-icon://paste"
+                                press="firePaste" />
                         </actions>
 						<blocks>
 							<m:Table
-								items="{path : 'invoice>ToItem'}">
+                                id="table"
+								items="{path : 'new>ToItem'}"
+                                paste=".onPaste">
 								<m:columns>
 									<m:Column>
 										<m:Text text="{i18n>Product}"/>
@@ -99,31 +90,19 @@
 								<m:items>
 									<m:ColumnListItem>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>Product}"/>
+											<m:ObjectIdentifier text="{new>Product}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>ProducDesc}"/>
+											<m:ObjectIdentifier text="{new>ProducDesc}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{
-												path: 'invoice>ValidFrom',
-												type: 'sap.ui.model.type.Date',
-												formatOptions: {
-													style: 'medium'
-												}
-											}"/>
+											<m:ObjectIdentifier text="{new>ValidFrom}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{
-												path: 'invoice>ValidTo',
-												type: 'sap.ui.model.type.Date',
-												formatOptions: {
-													style: 'medium'
-												}
-											}"/>
+											<m:ObjectIdentifier text="{new>ValidTo}"/>
 										</m:cells>
 										<m:cells>
-											<m:CheckBox selected="true"/>
+											<m:CheckBox selected="{= !!${new>TODO}}"/>
 										</m:cells>
 									</m:ColumnListItem>
 								</m:items>

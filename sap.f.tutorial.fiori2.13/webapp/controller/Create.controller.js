@@ -1,7 +1,9 @@
 sap.ui.define([
 	"sap/ui/model/json/JSONModel",
-	"sap/ui/core/mvc/Controller"
-], function (JSONModel, Controller) {
+	"sap/ui/core/mvc/Controller",
+	'sap/m/MessageToast',
+	"sap/m/MessageBox"
+], function (JSONModel, Controller, MessageToast, MessageBox) {
 	"use strict";
 
 	return Controller.extend("zychcn.zbundle01.controller.Create", {
@@ -10,32 +12,25 @@ sap.ui.define([
 
 			this.oRouter = this.oOwnerComponent.getRouter();
 			this.oModel = this.oOwnerComponent.getModel();
-			var oNewModel = new JSONModel([]);
-			this.getView().setModel(oNewModel, "new");
+			this.oCreateModel =  this.oOwnerComponent.getModel('new');
+			this._initCreateModel();
 		},
 
-		firePaste: function(oEvent) {
-			var oTable = this.getView().byId("table");
-			navigator.clipboard.readText().then(
-				function(text) {
-					console.log(text);
-					var _arr = text.split('\r\n');
-					for (var i in _arr) {
-						_arr[i] = _arr[i].split('\t');
-					}
-					oTable.firePaste({
-						"data": _arr
-					});
-				}.bind(this)
-			);
+		_initCreateModel: function() {
+			this.oCreateModel.setData({
+				ToGroup: [],
+				ToPrice: []
+			});
 		},
 
 		onGroupPress: function (oEvent) {
-			var	oNextUIState;
+			var	oNextUIState, 
+				group = oEvent.getSource().getBindingContextPath().split('/').pop();
 			this.oOwnerComponent.getHelper().then(function (oHelper) {
 				oNextUIState = oHelper.getNextUIState(2);
 				this.oRouter.navTo("createDetail", {
-					layout: oNextUIState.layout
+					layout: oNextUIState.layout,
+					group
 				});
 			}.bind(this));
 		},
@@ -55,73 +50,38 @@ sap.ui.define([
 			this.oRouter.navTo("master", {layout: sNextLayout});
 		},
 
-		handleAddPress: function () {
-			var data = this.getView().getModel('new').getData();
-			data.push({});
-			this.getView().getModel('new').setData(data);
+		addGroup: function () {
+			var groups = this.oCreateModel.getProperty('/ToGroup');
+			var GrpCode = 'GRP' + (groups.length + 1).toString().padStart(2,'0');
+			groups.push({GrpCode});
+			this.oCreateModel.setProperty('/ToGroup',groups);
 		},
 
-		onPaste: function (e) {
-			var data = e.getParameters().data;
-			this.getView().getModel('new').setData(data.map(row => {
-				var obj = {};
-				for(var i = 0; i < row.length; i++) {
-					obj['col' + i] = row[i];
-				}
-				return obj;
-			}));
+		addPrice: function () {
+			var groups = this.oCreateModel.getProperty('/ToPrice');
+			groups.push({});
+			this.oCreateModel.setProperty('/ToPrice',groups);
 		},
 		
 		onSave:  function () {
 			var fnSuccess = function () {
 				MessageToast.show('success');
+				this._initCreateModel();
+				this.handleClose();
 			}.bind(this);
 
 			var fnError = function (oError) {
 				MessageBox.error(oError.message);
 			}.bind(this);
 			var sPath = 'BundleListSet';
-			var items = [];// intializing an array
-
-			// var aTableData = oTable.getModel().getData();// getting table data
-
-			for (var i = 0; i < 10; i++) {
-
-			items.push( {
-
-				"ItemKey": "ItemKey",
-
-				"ItempartGrp": "ItemKey"
-
-				});
-
-			};
-
-			var oEntry = {
-
-				"ItemKey": "ItemKey",
-
-				"ItempartGrp": "ItemKey",
-			  
-				"Itempart": JSON.parse(JSON.stringify(items)),
-			  
-				//  converting data into json format
-			  
-			  // string type will converted into json object by parsing it.
-			  
-			  };
-
-			  
-
+			var data = this.oCreateModel.getData();
 			var mParameters = {
-				properties:  oEntry,
-
 				error: fnError,
 				success: fnSuccess
 			};
 			
 			var oDataModel = this.getView().getModel('invoice');
-			oDataModel.create(sPath, oEntry, mParameters);
+			oDataModel.create(sPath, data, mParameters);
 		},
 	});
 });

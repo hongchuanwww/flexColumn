@@ -203,14 +203,13 @@
 											<m:ObjectIdentifier text="{invoice>GrpQty}"/>
 										</m:cells>
 										<m:cells>
-											<!-- <m:CheckBox selected="{!!invoice>GrpFree}"/> -->
-											<m:CheckBox selected="true"/>
+											<m:CheckBox selected="{= !!${invoice>GrpFree}}" enabled="false"/>
 										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{invoice>GrpDelvery}"/>
 										</m:cells>
 										<m:cells>
-											<m:CheckBox selected="true"/>
+											<m:CheckBox selected="{= !!${invoice>GrpQtycheck}}" enabled="false"/>
 										</m:cells>						
 									</m:ColumnListItem>
 								</m:items>

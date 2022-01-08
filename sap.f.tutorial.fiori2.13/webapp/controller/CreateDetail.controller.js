@@ -1,6 +1,7 @@
 sap.ui.define([
+    "sap/ui/model/json/JSONModel",
 	"sap/ui/core/mvc/Controller"
-], function (Controller) {
+], function (JSONModel, Controller) {
 	"use strict";
 
 	return Controller.extend("zychcn.zbundle01.controller.CreateDetail", {
@@ -9,8 +10,14 @@ sap.ui.define([
 
 			this.oRouter = this.oOwnerComponent.getRouter();
 			this.oModel = this.oOwnerComponent.getModel();
-
 			this.oRouter.getRoute("createDetail").attachPatternMatched(this._onPatternMatch, this);
+            this.DIC = [
+                'Product',
+                'ProducDesc',
+                'ValidFrom',
+                'ValidTo',
+                'TODO'
+            ];
 		},
 
 		handleAboutPress: function () {
@@ -22,13 +29,12 @@ sap.ui.define([
 		},
 
 		_onPatternMatch: function (oEvent) {
-			this._item = oEvent.getParameter("arguments").item;
-			this._bundle = oEvent.getParameter("arguments").bundle;
-			if(this._item) {
-				this.getView().bindElement({
-					path: "/" + this._item + "",
-					model: "invoice"
-				});
+			this.group = oEvent.getParameter("arguments").group;
+			if(this.group) {
+                this.getView().bindElement({
+                    path: "/ToGroup/" + this.group,
+					model: "new"
+                });
 			}
 		},
 
@@ -49,6 +55,33 @@ sap.ui.define([
 
 		onExit: function () {
 			this.oRouter.getRoute("createDetail").detachPatternMatched(this._onPatternMatch, this);
-		}
+		},
+
+        firePaste: function(oEvent) {
+			var oTable = this.getView().byId("table");
+			navigator.clipboard.readText().then(
+				function(text) {
+					var _arr = text.split('\r\n');
+					for (var i in _arr) {
+						_arr[i] = _arr[i].split('\t');
+					}
+					oTable.firePaste({
+						"data": _arr
+					});
+				}.bind(this)
+			);
+		},
+
+        onPaste: function (e) {
+			var pasteData = e.getParameters().data;
+            var data = pasteData.map(row => {
+				var obj = {};
+				for(var i = 0; i < row.length; i++) {
+					obj[this.DIC[i]] = row[i];
+				}
+				return obj;
+			});
+			this.getView().getModel('new').setProperty("/ToGroup/" + this.group + '/ToItem', data);
+		},
 	});
 });
