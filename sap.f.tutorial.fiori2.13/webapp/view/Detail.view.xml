@@ -131,8 +131,8 @@
 				</m:VBox>
 				<m:VBox>
 					<m:VBox justifyContent="Start">
-						<m:CheckBox text="{i18n>UnifiedDelivery}" selected="{!!invoice>Delivery}" editable="false"/>
-						<m:CheckBox text="{i18n>MechanicalEquipment}" selected="{!!invoice>Eqip}" editable="false"/>
+						<m:CheckBox text="{i18n>UnifiedDelivery}" selected="{!!invoice>Delivery}" editable="{= !!${/bEdit}}"/>
+						<m:CheckBox text="{i18n>MechanicalEquipment}" selected="{!!invoice>Eqip}" editable="{= !!${/bEdit}}"/>
 						<m:HBox>
 							<m:Label text="{i18n>Status} : " design="Bold"/>
 							<m:Text text="{invoice>Status}"/>
@@ -222,16 +222,6 @@
 			<ObjectPageSection title="{i18n>HeaderPrice}">
 				<subSections>
 					<ObjectPageSubSection>
-						<actions>
-                            <m:OverflowToolbarButton
-                                type="Transparent"
-                                icon="sap-icon://upload"
-                                press="handleButtonPress" />
-                            <m:OverflowToolbarButton
-                                type="Transparent"
-                                icon="sap-icon://add-activity-2"
-                                press="handleButtonPress" />
-                        </actions>
 						<blocks>
 							<m:Table
 								items="{path : 'invoice>ToPrice'}">
@@ -304,7 +294,10 @@
 											<m:ObjectIdentifier text="{invoice>Rate} {invoice>RateUnit}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>Cap}"/>
+											<m:HBox>
+												<m:ObjectIdentifier text="{invoice>Cap}" visible="{= !${/bEdit}}"/>
+												<m:Input value="{invoice>Cap}" visible="{= !!${/bEdit}}"/>
+											</m:HBox>
 										</m:cells>
 
 									</m:ColumnListItem>
@@ -319,8 +312,9 @@
 		<footer>
 			<m:OverflowToolbar>
 				<m:ToolbarSpacer/>
-				<m:Button type="Emphasized" text="Save"/>
-				<m:Button text="Cancel"/>
+				<m:Button type="Emphasized" text="Edit" visible="{= !${/bEdit}}" press=".edit"/>
+				<m:Button type="Emphasized" text="Save" visible="{= !!${/bEdit}}" press=".save"/>
+				<m:Button text="Cancel" visible="{= !!${/bEdit}}" press=".cancel"/>
 			</m:OverflowToolbar>
 		</footer>
 	</ObjectPageLayout>

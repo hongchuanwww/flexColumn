@@ -1,6 +1,8 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function (Controller) {
+	"sap/ui/core/mvc/Controller",
+	'sap/m/MessageToast',
+	"sap/m/MessageBox"
+], function (Controller, MessageToast, MessageBox) {
 	"use strict";
 
 	return Controller.extend("zychcn.zbundle01.controller.Detail", {
@@ -32,6 +34,7 @@ sap.ui.define([
 		_onProductMatched: function (oEvent) {
 			this._bundle = oEvent.getParameter("arguments").bundle;
 			if(this._bundle) {
+				this.cancel();
 				this.getView().bindElement({
 					path: "/" + this._bundle + "?$expand=ToGroup/ToItem,ToPrice",
 					model: "invoice"
@@ -64,6 +67,35 @@ sap.ui.define([
 		onExit: function () {
 			this.oRouter.getRoute("master").detachPatternMatched(this._onProductMatched, this);
 			this.oRouter.getRoute("detail").detachPatternMatched(this._onProductMatched, this);
+		},
+
+		cancel: function () {
+			this.oModel.setProperty('/bEdit', false);
+		},
+
+		edit: function () {
+			this.oModel.setProperty('/bEdit', true);
+		},
+
+		save: function () {
+			var fnSuccess = function () {
+				MessageToast.show('success');
+				this.handleClose();
+				this.cancel();
+			}.bind(this);
+
+			var fnError = function (oError) {
+				MessageBox.error(oError.message);
+			}.bind(this);
+			var sPath = "/" + this._bundle;
+			var mParameters = {
+				error: fnError,
+				success: fnSuccess
+			};
+			
+			var oDataModel = this.getView().getModel('invoice');
+			var data = oDataModel.getProperty(sPath);
+			oDataModel.update(sPath, data, mParameters);
 		}
 	});
 });
