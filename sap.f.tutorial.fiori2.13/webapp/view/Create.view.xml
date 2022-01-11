@@ -75,28 +75,6 @@
 						</m:Select>
 					</m:HBox>
 					<m:HBox alignItems="Center">
-						<m:Label text="BU {i18n>HeaderDesc} : " design="Bold"/>
-						<m:Input value="{new>/BuDesc}"/>
-					</m:HBox>
-					<m:HBox alignItems="Center">
-						<m:Label text="{i18n>salesOrg} : " design="Bold"/>
-						<m:Input value="{new>/SalesOrg}"/>
-					</m:HBox>
-					<m:HBox alignItems="Center">
-						<m:Label text="{i18n>SalesChannels} : " design="Bold"/>
-						<m:Input value="{new>/DistrChan}"/>
-					</m:HBox>
-				</m:VBox>
-				<m:VBox>
-					<m:HBox alignItems="Center">
-						<m:Label text="Sort Code : " design="Bold"/>
-						<m:Input value="{new>/SortCode}"/>
-					</m:HBox>
-					<m:HBox alignItems="Center">
-						<m:Label text="{i18n>Supplier} : " design="Bold"/>
-						<m:Input value="{new>/BdDesc}"/>
-					</m:HBox>
-					<m:HBox alignItems="Center">
 						<m:Label text="{i18n>promotionType} : " design="Bold"/>
 						<m:Select
 							selectedKey="{new>/BdPromType}"
@@ -109,10 +87,6 @@
 							<core:Item key="{invoice>Numb}" text="{invoice>High}" />
 						</m:Select>
 					</m:HBox>
-					<m:HBox alignItems="Center">
-						<m:Label text="{i18n>promotionTypeDesc} :" design="Bold"/>
-						<m:Input value="{new>/BdPromTypeDesc}"/>
-					</m:HBox>
 				</m:VBox>
 				<m:VBox>
 					<m:HBox alignItems="Center">
@@ -123,19 +97,11 @@
 						<m:Label text="{i18n>masterListItemValidTo} :" design="Bold"/>
 						<m:DatePicker value="{new>/ValidTo}"/>
 					</m:HBox>
-					<m:HBox alignItems="Center">
-						<m:Label text="{i18n>SalesVolume} : " design="Bold"/>
-						<m:Input value="{new>/Qty}"/>
-					</m:HBox>
 				</m:VBox>
 				<m:VBox>
 					<m:VBox justifyContent="Start">
 						<m:CheckBox text="{i18n>UnifiedDelivery}" selected="{new>/Delivery}"/>
 						<m:CheckBox text="{i18n>MechanicalEquipment}" selected="{new>/Eqip}"/>
-						<m:HBox alignItems="Center">
-							<m:Label text="{i18n>Status} : " design="Bold"/>
-							<m:Input value="{new>/Status}"/>
-						</m:HBox>
 					</m:VBox>
 				</m:VBox>
 			</m:HBox>
