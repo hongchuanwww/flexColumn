@@ -84,7 +84,10 @@
 											<m:ObjectIdentifier text="{invoice>Product}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>ProducDesc}"/>
+											<m:VBox>
+												<m:ObjectIdentifier text="{invoice>ProducDesc}" visible="{= !${/bEdit}}"/>
+												<m:Input value="{invoice>ProducDesc}" visible="{= !!${/bEdit}}"/>
+											</m:VBox>
 										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{
