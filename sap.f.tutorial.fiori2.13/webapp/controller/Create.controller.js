@@ -75,6 +75,9 @@ sap.ui.define([
 			}.bind(this);
 			var sPath = 'BundleHeadSet';
 			var data = this.oCreateModel.getData();
+			data.ValidFrom = data.ValidFrom.replaceAll('-', '');
+			data.ValidTo = data.ValidTo.replaceAll('-', '');
+
 			var mParameters = {
 				error: fnError,
 				success: fnSuccess
