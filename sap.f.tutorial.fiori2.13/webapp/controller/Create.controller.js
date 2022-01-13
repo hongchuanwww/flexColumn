@@ -73,7 +73,7 @@ sap.ui.define([
 			var fnError = function (oError) {
 				MessageBox.error(oError.message);
 			}.bind(this);
-			var sPath = 'BundleListSet';
+			var sPath = 'BundleHeadSet';
 			var data = this.oCreateModel.getData();
 			var mParameters = {
 				error: fnError,
