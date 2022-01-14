@@ -18,6 +18,7 @@ sap.ui.define([
 
 		_initCreateModel: function() {
 			this.oCreateModel.setData({
+				Changeflag: "C",
 				ToGroup: [],
 				ToPrice: [],
 				ToMessage: []
