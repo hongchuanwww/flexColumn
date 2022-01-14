@@ -19,7 +19,8 @@ sap.ui.define([
 		_initCreateModel: function() {
 			this.oCreateModel.setData({
 				ToGroup: [],
-				ToPrice: []
+				ToPrice: [],
+				ToMessage: []
 			});
 		},
 
