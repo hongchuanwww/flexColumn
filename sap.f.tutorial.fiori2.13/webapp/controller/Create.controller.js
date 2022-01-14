@@ -75,7 +75,7 @@ sap.ui.define([
 			}.bind(this);
 			var sPath = 'BundleHeadSet';
 			var data = this.oCreateModel.getData();
-			data.ValidFrom = new Date(date.ValidFrom);
+			data.ValidFrom = new Date(data.ValidFrom);
 			data.ValidTo = new Date(data.ValidTo);
 
 			var mParameters = {
