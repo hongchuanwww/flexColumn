@@ -102,11 +102,10 @@
 							selectedKey="{new>/BdPromType}"
 							forceSelection="false"
 							items="{
-								path: 'invoice>/SHConfigSet',
-								filters:[{path: 'SubName', operator: 'EQ', value1: 'PROM_TYPE'}]
+								path: 'PROM_TYPE>/'
 							}"
 						>
-							<core:Item key="{invoice>Numb}" text="{invoice>High}" />
+							<core:Item key="{PROM_TYPE>Numb}" text="{PROM_TYPE>High}" />
 						</m:Select>
 					</m:HBox>
 					<m:HBox alignItems="Center">
@@ -190,11 +189,10 @@
 												selectedKey="{new>/BdPromType}"
 												forceSelection="false"
 												items="{
-													path: 'invoice>/SHConfigSet',
-													filters:[{path: 'SubName', operator: 'EQ', value1: 'PROD_SCOPE'}]
+													path: 'PROD_SCOPE>/'
 												}"
 											>
-												<core:Item key="{invoice>Numb}" text="{invoice>High}" />
+												<core:Item key="{PROD_SCOPE>Numb}" text="{PROD_SCOPE>High}" />
 											</m:Select>
 										</m:cells>
 										<m:cells>
