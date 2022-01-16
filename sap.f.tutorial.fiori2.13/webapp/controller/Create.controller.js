@@ -29,8 +29,10 @@ sap.ui.define([
 
 		_initCreateModel: function() {
 			this.oCreateModel.setData({
+				Changeflag: "C",
 				ToGroup: [],
-				ToPrice: []
+				ToPrice: [],
+				ToMessage: []
 			});
 		},
 
@@ -84,8 +86,11 @@ sap.ui.define([
 			var fnError = function (oError) {
 				MessageBox.error(oError.message);
 			}.bind(this);
-			var sPath = 'BundleListSet';
+			var sPath = 'BundleHeadSet';
 			var data = this.oCreateModel.getData();
+			data.ValidFrom = new Date(data.ValidFrom);
+			data.ValidTo = new Date(data.ValidTo);
+
 			var mParameters = {
 				error: fnError,
 				success: fnSuccess
