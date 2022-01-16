@@ -9,11 +9,22 @@ sap.ui.define([
 	return Controller.extend("zychcn.zbundle01.controller.Create", {
 		onInit: function () {
 			this.oOwnerComponent = this.getOwnerComponent();
-
 			this.oRouter = this.oOwnerComponent.getRouter();
 			this.oModel = this.oOwnerComponent.getModel();
 			this.oCreateModel =  this.oOwnerComponent.getModel('new');
 			this._initCreateModel();
+			['PROM_TYPE','PROD_SCOPE'].forEach(key => this._getOptions(key));
+		},
+
+		_getOptions: function(key) {
+			var that = this;
+			this.oOwnerComponent.getModel('invoice').read('/SHConfigSet?$filter=SubName%20eq%20%27'+key+'%27', {
+				success: function (oData) {
+					var oModel = new JSONModel();
+					oModel.setData(oData.results);
+					that.getView().setModel(oModel,key);
+				}
+			});
 		},
 
 		_initCreateModel: function() {
