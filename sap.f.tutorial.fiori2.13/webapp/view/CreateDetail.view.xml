@@ -59,6 +59,10 @@
 				<subSections>
 					<ObjectPageSubSection>
 						<actions>
+							<m:OverflowToolbarButton
+                                type="Transparent"
+                                icon="sap-icon://add"
+                                press=".addRow" />
                             <m:OverflowToolbarButton
 								id="pasteButton"
                                 type="Transparent"
@@ -90,16 +94,20 @@
 								<m:items>
 									<m:ColumnListItem>
 										<m:cells>
-											<m:ObjectIdentifier text="{new>Product}"/>
+											<!-- <m:ObjectIdentifier text="{new>Product}"/> -->
+											<m:Input value="{new>Product}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{new>ProducDesc}"/>
+											<!-- <m:ObjectIdentifier text="{new>ProducDesc}"/> -->
+											<m:Input value="{new>ProducDesc}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{new>ValidFrom}"/>
+											<!-- <m:ObjectIdentifier text="{new>ValidFrom}"/> -->
+											<m:DatePicker value="{new>ValidFrom}" valueFormat="yyyy-MM-dd"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{new>ValidTo}"/>
+											<!-- <m:ObjectIdentifier text="{new>ValidTo}"/> -->
+											<m:DatePicker value="{new>ValidTo}" valueFormat="yyyy-MM-dd"/>
 										</m:cells>
 										<m:cells>
 											<m:CheckBox selected="{= !!${new>TODO}}"/>
