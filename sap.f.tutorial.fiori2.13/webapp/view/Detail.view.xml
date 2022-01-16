@@ -72,7 +72,7 @@
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="BU {i18n>HeaderDesc} : " design="Bold"/>
-						<m:Text text=" {invoice>BuDesc}"/>
+						<m:Text text=" {invoice>BuDesc}" editable="{= !!${/bEdit}}"/>
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="{i18n>salesOrg} : " design="Bold"/>
@@ -104,29 +104,36 @@
 				<m:VBox>
 					<m:HBox>
 						<m:Label text="{i18n>masterListItemValidFrom} :" design="Bold"/>
-						<m:Text text=" {
+						<!-- <m:Text text=" {
 							path: 'invoice>ValidFrom',
 							design: 'bold',
 							type: 'sap.ui.model.type.Date',
 							formatOptions: {
 								style: 'medium'
 							}
-						}"/>
+						}"/> -->
+						<m:DatePicker value="{invoice>ValidFrom}" editable="{= !!${/bEdit}}"/>
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="{i18n>masterListItemValidTo} :" design="Bold"/>
-						<m:Text text="{
+						<!-- <m:Text text="{
 							path: 'invoice>ValidTo',
 							design: 'bold',
 							type: 'sap.ui.model.type.Date',
 							formatOptions: {
 								style: 'medium'
 							}
-						}"/>
+						}" editable="{= !!${/bEdit}}"/> -->
+
+						<m:DatePicker value="{invoice>ValidTo}" editable="{= !!${/bEdit}}"/>
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="{i18n>SalesVolume} : " design="Bold"/>
-						<m:Text text="{invoice>Qty}"/>
+						<m:HBox>
+							<m:ObjectIdentifier text="{invoice>Qty}" visible="{= !${/bEdit}}"/>
+							<m:Input value="{invoice>Qty}" visible="{= !!${/bEdit}}"/>
+						</m:HBox>
+						<!-- <m:Text text="{invoice>Qty}" editable="{= !!${/bEdit}}"/> -->
 					</m:HBox>
 				</m:VBox>
 				<m:VBox>
@@ -135,7 +142,7 @@
 						<m:CheckBox text="{i18n>MechanicalEquipment}" selected="{!!invoice>Eqip}" editable="{= !!${/bEdit}}"/>
 						<m:HBox>
 							<m:Label text="{i18n>Status} : " design="Bold"/>
-							<m:Text text="{invoice>Status}"/>
+							<m:Text text="{invoice>Status}" editable="{= !!${/bEdit}}"/>
 						</m:HBox>
 					</m:VBox>
 				</m:VBox>

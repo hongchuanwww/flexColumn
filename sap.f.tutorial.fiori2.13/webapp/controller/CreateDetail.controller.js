@@ -15,8 +15,8 @@ sap.ui.define([
                 'Product',
                 'ProducDesc',
                 'ValidFrom',
-                'ValidTo',
-                'TODO'
+                'ValidTo'
+                // 'TODO'
             ];
 		},
 
