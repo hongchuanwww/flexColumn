@@ -72,7 +72,7 @@
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="BU {i18n>HeaderDesc} : " design="Bold"/>
-						<m:Text text=" {invoice>BuDesc}" editable="{= !!${/bEdit}}"/>
+						<m:Text text=" {invoice>BuDesc}"/>
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="{i18n>salesOrg} : " design="Bold"/>
@@ -142,7 +142,7 @@
 						<m:CheckBox text="{i18n>MechanicalEquipment}" selected="{!!invoice>Eqip}" editable="{= !!${/bEdit}}"/>
 						<m:HBox>
 							<m:Label text="{i18n>Status} : " design="Bold"/>
-							<m:Text text="{invoice>Status}" editable="{= !!${/bEdit}}"/>
+							<m:Text text="{invoice>Status}"/>
 						</m:HBox>
 					</m:VBox>
 				</m:VBox>
