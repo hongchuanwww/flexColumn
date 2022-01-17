@@ -83,5 +83,11 @@ sap.ui.define([
 			});
 			this.getView().getModel('new').setProperty("/ToGroup/" + this.group + '/ToItem', data);
 		},
+
+		addRow: function (e) {
+			var data = this.getView().getModel('new').getProperty("/ToGroup/" + this.group + '/ToItem');
+			data.push({});
+			this.getView().getModel('new').setProperty("/ToGroup/" + this.group + '/ToItem', data);
+		}
 	});
 });

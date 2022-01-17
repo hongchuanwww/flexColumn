@@ -90,11 +90,11 @@
 				<m:VBox>
 					<m:HBox alignItems="Center">
 						<m:Label text="{i18n>masterListItemValidFrom} :" design="Bold"/>
-						<m:DatePicker value="{new>/ValidFrom}"/>
+						<m:DatePicker value="{new>/ValidFrom}" valueFormat="yyyy-MM-dd"/>
 					</m:HBox>
 					<m:HBox alignItems="Center">
 						<m:Label text="{i18n>masterListItemValidTo} :" design="Bold"/>
-						<m:DatePicker value="{new>/ValidTo}"/>
+						<m:DatePicker value="{new>/ValidTo}" valueFormat="yyyy-MM-dd"/>
 					</m:HBox>
 				</m:VBox>
 				<m:VBox>

@@ -66,7 +66,7 @@ sap.ui.define([
 		addGroup: function () {
 			var groups = this.oCreateModel.getProperty('/ToGroup');
 			var GrpCode = 'GRP' + (groups.length + 1).toString().padStart(2,'0');
-			groups.push({GrpCode});
+			groups.push({GrpCode, ToItem:[]});
 			this.oCreateModel.setProperty('/ToGroup',groups);
 		},
 
@@ -76,6 +76,12 @@ sap.ui.define([
 			this.oCreateModel.setProperty('/ToPrice',groups);
 		},
 		
+		_DatePipe: function(obj, prop) {
+			if(obj[prop]) {
+				obj[prop] = new Date(obj[prop]);
+			}
+		},
+
 		onSave:  function () {
 			var fnSuccess = function () {
 				MessageToast.show('success');
@@ -88,14 +94,24 @@ sap.ui.define([
 			}.bind(this);
 			var sPath = 'BundleHeadSet';
 			var data = this.oCreateModel.getData();
-			data.ValidFrom = new Date(data.ValidFrom);
-			data.ValidTo = new Date(data.ValidTo);
 
 			var mParameters = {
 				error: fnError,
 				success: fnSuccess
 			};
-			
+			// DatePicker数据转换
+			this._DatePipe(data,'ValidFrom');
+			this._DatePipe(data,'ValidTo');
+			data.ToPrice.forEach(price => {
+				this._DatePipe(price,'ValidFrom');
+				this._DatePipe(price,'ValidTo');
+			});
+			data.ToGroup.forEach(group => {
+				group.ToItem.forEach(item => {
+					this._DatePipe(item,'ValidFrom');
+					this._DatePipe(item,'ValidTo');
+				});
+			});
 			var oDataModel = this.getView().getModel('invoice');
 			oDataModel.create(sPath, data, mParameters);
 		},
