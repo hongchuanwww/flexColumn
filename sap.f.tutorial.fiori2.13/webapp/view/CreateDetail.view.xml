@@ -76,11 +76,11 @@
                                 paste=".onPaste">
 								<m:columns>
 									<m:Column>
-										<m:Text text="{i18n>Product}"/>
+										<m:Text text="{i18n>Product} - {i18n>ProductDesc}"/>
 									</m:Column>
-									<m:Column>
+									<!-- <m:Column>
 										<m:Text text="{i18n>ProductDesc}"/>
-									</m:Column>
+									</m:Column> -->
 									<m:Column>
 										<m:Text text="{i18n>ValidFrom}"/>
 									</m:Column>
@@ -97,10 +97,9 @@
 											<!-- <m:ObjectIdentifier text="{new>Product}"/> -->
 											<m:Input value="{new>Product}"/>
 										</m:cells>
-										<m:cells>
-											<!-- <m:ObjectIdentifier text="{new>ProducDesc}"/> -->
+										<!-- <m:cells>
 											<m:Input value="{new>ProducDesc}"/>
-										</m:cells>
+										</m:cells> -->
 										<m:cells>
 											<!-- <m:ObjectIdentifier text="{new>ValidFrom}"/> -->
 											<m:DatePicker value="{new>ValidFrom}" valueFormat="yyyy-MM-dd"/>

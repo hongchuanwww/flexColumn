@@ -65,26 +65,46 @@
 			</m:HBox>
 			<m:HBox justifyContent="SpaceBetween">
 				<m:VBox>
-					<m:HBox alignItems="Center">
-						<m:Label text="BU ID : " design="Bold"/>
-						<m:Select
-							selectedKey="{new>/BuId}"
-							items="{path: 'invoice>/SHBusinessUnitSet'}"
-						>
-							<core:Item key="{invoice>Sobid}" text="{invoice>Stext}" />
-						</m:Select>
+					<m:HBox alignItems="Center" justifyContent="Center">
+						<m:VBox alignItems="Start" justifyContent="Center">
+							<m:Label text="BU : " design="Bold"/>
+							<m:Label text="{i18n>promotionType} : " design="Bold"/>
+						</m:VBox>
+						<m:VBox>
+							<m:Select
+								selectedKey="{new>/BuId}"
+								items="{path: 'invoice>/SHBusinessUnitSet'}"
+							>
+								<core:Item key="{invoice>Sobid}" text="{invoice>Stext}" />
+							</m:Select>
+							<m:Select
+								selectedKey="{new>/BdPromType}"
+								forceSelection="false"
+								items="{
+									path: 'PROM_TYPE>/'
+								}"
+							>
+								<core:Item key="{PROM_TYPE>Numb}" text="{PROM_TYPE>High}" />
+							</m:Select>
+						</m:VBox>
 					</m:HBox>
 					<m:HBox alignItems="Center">
-						<m:Label text="{i18n>promotionType} : " design="Bold"/>
-						<m:Select
-							selectedKey="{new>/BdPromType}"
-							forceSelection="false"
-							items="{
-								path: 'PROM_TYPE>/'
-							}"
-						>
-							<core:Item key="{PROM_TYPE>Numb}" text="{PROM_TYPE>High}" />
-						</m:Select>
+
+					</m:HBox>
+				</m:VBox>
+				<m:VBox>
+					<m:HBox alignItems="Center">
+						<m:VBox>
+							<m:Label text="Sort Code :" design="Bold"/>
+							<m:Label text="{i18n>Supplier} :" design="Bold"/>
+						</m:VBox>
+						<m:VBox>
+							<m:Input value="{new>SortCode}"/>
+							<m:Input value="{new>BdDesc}"/>
+						</m:VBox>
+					</m:HBox>
+					<m:HBox alignItems="Center">
+
 					</m:HBox>
 				</m:VBox>
 				<m:VBox>
@@ -194,17 +214,17 @@
 							<m:Table
 								items="{path : 'new>/ToPrice'}">
 								<m:columns>
-									<m:Column>
+									<!-- <m:Column>
 										<m:Text text="{i18n>ProductLineNo}"/>
+									</m:Column> -->
+									<m:Column>
+										<m:Text text="{i18n>Quantity}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="{i18n>Price}"/>
+										<m:Text text="{i18n>Unit}"/>
 									</m:Column>
 									<m:Column>
 										<m:Text text="{i18n>Limit}"/>
-									</m:Column>
-									<m:Column>
-										<m:Text text="{i18n>Dealer}"/>
 									</m:Column>
 									<m:Column>
 										<m:Text text="{i18n>CustomerNo}"/>
@@ -213,7 +233,7 @@
 										<m:Text text="{i18n>Province}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="{i18n>code}"/>
+										<m:Text text="{i18n>AgreeId}"/>
 									</m:Column>
 									<m:Column>
 										<m:Text text="{i18n>ValidFrom}"/>
@@ -224,27 +244,30 @@
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem>
-										<m:cells>
+										<!-- <m:cells>
 											<m:Input value="{new>PrcGuid}"/>
-										</m:cells>
-										<m:cells>
+										</m:cells> -->
+										<!-- <m:cells>
 											<m:Input value="{new>GrpQty}"/>
-										</m:cells>
+										</m:cells> -->
 										<m:cells>
 											<m:Input value="{new>Rate}"/>
+										</m:cells>
+										<m:cells>
+											<m:Input value="{new>RateUnit}"/>
 											<!-- <m:Input value="{new>RateUnit}"/> -->
 										</m:cells>
 										<m:cells>
-											<m:Input value="{new>CreatedBy}"/>
+											<m:Input value="{new>Cap}"/>
 										</m:cells>
 										<m:cells>
-											<m:Input value="{new>AgreeId}"/>
+											<m:Input value="{new>BpCodeInAgree}"/>
 										</m:cells>
 										<m:cells>
 											<m:Input value="{new>Province}"/>
 										</m:cells>
 										<m:cells>
-											<m:Input value="{new>PriceType}"/>
+											<m:Input value="{new>AgreeId}"/>
 										</m:cells>
 										<m:cells>
 											<m:DatePicker value="{new>ValidFrom}"/>
