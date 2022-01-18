@@ -30,7 +30,7 @@ sap.ui.define([
 		_initCreateModel: function() {
 			this.oCreateModel.setData({
 				Changeflag: "C",
-				Qty: 1,
+				Qty: "1",
 				ToGroup: [],
 				ToPrice: [],
 				ToMessage: []
