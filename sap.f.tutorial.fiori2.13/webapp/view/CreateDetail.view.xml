@@ -47,11 +47,15 @@
 						<m:FlexItemData growFactor="1" />
 					</core:layoutData>
 				</core:Icon>
-				<m:VBox>
+				<m:HBox>
 					<m:Text text="{i18n>groupID}: {new>GrpCode}"/>
-					<m:Text text="{i18n>GruopScope}: {new>GrpScopeDesc}-{new>GrpScope}"/>
+					<m:HBox>
+						<!-- <m:Text text="{i18n>GruopScope}: {new>GrpScopeDesc}-"/> -->
+						<m:Text text="{i18n>GruopScope}: "/>
+						<m:Input value="{new>GrpScope}"/>
+					</m:HBox>
 					<m:Text text="{i18n>groupDesc}: NA for now"/>
-				</m:VBox>
+				</m:HBox>
 			</m:HBox>
 		</headerContent>
 		<sections>

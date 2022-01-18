@@ -99,8 +99,8 @@
 							<m:Label text="{i18n>Supplier} :" design="Bold"/>
 						</m:VBox>
 						<m:VBox>
-							<m:Input value="{new>SortCode}"/>
-							<m:Input value="{new>BdDesc}"/>
+							<m:Input value="{new>/SortCode}"/>
+							<m:Input value="{new>/BdDesc}"/>
 						</m:VBox>
 					</m:HBox>
 					<m:HBox alignItems="Center">
@@ -188,7 +188,7 @@
 											<m:CheckBox selected="{new>GrpFree}"/>
 										</m:cells>
 										<m:cells>
-											<m:Input value="{new>GrpDelvery}"/>
+											<m:CheckBox selected="{new>GrpDelvery}"/>
 										</m:cells>
 										<m:cells>
 											<m:CheckBox selected="{new>GrpQtycheck}"/>
