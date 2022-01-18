@@ -106,11 +106,14 @@ sap.ui.define([
 			data.ToPrice.forEach(price => {
 				this._DatePipe(price,'ValidFrom');
 				this._DatePipe(price,'ValidTo');
+				price.Changeflag = "C";
 			});
 			data.ToGroup.forEach(group => {
+				group.Changeflag = "C";
 				group.ToItem.forEach(item => {
 					this._DatePipe(item,'ValidFrom');
 					this._DatePipe(item,'ValidTo');
+					item.Changeflag = "C";
 				});
 			});
 			var oDataModel = this.getView().getModel('invoice');
