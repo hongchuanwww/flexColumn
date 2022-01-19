@@ -84,10 +84,12 @@ sap.ui.define([
 		},
 
 		onSave:  function () {
+			var oDataModel = this.getView().getModel('invoice');
 			var fnSuccess = function () {
 				MessageToast.show('success');
 				this._initCreateModel();
 				this.handleClose();
+				oDataModel.refresh();
 			}.bind(this);
 
 			var fnError = function (oError) {
@@ -116,7 +118,6 @@ sap.ui.define([
 					item.Changeflag = "C";
 				});
 			});
-			var oDataModel = this.getView().getModel('invoice');
 			oDataModel.create(sPath, data, mParameters);
 		},
 	});
