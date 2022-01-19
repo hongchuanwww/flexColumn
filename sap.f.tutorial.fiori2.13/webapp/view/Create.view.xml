@@ -139,6 +139,7 @@
 							<m:Table
 								items="{path : 'new>/ToGroup'}">
 								<m:columns>
+									<m:Column/>
 									<m:Column>
 										<m:Text text="{i18n>groupID}"/>
 									</m:Column>
@@ -164,6 +165,9 @@
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem type="Navigation" press=".onGroupPress">
+										<m:cells>
+											<m:Button icon="sap-icon://delete" type="Transparent" press="deleteGroup" ariaLabelledBy="editButtonLabel"/>
+										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{new>GrpCode}"/>
 										</m:cells>

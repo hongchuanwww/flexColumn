@@ -70,7 +70,15 @@ sap.ui.define([
 			groups.push({GrpCode, ToItem:[]});
 			this.oCreateModel.setProperty('/ToGroup',groups);
 		},
-
+		deleteGroup : function(e) {
+			var btn = e.getSource(),
+				row = btn.getParent(),
+				table = row.getParent(),
+				index = table.indexOfItem(row),
+				groups = this.oCreateModel.getProperty('/ToGroup');
+			groups.splice(index,1);
+			this.oCreateModel.setProperty('/ToGroup',groups);
+		},
 		addPrice: function () {
 			var groups = this.oCreateModel.getProperty('/ToPrice');
 			groups.push({});
@@ -93,7 +101,8 @@ sap.ui.define([
 			}.bind(this);
 
 			var fnError = function (oError) {
-				MessageBox.error(oError.message);
+				// MessageBox.error(oError.message);
+				MessageBox.error(oError.response.body);
 			}.bind(this);
 			var sPath = 'BundleHeadSet';
 			var data = this.oCreateModel.getData();
