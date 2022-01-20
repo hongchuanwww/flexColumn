@@ -106,19 +106,28 @@ sap.ui.define([
 			this._DatePipe(data,'ValidTo');
 
 			data.Changeflag = "U";
-			data.ToPrice.forEach(price => {
-				this._DatePipe(price,'ValidFrom');
-				this._DatePipe(price,'ValidTo');
-				price.Changeflag = "U";
-			});
-			data.ToGroup.forEach(group => {
-				group.Changeflag = "U";
-				group.ToItem.forEach(item => {
-					this._DatePipe(item,'ValidFrom');
-					this._DatePipe(item,'ValidTo');
-					item.Changeflag = "U";
+			if (data.ToPrice.__list.length != 0) {
+				data.ToPrice.forEach(price => {
+					this._DatePipe(price,'ValidFrom');
+					this._DatePipe(price,'ValidTo');
+					price.Changeflag = "U";
 				});
-			});
+			}
+
+			if (data.ToGroup.__list.length != 0) {
+				data.ToGroup.forEach(group => {
+					group.Changeflag = "U";
+
+					if (group.ToItem.__list.length != 0) {
+						group.ToItem.forEach(item => {
+							this._DatePipe(item,'ValidFrom');
+							this._DatePipe(item,'ValidTo');
+							item.Changeflag = "U";
+						});
+					}
+				});
+			}
+
 
 			oDataModel.create(sPath, data, mParameters);
 		}
