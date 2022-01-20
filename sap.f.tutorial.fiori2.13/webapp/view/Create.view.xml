@@ -1,0 +1,310 @@
+<mvc:View
+	controllerName="zychcn.zbundle01.controller.Create"
+	xmlns="sap.uxap"
+	xmlns:m="sap.m"
+	xmlns:f="sap.f"
+	xmlns:core="sap.ui.core"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc">
+	<ObjectPageLayout
+		id="ObjectPageLayout"
+		showTitleInHeaderContent="true"
+		alwaysShowContentHeader="false"
+		preserveHeaderStateOnScroll="false"
+		headerContentPinnable="true"
+		isChildPage="true"
+		showFooter="true"
+		upperCaseAnchorBar="false">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<expandedHeading>
+					<m:Title text="{i18n>CreateHeader}" wrapping="true" class="sapUiSmallMarginEnd"/>
+				</expandedHeading>
+
+				<!-- <snappedHeading>
+					<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+						<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
+							<m:Title text="{invoice>HeadId}" wrapping="true"/>
+						</m:FlexBox>
+					</m:FlexBox>
+				</snappedHeading> -->
+
+				<navigationActions>
+					<m:OverflowToolbarButton
+						type="Transparent"
+						icon="sap-icon://full-screen"
+						press=".handleFullScreen"
+						tooltip="Enter Full Screen Mode"
+						visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null }"/>
+					<m:OverflowToolbarButton
+						type="Transparent"
+						icon="sap-icon://exit-full-screen"
+						press=".handleExitFullScreen"
+						tooltip="Exit Full Screen Mode"
+						visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/>
+					<m:OverflowToolbarButton
+						type="Transparent"
+						icon="sap-icon://decline"
+						press=".handleClose"
+						tooltip="Close column"
+						visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
+				</navigationActions>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+
+		<headerContent>
+			<m:HBox>
+				<core:Icon
+					src="sap-icon://sap-box"
+					size="3rem"
+					color="#1C4C98">
+					<core:layoutData>
+						<m:FlexItemData growFactor="1" />
+					</core:layoutData>
+				</core:Icon>
+			</m:HBox>
+			<m:HBox justifyContent="SpaceBetween">
+				<m:VBox>
+					<m:HBox>
+						<m:Label text="BU ID : " design="Bold"/>
+						<m:Select
+							selectedKey="{new>/BuId}"
+							items="{path: 'invoice>/SHBusinessUnitSet'}"
+						>
+							<core:Item key="{invoice>Sobid}" text="{invoice>Uname}" />
+						</m:Select>
+					</m:HBox>
+					<m:HBox>
+						<m:Label text="BU {i18n>HeaderDesc} : " design="Bold"/>
+						<m:Text text="{new/>Uname}" editable="false"/>     
+					</m:HBox>
+					<m:HBox>
+						<m:Label text="{i18n>salesOrg} : " design="Bold"/>
+						<m:Text text=" {new/>SalesOrg}"/>
+					</m:HBox>
+					<m:HBox>
+						<m:Label text="{i18n>SalesChannels} : " design="Bold"/>
+						<m:Text text=" {new/>DistrChan}"/>
+					</m:HBox>
+				</m:VBox>
+				<m:VBox>
+					<m:HBox>
+						<m:Label text="Sort Code :" design="Bold"/>
+						<m:Input value="{new>/SortCode}"/>
+					</m:HBox>
+					<m:HBox>
+						<m:Label text="{i18n>Supplier} :" design="Bold"/>
+						<m:Input value="{new>/BdDesc}"/>
+					</m:HBox>
+					<m:HBox>
+						<m:Label text="{i18n>promotionType} : " design="Bold"/>
+						<m:Select
+							selectedKey="{new>/BdPromType}"
+							forceSelection="false"
+							items="{
+								path: 'PROM_TYPE>/'
+							}"
+						>
+							<core:Item key="{PROM_TYPE>Numb}" text="{PROM_TYPE>Numb}" />
+						</m:Select>
+					</m:HBox>
+					<m:HBox>
+						<m:Label text="{i18n>promotionTypeDesc} : " design="Bold"/>
+						<m:Input value="{PROM_TYPE>High}" editable="{= !!${/bEdit}}"/>
+					</m:HBox>
+				</m:VBox>
+				<m:VBox>
+					<m:HBox alignItems="Center">
+						<m:Label text="{i18n>masterListItemValidFrom} :" design="Bold"/>
+						<m:DatePicker value="{new>/ValidFrom}" valueFormat="yyyy-MM-dd"/>
+					</m:HBox>
+					<m:HBox alignItems="Center">
+						<m:Label text="{i18n>masterListItemValidTo} :" design="Bold"/>
+						<m:DatePicker value="{new>/ValidTo}" valueFormat="yyyy-MM-dd"/>
+					</m:HBox>
+											
+					<m:HBox>
+						<m:Label text="{i18n>SalesVolume} : " design="Bold"/>
+						<m:Input value="{invoice>Qty}"/>
+					</m:HBox>
+				</m:VBox>
+				<m:VBox>
+					<m:VBox justifyContent="Start">
+						<m:CheckBox text="{i18n>UnifiedDelivery}" selected="{new>/Delivery}"/>
+						<m:CheckBox text="{i18n>MechanicalEquipment}" selected="{new>/Eqip}"/>
+					</m:VBox>
+				</m:VBox>
+			</m:HBox>
+		</headerContent>
+		<sections>
+			<ObjectPageSection title="{i18n>ComponentDefinition}">
+				<subSections>
+					<ObjectPageSubSection>
+                        <actions>
+                            <m:OverflowToolbarButton
+                                type="Transparent"
+                                icon="sap-icon://add"
+                                press=".addGroup" />
+                        </actions>
+						<blocks>
+							<m:Table
+								items="{path : 'new>/ToGroup'}">
+								<m:columns>
+									<m:Column/>
+									<m:Column>
+										<m:Text text="{i18n>groupID}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>GroupDesc}"/>
+									</m:Column>	
+									<m:Column>
+										<m:Text text="{i18n>GruopScope}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>QuantityCoefficient}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>FreeItem}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>ShipmentGroup}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>QuantityCheck}"/>
+									</m:Column>	
+								
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem type="Navigation" press=".onGroupPress">
+										<m:cells>
+											<m:Button icon="sap-icon://delete" type="Transparent" press="deleteGroup" ariaLabelledBy="editButtonLabel"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{new>GrpCode}"/>
+										</m:cells>
+										<m:cells>
+											<m:Input value="{new>GrpText}"/>
+										</m:cells>		
+										<m:cells>
+											<m:Select
+												selectedKey="{new>BdPromScope}"
+												forceSelection="false"
+												items="{
+													path: 'PROD_SCOPE>/'
+												}"
+											>
+												<core:Item key="{PROD_SCOPE>Numb}" text="{PROD_SCOPE>High}" />
+											</m:Select>
+										</m:cells>
+										<m:cells>
+											<m:Input value="{new>GrpQty}"/>
+										</m:cells>
+										<m:cells>
+											<m:CheckBox selected="{new>GrpFree}"/>
+										</m:cells>
+										<m:cells>
+											<m:CheckBox selected="{new>GrpDelvery}"/>
+										</m:cells>
+										<m:cells>
+											<m:CheckBox selected="{new>GrpQtycheck}"/>
+										</m:cells>						
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection title="{i18n>HeaderPrice}">
+				<subSections>
+					<ObjectPageSubSection>
+						<actions>
+                            <m:OverflowToolbarButton
+                                type="Transparent"
+                                icon="sap-icon://add"
+                                press=".addPrice" />
+                        </actions>
+						<blocks>
+							<m:Table
+								items="{path : 'new>/ToPrice'}">
+								<m:columns>
+									<!-- <m:Column>
+										<m:Text text="{i18n>ProductLineNo}"/>
+									</m:Column> -->
+									<m:Column>
+										<m:Text text="{i18n>Quantity}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>Unit}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>Limit}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>CustomerNo}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>Province}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>AgreeId}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>ValidFrom}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>ValidTo}"/>
+									</m:Column>
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem>
+										<!-- <m:cells>
+											<m:Input value="{new>PrcGuid}"/>
+										</m:cells> -->
+										<!-- <m:cells>
+											<m:Input value="{new>GrpQty}"/>
+										</m:cells> -->
+										<m:cells>
+											<m:Input value="{new>Rate}"/>
+										</m:cells>
+										<m:cells>
+											<m:Input value="{new>RateUnit}"/>
+											<!-- <m:Input value="{new>RateUnit}"/> -->
+										</m:cells>
+										<m:cells>
+											<m:Input value="{new>Cap}"/>
+										</m:cells>
+										<m:cells>
+											<m:Input value="{new>BpCodeInAgree}"/>
+										</m:cells>
+										<m:cells>
+											<m:Input value="{new>Province}"/>
+										</m:cells>
+										<m:cells>
+											<m:Input value="{new>AgreeId}"/>
+										</m:cells>
+										<m:cells>
+											<m:DatePicker value="{new>ValidFrom}"/>
+										</m:cells>
+										<m:cells>
+											<m:DatePicker value="{new>ValidTo}"/>
+										</m:cells>
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+
+		<footer>
+			<m:OverflowToolbar>
+				<m:ToolbarSpacer/>
+				<m:Button type="Emphasized" text="Save" press=".onSave"/>
+				<m:Button text="Cancel" press=".handleClose"/>
+			</m:OverflowToolbar>
+		</footer>
+	</ObjectPageLayout>
+</mvc:View>

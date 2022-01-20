@@ -1,0 +1,328 @@
+<mvc:View
+	controllerName="zychcn.zbundle01.controller.Detail"
+	xmlns="sap.uxap"
+	xmlns:m="sap.m"
+	xmlns:f="sap.f"
+	xmlns:core="sap.ui.core"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc">
+	<ObjectPageLayout
+		id="ObjectPageLayout"
+		showTitleInHeaderContent="true"
+		alwaysShowContentHeader="false"
+		preserveHeaderStateOnScroll="false"
+		headerContentPinnable="true"
+		isChildPage="true"
+		showFooter="true"
+		upperCaseAnchorBar="false">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<expandedHeading>
+					<m:Title text="{i18n>detailHeader}" wrapping="true" class="sapUiSmallMarginEnd"/>
+				</expandedHeading>
+
+				<snappedHeading>
+					<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+						<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
+							<m:Title text="{invoice>HeadId}" wrapping="true"/>
+						</m:FlexBox>
+					</m:FlexBox>
+				</snappedHeading>
+
+				<navigationActions>
+					<m:OverflowToolbarButton
+						type="Transparent"
+						icon="sap-icon://full-screen"
+						press=".handleFullScreen"
+						tooltip="Enter Full Screen Mode"
+						visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null }"/>
+					<m:OverflowToolbarButton
+						type="Transparent"
+						icon="sap-icon://exit-full-screen"
+						press=".handleExitFullScreen"
+						tooltip="Exit Full Screen Mode"
+						visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/>
+					<m:OverflowToolbarButton
+						type="Transparent"
+						icon="sap-icon://decline"
+						press=".handleClose"
+						tooltip="Close column"
+						visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
+				</navigationActions>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+
+		<headerContent>
+			<m:HBox>
+				<core:Icon
+					src="sap-icon://sap-box"
+					size="3rem"
+					color="#1C4C98">
+					<core:layoutData>
+						<m:FlexItemData growFactor="1" />
+					</core:layoutData>
+				</core:Icon>
+				<m:Text text="{invoice>BdHeadNumber}"/>
+			</m:HBox>
+			<m:HBox justifyContent="SpaceBetween">
+				<m:VBox>
+					<m:HBox>
+						<m:Label text="BU ID : " design="Bold"/>
+						<m:Text text=" {invoice>BuId}"/>
+					</m:HBox>
+					<m:HBox>
+						<m:Label text="BU {i18n>HeaderDesc} : " design="Bold"/>
+						<m:Text text=" {invoice>BuDesc}" editable="{= !!${/bEdit}}"/>
+					</m:HBox>
+					<m:HBox>
+						<m:Label text="{i18n>salesOrg} : " design="Bold"/>
+						<m:Text text=" {invoice>SalesOrg}"/>
+					</m:HBox>
+					<m:HBox>
+						<m:Label text="{i18n>SalesChannels} : " design="Bold"/>
+						<m:Text text=" {invoice>DistrChan}"/>
+					</m:HBox>
+				</m:VBox>
+				<m:VBox>
+					<m:HBox>
+						<m:Label text="Sort Code : " design="Bold"/>
+						<m:Text text="{invoice>SortCode}"/>
+					</m:HBox>
+					<m:HBox>
+						<m:Label text="{i18n>Supplier} : " design="Bold"/>
+						<m:Text text="{invoice>BdDesc}"/>
+					</m:HBox>
+					<m:HBox>
+						<m:Label text="{i18n>promotionType} : " design="Bold"/>
+						<m:Text text="{invoice>BdPromType}"/>
+					</m:HBox>
+					<m:HBox>
+						<m:Label text="{i18n>promotionTypeDesc} :" design="Bold"/>
+						<m:Text text="{invoice>BdPromTypeDesc}"/>
+					</m:HBox>
+				</m:VBox>
+				<m:VBox>
+					<m:HBox>
+						<m:Label text="{i18n>masterListItemValidFrom} :" design="Bold"/>
+						<!-- <m:Text text=" {
+							path: 'invoice>ValidFrom',
+							design: 'bold',
+							type: 'sap.ui.model.type.Date',
+							formatOptions: {
+								style: 'medium'
+							}
+						}"/> -->
+						<m:DatePicker value="{invoice>ValidFrom}" editable="{= !!${/bEdit}}"/>
+					</m:HBox>
+					<m:HBox>
+						<m:Label text="{i18n>masterListItemValidTo} :" design="Bold"/>
+						<!-- <m:Text text="{
+							path: 'invoice>ValidTo',
+							design: 'bold',
+							type: 'sap.ui.model.type.Date',
+							formatOptions: {
+								style: 'medium'
+							}
+						}" editable="{= !!${/bEdit}}"/> -->
+
+						<m:DatePicker value="{invoice>ValidTo}" editable="{= !!${/bEdit}}"/>
+					</m:HBox>
+					<m:HBox>
+						<m:Label text="{i18n>SalesVolume} : " design="Bold"/>
+						<m:HBox>
+							<m:ObjectIdentifier text="{invoice>Qty}" visible="{= !${/bEdit}}"/>
+							<m:Input value="{invoice>Qty}" visible="{= !!${/bEdit}}"/>
+						</m:HBox>
+						<!-- <m:Text text="{invoice>Qty}" editable="{= !!${/bEdit}}"/> -->
+					</m:HBox>
+				</m:VBox>
+				<m:VBox>
+					<m:VBox justifyContent="Start">
+						<m:CheckBox text="{i18n>UnifiedDelivery}" selected="{!!invoice>Delivery}" editable="{= !!${/bEdit}}"/>
+						<m:CheckBox text="{i18n>MechanicalEquipment}" selected="{!!invoice>Eqip}" editable="{= !!${/bEdit}}"/>
+						<m:HBox>
+							<m:Label text="{i18n>Status} : " design="Bold"/>
+							<m:Text text="{invoice>Status}" editable="{= !!${/bEdit}}"/>
+						</m:HBox>
+					</m:VBox>
+				</m:VBox>
+				<m:VBox>
+					<m:VBox justifyContent="Start">
+
+
+					</m:VBox>
+				</m:VBox>
+			</m:HBox>
+		</headerContent>
+		<sections>
+			<ObjectPageSection title="{i18n>ComponentDefinition}">
+				<subSections>
+					<ObjectPageSubSection>
+						<actions>
+                            <m:OverflowToolbarButton
+                                type="Transparent"
+                                icon="sap-icon://add"
+                                press="handleButtonPress" />
+                            <m:OverflowToolbarButton
+                                type="Transparent"
+                                icon="sap-icon://edit"
+                                press="handleButtonPress" />
+                        </actions>
+						<blocks>
+							<m:Table
+								items="{path : 'invoice>ToGroup'}">
+								<m:columns>
+									<m:Column>
+										<m:Text text="{i18n>groupID}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>GroupDesc}"/>
+									</m:Column>	
+									<m:Column>
+										<m:Text text="{i18n>GruopScope}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>QuantityCoefficient}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>FreeItem}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>ShipmentGroup}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>QuantityCheck}"/>
+									</m:Column>	
+								
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem type="Navigation" press=".onSupplierPress">
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>GrpCode}"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>GrpText}"/>
+										</m:cells>		
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>GrpScope}-{invoice>GrpScopeDesc}"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>GrpQty}"/>
+										</m:cells>
+										<m:cells>
+											<m:CheckBox selected="{= !!${invoice>GrpFree}}" enabled="false"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>GrpDelvery}"/>
+										</m:cells>
+										<m:cells>
+											<m:CheckBox selected="{= !!${invoice>GrpQtycheck}}" enabled="false"/>
+										</m:cells>						
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection title="{i18n>HeaderPrice}">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<m:Table
+								items="{path : 'invoice>ToPrice'}">
+								<m:columns>
+									<m:Column>
+										<m:Text text="{i18n>ProvinceID}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>ProvinceDesc}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>ProtocolID}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>CustomerID}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>CustomerDesc}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>ValidFrom}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>ValidTo}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="Rate"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="CAP"/>
+									</m:Column>
+
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem>
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>Province}"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>RegionDesc}"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>AgreeId}"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>BpCodeInAgree}"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{i18n>CustomerDesc}"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{
+												path: 'invoice>ValidFrom',
+												type: 'sap.ui.model.type.Date',
+												formatOptions: {
+													style: 'medium'
+												}
+											}"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text=" {
+												path: 'invoice>ValidTo',
+												type: 'sap.ui.model.type.Date',
+												formatOptions: {
+													style: 'medium'
+												}
+											}"/>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{invoice>Rate} {invoice>RateUnit}"/>
+										</m:cells>
+										<m:cells>
+											<m:HBox>
+												<m:ObjectIdentifier text="{invoice>Cap}" visible="{= !${/bEdit}}"/>
+												<m:Input value="{invoice>Cap}" visible="{= !!${/bEdit}}"/>
+											</m:HBox>
+										</m:cells>
+
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+
+		<footer>
+			<m:OverflowToolbar>
+				<m:ToolbarSpacer/>
+				<m:Button type="Emphasized" text="Edit" visible="{= !${/bEdit}}" press=".edit"/>
+				<m:Button type="Emphasized" text="Save" visible="{= !!${/bEdit}}" press=".save"/>
+				<m:Button text="Cancel" visible="{= !!${/bEdit}}" press=".cancel"/>
+			</m:OverflowToolbar>
+		</footer>
+	</ObjectPageLayout>
+</mvc:View>
