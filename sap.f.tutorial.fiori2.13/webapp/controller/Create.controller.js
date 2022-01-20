@@ -14,6 +14,10 @@ sap.ui.define([
 			this.oCreateModel =  this.oOwnerComponent.getModel('new');
 			this._initCreateModel();
 			['PROM_TYPE','PROD_SCOPE'].forEach(key => this._getOptions(key));
+			var settingModel = new JSONModel({
+				minDate: new Date(),
+			});
+			this.getView().setModel(settingModel, 'setting');
 		},
 
 		_getOptions: function(key) {

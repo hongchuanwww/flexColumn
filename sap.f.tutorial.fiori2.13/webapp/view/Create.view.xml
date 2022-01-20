@@ -71,20 +71,20 @@
 							selectedKey="{new>/BuId}"
 							items="{path: 'invoice>/SHBusinessUnitSet'}"
 						>
-							<core:Item key="{invoice>Sobid}" text="{invoice>Uname}" />
+							<core:Item key="{invoice>Uname}" text="{invoice>Uname}"/>
 						</m:Select>
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="BU {i18n>HeaderDesc} : " design="Bold"/>
-						<m:Text text="{new/>Uname}" editable="false"/>     
+						<m:Text text="{new>/BuId}" editable="false"/>     
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="{i18n>salesOrg} : " design="Bold"/>
-						<m:Text text=" {new/>SalesOrg}"/>
+						<m:Text text=" {new>/SalesOrg}"/>
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="{i18n>SalesChannels} : " design="Bold"/>
-						<m:Text text=" {new/>DistrChan}"/>
+						<m:Text text=" {new>/DistrChan}"/>
 					</m:HBox>
 				</m:VBox>
 				<m:VBox>
@@ -110,13 +110,13 @@
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="{i18n>promotionTypeDesc} : " design="Bold"/>
-						<m:Input value="{PROM_TYPE>High}" editable="{= !!${/bEdit}}"/>
+						<m:Input value="{new>/BdPromType}" editable="{= !!${/bEdit}}"/>
 					</m:HBox>
 				</m:VBox>
 				<m:VBox>
 					<m:HBox alignItems="Center">
 						<m:Label text="{i18n>masterListItemValidFrom} :" design="Bold"/>
-						<m:DatePicker value="{new>/ValidFrom}" valueFormat="yyyy-MM-dd"/>
+						<m:DatePicker value="{new>/ValidFrom}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/>
 					</m:HBox>
 					<m:HBox alignItems="Center">
 						<m:Label text="{i18n>masterListItemValidTo} :" design="Bold"/>
