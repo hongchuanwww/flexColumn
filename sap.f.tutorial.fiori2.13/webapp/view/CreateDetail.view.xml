@@ -49,12 +49,11 @@
 				</core:Icon>
 				<m:HBox>
 					<m:Text text="{i18n>groupID}: {new>GrpCode}"/>
-					<m:HBox>
-						<!-- <m:Text text="{i18n>GruopScope}: {new>GrpScopeDesc}-"/> -->
+					<!-- <m:HBox>
 						<m:Text text="{i18n>GruopScope}: "/>
 						<m:Input value="{new>GrpScope}"/>
 					</m:HBox>
-					<m:Text text="{i18n>groupDesc}: NA for now"/>
+					<m:Text text="{i18n>groupDesc}: NA for now"/> -->
 				</m:HBox>
 			</m:HBox>
 		</headerContent>

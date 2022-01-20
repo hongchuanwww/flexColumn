@@ -77,6 +77,12 @@ sap.ui.define([
 			this.oModel.setProperty('/bEdit', true);
 		},
 
+		_DatePipe: function(obj, prop) {
+			if(obj[prop]) {
+				obj[prop] = new Date(obj[prop]);
+			}
+		},
+
 		save: function () {
 			var fnSuccess = function () {
 				MessageToast.show('success');
@@ -95,7 +101,26 @@ sap.ui.define([
 			
 			var oDataModel = this.getView().getModel('invoice');
 			var data = oDataModel.getProperty(sPath);
-			oDataModel.update(sPath, data, mParameters);
+
+			this._DatePipe(data,'ValidFrom');
+			this._DatePipe(data,'ValidTo');
+
+			data.Changeflag = "U";
+			data.ToPrice.forEach(price => {
+				this._DatePipe(price,'ValidFrom');
+				this._DatePipe(price,'ValidTo');
+				price.Changeflag = "U";
+			});
+			data.ToGroup.forEach(group => {
+				group.Changeflag = "U";
+				group.ToItem.forEach(item => {
+					this._DatePipe(item,'ValidFrom');
+					this._DatePipe(item,'ValidTo');
+					item.Changeflag = "U";
+				});
+			});
+
+			oDataModel.create(sPath, data, mParameters);
 		}
 	});
 });
