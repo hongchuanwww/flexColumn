@@ -14,6 +14,10 @@ sap.ui.define([
 			this.oCreateModel =  this.oOwnerComponent.getModel('new');
 			this._initCreateModel();
 			['PROM_TYPE','PROD_SCOPE'].forEach(key => this._getOptions(key));
+			var settingModel = new JSONModel({
+				minDate: new Date(),
+			});
+			this.getView().setModel(settingModel, 'setting');
 		},
 
 		_getOptions: function(key) {
@@ -77,6 +81,7 @@ sap.ui.define([
 				index = table.indexOfItem(row),
 				groups = this.oCreateModel.getProperty('/ToGroup');
 			groups.splice(index,1);
+
 			this.oCreateModel.setProperty('/ToGroup',groups);
 		},
 		addPrice: function () {
@@ -84,7 +89,6 @@ sap.ui.define([
 			groups.push({});
 			this.oCreateModel.setProperty('/ToPrice',groups);
 		},
-		
 		_DatePipe: function(obj, prop) {
 			if(obj[prop]) {
 				obj[prop] = new Date(obj[prop]);
@@ -104,6 +108,7 @@ sap.ui.define([
 				// MessageBox.error(oError.message);
 				MessageBox.error(oError.response.body);
 			}.bind(this);
+			console.log("test");
 			var sPath = 'BundleHeadSet';
 			var data = this.oCreateModel.getData();
 
