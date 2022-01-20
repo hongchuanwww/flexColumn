@@ -77,6 +77,7 @@ sap.ui.define([
 				index = table.indexOfItem(row),
 				groups = this.oCreateModel.getProperty('/ToGroup');
 			groups.splice(index,1);
+
 			this.oCreateModel.setProperty('/ToGroup',groups);
 		},
 		addPrice: function () {
@@ -103,6 +104,7 @@ sap.ui.define([
 				// MessageBox.error(oError.message);
 				MessageBox.error(oError.response.body);
 			}.bind(this);
+			console.log("test");
 			var sPath = 'BundleHeadSet';
 			var data = this.oCreateModel.getData();
 
