@@ -84,7 +84,6 @@ sap.ui.define([
 			groups.push({});
 			this.oCreateModel.setProperty('/ToPrice',groups);
 		},
-		
 		_DatePipe: function(obj, prop) {
 			if(obj[prop]) {
 				obj[prop] = new Date(obj[prop]);

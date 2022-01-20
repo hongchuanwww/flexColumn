@@ -172,7 +172,6 @@
 									<m:Column>
 										<m:Text text="{i18n>QuantityCheck}"/>
 									</m:Column>	
-								
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem type="Navigation" press=".onGroupPress">
