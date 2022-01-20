@@ -66,16 +66,16 @@
 			<m:HBox justifyContent="SpaceBetween">
 				<m:VBox>
 					<m:HBox>
-						<m:Label text="BU ID : " design="Bold"/>
+						<m:Label text="BU {i18n>HeaderDesc} : " design="Bold"/>
 						<m:Select
 							selectedKey="{new>/BuId}"
 							items="{path: 'invoice>/SHBusinessUnitSet'}"
 						>
-							<core:Item key="{invoice>Uname}" text="{invoice>Uname}"/>
+							<core:Item key="{invoice>Sobid}" text="{invoice>Uname}"/>
 						</m:Select>
 					</m:HBox>
 					<m:HBox>
-						<m:Label text="BU {i18n>HeaderDesc} : " design="Bold"/>
+						<m:Label text="BU ID : " design="Bold"/>
 						<m:Text text="{new>/BuId}" editable="false"/>     
 					</m:HBox>
 					<m:HBox>
@@ -97,7 +97,7 @@
 						<m:Input value="{new>/BdDesc}"/>
 					</m:HBox>
 					<m:HBox>
-						<m:Label text="{i18n>promotionType} : " design="Bold"/>
+						<m:Label text="{i18n>promotionTypeDesc} : " design="Bold"/>
 						<m:Select
 							selectedKey="{new>/BdPromType}"
 							forceSelection="false"
@@ -105,12 +105,12 @@
 								path: 'PROM_TYPE>/'
 							}"
 						>
-							<core:Item key="{PROM_TYPE>Numb}" text="{PROM_TYPE>Numb}" />
+							<core:Item key="{PROM_TYPE>Numb}" text="{PROM_TYPE>High}" />
 						</m:Select>
 					</m:HBox>
 					<m:HBox>
-						<m:Label text="{i18n>promotionTypeDesc} : " design="Bold"/>
-						<m:Input value="{new>/BdPromType}" editable="{= !!${/bEdit}}"/>
+						<m:Label text="{i18n>promotionType} : " design="Bold"/>
+						<m:Label text="{new>/BdPromType}"/>
 					</m:HBox>
 				</m:VBox>
 				<m:VBox>
