@@ -128,6 +128,7 @@ sap.ui.define([
 				});
 			}
 
+			sPath = 'BundleHeadSet';
 
 			oDataModel.create(sPath, data, mParameters);
 		}
