@@ -1,0 +1,123 @@
+<core:FragmentDefinition
+   xmlns:m="sap.m"
+   xmlns:core="sap.ui.core" >
+   <m:Dialog
+      id="checkDialog"
+      title="试算">
+      <m:subHeader>
+        <m:OverflowToolbar>
+			<m:OverflowToolbarButton
+                type="Transparent"
+                icon="sap-icon://simulate"
+                press=".check" />
+            <m:OverflowToolbarButton
+                type="Transparent"
+                icon="sap-icon://paste"
+                press=".firePaste" />
+		</m:OverflowToolbar>
+      </m:subHeader>
+        <m:content>
+            <m:Table
+                id="checkTable"
+                paste=".onPaste"
+                items="{path : 'check>/'}">
+                <m:columns>
+                    <!-- <m:Column>
+                        <m:Text text="{i18n>ProductLineNo}"/>
+                    </m:Column> -->
+                    <m:Column>
+                        <m:Text text="{i18n>Quantity}"/>
+                    </m:Column>
+                    <m:Column>
+                        <m:Text text="{i18n>Unit}"/>
+                    </m:Column>
+                    <m:Column>
+                        <m:Text text="{i18n>Limit}"/>
+                    </m:Column>
+                    <m:Column>
+                        <m:Text text="{i18n>CustomerNo}"/>
+                    </m:Column>
+                    <m:Column>
+                        <m:Text text="{i18n>Province}"/>
+                    </m:Column>
+                    <m:Column>
+                        <m:Text text="{i18n>AgreeId}"/>
+                    </m:Column>
+                    <m:Column>
+                        <m:Text text="{i18n>ValidFrom}"/>
+                    </m:Column>
+                    <m:Column>
+                        <m:Text text="{i18n>ValidTo}"/>
+                    </m:Column>
+                    <m:Column>
+                    </m:Column>
+                </m:columns>
+                <m:items>
+                    <m:ColumnListItem>
+                        <!-- <m:cells>
+                            <m:Input value="{check>PrcGuid}"/>
+                        </m:cells> -->
+                        <!-- <m:cells>
+                            <m:Input value="{check>GrpQty}"/>
+                        </m:cells> -->
+                        <m:cells>
+                            <m:Input value="{check>Rate}"/>
+                        </m:cells>
+                        <m:cells>
+                            <m:Input value="{check>RateUnit}"/>
+                            <!-- <m:Input value="{check>RateUnit}"/> -->
+                        </m:cells>
+                        <m:cells>
+                            <m:Input value="{check>Cap}"/>
+                        </m:cells>
+                        <m:cells>
+                            <m:Input value="{check>BpCodeInAgree}"/>
+                        </m:cells>
+                        <m:cells>
+                            <m:Input value="{check>Province}"/>
+                        </m:cells>
+                        <m:cells>
+                            <m:Input value="{check>AgreeId}"/>
+                        </m:cells>
+                        <m:cells>
+                            <m:DatePicker value="{check>ValidFrom}"/>
+                        </m:cells>
+                        <m:cells>
+                            <m:DatePicker value="{check>ValidTo}"/>
+                        </m:cells>
+                        <m:cells>
+                            <core:Icon
+                                src="sap-icon://status-error"
+                                class="size1"
+                                visible="{= !${check>TODO}}"
+                                color="#031E48" >
+                                <core:layoutData>
+                                    <m:FlexItemData growFactor="1" />
+                                </core:layoutData>
+                            </core:Icon>
+                            <core:Icon
+                                src="sap-icon://accept"
+                                class="size1"
+                                visible="{= !!${check>TODO}}"
+                                color="#031E48" >
+                                <core:layoutData>
+                                    <m:FlexItemData growFactor="1" />
+                                </core:layoutData>
+                            </core:Icon>
+                        </m:cells>
+                    </m:ColumnListItem>
+                </m:items>
+            </m:Table>
+         </m:content>
+        <m:beginButton>
+            <m:Button
+                text="{i18n>确定}"
+                press=".onConfirmDialog"/>
+        </m:beginButton>
+        <m:endButton>
+            <m:Button
+                text="{i18n>取消}"
+                press=".onCloseDialog"/>
+        </m:endButton>
+   </m:Dialog>
+</core:FragmentDefinition>

@@ -223,6 +223,10 @@
                                 type="Transparent"
                                 icon="sap-icon://add"
                                 press=".addPrice" />
+							<m:OverflowToolbarButton
+                                type="Transparent"
+                                icon="sap-icon://check-availability"
+                                press=".openDialog" />
                         </actions>
 						<blocks>
 							<m:Table
