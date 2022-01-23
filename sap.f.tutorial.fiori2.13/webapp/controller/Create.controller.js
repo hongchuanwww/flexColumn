@@ -2,8 +2,9 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/core/mvc/Controller",
 	'sap/m/MessageToast',
-	"sap/m/MessageBox"
-], function (JSONModel, Controller, MessageToast, MessageBox) {
+	"sap/m/MessageBox",
+	"sap/ui/core/Fragment",
+], function (JSONModel, Controller, MessageToast, MessageBox, Fragment) {
 	"use strict";
 
 	return Controller.extend("zychcn.zbundle01.controller.Create", {
@@ -17,7 +18,19 @@ sap.ui.define([
 			var settingModel = new JSONModel({
 				minDate: new Date(),
 			});
+			this.getView().setModel(new JSONModel([]), 'check');
 			this.getView().setModel(settingModel, 'setting');
+			this.DIC = [
+				'Rate',
+				'RateUnit',
+				'RateUnit',
+				'Cap',
+				'BpCodeInAgree',
+				'Province',
+				'AgreeId',
+				'ValidFrom',
+				'ValidTo',
+			];
 		},
 
 		_getOptions: function(key) {
@@ -108,7 +121,6 @@ sap.ui.define([
 				// MessageBox.error(oError.message);
 				MessageBox.error(oError.response.body);
 			}.bind(this);
-			console.log("test");
 			var sPath = 'BundleHeadSet';
 			var data = this.oCreateModel.getData();
 
@@ -133,6 +145,94 @@ sap.ui.define([
 				});
 			});
 			oDataModel.create(sPath, data, mParameters);
+		},
+		openDialog: function () {
+			// create dialog lazily
+			if (!this.pDialog) {
+				this.pDialog = this.loadFragment({
+					name: "zychcn.zbundle01.view.CheckDialog"
+				});
+			} 
+			this.pDialog.then(function(oDialog) {
+				oDialog.open();
+			});
+		}, 
+		onCloseDialog: function () {
+			var that = this;
+			this.pDialog.then(function(oDialog) {
+				that.getView().getModel('check').setData([]);
+				oDialog.close();
+			});
+		},
+		onConfirmDialog: function () {
+			var prices = this.oCreateModel.getProperty('/ToPrice'),
+				newPrices = this.getView().getModel('check').getData();
+			this.oCreateModel.setProperty('/ToPrice', prices.concat(newPrices));
+			this.onCloseDialog();
+		},
+		check: function () {
+			var oDataModel = this.getView().getModel('invoice');
+			var fnSuccess = function (data) {
+				MessageToast.show('success');
+				this.getView().getModel('check').setData(data);
+			}.bind(this);
+
+			var fnError = function (oError) {
+				// MessageBox.error(oError.message);
+				MessageBox.error(oError.response.body);
+			}.bind(this);
+			var sPath = 'BundleHeadSet';
+			var data = this.oCreateModel.getData();
+			var prices = this.getView().getModel('check').getData();
+			data.ToPrice = prices;
+
+			var mParameters = {
+				error: fnError,
+				success: fnSuccess
+			};
+			// DatePicker数据转换
+			this._DatePipe(data,'ValidFrom');
+			this._DatePipe(data,'ValidTo');
+			data.ToPrice.forEach(price => {
+				this._DatePipe(price,'ValidFrom');
+				this._DatePipe(price,'ValidTo');
+				price.Changeflag = "M";
+			});
+			data.ToGroup.forEach(group => {
+				group.Changeflag = "M";
+				group.ToItem.forEach(item => {
+					this._DatePipe(item,'ValidFrom');
+					this._DatePipe(item,'ValidTo');
+					item.Changeflag = "M";
+				});
+			});
+			oDataModel.create(sPath, data, mParameters);
+		},
+		firePaste: function(oEvent) {
+			var oTable = this.getView().byId("checkTable");
+			navigator.clipboard.readText().then(
+				function(text) {
+					var _arr = text.split('\r\n');
+					for (var i in _arr) {
+						_arr[i] = _arr[i].split('\t');
+					}
+					oTable.firePaste({
+						"data": _arr
+					});
+				}.bind(this)
+			);
+		},
+
+        onPaste: function (e) {
+			var pasteData = e.getParameters().data;
+            var data = pasteData.map(row => {
+				var obj = {};
+				for(var i = 0; i < row.length; i++) {
+					obj[this.DIC[i]] = row[i];
+				}
+				return obj;
+			});
+			this.getView().getModel('check').setData(data);
 		},
 	});
 });
