@@ -83,6 +83,14 @@ sap.ui.define([
 			}
 		},
 
+		editAddGroup: function() {
+			var oDataModel = this.getView().getModel('invoice');
+			var sPath = "/" + this._bundle;
+			var groups = oDataModel.getProperty(sPath).ToGroup;
+			groups.push({});
+			this.getView().setProperty('/ToGroup', groups);
+		},
+
 		save: function () {
 			var fnSuccess = function () {
 				MessageToast.show('success');
@@ -107,7 +115,7 @@ sap.ui.define([
 
 			data.Changeflag = "U";
 			if (data.ToPrice.__list.length != 0) {
-				data.ToPrice.forEach(price => {
+				data.ToPrice.__list.forEach(price => {
 					this._DatePipe(price,'ValidFrom');
 					this._DatePipe(price,'ValidTo');
 					price.Changeflag = "U";
@@ -115,11 +123,11 @@ sap.ui.define([
 			}
 
 			if (data.ToGroup.__list.length != 0) {
-				data.ToGroup.forEach(group => {
+				data.ToGroup.__list.forEach(group => {
 					group.Changeflag = "U";
 
 					if (group.ToItem.__list.length != 0) {
-						group.ToItem.forEach(item => {
+						group.ToItem.__list.forEach(item => {
 							this._DatePipe(item,'ValidFrom');
 							this._DatePipe(item,'ValidTo');
 							item.Changeflag = "U";

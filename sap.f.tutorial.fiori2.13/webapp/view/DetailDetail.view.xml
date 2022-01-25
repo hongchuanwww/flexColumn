@@ -58,6 +58,13 @@
 			<ObjectPageSection title="{i18n>addProduct}">
 				<subSections>
 					<ObjectPageSubSection>
+						<actions>
+                            <m:OverflowToolbarButton
+                                type="Transparent"
+                                icon="sap-icon://add"
+                                press=".editAddGroup" 
+								visible="{= !!${/bEdit}}" />
+                        </actions>
 						<blocks>
 							<m:Table
 								items="{path : 'invoice>ToItem'}">

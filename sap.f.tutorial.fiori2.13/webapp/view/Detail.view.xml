@@ -112,7 +112,7 @@
 								style: 'medium'
 							}
 						}"/> -->
-						<m:DatePicker value="{invoice>ValidFrom}" editable="{= !!${/bEdit}}"/>
+						<m:DatePicker value="{invoice>ValidFrom}" editable="false"/>
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="{i18n>masterListItemValidTo} :" design="Bold"/>
@@ -142,7 +142,7 @@
 						<m:CheckBox text="{i18n>MechanicalEquipment}" selected="{!!invoice>Eqip}" editable="{= !!${/bEdit}}"/>
 						<m:HBox>
 							<m:Label text="{i18n>Status} : " design="Bold"/>
-							<m:Text text="{invoice>Status}" editable="{= !!${/bEdit}}"/>
+							<m:Text text="{invoice>Status}"/>
 						</m:HBox>
 					</m:VBox>
 				</m:VBox>
@@ -162,11 +162,12 @@
                             <m:OverflowToolbarButton
                                 type="Transparent"
                                 icon="sap-icon://add"
-                                press="handleButtonPress" />
-                            <m:OverflowToolbarButton
+                                press=".editAddGroup" 
+								visible="{= !!${/bEdit}}" />
+                            <!-- <m:OverflowToolbarButton
                                 type="Transparent"
                                 icon="sap-icon://edit"
-                                press="handleButtonPress" />
+                                press="handleButtonPress" /> -->
                         </actions>
 						<blocks>
 							<m:Table
@@ -202,21 +203,23 @@
 										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{invoice>GrpText}"/>
+											<m:Input value="{invoice>GrpText}" visible="{= !!${/bEdit}}"/>
 										</m:cells>		
 										<m:cells>
 											<m:ObjectIdentifier text="{invoice>GrpScope}-{invoice>GrpScopeDesc}"/>
 										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{invoice>GrpQty}"/>
+											<m:Input value="{invoice>GrpQty}" visible="{= !!${/bEdit}}"/>
 										</m:cells>
 										<m:cells>
-											<m:CheckBox selected="{= !!${invoice>GrpFree}}" enabled="false"/>
+											<m:CheckBox selected="{= !!${invoice>GrpFree}}" enabled="{= !!${/bEdit}}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>GrpDelvery}"/>
+											<m:CheckBox selected="{= !!${invoice>GrpDelvery}}" enabled="{= !!${/bEdit}}"/>
 										</m:cells>
 										<m:cells>
-											<m:CheckBox selected="{= !!${invoice>GrpQtycheck}}" enabled="false"/>
+											<m:CheckBox selected="{= !!${invoice>GrpQtycheck}}" enabled="{= !!${/bEdit}}"/>
 										</m:cells>						
 									</m:ColumnListItem>
 								</m:items>
