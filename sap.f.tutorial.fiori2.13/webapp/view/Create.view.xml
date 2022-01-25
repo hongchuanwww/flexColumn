@@ -202,7 +202,7 @@
 											<m:CheckBox selected="{new>GrpFree}"/>
 										</m:cells>
 										<m:cells>
-											<m:Input selected="{new>GrpDelvery}"/>
+											<m:Input value="{new>GrpDelvery}"/>
 										</m:cells>
 										<m:cells>
 											<m:CheckBox selected="{new>GrpQtycheck}"/>
