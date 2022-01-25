@@ -216,7 +216,7 @@
 											<m:CheckBox selected="{= !!${invoice>GrpFree}}" enabled="{= !!${/bEdit}}"/>
 										</m:cells>
 										<m:cells>
-											<m:CheckBox selected="{= !!${invoice>GrpDelvery}}" enabled="{= !!${/bEdit}}"/>
+											<m:ObjectIdentifier text="{invoice>GrpDelvery}" enabled="{= !!${/bEdit}}"/>
 										</m:cells>
 										<m:cells>
 											<m:CheckBox selected="{= !!${invoice>GrpQtycheck}}" enabled="{= !!${/bEdit}}"/>
