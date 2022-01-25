@@ -203,7 +203,7 @@
 										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{invoice>GrpText}"/>
-											<m:Input value="{invoice>GrpText}" visible="{= !!${/bEdit}}"/>
+											<!-- <m:Input value="{invoice>GrpText}" visible="{= !!${/bEdit}}"/> -->
 										</m:cells>		
 										<m:cells>
 											<m:ObjectIdentifier text="{invoice>GrpScope}-{invoice>GrpScopeDesc}"/>

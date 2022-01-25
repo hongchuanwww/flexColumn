@@ -186,7 +186,7 @@
 										</m:cells>		
 										<m:cells>
 											<m:Select
-												selectedKey="{new>BdPromType}"
+												selectedKey="{new>GrpScope}"
 												forceSelection="false"
 												items="{
 													path: 'PROD_SCOPE>/'
