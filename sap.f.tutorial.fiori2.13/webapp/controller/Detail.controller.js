@@ -1,8 +1,9 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	'sap/m/MessageToast',
-	"sap/m/MessageBox"
-], function (Controller, MessageToast, MessageBox) {
+	"sap/m/MessageBox",
+	"sap/ui/model/json/JSONModel",
+], function (Controller, MessageToast, MessageBox, JSONModel) {
 	"use strict";
 
 	return Controller.extend("zychcn.zbundle01.controller.Detail", {
@@ -35,9 +36,14 @@ sap.ui.define([
 			this._bundle = oEvent.getParameter("arguments").bundle;
 			if(this._bundle) {
 				this.cancel();
-				this.getView().bindElement({
-					path: "/" + this._bundle + "?$expand=ToGroup/ToItem,ToPrice",
-					model: "invoice"
+				var that = this;
+				this.oOwnerComponent.getModel('invoice').read("/" + this._bundle + '?$expand=ToGroup/ToItem,ToPrice' , {
+					success: function (oData) {
+						var groups = oData.results;
+						var oModel = new JSONModel();
+						oModel.setData(oData);
+						that.getView().setModel(oModel,'detail');
+					}
 				});
 			}
 		},
@@ -84,11 +90,14 @@ sap.ui.define([
 		},
 
 		editAddGroup: function() {
-			var oDataModel = this.getView().getModel('invoice');
-			var sPath = "/" + this._bundle;
-			var groups = oDataModel.getProperty(sPath).ToGroup;
-			groups.push({});
-			this.getView().setProperty('/ToGroup', groups);
+			var oDataModel = this.getView().getModel('detail');
+			var groups = oDataModel.getData().ToGroup.results;
+			groups.push({
+				ToItem:{
+					results: []
+				}
+			});
+			oDataModel.setProperty('/ToGroup/results', groups);
 		},
 
 		save: function () {
@@ -107,27 +116,30 @@ sap.ui.define([
 				success: fnSuccess
 			};
 			
-			var oDataModel = this.getView().getModel('invoice');
-			var data = oDataModel.getProperty(sPath);
+			var oDataModel = this.getView().getModel('detail');
+			var data = JSON.parse(JSON.stringify(oDataModel.getData()));
 
 			this._DatePipe(data,'ValidFrom');
 			this._DatePipe(data,'ValidTo');
 
 			data.Changeflag = "U";
-			if (data.ToPrice.__list.length != 0) {
-				data.ToPrice.__list.forEach(price => {
+			data.ToPrice = data.ToPrice.results;
+			if (data.ToPrice.length != 0) {
+				data.ToPrice.forEach(price => {
 					this._DatePipe(price,'ValidFrom');
 					this._DatePipe(price,'ValidTo');
 					price.Changeflag = "U";
 				});
 			}
 
-			if (data.ToGroup.__list.length != 0) {
-				data.ToGroup.__list.forEach(group => {
+			data.ToGroup = data.ToGroup.results;
+			if (data.ToGroup.length != 0) {
+				data.ToGroup.forEach(group => {
 					group.Changeflag = "U";
 
-					if (group.ToItem.__list.length != 0) {
-						group.ToItem.__list.forEach(item => {
+					group.ToItem = group.ToItem.results;
+					if (group.ToItem.length != 0) {
+						group.ToItem.forEach(item => {
 							this._DatePipe(item,'ValidFrom');
 							this._DatePipe(item,'ValidTo');
 							item.Changeflag = "U";
@@ -138,7 +150,7 @@ sap.ui.define([
 
 			sPath = 'BundleHeadSet';
 
-			oDataModel.create(sPath, data, mParameters);
+			this.oOwnerComponent.getModel('invoice').create(sPath, data, mParameters);
 		}
 	});
 });
