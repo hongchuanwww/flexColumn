@@ -24,7 +24,7 @@
 				<snappedHeading>
 					<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
 						<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
-							<m:Title text="{invoice>HeadId}" wrapping="true"/>
+							<m:Title text="{detail>/HeadId}" wrapping="true"/>
 						</m:FlexBox>
 					</m:FlexBox>
 				</snappedHeading>
@@ -62,62 +62,62 @@
 						<m:FlexItemData growFactor="1" />
 					</core:layoutData>
 				</core:Icon>
-				<m:Text text="{invoice>BdHeadNumber}"/>
+				<m:Text text="{detail>/BdHeadNumber}"/>
 			</m:HBox>
 			<m:HBox justifyContent="SpaceBetween">
 				<m:VBox>
 					<m:HBox>
 						<m:Label text="BU ID : " design="Bold"/>
-						<m:Text text=" {invoice>BuId}"/>
+						<m:Text text=" {detail>/BuId}"/>
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="BU {i18n>HeaderDesc} : " design="Bold"/>
-						<m:Text text=" {invoice>BuDesc}" editable="{= !!${/bEdit}}"/>
+						<m:Text text=" {detail>/BuDesc}" editable="{= !!${/bEdit}}"/>
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="{i18n>salesOrg} : " design="Bold"/>
-						<m:Text text=" {invoice>SalesOrg}"/>
+						<m:Text text=" {detail>/SalesOrg}"/>
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="{i18n>SalesChannels} : " design="Bold"/>
-						<m:Text text=" {invoice>DistrChan}"/>
+						<m:Text text=" {detail>/DistrChan}"/>
 					</m:HBox>
 				</m:VBox>
 				<m:VBox>
 					<m:HBox>
 						<m:Label text="Sort Code : " design="Bold"/>
-						<m:Text text="{invoice>SortCode}"/>
+						<m:Text text="{detail>/SortCode}"/>
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="{i18n>Supplier} : " design="Bold"/>
-						<m:Text text="{invoice>BdDesc}"/>
+						<m:Text text="{detail>/BdDesc}"/>
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="{i18n>promotionType} : " design="Bold"/>
-						<m:Text text="{invoice>BdPromType}"/>
+						<m:Text text="{detail>/BdPromType}"/>
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="{i18n>promotionTypeDesc} :" design="Bold"/>
-						<m:Text text="{invoice>BdPromTypeDesc}"/>
+						<m:Text text="{detail>/BdPromTypeDesc}"/>
 					</m:HBox>
 				</m:VBox>
 				<m:VBox>
 					<m:HBox>
 						<m:Label text="{i18n>masterListItemValidFrom} :" design="Bold"/>
 						<!-- <m:Text text=" {
-							path: 'invoice>ValidFrom',
+							path: 'detail>ValidFrom',
 							design: 'bold',
 							type: 'sap.ui.model.type.Date',
 							formatOptions: {
 								style: 'medium'
 							}
 						}"/> -->
-						<m:DatePicker value="{invoice>ValidFrom}" editable="false"/>
+						<m:DatePicker value="{detail>/ValidFrom}" editable="false"/>
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="{i18n>masterListItemValidTo} :" design="Bold"/>
 						<!-- <m:Text text="{
-							path: 'invoice>ValidTo',
+							path: 'detail>ValidTo',
 							design: 'bold',
 							type: 'sap.ui.model.type.Date',
 							formatOptions: {
@@ -125,24 +125,24 @@
 							}
 						}" editable="{= !!${/bEdit}}"/> -->
 
-						<m:DatePicker value="{invoice>ValidTo}" editable="{= !!${/bEdit}}"/>
+						<m:DatePicker value="{detail>/ValidTo}" editable="{= !!${/bEdit}}"/>
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="{i18n>SalesVolume} : " design="Bold"/>
 						<m:HBox>
-							<m:ObjectIdentifier text="{invoice>Qty}" visible="{= !${/bEdit}}"/>
-							<m:Input value="{invoice>Qty}" visible="{= !!${/bEdit}}"/>
+							<m:ObjectIdentifier text="{detail>/Qty}" visible="{= !${/bEdit}}"/>
+							<m:Input value="{detail>/Qty}" visible="{= !!${/bEdit}}"/>
 						</m:HBox>
-						<!-- <m:Text text="{invoice>Qty}" editable="{= !!${/bEdit}}"/> -->
+						<!-- <m:Text text="{detail>Qty}" editable="{= !!${/bEdit}}"/> -->
 					</m:HBox>
 				</m:VBox>
 				<m:VBox>
 					<m:VBox justifyContent="Start">
-						<m:CheckBox text="{i18n>UnifiedDelivery}" selected="{!!invoice>Delivery}" editable="{= !!${/bEdit}}"/>
-						<m:CheckBox text="{i18n>MechanicalEquipment}" selected="{!!invoice>Eqip}" editable="{= !!${/bEdit}}"/>
+						<m:CheckBox text="{i18n>UnifiedDelivery}" selected="{!!detail>/Delivery}" editable="{= !!${/bEdit}}"/>
+						<m:CheckBox text="{i18n>MechanicalEquipment}" selected="{!!detail>/Eqip}" editable="{= !!${/bEdit}}"/>
 						<m:HBox>
 							<m:Label text="{i18n>Status} : " design="Bold"/>
-							<m:Text text="{invoice>Status}"/>
+							<m:Text text="{detail>/Status}"/>
 						</m:HBox>
 					</m:VBox>
 				</m:VBox>
@@ -171,7 +171,7 @@
                         </actions>
 						<blocks>
 							<m:Table
-								items="{path : 'invoice>ToGroup'}">
+								items="{path : 'detail>/ToGroup/results'}">
 								<m:columns>
 									<m:Column>
 										<m:Text text="{i18n>groupID}"/>
@@ -199,27 +199,27 @@
 								<m:items>
 									<m:ColumnListItem type="Navigation" press=".onSupplierPress">
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>GrpCode}"/>
+											<m:ObjectIdentifier text="{detail>GrpCode}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>GrpText}"/>
-											<!-- <m:Input value="{invoice>GrpText}" visible="{= !!${/bEdit}}"/> -->
+											<m:ObjectIdentifier text="{detail>GrpText}"/>
+											<!-- <m:Input value="{detail>GrpText}" visible="{= !!${/bEdit}}"/> -->
 										</m:cells>		
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>GrpScope}-{invoice>GrpScopeDesc}"/>
+											<m:ObjectIdentifier text="{detail>GrpScope}-{detail>GrpScopeDesc}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>GrpQty}"/>
-											<m:Input value="{invoice>GrpQty}" visible="{= !!${/bEdit}}"/>
+											<m:ObjectIdentifier text="{detail>GrpQty}"/>
+											<m:Input value="{detail>GrpQty}" visible="{= !!${/bEdit}}"/>
 										</m:cells>
 										<m:cells>
-											<m:CheckBox selected="{= !!${invoice>GrpFree}}" enabled="{= !!${/bEdit}}"/>
+											<m:CheckBox selected="{= !!${detail>GrpFree}}" enabled="{= !!${/bEdit}}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>GrpDelvery}" enabled="{= !!${/bEdit}}"/>
+											<m:ObjectIdentifier text="{detail>GrpDelvery}" enabled="{= !!${/bEdit}}"/>
 										</m:cells>
 										<m:cells>
-											<m:CheckBox selected="{= !!${invoice>GrpQtycheck}}" enabled="{= !!${/bEdit}}"/>
+											<m:CheckBox selected="{= !!${detail>GrpQtycheck}}" enabled="{= !!${/bEdit}}"/>
 										</m:cells>						
 									</m:ColumnListItem>
 								</m:items>
@@ -234,7 +234,7 @@
 					<ObjectPageSubSection>
 						<blocks>
 							<m:Table
-								items="{path : 'invoice>ToPrice'}">
+								items="{path : 'detail>/ToPrice/results'}">
 								<m:columns>
 									<m:Column>
 										<m:Text text="{i18n>ProvinceID}"/>
@@ -268,23 +268,23 @@
 								<m:items>
 									<m:ColumnListItem>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>Province}"/>
+											<m:ObjectIdentifier text="{detail>Province}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>RegionDesc}"/>
+											<m:ObjectIdentifier text="{detail>RegionDesc}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>AgreeId}"/>
+											<m:ObjectIdentifier text="{detail>AgreeId}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>BpCodeInAgree}"/>
+											<m:ObjectIdentifier text="{detail>BpCodeInAgree}"/>
 										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{i18n>CustomerDesc}"/>
 										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{
-												path: 'invoice>ValidFrom',
+												path: 'detail>ValidFrom',
 												type: 'sap.ui.model.type.Date',
 												formatOptions: {
 													style: 'medium'
@@ -293,7 +293,7 @@
 										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text=" {
-												path: 'invoice>ValidTo',
+												path: 'detail>ValidTo',
 												type: 'sap.ui.model.type.Date',
 												formatOptions: {
 													style: 'medium'
@@ -301,12 +301,12 @@
 											}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>Rate} {invoice>RateUnit}"/>
+											<m:ObjectIdentifier text="{detail>Rate} {detail>RateUnit}"/>
 										</m:cells>
 										<m:cells>
 											<m:HBox>
-												<m:ObjectIdentifier text="{invoice>Cap}" visible="{= !${/bEdit}}"/>
-												<m:Input value="{invoice>Cap}" visible="{= !!${/bEdit}}"/>
+												<m:ObjectIdentifier text="{detail>Cap}" visible="{= !${/bEdit}}"/>
+												<m:Input value="{detail>Cap}" visible="{= !!${/bEdit}}"/>
 											</m:HBox>
 										</m:cells>
 
