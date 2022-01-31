@@ -209,8 +209,10 @@
 											<m:ObjectIdentifier text="{detail>GrpScope}-{detail>GrpScopeDesc}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{detail>GrpQty}"/>
-											<m:Input value="{detail>GrpQty}" visible="{= !!${/bEdit}}"/>
+											<m:HBox>
+												<m:ObjectIdentifier text="{detail>GrpQty}" visible="{= !${/bEdit}}"/>
+												<m:Input value="{detail>GrpQty}" visible="{= !!${/bEdit}}"/>
+											</m:HBox>
 										</m:cells>
 										<m:cells>
 											<m:CheckBox selected="{= !!${detail>GrpFree}}" enabled="{= !!${/bEdit}}"/>
