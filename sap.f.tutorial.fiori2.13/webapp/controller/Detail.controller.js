@@ -19,7 +19,7 @@ sap.ui.define([
 		},
 
 		onSupplierPress: function (oEvent) {
-			var itemPath = oEvent.getSource().getBindingContext('invoice').getPath(),
+			var itemPath = oEvent.getSource().getBindingContext('detail').getPath(),
 			item = itemPath.split("/").slice(-1).pop();
 			var	oNextUIState;
 			this.oOwnerComponent.getHelper().then(function (oHelper) {
