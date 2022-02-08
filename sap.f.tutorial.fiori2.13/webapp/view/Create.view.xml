@@ -232,32 +232,32 @@
 							<m:Table
 								items="{path : 'new>/ToPrice'}">
 								<m:columns>
+									<m:Column>
+										<m:Text text="{i18n>ProvinceID}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>ProvinceDesc}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>ProtocolID}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>CustomerID}"/>
+									</m:Column>
 									<!-- <m:Column>
-										<m:Text text="{i18n>ProductLineNo}"/>
+										<m:Text text="{i18n>CustomerDesc}"/>
 									</m:Column> -->
-									<m:Column>
-										<m:Text text="{i18n>Quantity}"/>
-									</m:Column>
-									<m:Column>
-										<m:Text text="{i18n>Unit}"/>
-									</m:Column>
-									<m:Column>
-										<m:Text text="{i18n>Limit}"/>
-									</m:Column>
-									<m:Column>
-										<m:Text text="{i18n>CustomerNo}"/>
-									</m:Column>
-									<m:Column>
-										<m:Text text="{i18n>Province}"/>
-									</m:Column>
-									<m:Column>
-										<m:Text text="{i18n>AgreeId}"/>
-									</m:Column>
 									<m:Column>
 										<m:Text text="{i18n>ValidFrom}"/>
 									</m:Column>
 									<m:Column>
 										<m:Text text="{i18n>ValidTo}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="Rate"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="CAP"/>
 									</m:Column>
 								</m:columns>
 								<m:items>
@@ -269,29 +269,29 @@
 											<m:Input value="{new>GrpQty}"/>
 										</m:cells> -->
 										<m:cells>
-											<m:Input value="{new>Rate}"/>
-										</m:cells>
-										<m:cells>
-											<m:Input value="{new>RateUnit}"/>
-											<!-- <m:Input value="{new>RateUnit}"/> -->
-										</m:cells>
-										<m:cells>
-											<m:Input value="{new>Cap}"/>
-										</m:cells>
-										<m:cells>
-											<m:Input value="{new>BpCodeInAgree}"/>
-										</m:cells>
-										<m:cells>
 											<m:Input value="{new>Province}"/>
 										</m:cells>
 										<m:cells>
+											<m:Input value="{new>RegionDesc}"/>
+											<!-- <m:Input value="{new>RateUnit}"/> -->
+										</m:cells>
+										<m:cells>
 											<m:Input value="{new>AgreeId}"/>
+										</m:cells>
+										<m:cells>
+											<m:Input value="{new>BpCodeInAgree}"/>
 										</m:cells>
 										<m:cells>
 											<m:DatePicker value="{new>ValidFrom}"/>
 										</m:cells>
 										<m:cells>
 											<m:DatePicker value="{new>ValidTo}"/>
+										</m:cells>
+										<m:cells>
+											<m:Input value="{new>Rate}"/>
+										</m:cells>
+										<m:cells>
+											<m:Input value="{new>Cap}"/>
 										</m:cells>
 									</m:ColumnListItem>
 								</m:items>

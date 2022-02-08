@@ -250,9 +250,9 @@
 									<m:Column>
 										<m:Text text="{i18n>CustomerID}"/>
 									</m:Column>
-									<m:Column>
+									<!-- <m:Column>
 										<m:Text text="{i18n>CustomerDesc}"/>
-									</m:Column>
+									</m:Column> -->
 									<m:Column>
 										<m:Text text="{i18n>ValidFrom}"/>
 									</m:Column>
@@ -281,9 +281,9 @@
 										<m:cells>
 											<m:ObjectIdentifier text="{detail>BpCodeInAgree}"/>
 										</m:cells>
-										<m:cells>
+										<!-- <m:cells>
 											<m:ObjectIdentifier text="{i18n>CustomerDesc}"/>
-										</m:cells>
+										</m:cells> -->
 										<m:cells>
 											<m:ObjectIdentifier text="{
 												path: 'detail>ValidFrom',
