@@ -147,22 +147,28 @@ sap.ui.define([
 			oDataModel.create(sPath, data, mParameters);
 		},
 		openDialog: function () {
+			var oView = this.getView();
+
 			// create dialog lazily
-			if (!this.pDialog) {
-				this.pDialog = this.loadFragment({
-					name: "zychcn.zbundle01.view.CheckDialog"
+			if (!this.byId("checkDialog")) {
+				// load asynchronous XML fragment
+				Fragment.load({
+					id: oView.getId(),
+					name: "zychcn.zbundle01.view.CheckDialog",
+					controller: this
+				}).then(function (oDialog) {
+					// connect dialog to the root view of this component (models, lifecycle)
+					oView.addDependent(oDialog);
+					oDialog.open();
 				});
-			} 
-			this.pDialog.then(function(oDialog) {
-				oDialog.open();
-			});
+			} else {
+				this.byId("checkDialog").open();
+			}
 		}, 
 		onCloseDialog: function () {
 			var that = this;
-			this.pDialog.then(function(oDialog) {
-				that.getView().getModel('check').setData([]);
-				oDialog.close();
-			});
+			that.getView().getModel('check').setData([]);
+			this.byId("checkDialog").close();
 		},
 		onConfirmDialog: function () {
 			var prices = this.oCreateModel.getProperty('/ToPrice'),
