@@ -12,6 +12,7 @@ sap.ui.define([
 
 			this.oRouter = this.oOwnerComponent.getRouter();
 			this.oModel = this.oOwnerComponent.getModel();
+			this.oDetailModel = this.oOwnerComponent.getModel('detail');
 
 			// this.oRouter.getRoute("master").attachPatternMatched(this._onProductMatched, this);
 			this.oRouter.getRoute("detail").attachPatternMatched(this._onProductMatched, this);
@@ -39,10 +40,7 @@ sap.ui.define([
 				var that = this;
 				this.oOwnerComponent.getModel('invoice').read("/" + this._bundle + '?$expand=ToGroup/ToItem,ToPrice' , {
 					success: function (oData) {
-						var groups = oData.results;
-						var oModel = new JSONModel();
-						oModel.setData(oData);
-						that.getView().setModel(oModel,'detail');
+						that.oDetailModel.setData(oData);
 					}
 				});
 			}
@@ -90,8 +88,7 @@ sap.ui.define([
 		},
 
 		editAddGroup: function() {
-			var oDataModel = this.getView().getModel('detail');
-			var groups = oDataModel.getData().ToGroup.results;
+			var groups = this.oDetailModel.getData().ToGroup.results;
 			groups.push({
 				ToItem:{
 					results: []
@@ -116,8 +113,7 @@ sap.ui.define([
 				success: fnSuccess
 			};
 			
-			var oDataModel = this.getView().getModel('detail');
-			var data = JSON.parse(JSON.stringify(oDataModel.getData()));
+			var data = JSON.parse(JSON.stringify(this.oDetailModel.getData()));
 
 			this._DatePipe(data,'ValidFrom');
 			this._DatePipe(data,'ValidTo');

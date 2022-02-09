@@ -26,8 +26,8 @@ sap.ui.define([
 			this._bundle = oEvent.getParameter("arguments").bundle;
 			if(this._item) {
 				this.getView().bindElement({
-					path: "/" + this._item + "",
-					model: "invoice"
+					path: "/ToGroup/results/" + this._item + "",
+					model: "detail"
 				});
 			}
 		},

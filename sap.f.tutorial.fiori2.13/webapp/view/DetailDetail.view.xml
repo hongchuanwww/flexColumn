@@ -48,8 +48,8 @@
 					</core:layoutData>
 				</core:Icon>
 				<m:VBox>
-					<m:Text text="{i18n>groupID}: {invoice>GrpCode}"/>
-					<m:Text text="{i18n>GruopScope}: {invoice>GrpScopeDesc}-{invoice>GrpScope}" editable="{= !!${/bEdit}}"/>
+					<m:Text text="{i18n>groupID}: {detail>GrpCode}"/>
+					<m:Text text="{i18n>GruopScope}: {detail>GrpScopeDesc}-{detail>GrpScope}" editable="{= !!${/bEdit}}"/>
 					<m:Text text="{i18n>groupDesc}: NA for now"/>
 				</m:VBox>
 			</m:HBox>
@@ -67,7 +67,7 @@
                         </actions>
 						<blocks>
 							<m:Table
-								items="{path : 'invoice>ToItem'}">
+								items="{path : 'detail>ToItem/results'}">
 								<m:columns>
 									<m:Column>
 										<m:Text text="{i18n>Product}"/>
@@ -88,17 +88,17 @@
 								<m:items>
 									<m:ColumnListItem>
 										<m:cells>
-											<m:ObjectIdentifier text="{invoice>Product}"/>
+											<m:ObjectIdentifier text="{detail>Product}"/>
 										</m:cells>
 										<m:cells>
 											<m:VBox>
-												<m:ObjectIdentifier text="{invoice>ProducDesc}" visible="{= !${/bEdit}}"/>
-												<m:Input value="{invoice>ProducDesc}" visible="{= !!${/bEdit}}"/>
+												<m:ObjectIdentifier text="{detail>ProducDesc}" visible="{= !${/bEdit}}"/>
+												<m:Input value="{detail>ProducDesc}" visible="{= !!${/bEdit}}"/>
 											</m:VBox>
 										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{
-												path: 'invoice>ValidFrom',
+												path: 'detail>ValidFrom',
 												type: 'sap.ui.model.type.Date',
 												formatOptions: {
 													style: 'medium'
@@ -107,7 +107,7 @@
 										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{
-												path: 'invoice>ValidTo',
+												path: 'detail>ValidTo',
 												type: 'sap.ui.model.type.Date',
 												formatOptions: {
 													style: 'medium'
