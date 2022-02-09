@@ -17,6 +17,7 @@ sap.ui.define([
 				oProductsModel,
 				oODataModel,
 				oCreateModel,
+				oDetailModel,
 				oRouter;
 
 			UIComponent.prototype.init.apply(this, arguments);
@@ -26,6 +27,9 @@ sap.ui.define([
 
 			oCreateModel = new JSONModel();
 			this.setModel(oCreateModel, 'new');
+
+			oDetailModel = new JSONModel();
+			this.setModel(oDetailModel, 'detail');
 
 			// set products demo model on this sample
 			oProductsModel = new JSONModel(sap.ui.require.toUrl('zychcn/zbundle01/localService/mockdata/products.json'));
@@ -37,11 +41,11 @@ sap.ui.define([
 			
 			oODataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, bJSON);
 
-// 			var sServiceUrl = "https://dev.abbott-md.cn:4443/sap/opu/odata/SAP/ZYCHCN_API_ORDER_002_SRV/",
-// 				bJSON = true;
-// 				// sUser = "huangs03",
-// 				// sPwd = "3edc!QAZ";
-// 			oODataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, bJSON);
+			// var sServiceUrl = "https://dev.abbott-md.cn:4443/sap/opu/odata/SAP/ZYCHCN_API_ORDER_002_SRV/",
+			// 	bJSON = true,
+			// 	sUser = "huangs03",
+			// 	sPwd = "3edc!QAZ";
+			// oODataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, bJSON, sUser, sPwd);
 			this.setModel(oODataModel,'invoice');
 
 			oRouter = this.getRouter();
