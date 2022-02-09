@@ -78,6 +78,7 @@
 								items="{path : 'new>ToItem'}"
                                 paste=".onPaste">
 								<m:columns>
+									<m:Column/>
 									<m:Column>
 										<m:Text text="{i18n>Product} - {i18n>ProductDesc}"/>
 									</m:Column>
@@ -96,6 +97,9 @@
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem>
+										<m:cells>
+											<m:Button icon="sap-icon://delete" type="Transparent" press="deleteRow" ariaLabelledBy="editButtonLabel"/>
+										</m:cells>
 										<m:cells>
 											<!-- <m:ObjectIdentifier text="{new>Product}"/> -->
 											<m:Input value="{new>Product}"/>

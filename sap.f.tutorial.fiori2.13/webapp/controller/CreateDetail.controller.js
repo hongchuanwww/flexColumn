@@ -88,6 +88,17 @@ sap.ui.define([
 			var data = this.getView().getModel('new').getProperty("/ToGroup/" + this.group + '/ToItem');
 			data.push({});
 			this.getView().getModel('new').setProperty("/ToGroup/" + this.group + '/ToItem', data);
+		},
+
+		deleteRow : function(e) {
+			var btn = e.getSource(),
+				row = btn.getParent(),
+				table = row.getParent(),
+				index = table.indexOfItem(row),
+				data = this.getView().getModel('new').getProperty("/ToGroup/" + this.group + '/ToItem');
+			data.splice(index,1);
+
+			this.getView().getModel('new').setProperty("/ToGroup/" + this.group + '/ToItem', data);
 		}
 	});
 });

@@ -104,15 +104,15 @@
 				<m:VBox>
 					<m:HBox>
 						<m:Label text="{i18n>masterListItemValidFrom} :" design="Bold"/>
-						<!-- <m:Text text=" {
-							path: 'detail>ValidFrom',
+						<m:Text text=" {
+							path: 'detail>/ValidFrom',
 							design: 'bold',
 							type: 'sap.ui.model.type.Date',
 							formatOptions: {
 								style: 'medium'
 							}
-						}"/> -->
-						<m:DatePicker value="{detail>/ValidFrom}" editable="false"/>
+						}"/>
+						<!-- <m:DatePicker value="{detail>/ValidFrom}" editable="false"/> -->
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="{i18n>masterListItemValidTo} :" design="Bold"/>
@@ -202,7 +202,11 @@
 											<m:ObjectIdentifier text="{detail>GrpCode}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{detail>GrpText}"/>
+											<m:HBox>
+												<m:ObjectIdentifier text="{detail>GrpText}" visible="{= !${/bEdit}}"/>
+												<m:Input value="{detail>GrpText}" visible="{= !!${/bEdit}}"/>
+											</m:HBox>
+											<!-- <m:ObjectIdentifier text="{detail>GrpText}"/> -->
 											<!-- <m:Input value="{detail>GrpText}" visible="{= !!${/bEdit}}"/> -->
 										</m:cells>		
 										<m:cells>
@@ -218,7 +222,11 @@
 											<m:CheckBox selected="{= !!${detail>GrpFree}}" enabled="{= !!${/bEdit}}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{detail>GrpDelvery}" enabled="{= !!${/bEdit}}"/>
+											<m:HBox>
+												<m:ObjectIdentifier text="{detail>GrpDelvery}" visible="{= !${/bEdit}}"/>
+												<m:Input value="{detail>GrpDelvery}" visible="{= !!${/bEdit}}"/>
+											</m:HBox>
+											<!-- <m:ObjectIdentifier text="{detail>GrpDelvery}" enabled="{= !!${/bEdit}}"/> -->
 										</m:cells>
 										<m:cells>
 											<m:CheckBox selected="{= !!${detail>GrpQtycheck}}" enabled="{= !!${/bEdit}}"/>
@@ -263,6 +271,9 @@
 										<m:Text text="Rate"/>
 									</m:Column>
 									<m:Column>
+										<m:Text text="Rate Unit"/>
+									</m:Column>
+									<m:Column>
 										<m:Text text="CAP"/>
 									</m:Column>
 
@@ -294,16 +305,25 @@
 											}"/>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text=" {
-												path: 'detail>ValidTo',
-												type: 'sap.ui.model.type.Date',
-												formatOptions: {
-													style: 'medium'
-												}
-											}"/>
+											<m:HBox>
+												<m:ObjectIdentifier text=" {
+													path: 'detail>ValidTo',
+													type: 'sap.ui.model.type.Date',
+													formatOptions: {
+														style: 'medium'
+													}
+												}" visible="{= !${/bEdit}}"/>
+												<m:DatePicker value="{detail>/ValidTo}" visible="{= !!${/bEdit}}"/>
+											</m:HBox>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{detail>Rate} {detail>RateUnit}"/>
+											<m:HBox>
+												<m:ObjectIdentifier text="{detail>Rate}" visible="{= !${/bEdit}}"/>
+												<m:Input value="{detail>Rate}" visible="{= !!${/bEdit}}"/>
+											</m:HBox>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{detail>RateUnit}"/>
 										</m:cells>
 										<m:cells>
 											<m:HBox>

@@ -257,6 +257,9 @@
 										<m:Text text="Rate"/>
 									</m:Column>
 									<m:Column>
+										<m:Text text="Rate Unit"/>
+									</m:Column>
+									<m:Column>
 										<m:Text text="CAP"/>
 									</m:Column>
 								</m:columns>
@@ -289,6 +292,9 @@
 										</m:cells>
 										<m:cells>
 											<m:Input value="{new>Rate}"/>
+										</m:cells>
+										<m:cells>
+											<m:Input value="{new>RateUnit}"/>
 										</m:cells>
 										<m:cells>
 											<m:Input value="{new>Cap}"/>
