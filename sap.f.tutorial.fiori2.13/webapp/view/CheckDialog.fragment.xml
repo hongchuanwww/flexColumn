@@ -3,7 +3,7 @@
    xmlns:core="sap.ui.core" >
    <m:Dialog
       id="checkDialog"
-      title="试算">
+      title="{i18n>Caculate}">
       <m:subHeader>
         <m:OverflowToolbar>
 			<m:OverflowToolbarButton
@@ -111,12 +111,12 @@
          </m:content>
         <m:beginButton>
             <m:Button
-                text="{i18n>确定}"
+                text="{i18n>Confirm}"
                 press=".onConfirmDialog"/>
         </m:beginButton>
         <m:endButton>
             <m:Button
-                text="{i18n>取消}"
+                text="{i18n>Cancel}"
                 press=".onCloseDialog"/>
         </m:endButton>
    </m:Dialog>
