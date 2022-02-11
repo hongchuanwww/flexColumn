@@ -180,7 +180,8 @@ sap.ui.define([
 			var oDataModel = this.getView().getModel('invoice');
 			var fnSuccess = function (data) {
 				MessageToast.show('success');
-				this.getView().getModel('check').setData(data);
+				oDataModel.refresh();
+				// this.getView().getModel('check').setData(data);
 			}.bind(this);
 
 			var fnError = function (oError) {
