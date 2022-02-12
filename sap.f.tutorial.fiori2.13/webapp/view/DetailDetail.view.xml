@@ -50,7 +50,7 @@
 				<m:VBox>
 					<m:Text text="{i18n>groupID}: {detail>GrpCode}"/>
 					<m:Text text="{i18n>GruopScope}: {detail>GrpScopeDesc}-{detail>GrpScope}" editable="{= !!${/bEdit}}"/>
-					<m:Text text="{i18n>groupDesc}: NA for now"/>
+					<m:Text text="{i18n>GroupDesc}: {detail>GrpText}"/>
 				</m:VBox>
 			</m:HBox>
 		</headerContent>

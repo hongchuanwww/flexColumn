@@ -261,12 +261,7 @@
 									<!-- <m:Column>
 										<m:Text text="{i18n>CustomerDesc}"/>
 									</m:Column> -->
-									<m:Column>
-										<m:Text text="{i18n>ValidFrom}"/>
-									</m:Column>
-									<m:Column>
-										<m:Text text="{i18n>ValidTo}"/>
-									</m:Column>
+
 									<m:Column>
 										<m:Text text="Rate"/>
 									</m:Column>
@@ -275,6 +270,12 @@
 									</m:Column>
 									<m:Column>
 										<m:Text text="CAP"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>ValidFrom}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>ValidTo}"/>
 									</m:Column>
 
 								</m:columns>
@@ -295,6 +296,22 @@
 										<!-- <m:cells>
 											<m:ObjectIdentifier text="{i18n>CustomerDesc}"/>
 										</m:cells> -->
+
+										<m:cells>
+											<m:HBox>
+												<m:ObjectIdentifier text="{detail>Rate}" visible="{= !${/bEdit}}"/>
+												<m:Input value="{detail>Rate}" visible="{= !!${/bEdit}}"/>
+											</m:HBox>
+										</m:cells>
+										<m:cells>
+											<m:ObjectIdentifier text="{detail>RateUnit}"/>
+										</m:cells>
+										<m:cells>
+											<m:HBox>
+												<m:ObjectIdentifier text="{detail>Cap}" visible="{= !${/bEdit}}"/>
+												<m:Input value="{detail>Cap}" visible="{= !!${/bEdit}}"/>
+											</m:HBox>
+										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{
 												path: 'detail>ValidFrom',
@@ -314,21 +331,6 @@
 													}
 												}" visible="{= !${/bEdit}}"/>
 												<m:DatePicker value="{detail>/ValidTo}" visible="{= !!${/bEdit}}"/>
-											</m:HBox>
-										</m:cells>
-										<m:cells>
-											<m:HBox>
-												<m:ObjectIdentifier text="{detail>Rate}" visible="{= !${/bEdit}}"/>
-												<m:Input value="{detail>Rate}" visible="{= !!${/bEdit}}"/>
-											</m:HBox>
-										</m:cells>
-										<m:cells>
-											<m:ObjectIdentifier text="{detail>RateUnit}"/>
-										</m:cells>
-										<m:cells>
-											<m:HBox>
-												<m:ObjectIdentifier text="{detail>Cap}" visible="{= !${/bEdit}}"/>
-												<m:Input value="{detail>Cap}" visible="{= !!${/bEdit}}"/>
 											</m:HBox>
 										</m:cells>
 

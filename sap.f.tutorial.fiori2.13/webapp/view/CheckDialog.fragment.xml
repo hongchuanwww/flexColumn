@@ -3,7 +3,7 @@
    xmlns:core="sap.ui.core" >
    <m:Dialog
       id="checkDialog"
-      title="{i18n>Caculate}">
+      title="{i18n>BatchCreation}">
       <m:subHeader>
         <m:OverflowToolbar>
 			<m:OverflowToolbarButton
@@ -21,27 +21,31 @@
                 id="checkTable"
                 paste=".onPaste"
                 items="{path : 'check>/'}">
+
                 <m:columns>
+                    <m:Column>
+                        <m:Text text="{i18n>ProvinceID}"/>
+                    </m:Column>
+                    <m:Column>
+                        <m:Text text="{i18n>ProvinceDesc}"/>
+                    </m:Column>
+                    <m:Column>
+                        <m:Text text="{i18n>ProtocolID}"/>
+                    </m:Column>
+                    <m:Column>
+                        <m:Text text="{i18n>CustomerID}"/>
+                    </m:Column>
                     <!-- <m:Column>
-                        <m:Text text="{i18n>ProductLineNo}"/>
+                        <m:Text text="{i18n>CustomerDesc}"/>
                     </m:Column> -->
                     <m:Column>
-                        <m:Text text="{i18n>Quantity}"/>
+                        <m:Text text="Rate"/>
                     </m:Column>
                     <m:Column>
-                        <m:Text text="{i18n>Unit}"/>
+                        <m:Text text="Rate Unit"/>
                     </m:Column>
                     <m:Column>
-                        <m:Text text="{i18n>Limit}"/>
-                    </m:Column>
-                    <m:Column>
-                        <m:Text text="{i18n>CustomerNo}"/>
-                    </m:Column>
-                    <m:Column>
-                        <m:Text text="{i18n>Province}"/>
-                    </m:Column>
-                    <m:Column>
-                        <m:Text text="{i18n>AgreeId}"/>
+                        <m:Text text="CAP"/>
                     </m:Column>
                     <m:Column>
                         <m:Text text="{i18n>ValidFrom}"/>
@@ -54,30 +58,28 @@
                 </m:columns>
                 <m:items>
                     <m:ColumnListItem>
-                        <!-- <m:cells>
-                            <m:Input value="{check>PrcGuid}"/>
-                        </m:cells> -->
-                        <!-- <m:cells>
-                            <m:Input value="{check>GrpQty}"/>
-                        </m:cells> -->
+                        <m:cells>
+                            <m:Input value="{check>Province}"/>
+                        </m:cells>
+                        <m:cells>
+                            <m:Input value="{check>RegionDesc}"/>
+                            <!-- <m:Input value="{new>RateUnit}"/> -->
+                        </m:cells>
+                        <m:cells>
+                            <m:Input value="{check>AgreeId}"/>
+                        </m:cells>
+                        <m:cells>
+                            <m:Input value="{check>BpCodeInAgree}"/>
+                        </m:cells>
+
                         <m:cells>
                             <m:Input value="{check>Rate}"/>
                         </m:cells>
                         <m:cells>
                             <m:Input value="{check>RateUnit}"/>
-                            <!-- <m:Input value="{check>RateUnit}"/> -->
                         </m:cells>
                         <m:cells>
                             <m:Input value="{check>Cap}"/>
-                        </m:cells>
-                        <m:cells>
-                            <m:Input value="{check>BpCodeInAgree}"/>
-                        </m:cells>
-                        <m:cells>
-                            <m:Input value="{check>Province}"/>
-                        </m:cells>
-                        <m:cells>
-                            <m:Input value="{check>AgreeId}"/>
                         </m:cells>
                         <m:cells>
                             <m:DatePicker value="{check>ValidFrom}"/>
