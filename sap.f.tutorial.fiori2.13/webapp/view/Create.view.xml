@@ -105,13 +105,13 @@
 								path: 'PROM_TYPE>/'
 							}"
 						>
-							<core:Item key="{PROM_TYPE>Numb}" text="{PROM_TYPE>High}" />
+							<core:Item key="{PROM_TYPE>Numb} {PROM_TYPE>High}" text="{PROM_TYPE>Numb} {PROM_TYPE>High}" />
 						</m:Select>
 					</m:HBox>
-					<m:HBox>
+					<!-- <m:HBox>
 						<m:Label text="{i18n>promotionType} : " design="Bold"/>
 						<m:Label text="{new>/BdPromType}"/>
-					</m:HBox>
+					</m:HBox> -->
 				</m:VBox>
 				<m:VBox>
 					<m:HBox alignItems="Center">
@@ -192,7 +192,7 @@
 													path: 'PROD_SCOPE>/'
 												}"
 											>
-												<core:Item key="{PROD_SCOPE>Numb}" text="{PROD_SCOPE>High}" />
+												<core:Item key="{PROD_SCOPE>Numb} {PROD_SCOPE>High}" text="{PROD_SCOPE>Numb} {PROD_SCOPE>High}" />
 											</m:Select>
 										</m:cells>
 										<m:cells>

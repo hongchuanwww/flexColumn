@@ -131,6 +131,10 @@ sap.ui.define([
 			// DatePicker数据转换
 			this._DatePipe(data,'ValidFrom');
 			this._DatePipe(data,'ValidTo');
+
+			data.BdPromTypeDesc = data.BdPromType.split(' ')[1];
+			data.BdPromType = data.BdPromType.split(' ')[0];
+
 			data.ToPrice.forEach(price => {
 				this._DatePipe(price,'ValidFrom');
 				this._DatePipe(price,'ValidTo');
@@ -138,6 +142,8 @@ sap.ui.define([
 			});
 			data.ToGroup.forEach(group => {
 				group.Changeflag = "C";
+				group.GrpScopeDesc = group.GrpScope.split(' ')[1];
+				group.GrpScope = group.GrpScope.split(' ')[0];
 				group.ToItem.forEach(item => {
 					this._DatePipe(item,'ValidFrom');
 					this._DatePipe(item,'ValidTo');

@@ -93,13 +93,13 @@
 						<m:Text text="{detail>/BdDesc}"/>
 					</m:HBox>
 					<m:HBox>
-						<m:Label text="{i18n>promotionType} : " design="Bold"/>
-						<m:Text text="{detail>/BdPromType}"/>
+						<m:Label text="{i18n>promotionTypeDesc} : " design="Bold"/>
+						<m:Text text="{detail>/BdPromType} {detail>/BdPromTypeDesc}"/>
 					</m:HBox>
-					<m:HBox>
+					<!-- <m:HBox>
 						<m:Label text="{i18n>promotionTypeDesc} :" design="Bold"/>
 						<m:Text text="{detail>/BdPromTypeDesc}"/>
-					</m:HBox>
+					</m:HBox> -->
 				</m:VBox>
 				<m:VBox>
 					<m:HBox>
