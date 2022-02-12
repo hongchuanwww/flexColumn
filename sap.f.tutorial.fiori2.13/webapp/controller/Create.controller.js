@@ -132,6 +132,8 @@ sap.ui.define([
 			this._DatePipe(data,'ValidFrom');
 			this._DatePipe(data,'ValidTo');
 
+			data.BuDesc = data.BuId.split(' ')[1];
+			data.BuId = data.BuId.split(' ')[0];
 			data.BdPromTypeDesc = data.BdPromType.split(' ')[1];
 			data.BdPromType = data.BdPromType.split(' ')[0];
 
