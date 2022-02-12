@@ -109,7 +109,8 @@
 							design: 'bold',
 							type: 'sap.ui.model.type.Date',
 							formatOptions: {
-								style: 'medium'
+								style: 'medium',
+								pattern: 'yyyy-MM-dd'
 							}
 						}"/>
 						<!-- <m:DatePicker value="{detail>/ValidFrom}" editable="false"/> -->
@@ -124,8 +125,14 @@
 								style: 'medium'
 							}
 						}" editable="{= !!${/bEdit}}"/> -->
-
-						<m:DatePicker value="{detail>/ValidTo}" editable="{= !!${/bEdit}}"/>
+						<m:DatePicker value="{
+							path: 'detail>/ValidTo',
+							type: 'sap.ui.model.type.Date',
+							formatOptions: {
+								style: 'medium',
+								pattern: 'yyyy-MM-dd'
+							}
+						}" editable="{= !!${/bEdit}}"/>
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="{i18n>SalesVolume} : " design="Bold"/>
@@ -300,7 +307,8 @@
 												path: 'detail>ValidFrom',
 												type: 'sap.ui.model.type.Date',
 												formatOptions: {
-													style: 'medium'
+													style: 'medium',
+													pattern: 'yyyy-MM-dd'
 												}
 											}"/>
 										</m:cells>
@@ -310,10 +318,18 @@
 													path: 'detail>ValidTo',
 													type: 'sap.ui.model.type.Date',
 													formatOptions: {
-														style: 'medium'
+														style: 'medium',
+														pattern: 'yyyy-MM-dd'
 													}
 												}" visible="{= !${/bEdit}}"/>
-												<m:DatePicker value="{detail>/ValidTo}" visible="{= !!${/bEdit}}"/>
+												<m:DatePicker value="{
+													path: 'detail>/ValidTo',
+													type: 'sap.ui.model.type.Date',
+													formatOptions: {
+														style: 'medium',
+														pattern: 'yyyy-MM-dd'
+													}
+												}" visible="{= !!${/bEdit}}"/>
 											</m:HBox>
 										</m:cells>
 										<m:cells>
