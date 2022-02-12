@@ -197,6 +197,7 @@ sap.ui.define([
 				error: fnError,
 				success: fnSuccess
 			};
+			data.Changeflag = "M";
 			// DatePicker数据转换
 			this._DatePipe(data,'ValidFrom');
 			this._DatePipe(data,'ValidTo');

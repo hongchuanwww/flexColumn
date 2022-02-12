@@ -248,12 +248,6 @@
 										<m:Text text="{i18n>CustomerDesc}"/>
 									</m:Column> -->
 									<m:Column>
-										<m:Text text="{i18n>ValidFrom}"/>
-									</m:Column>
-									<m:Column>
-										<m:Text text="{i18n>ValidTo}"/>
-									</m:Column>
-									<m:Column>
 										<m:Text text="Rate"/>
 									</m:Column>
 									<m:Column>
@@ -261,6 +255,12 @@
 									</m:Column>
 									<m:Column>
 										<m:Text text="CAP"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>ValidFrom}"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="{i18n>ValidTo}"/>
 									</m:Column>
 								</m:columns>
 								<m:items>
@@ -285,12 +285,6 @@
 											<m:Input value="{new>BpCodeInAgree}"/>
 										</m:cells>
 										<m:cells>
-											<m:DatePicker value="{new>ValidFrom}"/>
-										</m:cells>
-										<m:cells>
-											<m:DatePicker value="{new>ValidTo}"/>
-										</m:cells>
-										<m:cells>
 											<m:Input value="{new>Rate}"/>
 										</m:cells>
 										<m:cells>
@@ -298,6 +292,12 @@
 										</m:cells>
 										<m:cells>
 											<m:Input value="{new>Cap}"/>
+										</m:cells>
+										<m:cells>
+											<m:DatePicker value="{new>ValidFrom}"/>
+										</m:cells>
+										<m:cells>
+											<m:DatePicker value="{new>ValidTo}"/>
 										</m:cells>
 									</m:ColumnListItem>
 								</m:items>
