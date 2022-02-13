@@ -249,6 +249,12 @@
 			<ObjectPageSection title="{i18n>HeaderPrice}">
 				<subSections>
 					<ObjectPageSubSection>
+						<actions>
+							<m:OverflowToolbarButton
+                                type="Transparent"
+                                icon="sap-icon://check-availability"
+                                press=".openDialog" />
+                        </actions>
 						<blocks>
 							<m:Table
 								items="{path : 'detail>/ToPrice/results'}">
@@ -331,7 +337,7 @@
 										</m:cells>
 										<m:cells>
 											<m:HBox>
-												<m:ObjectIdentifier text=" {
+												<m:ObjectIdentifier text="{
 													path: 'detail>ValidTo',
 													type: 'sap.ui.model.type.Date',
 													formatOptions: {
