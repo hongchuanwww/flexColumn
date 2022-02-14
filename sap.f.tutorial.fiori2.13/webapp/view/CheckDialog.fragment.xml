@@ -39,13 +39,13 @@
                         <m:Text text="{i18n>CustomerDesc}"/>
                     </m:Column> -->
                     <m:Column>
-                        <m:Text text="Rate"/>
+                        <m:Text text="{i18n>Rate}"/>
                     </m:Column>
                     <m:Column>
-                        <m:Text text="Rate Unit"/>
+                        <m:Text text="{i18n>RateUnit}"/>
                     </m:Column>
                     <m:Column>
-                        <m:Text text="CAP"/>
+                        <m:Text text="{i18n>CAP}"/>
                     </m:Column>
                     <m:Column>
                         <m:Text text="{i18n>ValidFrom}"/>

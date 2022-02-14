@@ -85,7 +85,7 @@
 				</m:VBox>
 				<m:VBox>
 					<m:HBox>
-						<m:Label text="Sort Code : " design="Bold"/>
+						<m:Label text="{i18n>SortCode} : " design="Bold"/>
 						<m:Text text="{detail>/SortCode}"/>
 					</m:HBox>
 					<m:HBox>
@@ -270,13 +270,13 @@
 									</m:Column> -->
 
 									<m:Column>
-										<m:Text text="Rate"/>
+										<m:Text text="{i18n>Rate}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="Rate Unit"/>
+										<m:Text text="{i18n>RateUnit}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="CAP"/>
+										<m:Text text="{i18n>CAP}"/>
 									</m:Column>
 									<m:Column>
 										<m:Text text="{i18n>ValidFrom}"/>
