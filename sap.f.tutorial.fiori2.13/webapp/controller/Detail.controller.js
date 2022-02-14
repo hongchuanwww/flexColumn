@@ -20,13 +20,13 @@ sap.ui.define([
 			this.oRouter.getRoute("detailDetail").attachPatternMatched(this._onProductMatched, this);
 			this.getView().setModel(new JSONModel([]), 'check');
 			this.DIC = [
+				'Province',
+				'RegionDesc',
+				'AgreeId',
+				'BpCodeInAgree',
 				'Rate',
 				'RateUnit',
-				'RateUnit',
 				'Cap',
-				'BpCodeInAgree',
-				'Province',
-				'AgreeId',
 				'ValidFrom',
 				'ValidTo',
 			];
