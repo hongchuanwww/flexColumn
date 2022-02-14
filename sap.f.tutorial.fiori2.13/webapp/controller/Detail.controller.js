@@ -3,7 +3,8 @@ sap.ui.define([
 	'sap/m/MessageToast',
 	"sap/m/MessageBox",
 	"sap/ui/model/json/JSONModel",
-], function (Controller, MessageToast, MessageBox, JSONModel) {
+	"sap/ui/core/Fragment",
+], function (Controller, MessageToast, MessageBox, JSONModel, Fragment) {
 	"use strict";
 
 	return Controller.extend("zychcn.zbundle01.controller.Detail", {
@@ -17,6 +18,18 @@ sap.ui.define([
 			// this.oRouter.getRoute("master").attachPatternMatched(this._onProductMatched, this);
 			this.oRouter.getRoute("detail").attachPatternMatched(this._onProductMatched, this);
 			this.oRouter.getRoute("detailDetail").attachPatternMatched(this._onProductMatched, this);
+			this.getView().setModel(new JSONModel([]), 'check');
+			this.DIC = [
+				'Rate',
+				'RateUnit',
+				'RateUnit',
+				'Cap',
+				'BpCodeInAgree',
+				'Province',
+				'AgreeId',
+				'ValidFrom',
+				'ValidTo',
+			];
 		},
 
 		onSupplierPress: function (oEvent) {
@@ -147,6 +160,98 @@ sap.ui.define([
 			sPath = 'BundleHeadSet';
 
 			this.oOwnerComponent.getModel('invoice').create(sPath, data, mParameters);
-		}
+		},
+		openDialog: function () {
+			var oView = this.getView();
+
+			// create dialog lazily
+			if (!this.byId("checkDialog")) {
+				// load asynchronous XML fragment
+				Fragment.load({
+					id: oView.getId(),
+					name: "zychcn.zbundle01.view.CheckDialog",
+					controller: this
+				}).then(function (oDialog) {
+					// connect dialog to the root view of this component (models, lifecycle)
+					oView.addDependent(oDialog);
+					oDialog.open();
+				});
+			} else {
+				this.byId("checkDialog").open();
+			}
+		}, 
+		onCloseDialog: function () {
+			var that = this;
+			that.getView().getModel('check').setData([]);
+			this.byId("checkDialog").close();
+		},
+		onConfirmDialog: function () {
+			this.oOwnerComponent.getModel('invoice').refresh();
+			this.onCloseDialog();
+		},
+		check: function () {
+			var fnSuccess = function (data) {
+				MessageToast.show('success');
+			}.bind(this);
+
+			var fnError = function (oError) {
+				MessageBox.error(oError.response.body);
+			}.bind(this);
+			var sPath = 'BundleHeadSet';
+			var data = JSON.parse(JSON.stringify(this.oDetailModel.getData()));
+			var prices = this.getView().getModel('check').getData();
+			data.ToPrice = prices;
+
+			var mParameters = {
+				error: fnError,
+				success: fnSuccess
+			};
+			data.Changeflag = "M";
+			// DatePicker数据转换
+			this._DatePipe(data,'ValidFrom');
+			this._DatePipe(data,'ValidTo');
+			data.ToPrice.forEach(price => {
+				this._DatePipe(price,'ValidFrom');
+				this._DatePipe(price,'ValidTo');
+				price.Changeflag = "M";
+			});
+			data.ToGroup = data.ToGroup.results;
+			data.ToGroup.forEach(group => {
+				group.Changeflag = "M";
+				group.ToItem = group.ToItem.results;
+				group.ToItem.forEach(item => {
+					this._DatePipe(item,'ValidFrom');
+					this._DatePipe(item,'ValidTo');
+					item.Changeflag = "M";
+				});
+			});
+			this.oOwnerComponent.getModel('invoice').create(sPath, data, mParameters);
+		},
+		firePaste: function(oEvent) {
+			var oTable = this.getView().byId("checkTable");
+			navigator.clipboard.readText().then(
+				function(text) {
+					var _arr = text.split('\r\n');
+					for (var i in _arr) {
+						_arr[i] = _arr[i].split('\t');
+					}
+					oTable.firePaste({
+						"data": _arr
+					});
+				}.bind(this)
+			);
+		},
+
+        onPaste: function (e) {
+			var pasteData = e.getParameters().data;
+            var data = pasteData.map(row => {
+				var obj = {};
+				for(var i = 0; i < row.length; i++) {
+					obj[this.DIC[i]] = row[i];
+				}
+				return obj;
+			});
+			this.getView().getModel('check').setData(data);
+		},
 	});
 });

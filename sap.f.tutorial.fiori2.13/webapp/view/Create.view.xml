@@ -116,11 +116,25 @@
 				<m:VBox>
 					<m:HBox alignItems="Center">
 						<m:Label text="{i18n>masterListItemValidFrom} :" design="Bold"/>
-						<m:DatePicker value="{new>/ValidFrom}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/>
+						<m:DatePicker value="{
+								path: 'new>/ValidFrom',
+								type: 'sap.ui.model.type.Date',
+								formatOptions: {
+									style: 'medium',
+									pattern: 'yyyy-MM-dd'
+								}
+							}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/>
 					</m:HBox>
 					<m:HBox alignItems="Center">
 						<m:Label text="{i18n>masterListItemValidTo} :" design="Bold"/>
-						<m:DatePicker value="{new>/ValidTo}" valueFormat="yyyy-MM-dd"/>
+						<m:DatePicker value="{
+								path: 'new>/ValidTo',
+								type: 'sap.ui.model.type.Date',
+								formatOptions: {
+									style: 'medium',
+									pattern: 'yyyy-MM-dd'
+								}
+							}" valueFormat="yyyy-MM-dd"/>
 					</m:HBox>
 											
 					<m:HBox>
@@ -223,10 +237,6 @@
                                 type="Transparent"
                                 icon="sap-icon://add"
                                 press=".addPrice" />
-							<m:OverflowToolbarButton
-                                type="Transparent"
-                                icon="sap-icon://check-availability"
-                                press=".openDialog" />
                         </actions>
 						<blocks>
 							<m:Table
@@ -294,10 +304,24 @@
 											<m:Input value="{new>Cap}"/>
 										</m:cells>
 										<m:cells>
-											<m:DatePicker value="{new>ValidFrom}"/>
+											<m:DatePicker value="{
+													path: 'new>ValidFrom',
+													type: 'sap.ui.model.type.Date',
+													formatOptions: {
+														style: 'medium',
+														pattern: 'yyyy-MM-dd'
+													}
+												}"/>
 										</m:cells>
 										<m:cells>
-											<m:DatePicker value="{new>ValidTo}"/>
+											<m:DatePicker value="{
+													path: 'new>ValidTo',
+													type: 'sap.ui.model.type.Date',
+													formatOptions: {
+														style: 'medium',
+														pattern: 'yyyy-MM-dd'
+													}
+												}"/>
 										</m:cells>
 									</m:ColumnListItem>
 								</m:items>
