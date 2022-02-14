@@ -186,10 +186,41 @@ sap.ui.define([
 			that.getView().getModel('check').setData([]);
 			this.byId("checkDialog").close();
 		},
+		// onConfirmDialog: function () {
+		// 	this.oOwnerComponent.getModel('invoice').refresh();
+		// 	this.onCloseDialog();
+		// },
+
 		onConfirmDialog: function () {
-			this.oOwnerComponent.getModel('invoice').refresh();
+			var fnSuccess = function (data) {
+				MessageToast.show('success');
+			}.bind(this);
+
+			var fnError = function (oError) {
+				MessageBox.error(oError.response.body);
+			}.bind(this);
+			var sPath = 'BundleHeadSet';
+			var data = JSON.parse(JSON.stringify(this.oDetailModel.getData()));
+			var prices = this.getView().getModel('check').getData();
+			data.ToPrice = prices;
+
+			var mParameters = {
+				error: fnError,
+				success: fnSuccess
+			};
+			data.Changeflag = "U";
+			// DatePicker数据转换
+			this._DatePipe(data,'ValidFrom');
+			this._DatePipe(data,'ValidTo');
+			data.ToPrice.forEach(price => {
+				this._DatePipe(price,'ValidFrom');
+				this._DatePipe(price,'ValidTo');
+				price.Changeflag = "C";
+			});
+			this.oOwnerComponent.getModel('invoice').create(sPath, data, mParameters);
 			this.onCloseDialog();
 		},
+
 		check: function () {
 			var fnSuccess = function (data) {
 				MessageToast.show('success');
@@ -214,18 +245,18 @@ sap.ui.define([
 			data.ToPrice.forEach(price => {
 				this._DatePipe(price,'ValidFrom');
 				this._DatePipe(price,'ValidTo');
-				price.Changeflag = "M";
+				price.Changeflag = "C";
 			});
-			data.ToGroup = data.ToGroup.results;
-			data.ToGroup.forEach(group => {
-				group.Changeflag = "M";
-				group.ToItem = group.ToItem.results;
-				group.ToItem.forEach(item => {
-					this._DatePipe(item,'ValidFrom');
-					this._DatePipe(item,'ValidTo');
-					item.Changeflag = "M";
-				});
-			});
+			// data.ToGroup = data.ToGroup.results;
+			// data.ToGroup.forEach(group => {
+			// 	group.Changeflag = "C";
+			// 	group.ToItem = group.ToItem.results;
+			// 	group.ToItem.forEach(item => {
+			// 		this._DatePipe(item,'ValidFrom');
+			// 		this._DatePipe(item,'ValidTo');
+			// 		item.Changeflag = "C";
+			// 	});
+			// });
 			this.oOwnerComponent.getModel('invoice').create(sPath, data, mParameters);
 		},
 		firePaste: function(oEvent) {
