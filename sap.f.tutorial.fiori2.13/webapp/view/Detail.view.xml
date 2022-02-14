@@ -368,8 +368,8 @@
 		<footer>
 			<m:OverflowToolbar>
 				<m:ToolbarSpacer/>
-				<m:Button type="Emphasized" text="Edit" visible="{= !${/bEdit}}" press=".edit"/>
-				<m:Button type="Emphasized" text="Save" visible="{= !!${/bEdit}}" press=".save"/>
+				<m:Button type="Emphasized" text="{i18n>Edit}" visible="{= !${/bEdit}}" press=".edit"/>
+				<m:Button type="Emphasized" text="{i18n>Save}" visible="{= !!${/bEdit}}" press=".save"/>
 				<m:Button text="Cancel" visible="{= !!${/bEdit}}" press=".cancel"/>
 			</m:OverflowToolbar>
 		</footer>

@@ -125,7 +125,7 @@
          </m:content>
         <m:beginButton>
             <m:Button
-                text="{i18n>Confirm}"
+                text="{i18n>Save}"
                 press=".onConfirmDialog"/>
         </m:beginButton>
         <m:endButton>
