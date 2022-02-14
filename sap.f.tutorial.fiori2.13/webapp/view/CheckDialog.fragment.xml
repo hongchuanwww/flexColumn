@@ -84,22 +84,20 @@
                         <m:cells>
                             <m:DatePicker value="{
 								path: 'check>ValidFrom',
-								type: 'sap.ui.model.type.Date',
 								formatOptions: {
 									style: 'medium',
 									pattern: 'yyyy-MM-dd'
 								}
-							}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/>
+							}" valueFormat="yyyy-MM-dd"/>
                         </m:cells>
                         <m:cells>
                             <m:DatePicker value="{
 								path: 'check>ValidTo',
-								type: 'sap.ui.model.type.Date',
 								formatOptions: {
 									style: 'medium',
 									pattern: 'yyyy-MM-dd'
 								}
-							}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/>
+							}" valueFormat="yyyy-MM-dd"/>
                         </m:cells>
                         <m:cells>
                             <core:Icon
