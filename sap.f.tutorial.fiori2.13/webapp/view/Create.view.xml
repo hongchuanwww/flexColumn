@@ -134,7 +134,7 @@
 									style: 'medium',
 									pattern: 'yyyy-MM-dd'
 								}
-							}" valueFormat="yyyy-MM-dd"/>
+							}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/>
 					</m:HBox>
 											
 					<m:HBox>
@@ -311,7 +311,7 @@
 														style: 'medium',
 														pattern: 'yyyy-MM-dd'
 													}
-												}"/>
+												}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/>
 										</m:cells>
 										<m:cells>
 											<m:DatePicker value="{
@@ -321,7 +321,7 @@
 														style: 'medium',
 														pattern: 'yyyy-MM-dd'
 													}
-												}"/>
+												}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/>
 										</m:cells>
 									</m:ColumnListItem>
 								</m:items>

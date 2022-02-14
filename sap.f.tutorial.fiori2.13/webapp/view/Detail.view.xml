@@ -132,7 +132,7 @@
 								style: 'medium',
 								pattern: 'yyyy-MM-dd'
 							}
-						}" editable="{= !!${/bEdit}}"/>
+						}" editable="{= !!${/bEdit}}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/>
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="{i18n>SalesVolume} : " design="Bold"/>
@@ -352,7 +352,7 @@
 														style: 'medium',
 														pattern: 'yyyy-MM-dd'
 													}
-												}" visible="{= !!${/bEdit}}"/>
+												}" visible="{= !!${/bEdit}}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/>
 											</m:HBox>
 										</m:cells>
 
