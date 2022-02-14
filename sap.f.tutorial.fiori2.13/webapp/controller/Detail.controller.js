@@ -19,6 +19,7 @@ sap.ui.define([
 			this.oRouter.getRoute("detail").attachPatternMatched(this._onProductMatched, this);
 			this.oRouter.getRoute("detailDetail").attachPatternMatched(this._onProductMatched, this);
 			this.getView().setModel(new JSONModel([]), 'check');
+			this.getView().getModel('check').setSizeLimit(10000);
 			this.DIC = [
 				'Province',
 				'RegionDesc',
