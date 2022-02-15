@@ -103,7 +103,7 @@
                             <core:Icon
                                 src="sap-icon://status-error"
                                 class="size1"
-                                visible="{= !${check>TODO}}"
+                                visible="{= !!${check>MessageType}}"
                                 color="#031E48" >
                                 <core:layoutData>
                                     <m:FlexItemData growFactor="1" />
@@ -112,7 +112,7 @@
                             <core:Icon
                                 src="sap-icon://accept"
                                 class="size1"
-                                visible="{= !!${check>TODO}}"
+                                visible="{= !${check>MessageType}}"
                                 color="#031E48" >
                                 <core:layoutData>
                                     <m:FlexItemData growFactor="1" />
@@ -125,6 +125,7 @@
          </m:content>
         <m:beginButton>
             <m:Button
+                enabled="{save>enabled}"
                 text="{i18n>Save}"
                 press=".onConfirmDialog"/>
         </m:beginButton>
