@@ -222,7 +222,7 @@ sap.ui.define([
 		check: function () {
 			var fnSuccess = function (data) {
 				var price = data.ToPrice.results || [];
-				this.getView().getModel('save').setData({enabled: price.every(p => !p.MessageType)});
+				this.getView().getModel('save').setData({enabled: price.every(p => p.MessageType === "")});
 				this.getView().getModel('check').setData(price);
 				MessageToast.show('success');
 			}.bind(this);
