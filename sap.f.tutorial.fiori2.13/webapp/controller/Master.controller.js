@@ -21,7 +21,7 @@ sap.ui.define([
 				sQuery = oEvent.getParameter("query");
 
 			if (sQuery && sQuery.length > 0) {
-				oTableSearchState = [new Filter("Name", FilterOperator.Contains, sQuery)];
+				oTableSearchState = [new Filter("BdHeadNumber", FilterOperator.Contains, sQuery)];
 			}
 
 			this.oProductsTable.getBinding("items").filter(oTableSearchState, "Application");
