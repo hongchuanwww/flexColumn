@@ -19,6 +19,7 @@ sap.ui.define([
 			this.oRouter.getRoute("detail").attachPatternMatched(this._onProductMatched, this);
 			this.oRouter.getRoute("detailDetail").attachPatternMatched(this._onProductMatched, this);
 			this.getView().setModel(new JSONModel([]), 'check');
+			this.getView().setModel(new JSONModel({enabled: false}), 'save');
 			this.getView().getModel('check').setSizeLimit(10000);
 			this.DIC = [
 				'Province',
@@ -186,14 +187,12 @@ sap.ui.define([
 			that.getView().getModel('check').setData([]);
 			this.byId("checkDialog").close();
 		},
-		// onConfirmDialog: function () {
-		// 	this.oOwnerComponent.getModel('invoice').refresh();
-		// 	this.onCloseDialog();
-		// },
 
 		onConfirmDialog: function () {
 			var fnSuccess = function (data) {
 				MessageToast.show('success');
+				this.oOwnerComponent.getModel('invoice').refresh();
+				this.onCloseDialog();
 			}.bind(this);
 
 			var fnError = function (oError) {
@@ -218,11 +217,13 @@ sap.ui.define([
 				price.Changeflag = "C";
 			});
 			this.oOwnerComponent.getModel('invoice').create(sPath, data, mParameters);
-			this.onCloseDialog();
 		},
 
 		check: function () {
 			var fnSuccess = function (data) {
+				var price = data.ToPrice.results || [];
+				this.getView().getModel('save').setData({enabled: price.every(p => !p.MessageType)});
+				this.getView().getModel('check').setData(price);
 				MessageToast.show('success');
 			}.bind(this);
 
