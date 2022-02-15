@@ -100,24 +100,26 @@
 							}" valueFormat="yyyy-MM-dd"/>
                         </m:cells>
                         <m:cells>
-                            <core:Icon
-                                src="sap-icon://status-error"
-                                class="size1"
-                                visible="{= !!${check>MessageType}}"
-                                color="#031E48" >
-                                <core:layoutData>
-                                    <m:FlexItemData growFactor="1" />
-                                </core:layoutData>
-                            </core:Icon>
-                            <core:Icon
-                                src="sap-icon://accept"
-                                class="size1"
-                                visible="{= !${check>MessageType}}"
-                                color="#031E48" >
-                                <core:layoutData>
-                                    <m:FlexItemData growFactor="1" />
-                                </core:layoutData>
-                            </core:Icon>
+                            <m:HBox>
+                                <core:Icon
+                                    src="sap-icon://status-error"
+                                    class="size1"
+                                    visible="{= ${check>MessageType} === 'E' }"
+                                    color="#031E48" >
+                                    <core:layoutData>
+                                        <m:FlexItemData growFactor="1" />
+                                    </core:layoutData>
+                                </core:Icon>
+                                <core:Icon
+                                    src="sap-icon://accept"
+                                    class="size1"
+                                    visible="{= ${check>MessageType} === '' }"
+                                    color="#031E48" >
+                                    <core:layoutData>
+                                        <m:FlexItemData growFactor="1" />
+                                    </core:layoutData>
+                                </core:Icon>
+                            </m:HBox>
                         </m:cells>
                     </m:ColumnListItem>
                 </m:items>
@@ -125,7 +127,7 @@
          </m:content>
         <m:beginButton>
             <m:Button
-                enabled="{save>enabled}"
+                enabled="{save>/enabled}"
                 text="{i18n>Save}"
                 press=".onConfirmDialog"/>
         </m:beginButton>
