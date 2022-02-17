@@ -100,26 +100,7 @@
 							}" valueFormat="yyyy-MM-dd"/>
                         </m:cells>
                         <m:cells>
-                            <m:HBox>
-                                <core:Icon
-                                    src="sap-icon://status-error"
-                                    class="size1"
-                                    visible="{= ${check>MessageType} === 'E' }"
-                                    color="#031E48" >
-                                    <core:layoutData>
-                                        <m:FlexItemData growFactor="1" />
-                                    </core:layoutData>
-                                </core:Icon>
-                                <core:Icon
-                                    src="sap-icon://accept"
-                                    class="size1"
-                                    visible="{= ${check>MessageType} === '' }"
-                                    color="#031E48" >
-                                    <core:layoutData>
-                                        <m:FlexItemData growFactor="1" />
-                                    </core:layoutData>
-                                </core:Icon>
-                            </m:HBox>
+                            <m:Text text="{check>MessageText}"/>
                         </m:cells>
                     </m:ColumnListItem>
                 </m:items>
