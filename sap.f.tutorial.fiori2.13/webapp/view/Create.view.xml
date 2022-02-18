@@ -335,7 +335,7 @@
 		<footer>
 			<m:OverflowToolbar>
 				<m:ToolbarSpacer/>
-				<m:Button type="Emphasized" text="Save" press=".onSave"/>
+				<m:Button type="Emphasized" text="{i18n>Save}" press=".onSave"/>
 				<m:Button text="Cancel" press=".handleClose"/>
 			</m:OverflowToolbar>
 		</footer>

@@ -106,7 +106,7 @@ sap.ui.define([
 
 			var fnError = function (oError) {
 				// MessageBox.error(oError.message);
-				MessageBox.error(oError.response.body);
+				MessageBox.error(JSON.parse(oError.response.body).error.message.value);
 			}.bind(this);
 			var sPath = 'BundleHeadSet';
 			var data = this.oCreateModel.getData();
