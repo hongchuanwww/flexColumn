@@ -152,7 +152,8 @@ sap.ui.define([
 			if (data.ToGroup.length != 0) {
 				data.ToGroup.forEach(group => {
 					group.Changeflag = "U";
-
+					group.GrpScopeDesc = group.GrpScope.split(' ')[1];
+					group.GrpScope = group.GrpScope.split(' ')[0];
 					group.ToItem = group.ToItem.results;
 					if (group.ToItem.length != 0) {
 						group.ToItem.forEach(item => {
