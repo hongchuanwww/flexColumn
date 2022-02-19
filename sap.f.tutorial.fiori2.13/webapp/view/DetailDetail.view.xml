@@ -89,6 +89,9 @@
 									<m:ColumnListItem>
 										<m:cells>
 											<m:ObjectIdentifier text="{detail>Product}"/>
+											<!-- https://dev.abbott-md.cn:4443/sap/opu/odata/SAP/ZYCHCN_API_ORDER_002_SRV/SHScopeSet?$filter=%20GrpScope%20eq%20%2701%27%20and%20BuId%20eq%20%272000030056%27&$format=json -->
+											<!-- ODATA service的input 是GrpScope = 01 && BuId = **** -->
+											<!-- Edit里添加新一行的时候也需要这个控件 -->
 										</m:cells>
 										<m:cells>
 											<m:VBox>
