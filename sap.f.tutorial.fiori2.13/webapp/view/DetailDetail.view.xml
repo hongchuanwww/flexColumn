@@ -62,7 +62,7 @@
                             <m:OverflowToolbarButton
                                 type="Transparent"
                                 icon="sap-icon://add"
-                                press=".editAddGroup" 
+                                press=".editAddProduct" 
 								visible="{= !!${/bEdit}}" />
                         </actions>
 						<blocks>

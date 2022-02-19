@@ -21,6 +21,12 @@ sap.ui.define([
 			}.bind(this));
 		},
 
+		editAddProduct: function() {
+			var data = this.getView().getModel('detail').getProperty("/ToGroup/results/" + this._item + '/ToItem/results')
+			data.push({});
+			this.getView().getModel('detail').setProperty("/ToGroup/results/" + this._item + '/ToItem/results', data);
+		},
+
 		_onPatternMatch: function (oEvent) {
 			this._item = oEvent.getParameter("arguments").item;
 			this._bundle = oEvent.getParameter("arguments").bundle;

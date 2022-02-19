@@ -90,6 +90,8 @@ sap.ui.define([
 
 		cancel: function () {
 			this.oModel.setProperty('/bEdit', false);
+			this.oModel.refresh();
+			this.oDetailModel.refresh()
 		},
 
 		edit: function () {
@@ -104,12 +106,14 @@ sap.ui.define([
 
 		editAddGroup: function() {
 			var groups = this.oDetailModel.getData().ToGroup.results;
+			var GrpCode = 'GRP' + (groups.length + 1).toString().padStart(2,'0');
 			groups.push({
+				GrpCode,
 				ToItem:{
 					results: []
 				}
 			});
-			oDataModel.setProperty('/ToGroup/results', groups);
+			this.oDetailModel.setProperty('/ToGroup/results', groups);
 		},
 
 		save: function () {
