@@ -32,6 +32,7 @@ sap.ui.define([
 				'ValidFrom',
 				'ValidTo',
 			];
+			this.data = {};
 		},
 
 		onSupplierPress: function (oEvent) {
@@ -55,7 +56,8 @@ sap.ui.define([
 				var that = this;
 				this.oOwnerComponent.getModel('invoice').read("/" + this._bundle + '?$expand=ToGroup/ToItem,ToPrice' , {
 					success: function (oData) {
-						that.oDetailModel.setData(oData);
+						that.data = oData;
+						that.oDetailModel.setData(JSON.parse(JSON.stringify(oData)));
 					}
 				});
 			}
@@ -90,8 +92,7 @@ sap.ui.define([
 
 		cancel: function () {
 			this.oModel.setProperty('/bEdit', false);
-			this.oModel.refresh();
-			this.oDetailModel.refresh()
+			this.oDetailModel.setData(JSON.parse(JSON.stringify(this.data)));
 		},
 
 		edit: function () {
