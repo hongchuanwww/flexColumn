@@ -107,15 +107,15 @@
 															style: 'medium',
 															pattern: 'yyyy-MM-dd'
 														}
-													}" visible="{= !${/bEdit}}"/>
-												<m:DatePicker value="{
+													}"/>
+												<!-- <m:DatePicker value="{
 													path: 'detail>ValidFrom',
 													type: 'sap.ui.model.type.Date',
 													formatOptions: {
 														style: 'medium',
 														pattern: 'yyyy-MM-dd'
 													}
-												}" visible="{= !!${/bEdit}}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/>
+												}" visible="{= !!${/bEdit}}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/> -->
 											</m:HBox>
 										</m:cells>
 										<m:cells>
