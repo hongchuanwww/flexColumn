@@ -1,7 +1,9 @@
 sap.ui.define([
     "sap/ui/model/json/JSONModel",
-	"sap/ui/core/mvc/Controller"
-], function (JSONModel, Controller) {
+	"sap/ui/core/mvc/Controller",
+	'sap/m/Token',
+	'sap/ui/core/Fragment'
+], function (JSONModel, Controller, Token, Fragment) {
 	"use strict";
 
 	return Controller.extend("zychcn.zbundle01.controller.CreateDetail", {
@@ -99,6 +101,63 @@ sap.ui.define([
 			data.splice(index,1);
 
 			this.getView().getModel('new').setProperty("/ToGroup/" + this.group + '/ToItem', data);
+		},
+
+		onValueHelpRequested: function() {
+			// var aCols = this.oColModel.getData().cols;
+
+			Fragment.load({
+				name: "zychcn.zbundle01.view.ValueHelpDialogSelect",
+				controller: this
+			}).then(function name(oFragment) {
+				this._oValueHelpDialog = oFragment;
+				this.getView().addDependent(this._oValueHelpDialog);
+
+				this._oValueHelpDialog.getTableAsync().then(function (oTable) {
+					// oTable.setModel(this.oProductsModel);
+					// oTable.setModel(this.oColModel, "columns");
+
+					// if (oTable.bindRows) {
+					// 	oTable.bindAggregation("rows", "/ProductCollection");
+					// }
+
+					// if (oTable.bindItems) {
+					// 	oTable.bindAggregation("items", "/ProductCollection", function () {
+					// 		return new ColumnListItem({
+					// 			cells: aCols.map(function (column) {
+					// 				return new Label({ text: "{" + column.template + "}" });
+					// 			})
+					// 		});
+					// 	});
+					// }
+
+					// this._oValueHelpDialog.update();
+				}.bind(this));
+
+				// var oToken = new Token();
+				// oToken.setKey(this._oInput.getSelectedKey());
+				// oToken.setText(this._oInput.getValue());
+				// this._oValueHelpDialog.setTokens([oToken]);
+				this._oValueHelpDialog.open();
+			}.bind(this));
+
+		},
+
+		onValueHelpOkPress: function (oEvent) {
+			var aTokens = oEvent.getParameter("tokens");
+
+			if (aTokens.length > 0) {
+				this._oInput.setSelectedKey(aTokens[0].getKey());
+			}
+			this._oValueHelpDialog.close();
+		},
+
+		onValueHelpCancelPress: function () {
+			this._oValueHelpDialog.close();
+		},
+
+		onValueHelpAfterClose: function () {
+			this._oValueHelpDialog.destroy();
 		}
 	});
 });
