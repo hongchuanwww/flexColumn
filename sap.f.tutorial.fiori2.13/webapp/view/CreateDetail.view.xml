@@ -79,7 +79,7 @@
                                 paste=".onPaste">
 								<m:columns>
 									<m:Column/>
-									<m:Column>
+									<m:Column width="200px">
 										<m:Text text="{i18n>Product} - {i18n>ProductDesc}"/>
 									</m:Column>
 									<!-- <m:Column>
@@ -102,7 +102,21 @@
 										</m:cells>
 										<m:cells>
 											<!-- <m:ObjectIdentifier text="{new>Product}"/> -->
-											<m:Input value="{new>Product}"/>
+											<m:Input 
+												value="{new>Product}" 
+												showValueHelp="true"
+												valueHelpOnly="true"
+												valueHelpRequest=".onValueHelpRequested"
+												suggestionItems="{
+													path: 'invoice>/SHScopeSet',
+													filters: [
+														{path: 'GrpScope', operator: 'EQ', value1: '01'},
+														{path: 'BuId', operator: 'EQ', value1: '2000030162'}
+													]
+												}"
+											>
+												<core:Item key="{invoice>Product}" text="{invoice>Product}-{invoice>ProductDescZh}" />
+											</m:Input>
 										</m:cells>
 										<!-- <m:cells>
 											<m:Input value="{new>ProducDesc}"/>
