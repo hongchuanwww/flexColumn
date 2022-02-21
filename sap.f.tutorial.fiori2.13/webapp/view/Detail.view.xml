@@ -218,7 +218,7 @@
 										</m:cells>		
 										<m:cells>
 											<m:HBox>
-												<m:ObjectIdentifier text="{detail>GrpScope}-{detail>GrpScopeDesc}" visible="{= !${/bEdit}}"/>
+												<m:ObjectIdentifier text="{detail>GrpScope}" visible="{= !${/bEdit}}"/>
 												<m:Select
 													selectedKey="{detail>GrpScope}"
 													items="{
@@ -241,10 +241,10 @@
 										</m:cells>
 										<m:cells>
 											<m:HBox>
-												<m:ObjectIdentifier text="{detail>GrpDelvery}" visible="{= !${/bEdit}}"/>
-												<m:Input value="{detail>GrpDelvery}" visible="{= !!${/bEdit}}"/>
+												<m:ObjectIdentifier text="{detail>GrpDelivery}" visible="{= !${/bEdit}}"/>
+												<m:Input value="{detail>GrpDelivery}" visible="{= !!${/bEdit}}"/>
 											</m:HBox>
-											<!-- <m:ObjectIdentifier text="{detail>GrpDelvery}" enabled="{= !!${/bEdit}}"/> -->
+											<!-- <m:ObjectIdentifier text="{detail>GrpDelivery}" enabled="{= !!${/bEdit}}"/> -->
 										</m:cells>
 										<m:cells>
 											<m:CheckBox selected="{= !!${detail>GrpQtycheck}}" enabled="{= !!${/bEdit}}"/>
