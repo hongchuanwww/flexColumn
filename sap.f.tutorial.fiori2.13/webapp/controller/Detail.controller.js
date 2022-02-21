@@ -35,22 +35,6 @@ sap.ui.define([
 			this.data = {};
 		},
 
-		_deepCopy: function(obj) {
-			var newobj = null;     // 接受拷贝的新对象
-			if(typeof(obj) === 'object' && typeof(obj) !== null) {   // 判断是否是引用类型
-				if(obj instanceof Date) {
-					return new Date(obj.valueOf());
-				}
-				newobj = obj instanceof Array? []: {};          // 判断是数组还是对象
-				for(var i in obj) {   
-					newobj[i] = this._deepCopy(obj[i]);                      // 判断下一级是否还是引用类型
-				} 
-			} else {
-				newobj = obj;
-			}
-			return newobj;
-		},
-
 		onSupplierPress: function (oEvent) {
 			var itemPath = oEvent.getSource().getBindingContext('detail').getPath(),
 			item = itemPath.split("/").slice(-1).pop();
@@ -73,7 +57,7 @@ sap.ui.define([
 				this.oOwnerComponent.getModel('invoice').read("/" + this._bundle + '?$expand=ToGroup/ToItem,ToPrice' , {
 					success: function (oData) {
 						that.data = oData;
-						that.oDetailModel.setData(that._deepCopy(oData));
+						that.oDetailModel.setData(JSON.parse(JSON.stringify(oData)));
 					}
 				});
 			}
@@ -108,7 +92,7 @@ sap.ui.define([
 
 		cancel: function () {
 			this.oModel.setProperty('/bEdit', false);
-			this.oDetailModel.setData(this._deepCopy(this.data));
+			this.oDetailModel.setData(JSON.parse(JSON.stringify(this.data)));
 		},
 
 		edit: function () {
@@ -149,7 +133,7 @@ sap.ui.define([
 				success: fnSuccess
 			};
 			
-			var data = this._deepCopy(this.oDetailModel.getData());
+			var data = JSON.parse(JSON.stringify(this.oDetailModel.getData()));
 
 			this._DatePipe(data,'ValidFrom');
 			this._DatePipe(data,'ValidTo');
@@ -221,7 +205,7 @@ sap.ui.define([
 				MessageBox.error(oError.response.body);
 			}.bind(this);
 			var sPath = 'BundleHeadSet';
-			var data = this._deepCopy(this.oDetailModel.getData());
+			var data = JSON.parse(JSON.stringify(this.oDetailModel.getData()));
 			var prices = this.getView().getModel('check').getData();
 			data.ToPrice = prices;
 
@@ -253,7 +237,7 @@ sap.ui.define([
 				MessageBox.error(oError.response.body);
 			}.bind(this);
 			var sPath = 'BundleHeadSet';
-			var data = this._deepCopy(this.oDetailModel.getData());
+			var data = JSON.parse(JSON.stringify(this.oDetailModel.getData()));
 			var prices = this.getView().getModel('check').getData();
 			data.ToPrice = prices;
 
