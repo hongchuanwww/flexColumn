@@ -141,7 +141,7 @@ sap.ui.define([
 			}.bind(this);
 
 			var fnError = function (oError) {
-				MessageBox.error(oError.message);
+				MessageBox.error(JSON.parse(oError.response.body).error.message.value);
 			}.bind(this);
 			var sPath = "/" + this._bundle;
 			var mParameters = {
@@ -218,7 +218,7 @@ sap.ui.define([
 			}.bind(this);
 
 			var fnError = function (oError) {
-				MessageBox.error(oError.response.body);
+				MessageBox.error(JSON.parse(oError.response.body).error.message.value);
 			}.bind(this);
 			var sPath = 'BundleHeadSet';
 			var data = this._deepCopy(this.oDetailModel.getData());
@@ -250,7 +250,7 @@ sap.ui.define([
 			}.bind(this);
 
 			var fnError = function (oError) {
-				MessageBox.error(oError.response.body);
+				MessageBox.error(JSON.parse(oError.response.body).error.message.value);
 			}.bind(this);
 			var sPath = 'BundleHeadSet';
 			var data = this._deepCopy(this.oDetailModel.getData());

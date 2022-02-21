@@ -216,7 +216,7 @@
 											<m:CheckBox selected="{new>GrpFree}"/>
 										</m:cells>
 										<m:cells>
-											<m:Input value="{new>GrpDelvery}"/>
+											<m:Input value="{new>GrpDelivery}"/>
 										</m:cells>
 										<m:cells>
 											<m:CheckBox selected="{new>GrpQtycheck}"/>
@@ -336,7 +336,7 @@
 			<m:OverflowToolbar>
 				<m:ToolbarSpacer/>
 				<m:Button type="Emphasized" text="{i18n>Save}" press=".onSave"/>
-				<m:Button text="Cancel" press=".handleClose"/>
+				<m:Button text="{i18n>Cancel}" press=".handleClose"/>
 			</m:OverflowToolbar>
 		</footer>
 	</ObjectPageLayout>
