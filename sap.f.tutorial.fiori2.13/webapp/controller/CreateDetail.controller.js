@@ -12,6 +12,7 @@ sap.ui.define([
 
 			this.oRouter = this.oOwnerComponent.getRouter();
 			this.oModel = this.oOwnerComponent.getModel();
+			this.oNewModel = this.oOwnerComponent.getModel('new');
 			this.oRouter.getRoute("createDetail").attachPatternMatched(this._onPatternMatch, this);
             this.DIC = [
                 'Product',
@@ -20,6 +21,23 @@ sap.ui.define([
                 'ValidTo'
                 // 'TODO'
             ];
+			this.oColModel = new JSONModel({
+				"cols": [
+					{
+						"label": "ProductId",
+						"template": "ProductId",
+						"width": "5rem"
+					},
+					{
+						"label": "Product Name",
+						"template": "Name"
+					},
+					{
+						"label": "Category",
+						"template": "Category"
+					}
+				]
+			});
 		},
 
 		handleAboutPress: function () {
@@ -37,9 +55,17 @@ sap.ui.define([
                     path: "/ToGroup/" + this.group,
 					model: "new"
                 });
+				this._getProductList();
 			}
 		},
 
+		_getProductList: function() {
+			var group = this.oNewModel.getProperty( "/ToGroup/" + this.group);
+			var GrpScope = group?.GrpScope?.split(' ')[0];
+			var data = this.oNewModel.getData();
+			var BuId = data.BuId?.split(' ')[0];
+			if(GrpScope && BuId) {}
+		},
 		handleFullScreen: function () {
 			var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/endColumn/fullScreen");
 			this.oRouter.navTo("createDetail", {layout: sNextLayout});
@@ -104,8 +130,7 @@ sap.ui.define([
 		},
 
 		onValueHelpRequested: function() {
-			// var aCols = this.oColModel.getData().cols;
-
+			var aCols = this.oColModel.getData().cols;
 			Fragment.load({
 				name: "zychcn.zbundle01.view.ValueHelpDialogSelect",
 				controller: this
@@ -114,24 +139,24 @@ sap.ui.define([
 				this.getView().addDependent(this._oValueHelpDialog);
 
 				this._oValueHelpDialog.getTableAsync().then(function (oTable) {
-					// oTable.setModel(this.oProductsModel);
-					// oTable.setModel(this.oColModel, "columns");
+					oTable.setModel(this.oOwnerComponent.getModel('invoice'));
+					oTable.setModel(this.oColModel, "columns");
 
 					// if (oTable.bindRows) {
-					// 	oTable.bindAggregation("rows", "/ProductCollection");
+					// 	oTable.bindAggregation("rows", "/SHScopeSet");
 					// }
 
-					// if (oTable.bindItems) {
-					// 	oTable.bindAggregation("items", "/ProductCollection", function () {
-					// 		return new ColumnListItem({
-					// 			cells: aCols.map(function (column) {
-					// 				return new Label({ text: "{" + column.template + "}" });
-					// 			})
-					// 		});
-					// 	});
-					// }
+					if (oTable.bindItems) {
+						oTable.bindAggregation("items", "/SHScopeSet", function () {
+							return new ColumnListItem({
+								cells: aCols.map(function (column) {
+									return new Label({ text: "{" + column.template + "}" });
+								})
+							});
+						});
+					}
 
-					// this._oValueHelpDialog.update();
+					this._oValueHelpDialog.update();
 				}.bind(this));
 
 				// var oToken = new Token();
@@ -140,7 +165,6 @@ sap.ui.define([
 				// this._oValueHelpDialog.setTokens([oToken]);
 				this._oValueHelpDialog.open();
 			}.bind(this));
-
 		},
 
 		onValueHelpOkPress: function (oEvent) {
