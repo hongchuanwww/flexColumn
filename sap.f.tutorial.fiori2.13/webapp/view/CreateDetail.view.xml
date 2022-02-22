@@ -107,15 +107,9 @@
 												showValueHelp="true"
 												valueHelpOnly="false"
 												valueHelpRequest=".onValueHelpRequested"
-												suggestionItems="{
-													path: 'invoice>/SHScopeSet',
-													filters: [
-														{path: 'GrpScope', operator: 'EQ', value1: '01'},
-														{path: 'BuId', operator: 'EQ', value1: '2000030162'}
-													]
-												}"
+												suggestionItems="{product>/}"
 											>
-												<core:Item key="{invoice>Product}" text="{invoice>Product}-{invoice>ProductDescZh}" />
+												<core:Item key="{product>Product}" text="{product>Product}-{product>ProductDescZh}" />
 											</m:Input>
 										</m:cells>
 										<!-- <m:cells>

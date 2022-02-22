@@ -24,20 +24,22 @@ sap.ui.define([
 			this.oColModel = new JSONModel({
 				"cols": [
 					{
-						"label": "ProductId",
-						"template": "ProductId",
+						"label": "Product",
+						"template": "Product",
 						"width": "5rem"
 					},
 					{
-						"label": "Product Name",
-						"template": "Name"
+						"label": "ProductDescZh",
+						"template": "ProductDescZh"
 					},
 					{
-						"label": "Category",
-						"template": "Category"
+						"label": "ProductDescEn",
+						"template": "ProductDescEn"
 					}
 				]
 			});
+			this.oProductModel = new JSONModel([]);
+			this.getView().setModel(this.oProductModel,'product');
 		},
 
 		handleAboutPress: function () {
@@ -64,7 +66,16 @@ sap.ui.define([
 			var GrpScope = group?.GrpScope?.split(' ')[0];
 			var data = this.oNewModel.getData();
 			var BuId = data.BuId?.split(' ')[0];
-			if(GrpScope && BuId) {}
+			if(GrpScope && BuId) {
+				var that = this;
+				this.getView().getModel('invoice').read('/SHScopeSet?$filter=GrpScope%20eq%20%27'+GrpScope+'%27%20and%20BuId%20eq%20%27'+BuId+'%27', {
+					success: function (oData) {
+						that.oProductModel.setData(oData.results);
+					}
+				});
+			} else {
+				this.oProductModel.setData([]);
+			}
 		},
 		handleFullScreen: function () {
 			var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/endColumn/fullScreen");
@@ -129,8 +140,9 @@ sap.ui.define([
 			this.getView().getModel('new').setProperty("/ToGroup/" + this.group + '/ToItem', data);
 		},
 
-		onValueHelpRequested: function() {
+		onValueHelpRequested: function(oEvent) {
 			var aCols = this.oColModel.getData().cols;
+			this._oInput = oEvent.getSource();
 			Fragment.load({
 				name: "zychcn.zbundle01.view.ValueHelpDialogSelect",
 				controller: this
@@ -139,15 +151,15 @@ sap.ui.define([
 				this.getView().addDependent(this._oValueHelpDialog);
 
 				this._oValueHelpDialog.getTableAsync().then(function (oTable) {
-					oTable.setModel(this.oOwnerComponent.getModel('invoice'));
+					oTable.setModel(this.oProductModel);
 					oTable.setModel(this.oColModel, "columns");
 
-					// if (oTable.bindRows) {
-					// 	oTable.bindAggregation("rows", "/SHScopeSet");
-					// }
+					if (oTable.bindRows) {
+						oTable.bindAggregation("rows", "/");
+					}
 
 					if (oTable.bindItems) {
-						oTable.bindAggregation("items", "/SHScopeSet", function () {
+						oTable.bindAggregation("items", "/", function () {
 							return new ColumnListItem({
 								cells: aCols.map(function (column) {
 									return new Label({ text: "{" + column.template + "}" });
@@ -159,10 +171,10 @@ sap.ui.define([
 					this._oValueHelpDialog.update();
 				}.bind(this));
 
-				// var oToken = new Token();
-				// oToken.setKey(this._oInput.getSelectedKey());
-				// oToken.setText(this._oInput.getValue());
-				// this._oValueHelpDialog.setTokens([oToken]);
+				var oToken = new Token();
+				oToken.setKey(this._oInput.getSelectedKey());
+				oToken.setText(this._oInput.getValue());
+				this._oValueHelpDialog.setTokens([oToken]);
 				this._oValueHelpDialog.open();
 			}.bind(this));
 		},
