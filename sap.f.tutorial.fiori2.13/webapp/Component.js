@@ -18,6 +18,7 @@ sap.ui.define([
 				oODataModel,
 				oCreateModel,
 				oDetailModel,
+				oColModel,
 				oRouter;
 
 			UIComponent.prototype.init.apply(this, arguments);
@@ -31,10 +32,27 @@ sap.ui.define([
 			oDetailModel = new JSONModel();
 			this.setModel(oDetailModel, 'detail');
 
-			// set products demo model on this sample
-			oProductsModel = new JSONModel(sap.ui.require.toUrl('zychcn/zbundle01/localService/mockdata/products.json'));
-			oProductsModel.setSizeLimit(1000);
-			this.setModel(oProductsModel, 'products');
+			oColModel = new JSONModel({
+				"cols": [
+					{
+						"label": "Product",
+						"template": "Product",
+						"width": "5rem"
+					},
+					{
+						"label": "ProductDescZh",
+						"template": "ProductDescZh"
+					},
+					{
+						"label": "ProductDescEn",
+						"template": "ProductDescEn"
+					}
+				]
+			});
+			this.setModel(oColModel,'columns');
+
+			oProductsModel = new JSONModel([]);
+			this.setModel(oProductsModel,'product');
 			
 			var sServiceUrl = "/sap/opu/odata/SAP/ZYCHCN_API_ORDER_002_SRV/",
 				bJSON = true;

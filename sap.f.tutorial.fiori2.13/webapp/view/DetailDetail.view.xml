@@ -89,33 +89,22 @@
 								<m:items>
 									<m:ColumnListItem>
 										<m:cells>
+											<m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteRow" ariaLabelledBy="editButtonLabel" visible="{= !${detail>__metadata} }"/>
+										</m:cells>
+										<m:cells>
 											<m:HBox>
-												<m:cells>
-													<m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteRow" ariaLabelledBy="editButtonLabel" visible="{= !!${/bEdit}}"/>
-												</m:cells>
 												<m:ObjectIdentifier text="{detail>Product}" visible="{= !${/bEdit}}"/>
 												<m:Input 
 													value="{detail>Product}" 
 													showValueHelp="true"
 													valueHelpOnly="false"
 													valueHelpRequest=".onValueHelpRequested"
-													suggestionItems="{
-														path: 'invoice>/SHScopeSet',
-														filters: [
-															{path: 'GrpScope', operator: 'EQ', value1: '01'},
-															{path: 'BuId', operator: 'EQ', value1: '2000030162'}
-														]
-													}"
+													suggestionItems="{product>/}"
 													visible="{= !!${/bEdit}}" 
-												>	
-													<core:Item key="{invoice>Product}" text="{invoice>Product}-{invoice>ProductDescZh}" />
+												>
+													<core:Item key="{product>Product}" text="{product>Product}-{product>ProductDescZh}" />
 												</m:Input>
 											</m:HBox>
-
-											<!-- <m:ObjectIdentifier text="{detail>Product}"/> -->
-											<!-- https://dev.abbott-md.cn:4443/sap/opu/odata/SAP/ZYCHCN_API_ORDER_002_SRV/SHScopeSet?$filter=%20GrpScope%20eq%20%2701%27%20and%20BuId%20eq%20%272000030056%27&$format=json -->
-											<!-- ODATA service的input 是GrpScope = 01 && BuId = **** -->
-											<!-- Edit里添加新一行的时候也需要这个控件 -->
 										</m:cells>
 										<m:cells>
 											<m:VBox>

@@ -207,7 +207,7 @@
 								<m:items>
 									<m:ColumnListItem type="Navigation" press=".onSupplierPress">
 										<m:cells>
-											<m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteGroup" ariaLabelledBy="editButtonLabel" visible="{= !!${/bEdit}}"/>
+											<m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteGroup" ariaLabelledBy="editButtonLabel" visible="{= !${detail>__metadata} }"/>
 										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{detail>GrpCode}"/>
