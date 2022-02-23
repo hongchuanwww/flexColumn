@@ -180,6 +180,7 @@
 							<m:Table
 								items="{path : 'detail>/ToGroup/results'}">
 								<m:columns>
+									<m:Column  visible="{= !!${/bEdit}}"/>
 									<m:Column>
 										<m:Text text="{i18n>groupID}"/>
 									</m:Column>
@@ -205,6 +206,9 @@
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem type="Navigation" press=".onSupplierPress">
+										<m:cells>
+											<m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteGroup" ariaLabelledBy="editButtonLabel" visible="{= !!${/bEdit}}"/>
+										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{detail>GrpCode}"/>
 										</m:cells>

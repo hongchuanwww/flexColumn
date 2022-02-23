@@ -133,6 +133,17 @@ sap.ui.define([
 			this.oDetailModel.setProperty('/ToGroup/results', groups);
 		},
 
+		editDeleteGroup: function(e) {
+			var btn = e.getSource(),
+				row = btn.getParent(),
+				table = row.getParent(),
+				index = table.indexOfItem(row),
+				groups = this.oDetailModel.getProperty('/ToGroup/results');
+			groups.splice(index,1);
+
+			this.oDetailModel.setProperty('/ToGroup/results', groups);
+		},
+
 		save: function () {
 			var fnSuccess = function () {
 				MessageToast.show('success');

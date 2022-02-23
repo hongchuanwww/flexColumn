@@ -69,6 +69,7 @@
 							<m:Table
 								items="{path : 'detail>ToItem/results'}">
 								<m:columns>
+									<m:Column  visible="{= !!${/bEdit}}"/>
 									<m:Column>
 										<m:Text text="{i18n>Product}"/>
 									</m:Column>
@@ -89,6 +90,9 @@
 									<m:ColumnListItem>
 										<m:cells>
 											<m:HBox>
+												<m:cells>
+													<m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteRow" ariaLabelledBy="editButtonLabel" visible="{= !!${/bEdit}}"/>
+												</m:cells>
 												<m:ObjectIdentifier text="{detail>Product}" visible="{= !${/bEdit}}"/>
 												<m:Input 
 													value="{detail>Product}" 

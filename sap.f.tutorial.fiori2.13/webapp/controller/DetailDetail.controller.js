@@ -38,6 +38,17 @@ sap.ui.define([
 			}
 		},
 
+		editDeleteRow : function(e) {
+			var btn = e.getSource(),
+				row = btn.getParent(),
+				table = row.getParent(),
+				index = table.indexOfItem(row),
+				data = this.getView().getModel('detail').getProperty("/ToGroup/results/" + this._item + '/ToItem/results');
+			data.splice(index,1);
+
+			this.getView().getModel('detail').setProperty("/ToGroup/results/" + this._item + '/ToItem/results', data);
+		},
+
 		handleFullScreen: function () {
 			var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/endColumn/fullScreen");
 			this.oRouter.navTo("detailDetail", {layout: sNextLayout, bundle: this._bundle, item: this._item});
