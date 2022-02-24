@@ -15,7 +15,21 @@
 			</f:DynamicPageTitle>
 		</semantic:titleHeading>
 		<semantic:headerContent>
-			<SearchField search=".onSearch" width="100%"/>
+			<HBox>
+				<HBox>
+					<Label text="BP ID"/>
+					<Input value="{tableData>boundno}"/>
+				</HBox>
+				<HBox>
+					<Label text="Sales Org"/>
+					<Input value="{tableData>boundno}"/>
+				</HBox>
+				<HBox>
+					<Label text="Distr Channel"/>
+					<Input value="{tableData>boundno}"/>
+				</HBox>
+				<Button icon="sap-icon://delete" type="Transparent" press=".onSearch"/>
+			</HBox>
 		</semantic:headerContent>
 		<!-- DynamicPage Content -->
 		<semantic:content>
