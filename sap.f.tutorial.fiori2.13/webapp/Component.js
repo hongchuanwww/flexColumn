@@ -19,6 +19,7 @@ sap.ui.define([
 				oCreateModel,
 				oDetailModel,
 				oColModel,
+				oStateModel,
 				oRouter;
 
 			UIComponent.prototype.init.apply(this, arguments);
@@ -53,6 +54,9 @@ sap.ui.define([
 
 			oProductsModel = new JSONModel([]);
 			this.setModel(oProductsModel,'product');
+
+			oStateModel = new JSONModel([]);
+			this.setModel(oStateModel,'state');
 			
 			var sServiceUrl = "/sap/opu/odata/SAP/ZYCHCN_API_ORDER_002_SRV/",
 				bJSON = true;
