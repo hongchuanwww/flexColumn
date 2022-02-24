@@ -49,7 +49,7 @@
 				</core:Icon>
 				<m:VBox>
 					<m:Text text="{i18n>groupID}: {detail>GrpCode}"/>
-					<m:Text text="{i18n>GruopScope}: {detail>GrpScopeDesc}-{detail>GrpScope}" editable="{= !!${/bEdit}}"/>
+					<m:Text text="{i18n>GruopScope}: {detail>GrpScopeDesc}-{detail>GrpScope}"/>
 					<m:Text text="{i18n>GroupDesc}: {detail>GrpText}"/>
 				</m:VBox>
 			</m:HBox>
@@ -63,13 +63,13 @@
                                 type="Transparent"
                                 icon="sap-icon://add"
                                 press=".editAddProduct" 
-								visible="{= !!${/bEdit}}" />
+								visible="{= !!${state>/bEdit}}" />
                         </actions>
 						<blocks>
 							<m:Table
 								items="{path : 'detail>ToItem/results'}">
 								<m:columns>
-									<m:Column  visible="{= !!${/bEdit}}"/>
+									<m:Column  visible="{= !!${state>/bEdit}}"/>
 									<m:Column>
 										<m:Text text="{i18n>Product}"/>
 									</m:Column>
@@ -93,14 +93,14 @@
 										</m:cells>
 										<m:cells>
 											<m:HBox>
-												<m:ObjectIdentifier text="{detail>Product}" visible="{= !${/bEdit}}"/>
+												<m:ObjectIdentifier text="{detail>Product}" visible="{= !${state>/bEdit}}"/>
 												<m:Input 
 													value="{detail>Product}" 
 													showValueHelp="true"
 													valueHelpOnly="false"
 													valueHelpRequest=".onValueHelpRequested"
 													suggestionItems="{product>/}"
-													visible="{= !!${/bEdit}}" 
+													visible="{= !!${state>/bEdit}}" 
 												>
 													<core:Item key="{product>Product}" text="{product>Product}-{product>ProductDescZh}" />
 												</m:Input>
@@ -128,7 +128,7 @@
 														style: 'medium',
 														pattern: 'yyyy-MM-dd'
 													}
-												}" visible="{= !!${/bEdit}}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/> -->
+												}" visible="{= !!${state>/bEdit}}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/> -->
 											</m:HBox>
 										</m:cells>
 										<m:cells>
@@ -140,7 +140,7 @@
 															style: 'medium',
 															pattern: 'yyyy-MM-dd'
 														}
-													}" visible="{= !${/bEdit}}"/>
+													}" visible="{= !${state>/bEdit}}"/>
 												<m:DatePicker value="{
 													path: 'detail>ValidTo',
 													type: 'sap.ui.model.type.Date',
@@ -148,7 +148,7 @@
 														style: 'medium',
 														pattern: 'yyyy-MM-dd'
 													}
-												}" visible="{= !!${/bEdit}}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/>
+												}" visible="{= !!${state>/bEdit}}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/>
 											</m:HBox>
 										</m:cells>
 										<m:cells>

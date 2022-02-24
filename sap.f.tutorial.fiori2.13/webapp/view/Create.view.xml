@@ -201,7 +201,6 @@
 										<m:cells>
 											<m:Select
 												selectedKey="{new>GrpScope}"
-												forceSelection="false"
 												items="{
 													path: 'PROD_SCOPE>/'
 												}"

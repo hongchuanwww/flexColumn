@@ -14,7 +14,7 @@ sap.ui.define([
 			this.oRouter = this.oOwnerComponent.getRouter();
 			this.oModel = this.oOwnerComponent.getModel();
 			this.oDetailModel = this.oOwnerComponent.getModel('detail');
-
+			this.oStateModel = this.oOwnerComponent.getModel('state');
 			// this.oRouter.getRoute("master").attachPatternMatched(this._onProductMatched, this);
 			this.oRouter.getRoute("detail").attachPatternMatched(this._onProductMatched, this);
 			this.oRouter.getRoute("detailDetail").attachPatternMatched(this._onProductMatched, this);
@@ -37,7 +37,7 @@ sap.ui.define([
 
 		_deepCopy: function(obj) {
 			var newobj = null;     // 接受拷贝的新对象
-			if(typeof(obj) === 'object' && typeof(obj) !== null) {   // 判断是否是引用类型
+			if(typeof(obj) === 'object' && obj !== null) {   // 判断是否是引用类型
 				if(obj instanceof Date) {
 					return new Date(obj.valueOf());
 				}
@@ -66,8 +66,9 @@ sap.ui.define([
 		},
 
 		_onProductMatched: function (oEvent) {
-			this._bundle = oEvent.getParameter("arguments").bundle;
-			if(this._bundle) {
+			var _bundle = oEvent.getParameter("arguments").bundle;
+			if(_bundle && this._bundle !== _bundle) {
+				this._bundle = _bundle;
 				this.cancel();
 				var that = this;
 				this.oOwnerComponent.getModel('invoice').read("/" + this._bundle + '?$expand=ToGroup/ToItem,ToPrice' , {
@@ -107,12 +108,12 @@ sap.ui.define([
 		},
 
 		cancel: function () {
-			this.oModel.setProperty('/bEdit', false);
+			this.oStateModel.setProperty('/bEdit', false);
 			this.oDetailModel.setData(this._deepCopy(this.data));
 		},
 
 		edit: function () {
-			this.oModel.setProperty('/bEdit', true);
+			this.oStateModel.setProperty('/bEdit', true);
 		},
 
 		_DatePipe: function(obj, prop) {

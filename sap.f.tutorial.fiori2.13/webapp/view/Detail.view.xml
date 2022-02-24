@@ -72,7 +72,7 @@
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="BU {i18n>HeaderDesc} : " design="Bold"/>
-						<m:Text text=" {detail>/BuDesc}" editable="{= !!${/bEdit}}"/>
+						<m:Text text=" {detail>/BuDesc}"/>
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="{i18n>salesOrg} : " design="Bold"/>
@@ -124,7 +124,7 @@
 							formatOptions: {
 								style: 'medium'
 							}
-						}" editable="{= !!${/bEdit}}"/> -->
+						}" editable="{= !!${state>/bEdit}}"/> -->
 						<m:DatePicker value="{
 							path: 'detail>/ValidTo',
 							type: 'sap.ui.model.type.Date',
@@ -132,21 +132,21 @@
 								style: 'medium',
 								pattern: 'yyyy-MM-dd'
 							}
-						}" editable="{= !!${/bEdit}}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/>
+						}" editable="{= !!${state>/bEdit}}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/>
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="{i18n>SalesVolume} : " design="Bold"/>
 						<m:HBox>
-							<m:ObjectIdentifier text="{detail>/Qty}" visible="{= !${/bEdit}}"/>
-							<m:Input value="{detail>/Qty}" visible="{= !!${/bEdit}}"/>
+							<m:ObjectIdentifier text="{detail>/Qty}" visible="{= !${state>/bEdit}}"/>
+							<m:Input value="{detail>/Qty}" visible="{= !!${state>/bEdit}}"/>
 						</m:HBox>
-						<!-- <m:Text text="{detail>Qty}" editable="{= !!${/bEdit}}"/> -->
+						<!-- <m:Text text="{detail>Qty}" editable="{= !!${state>/bEdit}}"/> -->
 					</m:HBox>
 				</m:VBox>
 				<m:VBox>
 					<m:VBox justifyContent="Start">
-						<m:CheckBox text="{i18n>UnifiedDelivery}" selected="{!!detail>/Delivery}" editable="{= !!${/bEdit}}"/>
-						<m:CheckBox text="{i18n>MechanicalEquipment}" selected="{!!detail>/Eqip}" editable="{= !!${/bEdit}}"/>
+						<m:CheckBox text="{i18n>UnifiedDelivery}" selected="{!!detail>/Delivery}" editable="{= !!${state>/bEdit}}"/>
+						<m:CheckBox text="{i18n>MechanicalEquipment}" selected="{!!detail>/Eqip}" editable="{= !!${state>/bEdit}}"/>
 						<m:HBox>
 							<m:Label text="{i18n>Status} : " design="Bold"/>
 							<m:Text text="{detail>/Status}"/>
@@ -170,7 +170,7 @@
                                 type="Transparent"
                                 icon="sap-icon://add"
                                 press=".editAddGroup" 
-								visible="{= !!${/bEdit}}" />
+								visible="{= !!${state>/bEdit}}" />
                             <!-- <m:OverflowToolbarButton
                                 type="Transparent"
                                 icon="sap-icon://edit"
@@ -180,7 +180,7 @@
 							<m:Table
 								items="{path : 'detail>/ToGroup/results'}">
 								<m:columns>
-									<m:Column  visible="{= !!${/bEdit}}"/>
+									<m:Column  visible="{= !!${state>/bEdit}}"/>
 									<m:Column>
 										<m:Text text="{i18n>groupID}"/>
 									</m:Column>
@@ -214,45 +214,45 @@
 										</m:cells>
 										<m:cells>
 											<m:HBox>
-												<m:ObjectIdentifier text="{detail>GrpText}" visible="{= !${/bEdit}}"/>
-												<m:Input value="{detail>GrpText}" visible="{= !!${/bEdit}}"/>
+												<m:ObjectIdentifier text="{detail>GrpText}" visible="{= !${state>/bEdit}}"/>
+												<m:Input value="{detail>GrpText}" visible="{= !!${state>/bEdit}}"/>
 											</m:HBox>
 											<!-- <m:ObjectIdentifier text="{detail>GrpText}"/> -->
-											<!-- <m:Input value="{detail>GrpText}" visible="{= !!${/bEdit}}"/> -->
+											<!-- <m:Input value="{detail>GrpText}" visible="{= !!${state>/bEdit}}"/> -->
 										</m:cells>		
 										<m:cells>
 											<!-- <m:ObjectIdentifier text="{detail>GrpScope}"/> -->
-											<!-- <m:HBox> -->
-											<m:ObjectIdentifier text="{detail>GrpScope}-{detail>GrpScopeDesc}"/>
-												<!-- <m:Select
+											<m:HBox>
+											<!-- <m:ObjectIdentifier text="{detail>GrpScope}-{detail>GrpScopeDesc}"/> -->
+												<m:Select
 													selectedKey="{detail>GrpScope}"
 													items="{
 														path: 'PROD_SCOPE>/'
 													}"
-													visible="{= !!${/bEdit}}"
+													visible="{= !!${state>/bEdit}}"
 												>
 													<core:Item key="{PROD_SCOPE>Numb} {PROD_SCOPE>High}" text="{PROD_SCOPE>Numb} {PROD_SCOPE>High}"/>
-												</m:Select> -->
-											<!-- </m:HBox> -->
-										</m:cells>
-										<m:cells>
-											<m:HBox>
-												<m:ObjectIdentifier text="{detail>GrpQty}" visible="{= !${/bEdit}}"/>
-												<m:Input value="{detail>GrpQty}" visible="{= !!${/bEdit}}"/>
+												</m:Select>
 											</m:HBox>
 										</m:cells>
 										<m:cells>
-											<m:CheckBox selected="{= !!${detail>GrpFree}}" enabled="{= !!${/bEdit}}"/>
+											<m:HBox>
+												<m:ObjectIdentifier text="{detail>GrpQty}" visible="{= !${state>/bEdit}}"/>
+												<m:Input value="{detail>GrpQty}" visible="{= !!${state>/bEdit}}"/>
+											</m:HBox>
+										</m:cells>
+										<m:cells>
+											<m:CheckBox selected="{= !!${detail>GrpFree}}" enabled="{= !!${state>/bEdit}}"/>
 										</m:cells>
 										<m:cells>
 											<m:HBox>
-												<m:ObjectIdentifier text="{detail>GrpDelivery}" visible="{= !${/bEdit}}"/>
-												<m:Input value="{detail>GrpDelivery}" visible="{= !!${/bEdit}}"/>
+												<m:ObjectIdentifier text="{detail>GrpDelivery}" visible="{= !${state>/bEdit}}"/>
+												<m:Input value="{detail>GrpDelivery}" visible="{= !!${state>/bEdit}}"/>
 											</m:HBox>
-											<!-- <m:ObjectIdentifier text="{detail>GrpDelivery}" enabled="{= !!${/bEdit}}"/> -->
+											<!-- <m:ObjectIdentifier text="{detail>GrpDelivery}" enabled="{= !!${state>/bEdit}}"/> -->
 										</m:cells>
 										<m:cells>
-											<m:CheckBox selected="{= !!${detail>GrpQtycheck}}" enabled="{= !!${/bEdit}}"/>
+											<m:CheckBox selected="{= !!${detail>GrpQtycheck}}" enabled="{= !!${state>/bEdit}}"/>
 										</m:cells>						
 									</m:ColumnListItem>
 								</m:items>
@@ -328,8 +328,8 @@
 
 										<m:cells>
 											<m:HBox>
-												<m:ObjectIdentifier text="{detail>Rate}" visible="{= !${/bEdit}}"/>
-												<m:Input value="{detail>Rate}" visible="{= !!${/bEdit}}"/>
+												<m:ObjectIdentifier text="{detail>Rate}" visible="{= !${state>/bEdit}}"/>
+												<m:Input value="{detail>Rate}" visible="{= !!${state>/bEdit}}"/>
 											</m:HBox>
 										</m:cells>
 										<m:cells>
@@ -337,8 +337,8 @@
 										</m:cells>
 										<m:cells>
 											<m:HBox>
-												<m:ObjectIdentifier text="{detail>Cap}" visible="{= !${/bEdit}}"/>
-												<m:Input value="{detail>Cap}" visible="{= !!${/bEdit}}"/>
+												<m:ObjectIdentifier text="{detail>Cap}" visible="{= !${state>/bEdit}}"/>
+												<m:Input value="{detail>Cap}" visible="{= !!${state>/bEdit}}"/>
 											</m:HBox>
 										</m:cells>
 										<m:cells>
@@ -360,7 +360,7 @@
 														style: 'medium',
 														pattern: 'yyyy-MM-dd'
 													}
-												}" visible="{= !${/bEdit}}"/>
+												}" visible="{= !${state>/bEdit}}"/>
 												<m:DatePicker value="{
 													path: 'detail>/ValidTo',
 													type: 'sap.ui.model.type.Date',
@@ -368,7 +368,7 @@
 														style: 'medium',
 														pattern: 'yyyy-MM-dd'
 													}
-												}" visible="{= !!${/bEdit}}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/>
+												}" visible="{= !!${state>/bEdit}}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/>
 											</m:HBox>
 										</m:cells>
 
@@ -384,9 +384,9 @@
 		<footer>
 			<m:OverflowToolbar>
 				<m:ToolbarSpacer/>
-				<m:Button type="Emphasized" text="{i18n>Edit}" visible="{= !${/bEdit}}" press=".edit"/>
-				<m:Button type="Emphasized" text="{i18n>Save}" visible="{= !!${/bEdit}}" press=".save"/>
-				<m:Button text="{i18n>Cancel}" visible="{= !!${/bEdit}}" press=".cancel"/>
+				<m:Button type="Emphasized" text="{i18n>Edit}" visible="{= !${state>/bEdit}}" press=".edit"/>
+				<m:Button type="Emphasized" text="{i18n>Save}" visible="{= !!${state>/bEdit}}" press=".save"/>
+				<m:Button text="{i18n>Cancel}" visible="{= !!${state>/bEdit}}" press=".cancel"/>
 			</m:OverflowToolbar>
 		</footer>
 	</ObjectPageLayout>
