@@ -13,6 +13,8 @@ sap.ui.define([
 			this.oRouter = this.oOwnerComponent.getRouter();
 			this.oModel = this.oOwnerComponent.getModel();
 			this.oNewModel = this.oOwnerComponent.getModel('new');
+			this.oColModel = this.oOwnerComponent.getModel('columns');
+			this.oProductModel = this.oOwnerComponent.getModel('product');
 			this.oRouter.getRoute("createDetail").attachPatternMatched(this._onPatternMatch, this);
             this.DIC = [
                 'Product',
@@ -21,25 +23,6 @@ sap.ui.define([
                 'ValidTo'
                 // 'TODO'
             ];
-			this.oColModel = new JSONModel({
-				"cols": [
-					{
-						"label": "Product",
-						"template": "Product",
-						"width": "5rem"
-					},
-					{
-						"label": "ProductDescZh",
-						"template": "ProductDescZh"
-					},
-					{
-						"label": "ProductDescEn",
-						"template": "ProductDescEn"
-					}
-				]
-			});
-			this.oProductModel = new JSONModel([]);
-			this.getView().setModel(this.oProductModel,'product');
 		},
 
 		handleAboutPress: function () {
