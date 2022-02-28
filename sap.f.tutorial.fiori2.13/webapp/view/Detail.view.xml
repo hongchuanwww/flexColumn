@@ -217,19 +217,21 @@
 												<m:ObjectIdentifier text="{detail>GrpText}" visible="{= !${state>/bEdit}}"/>
 												<m:Input value="{detail>GrpText}" visible="{= !!${state>/bEdit}}"/>
 											</m:HBox>
-											<!-- <m:ObjectIdentifier text="{detail>GrpText}"/> -->
-											<!-- <m:Input value="{detail>GrpText}" visible="{= !!${state>/bEdit}}"/> -->
 										</m:cells>		
 										<m:cells>
 											<!-- <m:ObjectIdentifier text="{detail>GrpScope}"/> -->
 											<m:HBox>
-											<!-- <m:ObjectIdentifier text="{detail>GrpScope}-{detail>GrpScopeDesc}"/> -->
+												<m:ObjectIdentifier text="{detail>GrpScope}-{detail>GrpScopeDesc}" visible="{= !${state>/bEdit} || ${detail>__metadata}}"/>
 												<m:Select
-													selectedKey="{detail>GrpScope}"
-													items="{
-														path: 'PROD_SCOPE>/'
+													selectedKey="{
+														path:'detail>GrpScope'
 													}"
-													visible="{= !!${state>/bEdit}}"
+													items="{
+														path: 'PROD_SCOPE>/',
+														templateShareable: true
+													}"
+													forceSelection="{= !${detail>__metadata}}"
+													visible="{= !!${state>/bEdit} &amp;&amp; !${detail>__metadata}}"
 												>
 													<core:Item key="{PROD_SCOPE>Numb} {PROD_SCOPE>High}" text="{PROD_SCOPE>Numb} {PROD_SCOPE>High}"/>
 												</m:Select>

@@ -99,7 +99,10 @@
 													showValueHelp="true"
 													valueHelpOnly="false"
 													valueHelpRequest=".onValueHelpRequested"
-													suggestionItems="{product>/}"
+													suggestionItems="{
+														path: 'product>/',
+														templateShareable: true
+													}"
 													visible="{= !!${state>/bEdit}}" 
 												>
 													<core:Item key="{product>Product}" text="{product>Product}-{product>ProductDescZh}" />
