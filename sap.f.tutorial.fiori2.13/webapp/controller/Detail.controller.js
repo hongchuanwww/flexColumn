@@ -193,7 +193,7 @@ sap.ui.define([
 								item.Changeflag = "U";
 							}
 							
-							item.GroupId = group.GrpId;
+							item.GrpId = group.GrpId;
 							item.GrpScope = group.GrpScope.split(' ')[0];
 						});
 					}
