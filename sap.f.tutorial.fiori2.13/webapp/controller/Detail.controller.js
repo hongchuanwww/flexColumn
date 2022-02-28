@@ -144,7 +144,6 @@ sap.ui.define([
 
 			this.oDetailModel.setProperty('/ToGroup/results', groups);
 		},
-
 		save: function () {
 			var fnSuccess = function () {
 				MessageToast.show('success');

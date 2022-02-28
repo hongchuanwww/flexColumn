@@ -202,7 +202,8 @@
 											<m:Select
 												selectedKey="{new>GrpScope}"
 												items="{
-													path: 'PROD_SCOPE>/'
+													path: 'PROD_SCOPE>/',
+													templateShareable: true
 												}"
 											>
 												<core:Item key="{PROD_SCOPE>Numb} {PROD_SCOPE>High}" text="{PROD_SCOPE>Numb} {PROD_SCOPE>High}" />
