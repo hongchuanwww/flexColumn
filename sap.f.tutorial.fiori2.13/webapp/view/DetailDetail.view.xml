@@ -153,7 +153,7 @@
 											</m:HBox>
 										</m:cells>
 										<m:cells>
-											<m:CheckBox selected="true"/>
+											<m:CheckBox selected="true" editable="false"/>
 										</m:cells>
 									</m:ColumnListItem>
 								</m:items>

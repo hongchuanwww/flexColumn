@@ -108,7 +108,7 @@ sap.ui.define([
 			this._DatePipe(data,'ValidTo');
 
 			[data.BuId, data.BuDesc] = data.BuId?.split(' ') || [];
-			[data.BdPromType,data.BdPromTypeDesc] = data.BdPromType?.split(' ') || [];
+			[data.BdPromType, data.BdPromTypeDesc] = data.BdPromType?.split(' ') || [];
 			data.ToPrice.forEach(price => {
 				this._DatePipe(price,'ValidFrom');
 				this._DatePipe(price,'ValidTo');
