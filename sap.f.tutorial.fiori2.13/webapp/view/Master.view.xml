@@ -28,7 +28,7 @@
 					<Label text="Distr Channel"/>
 					<Input value="{tableData>boundno}"/>
 				</HBox>
-				<Button icon="sap-icon://delete" type="Transparent" press=".onSearch"/>
+				<Button icon="sap-icon://search" type="Transparent" press=".onSearch"/>
 			</HBox>
 		</semantic:headerContent>
 		<!-- DynamicPage Content -->

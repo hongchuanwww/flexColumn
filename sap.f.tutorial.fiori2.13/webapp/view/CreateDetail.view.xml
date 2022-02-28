@@ -82,9 +82,9 @@
 									<m:Column width="200px">
 										<m:Text text="{i18n>Product} - {i18n>ProductDesc}"/>
 									</m:Column>
-									<!-- <m:Column>
+									<m:Column>
 										<m:Text text="{i18n>ProductDesc}"/>
-									</m:Column> -->
+									</m:Column>
 									<m:Column>
 										<m:Text text="{i18n>ValidFrom}"/>
 									</m:Column>
@@ -109,12 +109,13 @@
 												valueHelpRequest=".onValueHelpRequested"
 												suggestionItems="{product>/}"
 											>
-												<core:Item key="{product>Product}" text="{product>Product}-{product>ProductDescZh}" />
+												<!-- <core:Item key="{product>Product}" text="{product>Product}-{product>ProductDescZh}" /> -->
+												<core:Item key="{product>Product}" text="{product>Product}" />
 											</m:Input>
 										</m:cells>
-										<!-- <m:cells>
-											<m:Input value="{new>ProducDesc}"/>
-										</m:cells> -->
+										<m:cells>
+											<m:text Text="{product>ProductDescZh}"/>
+										</m:cells>
 										<m:cells>
 											<!-- <m:ObjectIdentifier text="{new>ValidFrom}"/> -->
 											<m:DatePicker value="{

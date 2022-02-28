@@ -105,7 +105,8 @@
 													}"
 													visible="{= !!${state>/bEdit}}" 
 												>
-													<core:Item key="{product>Product}" text="{product>Product}-{product>ProductDescZh}" />
+													<!-- <core:Item key="{product>Product}" text="{product>Product}-{product>ProductDescZh}" /> -->
+													<core:Item key="{product>Product}" text="{product>Product}" />
 												</m:Input>
 											</m:HBox>
 										</m:cells>
@@ -155,7 +156,7 @@
 											</m:HBox>
 										</m:cells>
 										<m:cells>
-											<m:CheckBox selected="true"/>
+											<m:CheckBox selected="true" editable="false"/>
 										</m:cells>
 									</m:ColumnListItem>
 								</m:items>
