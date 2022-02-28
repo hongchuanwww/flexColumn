@@ -221,9 +221,9 @@
 											<!-- <m:Input value="{detail>GrpText}" visible="{= !!${state>/bEdit}}"/> -->
 										</m:cells>		
 										<m:cells>
-											<m:ObjectIdentifier text="{detail>GrpScope}-{detail>GrpScopeDesc}"/>
-											<!-- <m:HBox>
-												<m:ObjectIdentifier text="{detail>GrpScope}-{detail>GrpScopeDesc}"/>
+											<!-- <m:ObjectIdentifier text="{detail>GrpScope}-{detail>GrpScopeDesc}"/> -->
+											<m:HBox>
+												<m:ObjectIdentifier text="{detail>GrpScope}" visible="{= !${state>/bEdit}}"/>
 												<m:Select
 													selectedKey="{detail>GrpScope}"
 													items="{
@@ -233,7 +233,7 @@
 												>
 													<core:Item key="{PROD_SCOPE>Numb} {PROD_SCOPE>High}" text="{PROD_SCOPE>Numb} {PROD_SCOPE>High}"/>
 												</m:Select>
-											</m:HBox> -->
+											</m:HBox>
 										</m:cells>
 										<m:cells>
 											<m:HBox>

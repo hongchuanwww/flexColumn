@@ -187,7 +187,14 @@ sap.ui.define([
 						group.ToItem.forEach(item => {
 							this._DatePipe(item,'ValidFrom');
 							this._DatePipe(item,'ValidTo');
-							item.Changeflag = "U";
+							if (item.ItemId === undefined) {
+								item.Changeflag = "C";
+							} else {
+								item.Changeflag = "U";
+							}
+							
+							item.GroupId = group.GrpId;
+							item.GrpScope = group.GrpScope.split(' ')[0];
 						});
 					}
 				});
