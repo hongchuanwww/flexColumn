@@ -86,11 +86,17 @@
 				<m:VBox>
 					<m:HBox>
 						<m:Label text="{i18n>SortCode} : " design="Bold"/>
-						<m:Text text="{detail>/SortCode}"/>
+						<m:HBox>
+							<m:ObjectIdentifier text="{detail>/SortCode}" visible="{= !${state>/bEdit}}"/>
+							<m:Input value="{detail>/SortCode}" visible="{= !!${state>/bEdit}}"/>
+						</m:HBox>
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="{i18n>Supplier} : " design="Bold"/>
-						<m:Text text="{detail>/BdDesc}"/>
+						<m:HBox>
+							<m:ObjectIdentifier text="{detail>/BdDesc}" visible="{= !${state>/bEdit}}"/>
+							<m:Input value="{detail>/BdDesc}" visible="{= !!${state>/bEdit}}"/>
+						</m:HBox>
 					</m:HBox>
 					<m:HBox>
 						<m:Label text="{i18n>promotionTypeDesc} : " design="Bold"/>
