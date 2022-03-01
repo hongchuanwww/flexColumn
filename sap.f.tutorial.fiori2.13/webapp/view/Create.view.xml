@@ -69,6 +69,7 @@
 						<m:Label text="BU {i18n>HeaderDesc} : " design="Bold"/>
 						<m:Select
 							selectedKey="{new>/BuId}"
+							forceSelection="true"
 							items="{path: 'invoice>/SHBusinessUnitSet'}"
 						>
 							<core:Item key="{invoice>Sobid} {invoice>Uname}" text="{invoice>Sobid}  {invoice>Uname}"/>
