@@ -220,7 +220,7 @@
 										</m:cells>		
 										<m:cells>
 											<m:HBox>
-												<m:ObjectIdentifier text="{detail>GrpScope}-{detail>GrpScopeDesc}" visible="{= !${state>/bEdit} || ${detail>__metadata}}"/>
+												<m:ObjectIdentifier text="{detail>GrpScope}-{detail>GrpScopeDesc}" visible="{= !!${detail>__metadata}}"/>
 												<m:Select
 													selectedKey="{
 														path:'detail>GrpScope'
