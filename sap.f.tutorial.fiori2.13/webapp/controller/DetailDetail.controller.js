@@ -59,6 +59,36 @@ sap.ui.define([
 			}
 		},
 
+		firePaste: function(oEvent) {
+			var oTable = this.getView().byId("productTable");
+			navigator.clipboard.readText().then(
+				function(text) {
+					var _arr = text.split('\r\n');
+					for (var i in _arr) {
+						_arr[i] = _arr[i].split('\t');
+					}
+					oTable.firePaste({
+						"data": _arr
+					});
+				}.bind(this)
+			);
+		},
+
+		onPaste: function (e) {
+			var pasteData = e.getParameters().data;
+			var data = this.getView().getModel('detail').getProperty("/ToGroup/results/" + this._item + '/ToItem/results')
+            var newData = pasteData.map(row => {
+				var obj = {};
+				for(var i = 0; i < row.length; i++) {
+					obj[this.DIC[i]] = row[i];
+				}
+				return obj;
+			});
+			data.push(newData);
+			this.getView().getModel('new').setProperty("/ToGroup/" + this.group + '/ToItem', data);
+		},
+
+
 		editDeleteRow : function(e) {
 			var btn = e.getSource(),
 				row = btn.getParent(),
