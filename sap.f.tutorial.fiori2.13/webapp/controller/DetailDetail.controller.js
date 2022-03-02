@@ -14,6 +14,13 @@ sap.ui.define([
 			this.oColModel = this.oOwnerComponent.getModel('columns');
 			this.oProductModel = this.oOwnerComponent.getModel('product');
 			this.oRouter.getRoute("detailDetail").attachPatternMatched(this._onPatternMatch, this);
+			this.DIC = [
+                'Product',
+                'ProducDesc',
+                'ValidFrom',
+                'ValidTo'
+                // 'TODO'
+            ];
 		},
 
 		handleAboutPress: function () {
@@ -60,7 +67,7 @@ sap.ui.define([
 		},
 
 		firePaste: function(oEvent) {
-			var oTable = this.getView().byId("productTable");
+			var oTable = this.getView().byId("itemTable");
 			navigator.clipboard.readText().then(
 				function(text) {
 					var _arr = text.split('\r\n');
@@ -76,7 +83,7 @@ sap.ui.define([
 
 		onPaste: function (e) {
 			var pasteData = e.getParameters().data;
-			var data = this.getView().getModel('detail').getProperty("/ToGroup/results/" + this._item + '/ToItem/results')
+			var data = this.getView().getModel('detail').getProperty("/ToGroup/results/" + this._item + '/ToItem/results');
             var newData = pasteData.map(row => {
 				var obj = {};
 				for(var i = 0; i < row.length; i++) {
@@ -85,7 +92,7 @@ sap.ui.define([
 				return obj;
 			});
 			data.push(newData);
-			this.getView().getModel('new').setProperty("/ToGroup/" + this.group + '/ToItem', data);
+			this.getView().getModel('detail').setProperty("/ToGroup/results/" + this._item + '/ToItem/results',data);
 		},
 
 
