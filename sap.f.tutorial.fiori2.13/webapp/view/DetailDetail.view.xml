@@ -64,10 +64,17 @@
                                 icon="sap-icon://add"
                                 press=".editAddProduct" 
 								visible="{= !!${state>/bEdit}}" />
+							<m:OverflowToolbarButton
+								id="editPasteButton"
+                                type="Transparent"
+                                icon="sap-icon://paste"
+								visible="{= !!${state>/bEdit}}"
+                                press="firePaste" />
                         </actions>
 						<blocks>
 							<m:Table
-								items="{path : 'detail>ToItem/results'}">
+								items="{path : 'detail>ToItem/results'}"
+								paste=".onPaste">
 								<m:columns>
 									<m:Column  visible="{= !!${state>/bEdit}}"/>
 									<m:Column>

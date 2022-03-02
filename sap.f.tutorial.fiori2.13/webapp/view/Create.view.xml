@@ -72,7 +72,7 @@
 							forceSelection="true"
 							items="{path: 'invoice>/SHBusinessUnitSet'}"
 						>
-							<core:Item key="{invoice>Sobid} {invoice>Uname}" text="{invoice>Sobid}  {invoice>Uname}"/>
+							<core:Item key="{invoice>Sobid} {invoice>Uname}" text="{invoice>Sobid} {invoice>Uname}"/>
 						</m:Select>
 					</m:HBox>
 					<!-- <m:HBox>
