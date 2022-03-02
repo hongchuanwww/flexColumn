@@ -90,6 +90,7 @@ sap.ui.define([
 				MessageToast.show('success');
 				this.handleClose();
 				oDataModel.refresh();
+				this._initCreateModel();
 			}.bind(this);
 
 			var fnError = function (oError) {
