@@ -91,7 +91,11 @@ sap.ui.define([
 				}
 				return obj;
 			});
-			data.push(newData);
+
+			for (var i = 0; i < newData.length; i++) {
+				data.push(newData[i]);
+			}
+			
 			this.getView().getModel('detail').setProperty("/ToGroup/results/" + this._item + '/ToItem/results',data);
 		},
 
