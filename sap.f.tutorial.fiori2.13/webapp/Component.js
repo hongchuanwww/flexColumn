@@ -27,7 +27,13 @@ sap.ui.define([
 			oModel = new JSONModel();
 			this.setModel(oModel);
 
-			oCreateModel = new JSONModel();
+			oCreateModel = new JSONModel({
+				Changeflag: "C",
+				Qty: "1",
+				ToGroup: [],
+				ToPrice: [],
+				ToMessage: []
+			});
 			this.setModel(oCreateModel, 'new');
 
 			oDetailModel = new JSONModel();

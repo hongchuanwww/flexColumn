@@ -20,13 +20,27 @@ sap.ui.define([
 		},
 
 		_initCreateModel: function() {
-			this.oCreateModel.setData({
-				Changeflag: "C",
-				Qty: "1",
-				ToGroup: [],
-				ToPrice: [],
-				ToMessage: []
+			var oData = this.oCreateModel.getData();
+			[
+				'ToGroup',
+				'ToPrice',
+				'ToMessage'
+			].forEach(prop => {
+				oData[prop] = [];
 			});
+			oData.Qty = "1";
+			[
+				'SortCode',
+				'BdDesc',
+				'BdPromType',
+				'ValidFrom',
+				'ValidTo',
+				'Delivery',
+				'Eqip'
+			].forEach(prop => {
+				oData[prop] = null;
+			});
+			this.oCreateModel.setData(oData);
 		},
 
 		onGroupPress: function (oEvent) {
