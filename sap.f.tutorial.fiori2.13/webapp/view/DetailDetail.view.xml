@@ -73,6 +73,7 @@
                         </actions>
 						<blocks>
 							<m:Table
+								id="itemTable"
 								items="{path : 'detail>ToItem/results'}"
 								paste=".onPaste">
 								<m:columns>
