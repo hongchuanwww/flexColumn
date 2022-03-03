@@ -3,7 +3,8 @@ sap.ui.define([
 	'sap/m/Token',
 	'sap/ui/core/Fragment',
 	"sap/m/MessageBox",
-], function (Controller, Token, Fragment, MessageBox) {
+	'sap/ui/core/BusyIndicator'
+], function (Controller, Token, Fragment, MessageBox, BusyIndicator) {
 	"use strict";
 
 	return Controller.extend("zychcn.zbundle01.controller.CreateDetail", {
@@ -45,10 +46,16 @@ sap.ui.define([
 
 		_getProductList: function() {
 			var that = this;
+			BusyIndicator.show();
 			this.getView().getModel('invoice').read('/SHScopeSet?$filter=GrpScope%20eq%20%27'+this.GrpScope+'%27%20and%20BuId%20eq%20%27'+this.BuId+'%27', {
 				success: function (oData) {
 					that.oProductModel.setData(oData.results);
 					that._openValueHelp();
+					BusyIndicator.hide();
+				},
+				error: function (error) {
+					MessageBox.error(error);
+					BusyIndicator.hide();
 				}
 			});
 		},
