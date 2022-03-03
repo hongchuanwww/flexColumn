@@ -149,7 +149,9 @@ sap.ui.define([
 		save: function () {
 			var fnSuccess = function () {
 				MessageToast.show('success');
-				this.handleClose();
+				this.oStateModel.setProperty('/bEdit', false);
+
+				// this.handleClose();
 				this.cancel();
 			}.bind(this);
 

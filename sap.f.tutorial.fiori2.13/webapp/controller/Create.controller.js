@@ -102,7 +102,7 @@ sap.ui.define([
 			var oDataModel = this.getView().getModel('invoice');
 			var fnSuccess = function () {
 				MessageToast.show('success');
-				this.handleClose();
+				// this.handleClose();
 				oDataModel.refresh();
 				this._initCreateModel();
 			}.bind(this);
