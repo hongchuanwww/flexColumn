@@ -132,9 +132,10 @@ sap.ui.define([
 		save: function () {
 			var fnSuccess = function () {
 				MessageToast.show('success');
-				this.cancel();
+				// this.cancel();
+				this.oStateModel.setProperty('/bEdit', false);
 				this.oDataModel.refresh();
-				setTimeout(this._refreshDetail,1000);
+				// setTimeout(this._refreshDetail,1000);
 			}.bind(this);
 
 			var fnError = function (oError) {
