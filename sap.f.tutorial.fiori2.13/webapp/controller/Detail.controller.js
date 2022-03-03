@@ -10,7 +10,7 @@ sap.ui.define([
 	return Controller.extend("zychcn.zbundle01.controller.Detail", {
 		onInit: function () {
 			this.oOwnerComponent = this.getOwnerComponent();
-
+			this.oDataModel = this.oOwnerComponent.getModel('invoice');
 			this.oRouter = this.oOwnerComponent.getRouter();
 			this.oModel = this.oOwnerComponent.getModel();
 			this._deepCopy = this.oOwnerComponent.deepCopy;
@@ -57,7 +57,7 @@ sap.ui.define([
 				this._bundle = _bundle;
 				this.cancel();
 				var that = this;
-				this.oOwnerComponent.getModel('invoice').read("/" + this._bundle + '?$expand=ToGroup/ToItem,ToPrice' , {
+				this.oDataModel.read("/" + this._bundle + '?$expand=ToGroup/ToItem,ToPrice' , {
 					success: function (oData) {
 						that.data = oData;
 						that.oDetailModel.setData(that._deepCopy(oData));
@@ -132,6 +132,7 @@ sap.ui.define([
 				MessageToast.show('success');
 				this.handleClose();
 				this.cancel();
+				this.oDataModel.refresh();
 			}.bind(this);
 
 			var fnError = function (oError) {
@@ -186,7 +187,7 @@ sap.ui.define([
 
 			sPath = 'BundleHeadSet';
 
-			this.oOwnerComponent.getModel('invoice').create(sPath, data, mParameters);
+			this.oDataModel.create(sPath, data, mParameters);
 		},
 		openDialog: function () {
 			var oView = this.getView();
@@ -216,7 +217,7 @@ sap.ui.define([
 		onConfirmDialog: function () {
 			var fnSuccess = function (data) {
 				MessageToast.show('success');
-				this.oOwnerComponent.getModel('invoice').refresh();
+				this.oDataModel.refresh();
 				this.onCloseDialog();
 			}.bind(this);
 
@@ -241,7 +242,7 @@ sap.ui.define([
 				this._DatePipe(price,'ValidTo');
 				price.Changeflag = "C";
 			});
-			this.oOwnerComponent.getModel('invoice').create(sPath, data, mParameters);
+			this.oDataModel.create(sPath, data, mParameters);
 		},
 
 		check: function () {
@@ -273,7 +274,7 @@ sap.ui.define([
 				this._DatePipe(price,'ValidTo');
 				price.Changeflag = "C";
 			});
-			this.oOwnerComponent.getModel('invoice').create(sPath, data, mParameters);
+			this.oDataModel.create(sPath, data, mParameters);
 		},
 		firePaste: function(oEvent) {
 			var oTable = this.getView().byId("checkTable");
