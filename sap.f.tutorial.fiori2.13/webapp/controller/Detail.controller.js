@@ -13,6 +13,8 @@ sap.ui.define([
 
 			this.oRouter = this.oOwnerComponent.getRouter();
 			this.oModel = this.oOwnerComponent.getModel();
+			this._deepCopy = this.oOwnerComponent.deepCopy;
+			this._DatePipe = this.oOwnerComponent.DatePipe;
 			this.oDetailModel = this.oOwnerComponent.getModel('detail');
 			this.oStateModel = this.oOwnerComponent.getModel('state');
 			// this.oRouter.getRoute("master").attachPatternMatched(this._onProductMatched, this);
@@ -33,22 +35,6 @@ sap.ui.define([
 				'ValidTo',
 			];
 			this.data = {};
-		},
-
-		_deepCopy: function(obj) {
-			var newobj = null;     // 接受拷贝的新对象
-			if(typeof(obj) === 'object' && obj !== null) {   // 判断是否是引用类型
-				if(obj instanceof Date) {
-					return new Date(obj.valueOf());
-				}
-				newobj = obj instanceof Array? []: {};          // 判断是数组还是对象
-				for(var i in obj) {   
-					newobj[i] = this._deepCopy(obj[i]);                      // 判断下一级是否还是引用类型
-				} 
-			} else {
-				newobj = obj;
-			}
-			return newobj;
 		},
 
 		onSupplierPress: function (oEvent) {
@@ -116,11 +102,6 @@ sap.ui.define([
 			this.oStateModel.setProperty('/bEdit', true);
 		},
 
-		_DatePipe: function(obj, prop) {
-			if(obj[prop]) {
-				obj[prop] = new Date(obj[prop]);
-			}
-		},
 
 		editAddGroup: function() {
 			var groups = this.oDetailModel.getData().ToGroup.results;
@@ -288,16 +269,6 @@ sap.ui.define([
 				this._DatePipe(price,'ValidTo');
 				price.Changeflag = "C";
 			});
-			// data.ToGroup = data.ToGroup.results;
-			// data.ToGroup.forEach(group => {
-			// 	group.Changeflag = "C";
-			// 	group.ToItem = group.ToItem.results;
-			// 	group.ToItem.forEach(item => {
-			// 		this._DatePipe(item,'ValidFrom');
-			// 		this._DatePipe(item,'ValidTo');
-			// 		item.Changeflag = "C";
-			// 	});
-			// });
 			this.oOwnerComponent.getModel('invoice').create(sPath, data, mParameters);
 		},
 		firePaste: function(oEvent) {
