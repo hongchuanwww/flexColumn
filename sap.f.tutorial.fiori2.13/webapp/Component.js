@@ -133,6 +133,28 @@ sap.ui.define([
 				resolve(oFCL);
 
 			}.bind(this));
-		}
+		},
+
+		deepCopy: function(obj) {
+			var newobj = null;     // 接受拷贝的新对象
+			if(typeof(obj) === 'object' && obj !== null) {   // 判断是否是引用类型
+				if(obj instanceof Date) {
+					return new Date(obj.valueOf());
+				}
+				newobj = obj instanceof Array? []: {};          // 判断是数组还是对象
+				for(var i in obj) {   
+					newobj[i] = this._deepCopy(obj[i]);                      // 判断下一级是否还是引用类型
+				} 
+			} else {
+				newobj = obj;
+			}
+			return newobj;
+		},
+
+		DatePipe: function(obj, prop) {
+			if(obj[prop]) {
+				obj[prop] = new Date(obj[prop]);
+			}
+		},
 	});
 });
