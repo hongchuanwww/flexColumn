@@ -51,18 +51,22 @@ sap.ui.define([
 			}.bind(this));
 		},
 
+		_refreshDetail () {
+			var that = this;
+			this.oDataModel.read("/" + this._bundle + '?$expand=ToGroup/ToItem,ToPrice' , {
+				success: function (oData) {
+					that.data = oData;
+					that.oDetailModel.setData(that._deepCopy(oData));
+				}
+			});
+		},
+
 		_onProductMatched: function (oEvent) {
 			var _bundle = oEvent.getParameter("arguments").bundle;
 			if(_bundle && this._bundle !== _bundle) {
 				this._bundle = _bundle;
 				this.cancel();
-				var that = this;
-				this.oDataModel.read("/" + this._bundle + '?$expand=ToGroup/ToItem,ToPrice' , {
-					success: function (oData) {
-						that.data = oData;
-						that.oDetailModel.setData(that._deepCopy(oData));
-					}
-				});
+				this._refreshDetail();
 			}
 		},
 
@@ -130,9 +134,9 @@ sap.ui.define([
 		save: function () {
 			var fnSuccess = function () {
 				MessageToast.show('success');
-				this.handleClose();
 				this.cancel();
 				this.oDataModel.refresh();
+				setTimeout(this._refreshDetail,1000);
 			}.bind(this);
 
 			var fnError = function (oError) {
