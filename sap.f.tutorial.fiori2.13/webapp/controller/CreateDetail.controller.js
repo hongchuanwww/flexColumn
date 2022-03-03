@@ -1,10 +1,9 @@
 sap.ui.define([
+    "sap/ui/model/json/JSONModel",
 	"sap/ui/core/mvc/Controller",
 	'sap/m/Token',
-	'sap/ui/core/Fragment',
-	"sap/m/MessageBox",
-	'sap/ui/core/BusyIndicator'
-], function (Controller, Token, Fragment, MessageBox, BusyIndicator) {
+	'sap/ui/core/Fragment'
+], function (JSONModel, Controller, Token, Fragment) {
 	"use strict";
 
 	return Controller.extend("zychcn.zbundle01.controller.CreateDetail", {
@@ -41,32 +40,34 @@ sap.ui.define([
                     path: "/ToGroup/" + this.group,
 					model: "new"
                 });
+				this._getProductList();
 			}
 		},
 
 		_getProductList: function() {
-			var that = this;
-			BusyIndicator.show();
-			this.getView().getModel('invoice').read('/SHScopeSet?$filter=GrpScope%20eq%20%27'+this.GrpScope+'%27%20and%20BuId%20eq%20%27'+this.BuId+'%27', {
-				success: function (oData) {
-					that.oProductModel.setData(oData.results);
-					that._openValueHelp();
-					BusyIndicator.hide();
-				},
-				error: function (error) {
-					MessageBox.error(error);
-					BusyIndicator.hide();
-				}
-			});
+			var group = this.oNewModel.getProperty( "/ToGroup/" + this.group);
+			var GrpScope = group?.GrpScope?.split(' ')[0];
+			var data = this.oNewModel.getData();
+			var BuId = data.BuId?.split(' ')[0];
+			if(GrpScope && BuId) {
+				var that = this;
+				this.getView().getModel('invoice').read('/SHScopeSet?$filter=GrpScope%20eq%20%27'+GrpScope+'%27%20and%20BuId%20eq%20%27'+BuId+'%27', {
+					success: function (oData) {
+						that.oProductModel.setData(oData.results);
+					}
+				});
+			} else {
+				this.oProductModel.setData([]);
+			}
 		},
 		handleFullScreen: function () {
 			var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/endColumn/fullScreen");
-			this.oRouter.navTo("createDetail", {layout: sNextLayout, group: this.group});
+			this.oRouter.navTo("createDetail", {layout: sNextLayout});
 		},
 
 		handleExitFullScreen: function () {
 			var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/endColumn/exitFullScreen");
-			this.oRouter.navTo("createDetail", {layout: sNextLayout, group: this.group});
+			this.oRouter.navTo("createDetail", {layout: sNextLayout});
 		},
 
 		handleClose: function () {
@@ -122,8 +123,9 @@ sap.ui.define([
 			this.getView().getModel('new').setProperty("/ToGroup/" + this.group + '/ToItem', data);
 		},
 
-		_openValueHelp: function () {
+		onValueHelpRequested: function(oEvent) {
 			var aCols = this.oColModel.getData().cols;
+			this._oInput = oEvent.getSource();
 			Fragment.load({
 				name: "zychcn.zbundle01.view.ValueHelpDialogSelect",
 				controller: this
@@ -158,19 +160,6 @@ sap.ui.define([
 				this._oValueHelpDialog.setTokens([oToken]);
 				this._oValueHelpDialog.open();
 			}.bind(this));
-		},
-
-		onValueHelpRequested: function(oEvent) {
-			var group = this.oNewModel.getProperty( "/ToGroup/" + this.group);
-			this.GrpScope = group?.GrpScope?.split(' ')[0];
-			var data = this.oNewModel.getData();
-			this.BuId = data.BuId?.split(' ')[0];
-			if(!this.GrpScope || !this.BuId) {
-				MessageBox.error('请先选择BU ID和Group Scope');
-				return;
-			}
-			this._oInput = oEvent.getSource();
-			this._getProductList();
 		},
 
 		onValueHelpOkPress: function (oEvent) {

@@ -11,8 +11,6 @@ sap.ui.define([
 			this.oOwnerComponent = this.getOwnerComponent();
 			this.oRouter = this.oOwnerComponent.getRouter();
 			this.oModel = this.oOwnerComponent.getModel();
-			this._DatePipe = this.oOwnerComponent.DatePipe;
-			this._deepCopy = this.oOwnerComponent.deepCopy;
 			this.oCreateModel =  this.oOwnerComponent.getModel('new');
 			this._initCreateModel();
 			var settingModel = new JSONModel({
@@ -94,6 +92,11 @@ sap.ui.define([
 			groups.push({});
 			this.oCreateModel.setProperty('/ToPrice',groups);
 		},
+		_DatePipe: function(obj, prop) {
+			if(obj[prop]) {
+				obj[prop] = new Date(obj[prop]);
+			}
+		},
 
 		onSave:  function () {
 			var oDataModel = this.getView().getModel('invoice');
@@ -109,7 +112,7 @@ sap.ui.define([
 				MessageBox.error(JSON.parse(oError.response.body).error.message.value);
 			}.bind(this);
 			var sPath = 'BundleHeadSet';
-			var data = this._deepCopy(this.oCreateModel.getData());
+			var data = this.oCreateModel.getData();
 
 			var mParameters = {
 				error: fnError,
