@@ -10,9 +10,11 @@ sap.ui.define([
 	return Controller.extend("zychcn.zbundle01.controller.Detail", {
 		onInit: function () {
 			this.oOwnerComponent = this.getOwnerComponent();
-
+			this.oDataModel = this.oOwnerComponent.getModel('invoice');
 			this.oRouter = this.oOwnerComponent.getRouter();
 			this.oModel = this.oOwnerComponent.getModel();
+			this._deepCopy = this.oOwnerComponent.deepCopy;
+			this._DatePipe = this.oOwnerComponent.DatePipe;
 			this.oDetailModel = this.oOwnerComponent.getModel('detail');
 			this.oStateModel = this.oOwnerComponent.getModel('state');
 			// this.oRouter.getRoute("master").attachPatternMatched(this._onProductMatched, this);
@@ -35,22 +37,6 @@ sap.ui.define([
 			this.data = {};
 		},
 
-		_deepCopy: function(obj) {
-			var newobj = null;     // 接受拷贝的新对象
-			if(typeof(obj) === 'object' && obj !== null) {   // 判断是否是引用类型
-				if(obj instanceof Date) {
-					return new Date(obj.valueOf());
-				}
-				newobj = obj instanceof Array? []: {};          // 判断是数组还是对象
-				for(var i in obj) {   
-					newobj[i] = this._deepCopy(obj[i]);                      // 判断下一级是否还是引用类型
-				} 
-			} else {
-				newobj = obj;
-			}
-			return newobj;
-		},
-
 		onSupplierPress: function (oEvent) {
 			var itemPath = oEvent.getSource().getBindingContext('detail').getPath(),
 			item = itemPath.split("/").slice(-1).pop();
@@ -65,18 +51,22 @@ sap.ui.define([
 			}.bind(this));
 		},
 
+		_refreshDetail () {
+			var that = this;
+			this.oDataModel.read("/" + this._bundle + '?$expand=ToGroup/ToItem,ToPrice' , {
+				success: function (oData) {
+					that.data = oData;
+					that.oDetailModel.setData(that._deepCopy(oData));
+				}
+			});
+		},
+
 		_onProductMatched: function (oEvent) {
 			var _bundle = oEvent.getParameter("arguments").bundle;
 			if(_bundle && this._bundle !== _bundle) {
 				this._bundle = _bundle;
 				this.cancel();
-				var that = this;
-				this.oOwnerComponent.getModel('invoice').read("/" + this._bundle + '?$expand=ToGroup/ToItem,ToPrice' , {
-					success: function (oData) {
-						that.data = oData;
-						that.oDetailModel.setData(that._deepCopy(oData));
-					}
-				});
+				this._refreshDetail();
 			}
 		},
 
@@ -116,19 +106,12 @@ sap.ui.define([
 			this.oStateModel.setProperty('/bEdit', true);
 		},
 
-		_DatePipe: function(obj, prop) {
-			if(obj[prop]) {
-				obj[prop] = new Date(obj[prop]);
-			}
-		},
 
 		editAddGroup: function() {
 			var groups = this.oDetailModel.getData().ToGroup.results;
 			var GrpCode = 'GRP' + (groups.length + 1).toString().padStart(2,'0');
-			var Changeflag = 'C';
 			groups.push({
 				GrpCode,
-				Changeflag,
 				ToItem:{
 					results: []
 				}
@@ -149,10 +132,9 @@ sap.ui.define([
 		save: function () {
 			var fnSuccess = function () {
 				MessageToast.show('success');
-				this.oStateModel.setProperty('/bEdit', false);
-
-				// this.handleClose();
 				this.cancel();
+				this.oDataModel.refresh();
+				setTimeout(this._refreshDetail,1000);
 			}.bind(this);
 
 			var fnError = function (oError) {
@@ -182,9 +164,7 @@ sap.ui.define([
 			data.ToGroup = data.ToGroup.results;
 			if (data.ToGroup.length != 0) {
 				data.ToGroup.forEach(group => {
-					if (group.Changeflag != "C") {
-						group.Changeflag = "U";
-					}
+					group.Changeflag = "U";
 					group.GrpScopeDesc = group.GrpScope.split(' ')[1];
 					group.GrpScope = group.GrpScope.split(' ')[0];
 					group.ToItem = group.ToItem.results;
@@ -207,7 +187,7 @@ sap.ui.define([
 
 			sPath = 'BundleHeadSet';
 
-			this.oOwnerComponent.getModel('invoice').create(sPath, data, mParameters);
+			this.oDataModel.create(sPath, data, mParameters);
 		},
 		openDialog: function () {
 			var oView = this.getView();
@@ -237,7 +217,7 @@ sap.ui.define([
 		onConfirmDialog: function () {
 			var fnSuccess = function (data) {
 				MessageToast.show('success');
-				this.oOwnerComponent.getModel('invoice').refresh();
+				this.oDataModel.refresh();
 				this.onCloseDialog();
 			}.bind(this);
 
@@ -262,7 +242,7 @@ sap.ui.define([
 				this._DatePipe(price,'ValidTo');
 				price.Changeflag = "C";
 			});
-			this.oOwnerComponent.getModel('invoice').create(sPath, data, mParameters);
+			this.oDataModel.create(sPath, data, mParameters);
 		},
 
 		check: function () {
@@ -294,17 +274,7 @@ sap.ui.define([
 				this._DatePipe(price,'ValidTo');
 				price.Changeflag = "C";
 			});
-			// data.ToGroup = data.ToGroup.results;
-			// data.ToGroup.forEach(group => {
-			// 	group.Changeflag = "C";
-			// 	group.ToItem = group.ToItem.results;
-			// 	group.ToItem.forEach(item => {
-			// 		this._DatePipe(item,'ValidFrom');
-			// 		this._DatePipe(item,'ValidTo');
-			// 		item.Changeflag = "C";
-			// 	});
-			// });
-			this.oOwnerComponent.getModel('invoice').create(sPath, data, mParameters);
+			this.oDataModel.create(sPath, data, mParameters);
 		},
 		firePaste: function(oEvent) {
 			var oTable = this.getView().byId("checkTable");
