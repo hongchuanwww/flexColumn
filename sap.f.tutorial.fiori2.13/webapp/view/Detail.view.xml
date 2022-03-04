@@ -186,7 +186,7 @@
 							<m:Table
 								items="{path : 'detail>/ToGroup/results'}">
 								<m:columns>
-									<m:Column  visible="{= !!${state>/bEdit}}"/>
+									
 									<m:Column>
 										<m:Text text="{i18n>groupID}"/>
 									</m:Column>
@@ -208,13 +208,10 @@
 									<m:Column>
 										<m:Text text="{i18n>QuantityCheck}"/>
 									</m:Column>	
-								
+									<m:Column width="4%" visible="{= !!${state>/bEdit}}"/>
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem type="Navigation" press=".onSupplierPress">
-										<m:cells>
-											<m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteGroup" ariaLabelledBy="editButtonLabel" visible="{= !${detail>__metadata} }"/>
-										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{detail>GrpCode}"/>
 										</m:cells>
@@ -260,7 +257,10 @@
 										</m:cells>
 										<m:cells>
 											<m:CheckBox selected="{= !!${detail>GrpQtycheck}}" enabled="{= !!${state>/bEdit}}"/>
-										</m:cells>						
+										</m:cells>
+										<m:cells>
+											<m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteGroup" ariaLabelledBy="editButtonLabel" visible="{= !${detail>__metadata} }"/>
+										</m:cells>					
 									</m:ColumnListItem>
 								</m:items>
 							</m:Table>
@@ -282,7 +282,7 @@
 							<m:Table
 								items="{path : 'detail>/ToPrice/results'}">
 								<m:columns>
-									<m:Column  visible="{= !!${state>/bEdit}}"/>
+									
 									<m:Column>
 										<m:Text text="{i18n>ProvinceID}"/>
 									</m:Column>
@@ -314,13 +314,10 @@
 									<m:Column>
 										<m:Text text="{i18n>ValidTo}"/>
 									</m:Column>
-
+									<m:Column width="4%" visible="{= !!${state>/bEdit}}"/>
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem>
-										<m:cells>
-											<m:Button icon="sap-icon://delete" type="Transparent" press="editDeletePrice" ariaLabelledBy="editButtonLabel" visible="{= !${detail>__metadata} }"/>
-										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{detail>Province}"/>
 										</m:cells>
@@ -382,7 +379,9 @@
 												}" visible="{= !!${state>/bEdit}}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/>
 											</m:HBox>
 										</m:cells>
-
+										<m:cells>
+											<m:Button icon="sap-icon://delete" type="Transparent" press="editDeletePrice" ariaLabelledBy="editButtonLabel" visible="{= !${detail>__metadata} }"/>
+										</m:cells>
 									</m:ColumnListItem>
 								</m:items>
 							</m:Table>

@@ -77,7 +77,6 @@
 								items="{path : 'detail>ToItem/results'}"
 								paste=".onPaste">
 								<m:columns>
-									<m:Column  visible="{= !!${state>/bEdit}}"/>
 									<m:Column>
 										<m:Text text="{i18n>Product}"/>
 									</m:Column>
@@ -92,13 +91,11 @@
 									</m:Column>
 									<m:Column>
 										<m:Text text="{i18n>Productcannotbeselected}"/>
-									</m:Column>									
+									</m:Column>
+									<m:Column width="5%" visible="{= !!${state>/bEdit}}"/>								
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem>
-										<m:cells>
-											<m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteRow" ariaLabelledBy="editButtonLabel" visible="{= !${detail>__metadata} }"/>
-										</m:cells>
 										<m:cells>
 											<m:HBox>
 												<m:ObjectIdentifier text="{detail>Product}" visible="{= !${state>/bEdit}}"/>
@@ -164,7 +161,10 @@
 											</m:HBox>
 										</m:cells>
 										<m:cells>
-											<m:CheckBox selected="true" editable="false"/>
+											<m:CheckBox selected="{!!detail>Sellable}" editable="false"/>
+										</m:cells>
+										<m:cells>
+											<m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteRow" ariaLabelledBy="editButtonLabel" visible="{= !${detail>__metadata} }"/>
 										</m:cells>
 									</m:ColumnListItem>
 								</m:items>

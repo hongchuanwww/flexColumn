@@ -165,7 +165,7 @@
 							<m:Table
 								items="{path : 'new>/ToGroup'}">
 								<m:columns>
-									<m:Column/>
+									
 									<m:Column>
 										<m:Text text="{i18n>groupID}"/>
 									</m:Column>
@@ -186,13 +186,11 @@
 									</m:Column>
 									<m:Column>
 										<m:Text text="{i18n>QuantityCheck}"/>
-									</m:Column>	
+									</m:Column>
+									<m:Column width="4%"/>	
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem type="Navigation" press=".onGroupPress">
-										<m:cells>
-											<m:Button icon="sap-icon://delete" type="Transparent" press="deleteGroup" ariaLabelledBy="editButtonLabel"/>
-										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{new>GrpCode}"/>
 										</m:cells>
@@ -222,7 +220,10 @@
 										</m:cells>
 										<m:cells>
 											<m:CheckBox selected="{new>GrpQtycheck}"/>
-										</m:cells>						
+										</m:cells>
+										<m:cells>
+											<m:Button icon="sap-icon://delete" type="Transparent" press="deleteGroup" ariaLabelledBy="editButtonLabel"/>
+										</m:cells>					
 									</m:ColumnListItem>
 								</m:items>
 							</m:Table>

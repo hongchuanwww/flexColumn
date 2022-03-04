@@ -77,8 +77,7 @@
                                 id="table"
 								items="{path : 'new>ToItem'}"
                                 paste=".onPaste">
-								<m:columns>
-									<m:Column/>
+								<m:columns>				
 									<m:Column width="200px">
 										<m:Text text="{i18n>Product} - {i18n>ProductDesc}"/>
 									</m:Column>
@@ -93,13 +92,11 @@
 									</m:Column>
 									<m:Column>
 										<m:Text text="{i18n>Productcannotbeselected}"/>
-									</m:Column>									
+									</m:Column>
+									<m:Column width="5%" />									
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem>
-										<m:cells>
-											<m:Button icon="sap-icon://delete" type="Transparent" press="deleteRow" ariaLabelledBy="editButtonLabel"/>
-										</m:cells>
 										<m:cells>
 											<!-- <m:ObjectIdentifier text="{new>Product}"/> -->
 											<m:Input 
@@ -140,6 +137,9 @@
 										</m:cells>
 										<m:cells>
 											<m:CheckBox selected="{= !!${new>TODO}}"/>
+										</m:cells>
+										<m:cells>
+											<m:Button icon="sap-icon://delete" type="Transparent" press="deleteRow" ariaLabelledBy="editButtonLabel"/>
 										</m:cells>
 									</m:ColumnListItem>
 								</m:items>
