@@ -110,8 +110,10 @@ sap.ui.define([
 		editAddGroup: function() {
 			var groups = this.oDetailModel.getData().ToGroup.results;
 			var GrpCode = 'GRP' + (groups.length + 1).toString().padStart(2,'0');
+			var Changeflag = 'C';
 			groups.push({
 				GrpCode,
+				Changeflag,
 				ToItem:{
 					results: []
 				}
@@ -163,7 +165,9 @@ sap.ui.define([
 			data.ToGroup = data.ToGroup.results;
 			if (data.ToGroup.length != 0) {
 				data.ToGroup.forEach(group => {
-					group.Changeflag = "U";
+					if (group.Changeflag != "C") {
+						group.Changeflag = "U";
+					}
 					group.GrpScopeDesc = group.GrpScope.split(' ')[1];
 					group.GrpScope = group.GrpScope.split(' ')[0];
 					group.ToItem = group.ToItem.results;
