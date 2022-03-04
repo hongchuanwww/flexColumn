@@ -84,6 +84,7 @@
                         <m:cells>
                             <m:DatePicker value="{
 								path: 'check>ValidFrom',
+                                type: 'sap.ui.model.type.Date',
 								formatOptions: {
 									style: 'medium',
 									pattern: 'yyyy-MM-dd'
@@ -93,6 +94,7 @@
                         <m:cells>
                             <m:DatePicker value="{
 								path: 'check>ValidTo',
+                                type: 'sap.ui.model.type.Date',
 								formatOptions: {
 									style: 'medium',
 									pattern: 'yyyy-MM-dd'
