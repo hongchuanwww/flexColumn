@@ -282,6 +282,7 @@
 							<m:Table
 								items="{path : 'detail>/ToPrice/results'}">
 								<m:columns>
+									<m:Column  visible="{= !!${state>/bEdit}}"/>
 									<m:Column>
 										<m:Text text="{i18n>ProvinceID}"/>
 									</m:Column>
@@ -317,6 +318,9 @@
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem>
+										<m:cells>
+											<m:Button icon="sap-icon://delete" type="Transparent" press="editDeletePrice" ariaLabelledBy="editButtonLabel" visible="{= !${detail>__metadata} }"/>
+										</m:cells>
 										<m:cells>
 											<m:ObjectIdentifier text="{detail>Province}"/>
 										</m:cells>
