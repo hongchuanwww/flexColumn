@@ -1,8 +1,10 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	'sap/m/Token',
-	'sap/ui/core/Fragment'
-], function (Controller,Token,Fragment) {
+	'sap/ui/core/Fragment',
+	"sap/m/MessageBox",
+	'sap/ui/core/BusyIndicator'
+], function (Controller,Token,Fragment,MessageBox,BusyIndicator) {
 	"use strict";
 
 	return Controller.extend("zychcn.zbundle01.controller.DetailDetail", {
@@ -45,25 +47,23 @@ sap.ui.define([
 					path: "/ToGroup/results/" + this._item + "",
 					model: "detail"
 				});
-				this._getProductList();
 			}
 		},
 
 		_getProductList: function() {
-			var group = this.getView().getModel('detail').getProperty( "/ToGroup/results/" + this._item);
-			var GrpScope = group?.GrpScope?.split(' ')[0];
-			var data = this.getView().getModel('detail').getData();
-			var BuId = data.BuId?.split(' ')[0];
-			if(GrpScope && BuId) {
-				var that = this;
-				this.getView().getModel('invoice').read('/SHScopeSet?$filter=GrpScope%20eq%20%27'+GrpScope+'%27%20and%20BuId%20eq%20%27'+BuId+'%27', {
-					success: function (oData) {
-						that.oProductModel.setData(oData.results);
-					}
-				});
-			} else {
-				this.oProductModel.setData([]);
-			}
+			var that = this;
+			BusyIndicator.show();
+			this.getView().getModel('invoice').read('/SHScopeSet?$filter=GrpScope%20eq%20%27'+this.GrpScope+'%27%20and%20BuId%20eq%20%27'+this.BuId+'%27', {
+				success: function (oData) {
+					that.oProductModel.setData(oData.results);
+					that._openValueHelp();
+					BusyIndicator.hide();
+				},
+				error: function (error) {
+					MessageBox.error(error);
+					BusyIndicator.hide();
+				}
+			});
 		},
 
 		firePaste: function(oEvent) {
@@ -126,9 +126,8 @@ sap.ui.define([
 			this.oRouter.getRoute("detailDetail").detachPatternMatched(this._onPatternMatch, this);
 		},
 
-		onValueHelpRequested: function(oEvent) {
+		_openValueHelp: function () {
 			var aCols = this.oColModel.getData().cols;
-			this._oInput = oEvent.getSource();
 			Fragment.load({
 				name: "zychcn.zbundle01.view.ValueHelpDialogSelect",
 				controller: this
@@ -163,6 +162,19 @@ sap.ui.define([
 				this._oValueHelpDialog.setTokens([oToken]);
 				this._oValueHelpDialog.open();
 			}.bind(this));
+		},
+
+		onValueHelpRequested: function(oEvent) {
+			var group = this.getView().getModel('detail').getProperty( "/ToGroup/results/" + this._item);
+			this.GrpScope = group?.GrpScope?.split(' ')[0];
+			var data = this.getView().getModel('detail').getData();
+			this.BuId = data.BuId?.split(' ')[0];
+			if(!this.GrpScope || !this.BuId) {
+				MessageBox.error('请先选择BU ID和Group Scope');
+				return;
+			}
+			this._oInput = oEvent.getSource();
+			this._getProductList();
 		},
 
 		onValueHelpOkPress: function (oEvent) {
