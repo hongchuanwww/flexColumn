@@ -16,6 +16,7 @@ sap.ui.define([
 			this.oNewModel = this.oOwnerComponent.getModel('new');
 			this.oColModel = this.oOwnerComponent.getModel('columns');
 			this.oProductModel = this.oOwnerComponent.getModel('product');
+			this._DatePipe = this.oOwnerComponent.DatePipe;
 			this.oRouter.getRoute("createDetail").attachPatternMatched(this._onPatternMatch, this);
             this.DIC = [
                 'Product',
@@ -99,6 +100,9 @@ sap.ui.define([
 				var obj = {};
 				for(var i = 0; i < row.length; i++) {
 					obj[this.DIC[i]] = row[i];
+					if(this.DIC[i].startsWith('Valid')) {
+						this._DatePipe(obj,this.DIC[i]);
+					}
 				}
 				return obj;
 			});
