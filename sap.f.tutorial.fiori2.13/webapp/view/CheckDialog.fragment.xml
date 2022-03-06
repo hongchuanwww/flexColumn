@@ -6,14 +6,20 @@
       title="{i18n>BatchCreation}">
       <m:subHeader>
         <m:OverflowToolbar>
-			<m:OverflowToolbarButton
+            <m:Button text="{i18n>simulate}" press=".check"/>
+            <m:Button text="{i18n>paste}" press=".firePaste"/>
+            <m:Button text="{i18n>clear}" press=".clearPaste"/>
+			<!-- <m:OverflowToolbarButton
                 type="Transparent"
                 icon="sap-icon://simulate"
-                press=".check" />
-            <m:OverflowToolbarButton
+                text="试算"
+                tooltip="{i18n>simulatePrice}"
+                press=".check" /> -->
+            <!-- <m:OverflowToolbarButton
                 type="Transparent"
                 icon="sap-icon://paste"
-                press=".firePaste" />
+                tooltip="{i18n>pastePrice}"
+                press=".firePaste" /> -->
 		</m:OverflowToolbar>
       </m:subHeader>
         <m:content>

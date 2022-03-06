@@ -266,6 +266,7 @@ sap.ui.define([
 		check: function () {
 			var fnSuccess = function (data) {
 				var price = data.ToPrice.results || [];
+				price.sort((p1, p2) => (p1.MessageType > p2.MessageType) ? -1: 1)
 				this.getView().getModel('save').setData({enabled: price.every(p => p.MessageType === "")});
 				this.getView().getModel('check').setData(price);
 				MessageToast.show('success');
@@ -307,6 +308,11 @@ sap.ui.define([
 					});
 				}.bind(this)
 			);
+		},
+
+		clearPaste: function(oEvent) {
+			var data = {};
+			this.getView().getModel('check').setData(data);
 		},
 
         onPaste: function (e) {
