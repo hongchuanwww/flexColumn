@@ -211,7 +211,13 @@
 									<m:Column width="4%" visible="{= !!${state>/bEdit}}"/>
 								</m:columns>
 								<m:items>
-									<m:ColumnListItem type="Navigation" press=".onSupplierPress">
+									<m:ColumnListItem type="Navigation" press=".onSupplierPress" navigated="{
+										parts: [
+											'state>/navigatedItem',
+											'detail>GrpCode'
+										],
+										formatter: '.isNavigated'
+									}">
 										<m:cells>
 											<m:ObjectIdentifier text="{detail>GrpCode}"/>
 										</m:cells>

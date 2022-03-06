@@ -68,6 +68,9 @@ sap.ui.define([
 				this.cancel();
 				this._refreshDetail();
 			}
+			var _item = oEvent.getParameter("arguments").item;
+			var GrpCode = this.oDetailModel.getProperty("/ToGroup/results/" + _item + '/GrpCode');
+			this.oStateModel.setProperty('/navigatedItem',GrpCode);
 		},
 
 		onEditToggleButtonPress: function() {
@@ -312,10 +315,17 @@ sap.ui.define([
 				var obj = {};
 				for(var i = 0; i < row.length; i++) {
 					obj[this.DIC[i]] = row[i];
+					if(this.DIC[i].startsWith('Valid')) {
+						this._DatePipe(obj,this.DIC[i]);
+					}
 				}
 				return obj;
 			});
 			this.getView().getModel('check').setData(data);
 		},
+
+		isNavigated: function(sNavigatedItemId, sItemId) {
+			return sNavigatedItemId === sItemId;
+		}
 	});
 });
