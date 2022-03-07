@@ -152,8 +152,13 @@ sap.ui.define([
 		},
 
 		DatePipe: function(obj, prop) {
+			// dateTime = new Date(dateTime.setHours(h, m, 0, 0));
 			if(obj[prop]) {
-				obj[prop] = new Date(obj[prop]);
+				// var offSet = obj[prop].getTimezoneOffset();
+				var offSetVal = obj[prop].getTimezoneOffset() / 60;
+				var h = Math.floor(Math.abs(offSetVal));
+				// var m = Math.floor((Math.abs(offSetVal) * 60) % 60);
+				obj[prop] = new Date(obj[prop].setHours(h, 0, 0, 0));
 			}
 		},
 	});
