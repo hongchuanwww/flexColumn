@@ -113,7 +113,7 @@ sap.ui.define([
 				this.handleClose();
 				oDataModel.refresh();
 				this._initCreateModel();
-				this._naviToDetail(data?.d?.HeadId);
+				this._naviToDetail(e.HeadId);
 			}.bind(this);
 
 			var fnError = function (oError) {
