@@ -72,7 +72,7 @@ sap.ui.define([
 			navigator.clipboard.readText().then(
 				function(text) {
 					if (text.length > 0 && substring(text.length - 1) == '\n') {
-						text = substring(0, text.length - 1);
+						text = text.substring(0, text.length - 1);
 					}
 					var _arr = text.split('\r\n');
 					for (var i in _arr) {
