@@ -98,9 +98,9 @@ sap.ui.define([
 		_naviToDetail: function(HeadId) {
 			if(HeadId) {
 				this.getOwnerComponent().getHelper().then(function (oHelper) {
-					oNextUIState = oHelper.getNextUIState(1);
+					// oNextUIState = oHelper.getNextUIState(1);
 					this.oRouter.navTo("detail", {
-						layout: oNextUIState.layout,
+						layout: 'ThreeColumnsMidExpanded',
 						bundle: `BundleHeadSet('${HeadId}')`
 					});
 				}.bind(this));
