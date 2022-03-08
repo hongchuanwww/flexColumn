@@ -101,7 +101,7 @@ sap.ui.define([
 					oNextUIState = oHelper.getNextUIState(1);
 					this.oRouter.navTo("detail", {
 						layout: oNextUIState.layout,
-						bundle: `BundleHeadSet('${HeadId}')`;
+						bundle: `BundleHeadSet('${HeadId}')`
 					});
 				}.bind(this));
 			}
