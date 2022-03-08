@@ -95,13 +95,25 @@ sap.ui.define([
 			this.oCreateModel.setProperty('/ToPrice',groups);
 		},
 
-		onSave:  function () {
+		_naviToDetail: function(HeadId) {
+			if(HeadId) {
+				this.getOwnerComponent().getHelper().then(function (oHelper) {
+					oNextUIState = oHelper.getNextUIState(1);
+					this.oRouter.navTo("detail", {
+						layout: oNextUIState.layout,
+						bundle: `BundleHeadSet('${HeadId}')`;
+					});
+				}.bind(this));
+			}
+		},
+		onSave:  function (data) {
 			var oDataModel = this.getView().getModel('invoice');
-			var fnSuccess = function () {
+			var fnSuccess = function (e) {
 				MessageToast.show('success');
 				this.handleClose();
 				oDataModel.refresh();
 				this._initCreateModel();
+				this._naviToDetail(data?.d?.HeadId);
 			}.bind(this);
 
 			var fnError = function (oError) {
