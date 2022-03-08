@@ -151,8 +151,8 @@
 				</m:VBox>
 				<m:VBox>
 					<m:VBox justifyContent="Start">
-						<m:CheckBox text="{i18n>UnifiedDelivery}" selected="{!!detail>/Delivery}" editable="{= !!${state>/bEdit}}"/>
-						<m:CheckBox text="{i18n>MechanicalEquipment}" selected="{!!detail>/Eqip}" editable="{= !!${state>/bEdit}}"/>
+						<m:CheckBox text="{i18n>UnifiedDelivery}" selected="{detail>/Delivery}" editable="{= !!${state>/bEdit}}"/>
+						<m:CheckBox text="{i18n>MechanicalEquipment}" selected="{detail>/Eqip}" editable="{= !!${state>/bEdit}}"/>
 						<m:HBox>
 							<m:Label text="{i18n>Status} : " design="Bold"/>
 							<m:Text text="{detail>/Status}"/>
