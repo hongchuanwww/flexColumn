@@ -42,7 +42,12 @@ sap.ui.define([
 			item = itemPath.split("/").slice(-1).pop();
 			var	oNextUIState;
 			this.oOwnerComponent.getHelper().then(function (oHelper) {
-				oNextUIState = oHelper.getNextUIState(2);
+				if (this.oStateModel.getProperty('/bEdit') == true) {
+					oNextUIState = oHelper.getNextUIState(3);
+				} else {
+					oNextUIState = oHelper.getNextUIState(2);
+				}
+				
 				this.oRouter.navTo("detailDetail", {
 					layout: oNextUIState.layout,
 					item: item,
