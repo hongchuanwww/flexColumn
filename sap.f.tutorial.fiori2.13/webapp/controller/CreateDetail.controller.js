@@ -83,8 +83,8 @@ sap.ui.define([
 			var oTable = this.getView().byId("table");
 			navigator.clipboard.readText().then(
 				function(text) {
-					if (text.length > 0 && substring(text.length - 1) == '\n') {
-						text = substring(0, text.length - 1);
+					if (text.length > 0 && text.substring(text.length - 1) == '\n') {
+						text = text.substring(0, text.length - 1);
 					}
 					var _arr = text.split('\r\n');
 					for (var i in _arr) {
