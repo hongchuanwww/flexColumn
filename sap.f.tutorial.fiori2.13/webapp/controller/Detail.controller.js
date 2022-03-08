@@ -183,7 +183,7 @@ sap.ui.define([
 					if (group.Changeflag != "C") {
 						group.Changeflag = "U";
 					}
-					group.GrpScopeDesc = group.GrpScope.split(' ')[1];
+					group.GrpScopeDesc = group.GrpScope.split(' ')[1] || group.GrpScopeDesc;
 					group.GrpScope = group.GrpScope.split(' ')[0];
 					group.ToItem = group.ToItem.results;
 					if (group.ToItem.length != 0) {
