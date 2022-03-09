@@ -9,6 +9,7 @@
 		alwaysShowContentHeader="false"
 		preserveHeaderStateOnScroll="false"
 		headerContentPinnable="true"
+		showFooter="true"
 		isChildPage="true"
 		upperCaseAnchorBar="false">
 		<headerTitle>
@@ -174,5 +175,12 @@
 				</subSections>
 			</ObjectPageSection>
 		</sections>
+
+		<footer>
+			<m:OverflowToolbar>
+				<m:ToolbarSpacer/>
+				<m:Button type="Emphasized" text="Close" visible="{= ${/actionButtonsInfo/endColumn/exitFullScreen} !== null }"  press=".handleExitFullScreen"/>
+			</m:OverflowToolbar>
+		</footer>
 	</ObjectPageLayout>
 </mvc:View>

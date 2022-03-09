@@ -252,7 +252,8 @@
 											</m:HBox>
 										</m:cells>
 										<m:cells>
-											<m:CheckBox selected="{= !!${detail>GrpFree}}" enabled="{= !!${state>/bEdit}}"/>
+											<!-- <m:CheckBox selected="{= !!${detail>GrpFree}}" enabled="{= !!${state>/bEdit}}"/> -->
+											<m:CheckBox selected="{detail>GrpFree}" enabled="{= !!${state>/bEdit}}"/>
 										</m:cells>
 										<m:cells>
 											<m:HBox>
