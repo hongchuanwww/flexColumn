@@ -104,7 +104,10 @@
 												showValueHelp="true"
 												valueHelpOnly="false"
 												valueHelpRequest=".onValueHelpRequested"
-												suggestionItems="{product>/}"
+												suggestionItems="{
+													path: 'product>/',
+													templateShareable: true
+												}"
 											>
 												<!-- <core:Item key="{product>Product}" text="{product>Product}-{product>ProductDescZh}" /> -->
 												<core:Item key="{product>Product}" text="{product>Product}" />

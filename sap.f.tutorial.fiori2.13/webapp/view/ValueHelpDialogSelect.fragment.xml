@@ -1,5 +1,7 @@
 <core:FragmentDefinition
 	xmlns="sap.ui.comp.valuehelpdialog"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:m="sap.m"
 	xmlns:core="sap.ui.core">
 	<ValueHelpDialog
 		title="Product"
@@ -10,5 +12,42 @@
 		key="Product"
 		descriptionKey="Product"
 	>
+		<filterBar>
+			<fb:FilterBar advancedMode="true" search=".onFilterBarSearch" isRunningInValueHelpDialog="true">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem
+						groupName="__$INTERNAL$"
+						name="Product"
+						label="Product"
+						visibleInFilterBar="true"
+					>
+						<fb:control>
+							<m:Input name="Product" />
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem
+						groupName="__$INTERNAL$"
+						name="ProductDescZh"
+						label="ProductDescZh"
+						visibleInFilterBar="true"
+					>
+						<fb:control>
+							<m:Input name="ProductDescZh" />
+						</fb:control>
+					</fb:FilterGroupItem>
+
+					<fb:FilterGroupItem
+						groupName="__$INTERNAL$"
+						name="ProductDescEn"
+						label="ProductDescEn"
+						visibleInFilterBar="true"
+					>
+						<fb:control>
+							<m:Input name="ProductDescEn" />
+						</fb:control>
+					</fb:FilterGroupItem>
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
 	</ValueHelpDialog>
 </core:FragmentDefinition>
