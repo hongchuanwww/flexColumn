@@ -3,8 +3,10 @@ sap.ui.define([
 	'sap/m/Token',
 	'sap/ui/core/Fragment',
 	"sap/m/MessageBox",
-	'sap/ui/core/BusyIndicator'
-], function (Controller, Token, Fragment, MessageBox, BusyIndicator) {
+	'sap/ui/core/BusyIndicator',
+	'sap/ui/model/Filter',
+	'sap/ui/model/FilterOperator',
+], function (Controller, Token, Fragment, MessageBox, BusyIndicator, Filter, FilterOperator) {
 	"use strict";
 
 	return Controller.extend("zychcn.zbundle01.controller.CreateDetail", {
@@ -195,6 +197,41 @@ sap.ui.define([
 
 		onValueHelpAfterClose: function () {
 			this._oValueHelpDialog.destroy();
-		}
+		},
+
+		onFilterBarSearch: function (oEvent) {
+			var aSelectionSet = oEvent.getParameter("selectionSet");
+			var aFilters = aSelectionSet.reduce(function (aResult, oControl) {
+				if (oControl.getValue()) {
+					aResult.push(new Filter({
+						path: oControl.getName(),
+						operator: FilterOperator.Contains,
+						value1: oControl.getValue()
+					}));
+				}
+
+				return aResult;
+			}, []);
+
+			this._filterTable(new Filter({
+				filters: aFilters,
+				and: true
+			}));
+		},
+		_filterTable: function (oFilter) {
+			var oValueHelpDialog = this._oValueHelpDialog;
+
+			oValueHelpDialog.getTableAsync().then(function (oTable) {
+				if (oTable.bindRows) {
+					oTable.getBinding("rows").filter(oFilter);
+				}
+
+				if (oTable.bindItems) {
+					oTable.getBinding("items").filter(oFilter);
+				}
+
+				oValueHelpDialog.update();
+			});
+		},
 	});
 });
