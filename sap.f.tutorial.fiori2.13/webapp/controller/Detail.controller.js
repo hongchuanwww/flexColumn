@@ -151,11 +151,24 @@ sap.ui.define([
 			this.oDetailModel.setProperty('/ToPrice/results', groups);
 		},
 
+		_naviToDetail: function(HeadId) {
+			if(HeadId) {
+				this.getOwnerComponent().getHelper().then(function (oHelper) {
+					// oNextUIState = oHelper.getNextUIState(1);
+					this.oRouter.navTo("detail", {
+						layout: 'ThreeColumnsMidExpanded',
+						bundle: `BundleHeadSet('${HeadId}')`
+					});
+				}.bind(this));
+			}
+		},
+
 		save: function () {
-			var fnSuccess = function () {
+			var fnSuccess = function (e) {
 				MessageToast.show('success');
 				this.oStateModel.setProperty('/bEdit', false);
 				this.oDataModel.refresh();
+				this._naviToDetail(e.HeadId);
 			}.bind(this);
 
 			var fnError = function (oError) {
