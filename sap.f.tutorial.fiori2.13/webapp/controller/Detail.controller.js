@@ -168,8 +168,8 @@ sap.ui.define([
 				MessageToast.show('success');
 				this.oStateModel.setProperty('/bEdit', false);
 				this.oDataModel.refresh();
-				this.cancel();
 				this._naviToDetail(e.HeadId);
+				this.cancel();
 			}.bind(this);
 
 			var fnError = function (oError) {
