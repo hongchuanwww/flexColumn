@@ -156,7 +156,7 @@ sap.ui.define([
 				this.getOwnerComponent().getHelper().then(function (oHelper) {
 					// oNextUIState = oHelper.getNextUIState(1);
 					this.oRouter.navTo("detail", {
-						layout: 'ThreeColumnsMidExpanded',
+						layout: 'TwoColumnsMidExpanded',
 						bundle: `BundleHeadSet('${HeadId}')`
 					});
 				}.bind(this));
