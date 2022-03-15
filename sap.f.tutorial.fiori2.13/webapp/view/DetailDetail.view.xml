@@ -162,7 +162,7 @@
 											</m:HBox>
 										</m:cells>
 										<m:cells>
-											<m:CheckBox selected="{!!detail>Sellable}" editable="false"/>
+											<m:CheckBox selected="{detail>Sellable}" editable="false"/>
 										</m:cells>
 										<m:cells>
 											<m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteRow" ariaLabelledBy="editButtonLabel" visible="{= !${detail>__metadata} }"/>
