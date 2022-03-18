@@ -17,14 +17,22 @@ sap.ui.define([
 		},
 
 		onSearch: function (oEvent) {
-			var oTableSearchState = [],
-				sQuery = oEvent.getParameter("query");
+			var aSelectionSet = oEvent.getParameter("selectionSet");
+			var aFilters = aSelectionSet.reduce(function (aResult, oControl) {
+				if (oControl.getValue?.()) {
+					aResult.push(new Filter({
+						path: oControl.getName(),
+						operator: FilterOperator.Contains,
+						value1: oControl.getValue()
+					}));
+				}
 
-			if (sQuery && sQuery.length > 0) {
-				oTableSearchState = [new Filter("BdHeadNumber", FilterOperator.Contains, sQuery)];
-			}
-
-			this.oProductsTable.getBinding("items").filter(oTableSearchState, "Application");
+				return aResult;
+			}, []);
+			this.oProductsTable.getBinding("items").filter([new Filter({
+				filters: aFilters,
+				and: true
+			})], "Application");
 		},
 
 		onAdd: function () {
