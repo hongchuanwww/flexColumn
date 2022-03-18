@@ -130,10 +130,10 @@
 							<Text text="{i18n>BdHeadNumber}"/>
 						</Column>
 						<Column>
-							<Text text="{i18n>BdPromType}"/>
+							<Text text="{i18n>promotionType}"/>
 						</Column>
 						<Column>
-							<Text text="{i18n>BdPromTypeDesc}"/>
+							<Text text="{i18n>promotionTypeDesc}"/>
 						</Column>
 						<Column>
 							<Text text="{i18n>SortCode}"/>
