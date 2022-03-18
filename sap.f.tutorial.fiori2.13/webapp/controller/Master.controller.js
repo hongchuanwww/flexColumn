@@ -19,11 +19,12 @@ sap.ui.define([
 		onSearch: function (oEvent) {
 			var aSelectionSet = oEvent.getParameter("selectionSet");
 			var aFilters = aSelectionSet.reduce(function (aResult, oControl) {
-				if (oControl.getValue?.()) {
+				var value = oControl.getValue?.() || oControl.getSelectedKey?.();
+				if (value) {
 					aResult.push(new Filter({
 						path: oControl.getName(),
 						operator: FilterOperator.Contains,
-						value1: oControl.getValue()
+						value1: value
 					}));
 				}
 
