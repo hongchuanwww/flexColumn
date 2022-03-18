@@ -18,12 +18,12 @@ sap.ui.define([
 
 		onSearch: function (oEvent) {
 			var aSelectionSet = oEvent.getParameter("selectionSet");
-			var aFilters = aSelectionSet.reduce(function (aResult, oControl) {
+			var aFilters = aSelectionSet.reduce(function (aResult, oControl,i) {
 				var value = oControl.getValue?.() || oControl.getSelectedKey?.();
 				if (value) {
 					aResult.push(new Filter({
 						path: oControl.getName(),
-						operator: FilterOperator.Contains,
+						operator: i > 3 ? FilterOperator.EQ : FilterOperator.Contains,
 						value1: value
 					}));
 				}
