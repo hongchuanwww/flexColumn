@@ -94,7 +94,7 @@
 						<m:Input value="{new>/SortCode}"/>
 					</m:HBox>
 					<m:HBox>
-						<m:Label text="{i18n>Supplier} :" design="Bold"/>
+						<m:Label text="{i18n>BdDesc} :" design="Bold"/>
 						<m:Input value="{new>/BdDesc}"/>
 					</m:HBox>
 					<m:HBox>

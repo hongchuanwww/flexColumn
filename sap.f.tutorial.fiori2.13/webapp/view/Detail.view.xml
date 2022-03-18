@@ -71,7 +71,7 @@
 						<m:Text text=" {detail>/BuId}"/>
 					</m:HBox>
 					<m:HBox>
-						<m:Label text="BU {i18n>HeaderDesc} : " design="Bold"/>
+						<m:Label text="BU {i18n>BuDesc} : " design="Bold"/>
 						<m:Text text=" {detail>/BuDesc}"/>
 					</m:HBox>
 					<m:HBox>
@@ -92,7 +92,7 @@
 						</m:HBox>
 					</m:HBox>
 					<m:HBox>
-						<m:Label text="{i18n>Supplier} : " design="Bold"/>
+						<m:Label text="{i18n>BdDesc} : " design="Bold"/>
 						<m:HBox>
 							<m:ObjectIdentifier text="{detail>/BdDesc}" visible="{= !${state>/bEdit}}"/>
 							<m:Input value="{detail>/BdDesc}" visible="{= !!${state>/bEdit}}"/>
