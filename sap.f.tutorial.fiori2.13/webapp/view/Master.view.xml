@@ -58,54 +58,54 @@
 					class="sapFDynamicPageAlignContent"
 					width="auto">
 					<columns>
-						<Column width="12em">
-							<!-- <Text text="{i18n>masterListHeader}"/> -->
+						<Column>
+							<Text text="{i18n>BdHeadNumber}"/>
 						</Column>
-						<Column	hAlign="End">
-							<!-- <Text text="Price"/> -->
+						<Column>
+							<Text text="{i18n>BdPromType}"/>
+						</Column>
+						<Column>
+							<Text text="{i18n>BdPromTypeDesc}"/>
+						</Column>
+						<Column>
+							<Text text="{i18n>SortCode}"/>
+						</Column>
+						<Column>
+							<Text text="{i18n>BdDesc}"/>
+						</Column>
+						<Column>
+							<Text text="{i18n>BuDesc}"/>
+						</Column>
+						<Column>
+							<Text text="{i18n>ValidFrom}"/>
+						</Column>
+						<Column>
+							<Text text="{i18n>ValidTo}"/>
 						</Column>
 					</columns>
 					<items>
 						<ColumnListItem type="Navigation" press=".onListItemPress">
 							<cells>
-								<VBox>
-									<Label text="{invoice>BdHeadNumber}"/>
-									<HBox>
-										<core:Icon
-											src="sap-icon://sap-box"
-											size="3rem"
-											color="#1C4C98">
-											<core:layoutData>
-												<FlexItemData growFactor="1" />
-											</core:layoutData>
-										</core:Icon>
-										<Text text="{invoice>SortCode} {invoice>BdDesc}"/>
-									</HBox>
-									<Text text="{i18n>masterListItemValidFrom} : {
-										path: 'invoice>ValidFrom',
-										type: 'sap.ui.model.type.Date',
-										formatOptions: {
-											style: 'medium'
-										}
-									}" />
-									<Text text="{i18n>masterListItemValidTo} : {
-										path: 'invoice>ValidTo',
-										type: 'sap.ui.model.type.Date',
-										formatOptions: {
-											style: 'medium'
-										}
-									}" />
-								</VBox>
-								<VBox>
-									<!-- <Text text="{i18n>BUID} : {
-										path: 'invoice>BuId',
-										formatOptions: {
-											style: 'medium'
-										}
-									}" /> -->
-									<Label text="{invoice>BuDesc}"/>
-									<Label text="{invoice>BdPromType} {invoice>BdPromTypeDesc}"/>
-								</VBox>
+								<Label text="{invoice>BdHeadNumber}"/>
+								<Label text="{invoice>BdPromType}"/>
+								<Label text="{invoice>BdPromTypeDesc}"/>
+								<Label text="{invoice>SortCode}"/>
+								<Label text="{invoice>BdDesc}"/>
+								<Label text="{invoice>BuDesc}"/>
+								<Text text="{i18n>masterListItemValidFrom} : {
+									path: 'invoice>ValidFrom',
+									type: 'sap.ui.model.type.Date',
+									formatOptions: {
+										style: 'medium'
+									}
+								}" />
+								<Text text="{i18n>masterListItemValidTo} : {
+									path: 'invoice>ValidTo',
+									type: 'sap.ui.model.type.Date',
+									formatOptions: {
+										style: 'medium'
+									}
+								}" />
 							</cells>
 						</ColumnListItem>
 					</items>
