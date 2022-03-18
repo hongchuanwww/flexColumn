@@ -5,6 +5,7 @@
 	xmlns:semantic="sap.f.semantic"
 	xmlns:f="sap.f"
 	xmlns:core="sap.ui.core"
+	xmlns:fb="sap.ui.comp.filterbar"
 	xmlns:mvc="sap.ui.core.mvc">
 	<semantic:SemanticPage id="dynamicPageId" toggleHeaderOnTitleClick="true" showFooter="true">
 		<!-- DynamicPage Title -->
@@ -16,7 +17,74 @@
 			</f:DynamicPageTitle>
 		</semantic:titleHeading>
 		<semantic:headerContent>
-			<m:HBox justifyContent="SpaceBetween">
+			<fb:FilterBar filterBarExpanded="false" search=".onSearch">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem
+						groupName="__$MASTER$"
+						name="BdHeadNumber"
+						label="{i18n>BdHeadNumber}"
+						visibleInFilterBar="true"
+					>
+						<fb:control>
+							<m:Input name="BdHeadNumber" />
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem
+						groupName="__$MASTER$"
+						name="SortCode"
+						label="{i18n>SortCode}"
+						visibleInFilterBar="true"
+					>
+						<fb:control>
+							<m:Input name="SortCode" />
+						</fb:control>
+					</fb:FilterGroupItem>
+
+					<fb:FilterGroupItem
+						groupName="__$MASTER$"
+						name="BdDesc"
+						label="{i18n>BdDesc}"
+						visibleInFilterBar="true"
+					>
+						<fb:control>
+							<m:Input name="BdDesc" />
+						</fb:control>
+					</fb:FilterGroupItem>
+
+					<fb:FilterGroupItem
+						groupName="__$MASTER$"
+						name="BdPromType"
+						label="Promotion Type"
+						visibleInFilterBar="true"
+					>
+						<fb:control>
+							<m:Select 
+								name="BdPromType" 
+								items="{
+									path: 'PROM_TYPE>/'
+								}"
+								forceSelection="false"
+							>
+								<core:Item key="{PROM_TYPE>Numb}" text="{PROM_TYPE>Numb} {PROM_TYPE>High}" />
+							</m:Select>
+						</fb:control>
+					</fb:FilterGroupItem>
+
+					<fb:FilterGroupItem
+						groupName="__$MASTER$"
+						name="ValidFrom"
+						label="Valid From"
+						visibleInFilterBar="true"
+					>
+						<fb:control>
+							<m:DatePicker 
+								name="ValidFrom"
+								minDate="{setting>/minDate}"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+			<!-- <m:HBox justifyContent="SpaceBetween">
 				<m:VBox width="20%">
 					<m:Label text="Bundle ID"/>
 					<m:Input value="{tableData>boundno}"/>
@@ -44,7 +112,7 @@
 				<m:VBox>
 					<m:Button width="5%" icon="sap-icon://search" type="Transparent" press=".onSearch"/>
 				</m:VBox>
-			</m:HBox>
+			</m:HBox> -->
 		</semantic:headerContent>
 		<!-- DynamicPage Content -->
 		<semantic:content>
@@ -92,18 +160,20 @@
 								<Label text="{invoice>SortCode}"/>
 								<Label text="{invoice>BdDesc}"/>
 								<Label text="{invoice>BuDesc}"/>
-								<Text text="{i18n>masterListItemValidFrom} : {
+								<Text text="{
 									path: 'invoice>ValidFrom',
 									type: 'sap.ui.model.type.Date',
 									formatOptions: {
-										style: 'medium'
+										style: 'medium',
+										pattern: 'yyyy-MM-dd'
 									}
 								}" />
-								<Text text="{i18n>masterListItemValidTo} : {
+								<Text text="{
 									path: 'invoice>ValidTo',
 									type: 'sap.ui.model.type.Date',
 									formatOptions: {
-										style: 'medium'
+										style: 'medium',
+										pattern: 'yyyy-MM-dd'
 									}
 								}" />
 							</cells>
