@@ -91,7 +91,7 @@
 										<m:Text text="{i18n>ValidTo}"/>
 									</m:Column>
 									<m:Column>
-										<m:Text text="{i18n>Productcannotbeselected}"/>
+										<m:Text text="{i18n>ProductSelectable}"/>
 									</m:Column>
 									<m:Column width="5%" />									
 								</m:columns>
