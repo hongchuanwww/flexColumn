@@ -173,7 +173,14 @@ sap.ui.define([
 			}.bind(this);
 
 			var fnError = function (oError) {
-				MessageBox.error(JSON.parse(oError.response.body).error.innererror.errordetails);
+				var errMsg = "";
+				var res = JSON.parse(oError.response.body).error.innererror.errordetails; 
+
+				res.forEach(r => {
+					errMsg + r.message + '/n';
+				});
+
+				MessageBox.error(res);
 			}.bind(this);
 			var sPath = "/" + this._bundle;
 			var mParameters = {
