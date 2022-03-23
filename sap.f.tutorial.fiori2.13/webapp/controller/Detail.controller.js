@@ -177,10 +177,10 @@ sap.ui.define([
 				var res = JSON.parse(oError.response.body).error.innererror.errordetails; 
 
 				res.forEach(r => {
-					errMsg + r.message + '/n';
+					errMsg += r.message + '\r\n';
 				});
 
-				MessageBox.error(res);
+				MessageBox.error(errMsg);
 			}.bind(this);
 			var sPath = "/" + this._bundle;
 			var mParameters = {
