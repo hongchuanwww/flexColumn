@@ -191,7 +191,9 @@ sap.ui.define([
 			var aTokens = oEvent.getParameter("tokens");
 
 			if (aTokens.length > 0) {
-				this._oInput.setSelectedKey(aTokens[0].getKey());
+				aTokens.forEach(t =>{
+					this._oInput.setSelectedKey(t.getKey());
+				});
 			}
 			this._oValueHelpDialog.close();
 		},

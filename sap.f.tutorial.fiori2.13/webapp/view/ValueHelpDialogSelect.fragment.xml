@@ -8,7 +8,7 @@
 		ok=".onValueHelpOkPress"
 		cancel=".onValueHelpCancelPress"
 		afterClose=".onValueHelpAfterClose"
-		supportMultiselect="false"
+		supportMultiselect="true"
 		key="Product"
 		descriptionKey="Product"
 	>
