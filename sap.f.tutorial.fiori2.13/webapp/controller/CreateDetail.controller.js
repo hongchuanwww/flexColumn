@@ -161,10 +161,7 @@ sap.ui.define([
 					this._oValueHelpDialog.update();
 				}.bind(this));
 
-				var oToken = new Token();
-				oToken.setKey(this._oInput.getSelectedKey());
-				oToken.setText(this._oInput.getValue());
-				this._oValueHelpDialog.setTokens([oToken]);
+				this._oValueHelpDialog.setTokens(this._oInput.getTokens());
 				this._oValueHelpDialog.open();
 			}.bind(this));
 		},
@@ -184,12 +181,7 @@ sap.ui.define([
 
 		onValueHelpOkPress: function (oEvent) {
 			var aTokens = oEvent.getParameter("tokens");
-
-			if (aTokens.length > 0) {
-				aTokens.forEach(t =>{
-					this._oInput.setSelectedKey(t.getKey());
-				});
-			}
+			this._oInput.setTokens(aTokens);
 			this._oValueHelpDialog.close();
 		},
 
