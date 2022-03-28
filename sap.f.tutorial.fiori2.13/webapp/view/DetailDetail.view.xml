@@ -100,7 +100,7 @@
 										<m:cells>
 											<m:HBox>
 												<m:ObjectIdentifier text="{detail>Product}" visible="{= !${state>/bEdit}}"/>
-												<m:Input 
+												<m:MultiInput 
 													value="{detail>Product}" 
 													showValueHelp="true"
 													valueHelpOnly="false"
@@ -113,7 +113,7 @@
 												>
 													<!-- <core:Item key="{product>Product}" text="{product>Product}-{product>ProductDescZh}" /> -->
 													<core:Item key="{product>Product}" text="{product>Product}" />
-												</m:Input>
+												</m:MultiInput>
 											</m:HBox>
 										</m:cells>
 										<m:cells>
