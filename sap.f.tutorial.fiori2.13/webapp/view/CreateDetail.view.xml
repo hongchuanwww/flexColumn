@@ -99,7 +99,7 @@
 									<m:ColumnListItem>
 										<m:cells>
 											<!-- <m:ObjectIdentifier text="{new>Product}"/> -->
-											<m:MultiInput 
+											<m:Input 
 												value="{new>Product}" 
 												showValueHelp="true"
 												valueHelpOnly="false"
@@ -111,7 +111,7 @@
 											>
 												<!-- <core:Item key="{product>Product}" text="{product>Product}-{product>ProductDescZh}" /> -->
 												<core:Item key="{product>Product}" text="{product>Product}" />
-											</m:MultiInput>
+											</m:Input>
 										</m:cells>
 										<m:cells>
 											<m:Text text="{product>ProductDescZh}"/>

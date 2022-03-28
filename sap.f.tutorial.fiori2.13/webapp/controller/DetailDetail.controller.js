@@ -166,7 +166,10 @@ sap.ui.define([
 					this._oValueHelpDialog.update();
 				}.bind(this));
 				
-				this._oValueHelpDialog.setTokens(this._oInput.getTokens());
+				// var oToken = new Token();
+				// oToken.setKey(this._oInput.getSelectedKey());
+				// oToken.setText(this._oInput.getValue());
+				// this._oValueHelpDialog.setTokens([oToken]);
 				this._oValueHelpDialog.open();
 			}.bind(this));
 		},
@@ -186,7 +189,20 @@ sap.ui.define([
 
 		onValueHelpOkPress: function (oEvent) {
 			var aTokens = oEvent.getParameter("tokens");
-			this._oInput.setTokens(aTokens);
+			// this._oInput.setTokens(aTokens);
+			if (aTokens.length == 0) {
+				this._oInput.setSelectedKey(aTokens[i].getKey());
+			} else {
+				var data = this.getView().getModel('detail').getProperty("/ToGroup/results/" + this._item + '/ToItem/results');
+				data.splice(data.length - 1, 1);
+				for (var i = 0; i < aTokens.length; i++) {
+					data.push({
+						"Product": aTokens[i].getKey()
+					});
+				}
+				this.getView().getModel('detail').setProperty("/ToGroup/results/" + this._item + '/ToItem/results', data);
+			}
+			
 			this._oValueHelpDialog.close();
 		},
 
