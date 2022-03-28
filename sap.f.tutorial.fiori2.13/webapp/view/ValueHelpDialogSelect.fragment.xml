@@ -10,7 +10,7 @@
 		afterClose=".onValueHelpAfterClose"
 		supportMultiselect="true"
 		key="Product"
-		descriptionKey="Product"
+		descriptionKey="ProductDescZh"
 	>
 		<filterBar>
 			<fb:FilterBar advancedMode="true" search=".onFilterBarSearch" isRunningInValueHelpDialog="true">
