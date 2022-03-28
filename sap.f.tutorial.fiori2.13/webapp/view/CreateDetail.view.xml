@@ -110,11 +110,11 @@
 												}"
 											>
 												<!-- <core:Item key="{product>Product}" text="{product>Product}-{product>ProductDescZh}" /> -->
-												<core:Item key="{product>Product}" text="{product>Product}" />
+												<core:Item key="{product>Product}" text="{product>ProductDescZh}" />
 											</m:Input>
 										</m:cells>
 										<m:cells>
-											<m:Text text="{product>ProductDescZh}"/>
+											<m:Text text="{new>ProductDescZh}"/>
 										</m:cells>
 										<m:cells>
 											<!-- <m:ObjectIdentifier text="{new>ValidFrom}"/> -->

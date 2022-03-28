@@ -17,7 +17,7 @@
 			</f:DynamicPageTitle>
 		</semantic:titleHeading>
 		<semantic:headerContent>
-			<fb:FilterBar filterBarExpanded="true" showClearOnFB="true" search=".onSearch">
+			<fb:FilterBar filterBarExpanded="true" showClearOnFB="true" search=".onSearch" clear=".onClear">
 				<fb:filterGroupItems>
 					<fb:FilterGroupItem
 						groupName="__$MASTER$"

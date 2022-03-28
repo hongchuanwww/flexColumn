@@ -189,7 +189,8 @@ sap.ui.define([
 				data.splice(data.length - 1, 1);
 				for (var i = 0; i < aTokens.length; i++) {
 					data.push({
-						"Product": aTokens[i].getKey()
+						"Product": aTokens[i].getKey(),
+						"ProductDescZh": aTokens[i].getText()
 					});
 				}
 				this.getView().getModel('new').setProperty("/ToGroup/" + this.group + '/ToItem', data);

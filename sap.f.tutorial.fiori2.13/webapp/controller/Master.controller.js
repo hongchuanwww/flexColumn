@@ -36,6 +36,15 @@ sap.ui.define([
 			})], "Application");
 		},
 
+		onClear: function(oEvent) {
+			oEvent.getParameter("selectionSet").forEach(function(oControl) {
+				oControl?.setValue(null) || oControl?.getSelectedKey(null);
+			});
+			this.oProductsTable.getBinding("items").filter([new Filter({
+				filters: []
+			})], "Application");
+		},
+
 		onAdd: function () {
 			MessageBox.information("This functionality is not ready yet.", {title: "Aw, Snap!"});
 		},
