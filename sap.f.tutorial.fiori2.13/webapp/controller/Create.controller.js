@@ -94,7 +94,15 @@ sap.ui.define([
 			groups.push({});
 			this.oCreateModel.setProperty('/ToPrice',groups);
 		},
-
+		deletePrice: function (e) {
+			var btn = e.getSource(),
+				row = btn.getParent(),
+				table = row.getParent(),
+				index = table.indexOfItem(row),
+				prices = this.oCreateModel.getProperty('/ToPrice');
+			prices.splice(index,1);
+			this.oCreateModel.setProperty('/ToPrice',prices);
+		},
 		_naviToDetail: function(HeadId) {
 			if(HeadId) {
 				this.getOwnerComponent().getHelper().then(function (oHelper) {

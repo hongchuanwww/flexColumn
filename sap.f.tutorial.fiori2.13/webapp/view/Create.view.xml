@@ -140,7 +140,7 @@
 											
 					<m:HBox>
 						<m:Label text="{i18n>SalesVolume} : " design="Bold"/>
-						<m:StepInput value="{new>/Qty}"/>
+						<m:StepInput width="110px" value="{new>/Qty}"/>
 					</m:HBox>
 				</m:VBox>
 				<m:VBox>
@@ -209,7 +209,7 @@
 											</m:Select>
 										</m:cells>
 										<m:cells>
-											<m:Input value="{new>GrpQty}"/>
+											<m:StepInput value="{new>GrpQty}"/>
 										</m:cells>
 										<m:cells>
 											<m:CheckBox selected="{new>GrpFree}"/>
@@ -218,7 +218,7 @@
 											<m:CheckBox selected="{new>GrpQtycheck}"/>
 										</m:cells>
 										<m:cells>
-											<m:Input value="{new>GrpDelivery}"/>
+											<m:StepInput value="{new>GrpDelivery}"/>
 										</m:cells>
 										<m:cells>
 											<m:Button icon="sap-icon://delete" type="Transparent" press="deleteGroup" ariaLabelledBy="editButtonLabel"/>
@@ -274,6 +274,7 @@
 									<m:Column>
 										<m:Text text="{i18n>ValidTo}"/>
 									</m:Column>
+									<m:Column/>
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem>
@@ -325,6 +326,9 @@
 													}
 												}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/>
 										</m:cells>
+										<m:cells>
+											<m:Button icon="sap-icon://delete" type="Transparent" press="deletePrice" ariaLabelledBy="editButtonLabel"/>
+										</m:cells>	
 									</m:ColumnListItem>
 								</m:items>
 							</m:Table>
