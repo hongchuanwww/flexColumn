@@ -282,15 +282,30 @@
 						<actions>
 							<m:OverflowToolbarButton
                                 type="Transparent"
+								tooltip="Sort"
+                                icon="sap-icon://sort"
+                                press=".handleSortButtonPressed" />
+							<m:OverflowToolbarButton
+                                type="Transparent"
+								tooltip="Filter"
+                                icon="sap-icon://filter"
+                                press=".handleFilterButtonPressed" />
+							<m:OverflowToolbarButton
+                                type="Transparent"
                                 icon="sap-icon://check-availability"
                                 press=".openDialog" />
                         </actions>
 						<blocks>
 							<m:Table
+								id="idPriceTable"
 								growing="true" growingThreshold="10"
 								items="{path : 'detail>/ToPrice/results'}">
+								<m:infoToolbar>
+									<m:OverflowToolbar id="vsdFilterBar" visible="false">
+										<m:Text id="vsdFilterLabel" />
+									</m:OverflowToolbar>
+								</m:infoToolbar>
 								<m:columns>
-									
 									<m:Column>
 										<m:Text text="{i18n>ProvinceID}"/>
 									</m:Column>

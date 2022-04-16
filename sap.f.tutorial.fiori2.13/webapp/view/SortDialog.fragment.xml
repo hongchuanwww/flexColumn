@@ -1,0 +1,13 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ViewSettingsDialog
+		confirm="handleSortDialogConfirm">
+		<sortItems>
+			<ViewSettingsItem text="{i18n>ProvinceID}" key="Province" selected="true" />
+			<ViewSettingsItem text="{i18n>ProtocolID}" key="AgreeId" />
+			<ViewSettingsItem text="{i18n>CustomerID}" key="BpCodeInAgree" />
+			<ViewSettingsItem text="{i18n>CAP}" key="Cap" />
+		</sortItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>
