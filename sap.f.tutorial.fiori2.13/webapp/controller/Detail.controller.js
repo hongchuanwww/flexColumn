@@ -4,11 +4,14 @@ sap.ui.define([
 	"sap/m/MessageBox",
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/core/Fragment",
-], function (Controller, MessageToast, MessageBox, JSONModel, Fragment) {
+	'sap/ui/model/Filter',
+	'sap/ui/model/Sorter',
+], function (Controller, MessageToast, MessageBox, JSONModel, Fragment, Filter, Sorter) {
 	"use strict";
 
 	return Controller.extend("zychcn.zbundle01.controller.Detail", {
 		onInit: function () {
+			this._mViewSettingsDialogs = {};
 			this.oOwnerComponent = this.getOwnerComponent();
 			this.oDataModel = this.oOwnerComponent.getModel('invoice');
 			this.oRouter = this.oOwnerComponent.getRouter();
@@ -361,6 +364,80 @@ sap.ui.define([
 
 		isNavigated: function(sNavigatedItemId, sItemId) {
 			return sNavigatedItemId === sItemId;
-		}
+		},
+
+		handleSortButtonPressed: function () {
+			var oView = this.getView();
+			this.getViewSettingsDialog("zychcn.zbundle01.view.SortDialog")
+				.then(function (oDialog) {
+					oView.addDependent(oDialog);
+					oDialog.open();
+				});
+		},
+
+		handleFilterButtonPressed: function () {
+			var oView = this.getView();
+			this.getViewSettingsDialog("zychcn.zbundle01.view.FilterDialog")
+				.then(function (oDialog) {
+					oView.addDependent(oDialog);
+					oDialog.open();
+				});
+		},
+
+		getViewSettingsDialog: function (sDialogFragmentName) {
+			var pDialog = this._mViewSettingsDialogs[sDialogFragmentName];
+
+			if (!pDialog) {
+				pDialog = Fragment.load({
+					id: this.getView().getId(),
+					name: sDialogFragmentName,
+					controller: this
+				}).then(function (oDialog) {
+					return oDialog;
+				});
+				this._mViewSettingsDialogs[sDialogFragmentName] = pDialog;
+			}
+			return pDialog;
+		},
+
+		handleSortDialogConfirm: function (oEvent) {
+			var oTable = this.byId("idPriceTable"),
+				mParams = oEvent.getParameters(),
+				oBinding = oTable.getBinding("items"),
+				sPath,
+				bDescending,
+				aSorters = [];
+
+			sPath = mParams.sortItem.getKey();
+			bDescending = mParams.sortDescending;
+			aSorters.push(new Sorter(sPath, bDescending));
+
+			// apply the selected sort and group settings
+			oBinding.sort(aSorters);
+		},
+
+		handleFilterDialogConfirm: function (oEvent) {
+			var oTable = this.byId("idPriceTable"),
+				mParams = oEvent.getParameters(),
+				oBinding = oTable.getBinding("items"),
+				aFilters = [];
+
+			mParams.filterItems.forEach(function(oItem) {
+				var aSplit = oItem.getKey().split("___"),
+					sPath = aSplit[0],
+					sOperator = aSplit[1],
+					sValue1 = aSplit[2],
+					sValue2 = aSplit[3],
+					oFilter = new Filter(sPath, sOperator, sValue1, sValue2);
+				aFilters.push(oFilter);
+			});
+
+			// apply filter settings
+			oBinding.filter(aFilters);
+
+			// update filter bar
+			this.byId("vsdFilterBar").setVisible(aFilters.length > 0);
+			this.byId("vsdFilterLabel").setText(mParams.filterString);
+		},
 	});
 });
