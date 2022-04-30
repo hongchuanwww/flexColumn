@@ -294,6 +294,11 @@
                                 type="Transparent"
                                 icon="sap-icon://check-availability"
                                 press=".openDialog" />
+							<m:OverflowToolbarButton
+                                type="Transparent"
+								tooltip="Export"
+                                icon="sap-icon://excel-attachment"
+                                press=".onExport" />
                         </actions>
 						<blocks>
 							<m:Table

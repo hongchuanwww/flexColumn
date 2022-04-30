@@ -6,9 +6,11 @@ sap.ui.define([
 	"sap/ui/core/Fragment",
 	'sap/ui/model/Filter',
 	'sap/ui/model/Sorter',
-], function (Controller, MessageToast, MessageBox, JSONModel, Fragment, Filter, Sorter) {
+	'sap/ui/export/Spreadsheet',
+	'sap/ui/export/library',
+], function (Controller, MessageToast, MessageBox, JSONModel, Fragment, Filter, Sorter, Spreadsheet, exportLibrary) {
 	"use strict";
-
+	var EdmType = exportLibrary.EdmType;
 	return Controller.extend("zychcn.zbundle01.controller.Detail", {
 		onInit: function () {
 			this._mViewSettingsDialogs = {};
@@ -438,6 +440,54 @@ sap.ui.define([
 			// update filter bar
 			this.byId("vsdFilterBar").setVisible(aFilters.length > 0);
 			this.byId("vsdFilterLabel").setText(mParams.filterString);
+		},
+		createColumnConfig: function() {
+			return [{
+				property: 'Province',
+				type: EdmType.String
+			},{
+				property: 'ProvinceDesc',
+				type: EdmType.String
+			},{
+				property: 'AgreeId',
+				type: EdmType.String
+			},{
+				property: 'BpCodeInAgree',
+				type: EdmType.String
+			},{
+				property: 'Rate',
+				type: EdmType.Number
+			},{
+				property: 'RateUnit',
+				type: EdmType.String
+			},{
+				property: 'Cap',
+				type: EdmType.Number
+			},{
+				property: 'ValidFrom',
+				type: EdmType.Date
+			},{
+				property: 'ValidTo',
+				type: EdmType.Date
+			}];
+		},
+		onExport: function() {
+			var oTable = this.byId("idPriceTable"),
+			oRowBinding = oTable.getBinding('items'),
+			aCols = this.createColumnConfig(),
+			oSettings = {
+				workbook: {
+					columns: aCols,
+					// hierarchyLevel: 'Level'
+				},
+				dataSource: oRowBinding,
+				fileName: 'Price.xlsx',
+				worker: false // We need to disable worker because we are using a MockServer as OData Service
+			},
+			oSheet = new Spreadsheet(oSettings);
+			oSheet.build().finally(function() {
+				oSheet.destroy();
+			});
 		},
 	});
 });
