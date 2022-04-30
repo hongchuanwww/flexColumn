@@ -217,6 +217,7 @@ sap.ui.define([
 					group.GrpScopeDesc = group.GrpScope.split(' ')[1] || group.GrpScopeDesc;
 					group.GrpScope = group.GrpScope.split(' ')[0];
 					group.ToItem = group.ToItem.results;
+					group.GrpQty = group.GrpQty.toString();
 					if (group.ToItem.length != 0) {
 						group.ToItem.forEach(item => {
 							this._DatePipe(item,'ValidFrom');
