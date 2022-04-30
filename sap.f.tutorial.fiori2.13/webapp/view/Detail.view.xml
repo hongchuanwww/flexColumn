@@ -144,7 +144,7 @@
 						<m:Label text="{i18n>SalesVolume} : " design="Bold"/>
 						<m:HBox>
 							<m:ObjectIdentifier text="{detail>/Qty}" visible="{= !${state>/bEdit}}"/>
-							<m:StepInput width="110px" value="{detail>/Qty}" visible="{= !!${state>/bEdit}}"/>
+							<m:StepInput width="110px" value="{detail>/Qty}" visible="{= !!${state>/bEdit}}" min="1"/>
 						</m:HBox>
 						<!-- <m:Text text="{detail>Qty}" editable="{= !!${state>/bEdit}}"/> -->
 					</m:HBox>
@@ -247,7 +247,7 @@
 										<m:cells>
 											<m:HBox>
 												<m:ObjectIdentifier text="{detail>GrpQty}" visible="{= !${state>/bEdit}}"/>
-												<m:StepInput width="110px" value="{detail>GrpQty}" visible="{= !!${state>/bEdit}}"/>
+												<m:StepInput width="110px" value="{detail>GrpQty}" visible="{= !!${state>/bEdit}}" min="1"/>
 											</m:HBox>
 										</m:cells>
 										<m:cells>
@@ -260,7 +260,7 @@
 										<m:cells>
 											<m:HBox>
 												<m:ObjectIdentifier text="{detail>GrpDelivery}" visible="{= !${state>/bEdit}}"/>
-												<m:StepInput width="110px" value="{detail>GrpDelivery}" visible="{= !!${state>/bEdit}}"/>
+												<m:StepInput width="110px" value="{detail>GrpDelivery}" visible="{= !!${state>/bEdit}}" min="1"/>
 											</m:HBox>
 											<!-- <m:ObjectIdentifier text="{detail>GrpDelivery}" enabled="{= !!${state>/bEdit}}"/> -->
 										</m:cells>
@@ -294,6 +294,11 @@
                                 type="Transparent"
                                 icon="sap-icon://check-availability"
                                 press=".openDialog" />
+							<m:OverflowToolbarButton
+                                type="Transparent"
+								tooltip="Export"
+                                icon="sap-icon://excel-attachment"
+                                press=".onExport" />
                         </actions>
 						<blocks>
 							<m:Table
