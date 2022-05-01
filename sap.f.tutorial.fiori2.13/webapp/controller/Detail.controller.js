@@ -473,17 +473,15 @@ sap.ui.define([
 			}];
 		},
 		onExport: function() {
-			var oTable = this.byId("idPriceTable"),
-			oRowBinding = oTable.getBinding('items'),
-			aCols = this.createColumnConfig(),
+			var aCols = this.createColumnConfig(),
 			oSettings = {
 				workbook: {
 					columns: aCols,
 					// hierarchyLevel: 'Level'
 				},
-				dataSource: oRowBinding,
+				dataSource: this.oDetailModel.getProperty('/ToPrice/results'),
 				fileName: 'Price.xlsx',
-				worker: false // We need to disable worker because we are using a MockServer as OData Service
+				worker: true // We need to disable worker because we are using a MockServer as OData Service
 			},
 			oSheet = new Spreadsheet(oSettings);
 			oSheet.build().finally(function() {
