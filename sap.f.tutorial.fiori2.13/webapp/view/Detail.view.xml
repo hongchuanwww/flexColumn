@@ -280,36 +280,37 @@
 				<subSections>
 					<ObjectPageSubSection>
 						<actions>
-							<m:OverflowToolbarButton
-                                type="Transparent"
-								tooltip="Sort"
-                                icon="sap-icon://sort"
-                                press=".handleSortButtonPressed" />
-							<m:OverflowToolbarButton
-                                type="Transparent"
-								tooltip="Filter"
-                                icon="sap-icon://filter"
-                                press=".handleFilterButtonPressed" />
-							<m:OverflowToolbarButton
-                                type="Transparent"
-                                icon="sap-icon://check-availability"
-                                press=".openDialog" />
-							<m:OverflowToolbarButton
-                                type="Transparent"
-								tooltip="Export"
-                                icon="sap-icon://excel-attachment"
-                                press=".onExport" />
+							
                         </actions>
 						<blocks>
 							<m:Table
 								id="idPriceTable"
 								growing="true" growingThreshold="10"
 								items="{path : 'detail>/ToPrice/results'}">
-								<m:infoToolbar>
-									<m:OverflowToolbar id="vsdFilterBar" visible="false">
-										<m:Text id="vsdFilterLabel" />
+								<m:headerToolbar>
+									<m:OverflowToolbar>
+										<m:ToolbarSpacer/>
+										<m:SearchField ariaLabelledBy="text1" id="maxPrice" liveChange="onFilter">
+											<m:layoutData>
+												<m:OverflowToolbarLayoutData maxWidth="300px" shrinkable="true" priority="NeverOverflow"/>
+											</m:layoutData>
+										</m:SearchField>
+									<m:OverflowToolbarButton
+										type="Transparent"
+										tooltip="Sort"
+										icon="sap-icon://sort"
+										press=".handleSortButtonPressed" />
+									<m:OverflowToolbarButton
+										type="Transparent"
+										icon="sap-icon://check-availability"
+										press=".openDialog" />
+									<m:OverflowToolbarButton
+										type="Transparent"
+										tooltip="Export"
+										icon="sap-icon://excel-attachment"
+										press=".onExport" />
 									</m:OverflowToolbar>
-								</m:infoToolbar>
+								</m:headerToolbar>
 								<m:columns>
 									<m:Column>
 										<m:Text text="{i18n>ProvinceID}"/>
