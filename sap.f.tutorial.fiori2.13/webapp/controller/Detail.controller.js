@@ -424,7 +424,7 @@ sap.ui.define([
 				property: 'Province',
 				type: EdmType.String
 			},{
-				property: 'ProvinceDesc',
+				property: 'RegionDesc',
 				type: EdmType.String
 			},{
 				property: 'AgreeId',
