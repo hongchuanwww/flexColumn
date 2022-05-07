@@ -239,6 +239,8 @@ sap.ui.define([
 			sPath = 'BundleHeadSet';
 
 			this.oDataModel.create(sPath, data, mParameters);
+			this.oDataModel.refresh();
+			this._refreshDetail();
 		},
 		openDialog: function () {
 			var oView = this.getView();
@@ -414,8 +416,8 @@ sap.ui.define([
 		onFilter: function (oEvent) {
 			var oTable = this.byId("idPriceTable"),
 				oBinding = oTable.getBinding("items"),
-				aFilters = [new Filter("AgreeId", FilterOperator.Contains, oEvent.getSource().getValue())];
-
+				// aFilters = [new Filter("AgreeId", FilterOperator.Contains, oEvent.getSource().getValue()), new Filter("Rate", FilterOperator.Contains, oEvent.getSource().getValue())];
+				aFilters = [new Filter("AgreeId", FilterOperator.Contains, oEvent.getSource().getValue())]
 			// apply filter settings
 			oBinding.filter(aFilters);
 		},
