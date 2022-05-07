@@ -300,7 +300,7 @@ sap.ui.define([
 			var fnSuccess = function (data) {
 				var price = data.ToPrice.results || [];
 				price.sort((p1, p2) => (p1.MessageType > p2.MessageType) ? -1: 1)
-				this.getView().getModel('save').setData({enabled: price.every(p => p.MessageType === "")});
+				this.getView().getModel('save').setData({enabled: price.every(p => (p.MessageType === "" || p.MessageType === "W"))});
 				this.getView().getModel('check').setData(price);
 				MessageToast.show('success');
 			}.bind(this);
@@ -465,5 +465,54 @@ sap.ui.define([
 				oSheet.destroy();
 			});
 		},
+		createCaculateColumnConfig: function() {
+			return [{
+				property: 'Province',
+				type: EdmType.String
+			},{
+				property: 'ProvinceDesc',
+				type: EdmType.String
+			},{
+				property: 'AgreeId',
+				type: EdmType.String
+			},{
+				property: 'BpCodeInAgree',
+				type: EdmType.String
+			},{
+				property: 'Rate',
+				type: EdmType.Number
+			},{
+				property: 'RateUnit',
+				type: EdmType.String
+			},{
+				property: 'Cap',
+				type: EdmType.Number
+			},{
+				property: 'ValidFrom',
+				type: EdmType.Date
+			},{
+				property: 'ValidTo',
+				type: EdmType.Date
+			}];
+		},
+		onCalExport: function() {
+			var aCols = this.createColumnConfig(),
+			oSettings = {
+				workbook: {
+					columns: aCols,
+					// hierarchyLevel: 'Level'
+				},
+				
+				dataSource: this.getView().getModel('check').oData,
+				// dataSource: this.oDetailModel.getProperty('/ToPrice/results'),
+				fileName: 'Calculate.xlsx',
+				worker: true // We need to disable worker because we are using a MockServer as OData Service
+			},
+			oSheet = new Spreadsheet(oSettings);
+			oSheet.build().finally(function() {
+				oSheet.destroy();
+			});
+		},
+
 	});
 });

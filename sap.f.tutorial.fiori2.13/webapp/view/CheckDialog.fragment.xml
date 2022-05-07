@@ -9,6 +9,7 @@
             <m:Button text="{i18n>simulate}" press=".check"/>
             <m:Button text="{i18n>paste}" press=".firePaste"/>
             <m:Button text="{i18n>clear}" press=".clearPaste"/>
+            <m:Button text="{i18n>export}" press=".onCalExport"/>
 			<!-- <m:OverflowToolbarButton
                 type="Transparent"
                 icon="sap-icon://simulate"
@@ -61,6 +62,8 @@
                     </m:Column>
                     <m:Column>
                     </m:Column>
+                    <m:Column>
+                    </m:Column>
                 </m:columns>
                 <m:items>
                     <m:ColumnListItem>
@@ -106,6 +109,37 @@
 									pattern: 'yyyy-MM-dd'
 								}
 							}" valueFormat="yyyy-MM-dd"/>
+                        </m:cells>
+                        <m:cells>
+                            <m:HBox>
+                                <core:Icon
+                                    src="sap-icon://status-error"
+                                    class="size1"
+                                    visible="{= ${check>MessageType} === 'E' }"
+                                    color="#031E48" >
+                                    <core:layoutData>
+                                        <m:FlexItemData growFactor="1" />
+                                    </core:layoutData>
+                                </core:Icon>
+                                <core:Icon
+                                    src="sap-icon://accept"
+                                    class="size1"
+                                    visible="{= ${check>MessageType} === '' }"
+                                    color="#031E48" >
+                                    <core:layoutData>
+                                        <m:FlexItemData growFactor="1" />
+                                    </core:layoutData>
+                                </core:Icon>
+                                <core:Icon
+                                    src="sap-icon://warning2"
+                                    class="size1"
+                                    visible="{= ${check>MessageType} === 'W' }"
+                                    color="#031E48" >
+                                    <core:layoutData>
+                                        <m:FlexItemData growFactor="1" />
+                                    </core:layoutData>
+                                </core:Icon>
+                            </m:HBox>
                         </m:cells>
                         <m:cells>
                             <m:Text text="{check>MessageText}"/>
