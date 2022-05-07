@@ -5,10 +5,11 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/core/Fragment",
 	'sap/ui/model/Filter',
+	'sap/ui/model/FilterOperator',
 	'sap/ui/model/Sorter',
 	'sap/ui/export/Spreadsheet',
 	'sap/ui/export/library',
-], function (Controller, MessageToast, MessageBox, JSONModel, Fragment, Filter, Sorter, Spreadsheet, exportLibrary) {
+], function (Controller, MessageToast, MessageBox, JSONModel, Fragment, Filter, FilterOperator, Sorter, Spreadsheet, exportLibrary) {
 	"use strict";
 	var EdmType = exportLibrary.EdmType;
 	return Controller.extend("zychcn.zbundle01.controller.Detail", {
@@ -378,15 +379,6 @@ sap.ui.define([
 				});
 		},
 
-		handleFilterButtonPressed: function () {
-			var oView = this.getView();
-			this.getViewSettingsDialog("zychcn.zbundle01.view.FilterDialog")
-				.then(function (oDialog) {
-					oView.addDependent(oDialog);
-					oDialog.open();
-				});
-		},
-
 		getViewSettingsDialog: function (sDialogFragmentName) {
 			var pDialog = this._mViewSettingsDialogs[sDialogFragmentName];
 
@@ -419,28 +411,13 @@ sap.ui.define([
 			oBinding.sort(aSorters);
 		},
 
-		handleFilterDialogConfirm: function (oEvent) {
+		onFilter: function (oEvent) {
 			var oTable = this.byId("idPriceTable"),
-				mParams = oEvent.getParameters(),
 				oBinding = oTable.getBinding("items"),
-				aFilters = [];
-
-			mParams.filterItems.forEach(function(oItem) {
-				var aSplit = oItem.getKey().split("___"),
-					sPath = aSplit[0],
-					sOperator = aSplit[1],
-					sValue1 = aSplit[2],
-					sValue2 = aSplit[3],
-					oFilter = new Filter(sPath, sOperator, sValue1, sValue2);
-				aFilters.push(oFilter);
-			});
+				aFilters = [new Filter("AgreeId", FilterOperator.Contains, oEvent.getSource().getValue())];
 
 			// apply filter settings
 			oBinding.filter(aFilters);
-
-			// update filter bar
-			this.byId("vsdFilterBar").setVisible(aFilters.length > 0);
-			this.byId("vsdFilterLabel").setText(mParams.filterString);
 		},
 		createColumnConfig: function() {
 			return [{
