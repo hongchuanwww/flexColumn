@@ -173,7 +173,6 @@ sap.ui.define([
 			var fnSuccess = function (e) {
 				MessageToast.show('success');
 				this.oStateModel.setProperty('/bEdit', false);
-				this.oDataModel.refresh();
 				this._refreshDetail();
 				this._naviToDetail(e.HeadId);
 			}.bind(this);
@@ -269,6 +268,7 @@ sap.ui.define([
 			var fnSuccess = function (data) {
 				MessageToast.show('success');
 				this.oDataModel.refresh();
+				this._refreshDetail();
 				this.onCloseDialog();
 			}.bind(this);
 
