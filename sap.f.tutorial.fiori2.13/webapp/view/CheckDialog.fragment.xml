@@ -116,7 +116,7 @@
                                     src="sap-icon://status-error"
                                     class="size1"
                                     visible="{= ${check>MessageType} === 'E' }"
-                                    color="#031E48" >
+                                    color="#ff0000" >
                                     <core:layoutData>
                                         <m:FlexItemData growFactor="1" />
                                     </core:layoutData>
@@ -134,7 +134,7 @@
                                     src="sap-icon://warning2"
                                     class="size1"
                                     visible="{= ${check>MessageType} === 'W' }"
-                                    color="#031E48" >
+                                    color="#ffde24" >
                                     <core:layoutData>
                                         <m:FlexItemData growFactor="1" />
                                     </core:layoutData>
