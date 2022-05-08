@@ -270,7 +270,7 @@ sap.ui.define([
 		onConfirmDialog: function () {
 			var fnSuccess = function (data) {
 				MessageToast.show('success');
-				this.oDataModel.refresh();
+				this._refreshDetail();
 				this.onCloseDialog();
 			}.bind(this);
 
