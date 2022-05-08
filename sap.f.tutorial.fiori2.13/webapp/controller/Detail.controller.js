@@ -413,14 +413,26 @@ sap.ui.define([
 			oBinding.sort(aSorters);
 		},
 
-		onFilter: function (oEvent) {
+		onAgreementFilter: function (oEvent) {
 			var oTable = this.byId("idPriceTable"),
-				oBinding = oTable.getBinding("items"),
-				// aFilters = [new Filter("AgreeId", FilterOperator.Contains, oEvent.getSource().getValue()), new Filter("Rate", FilterOperator.Contains, oEvent.getSource().getValue())];
-				aFilters = [new Filter("AgreeId", FilterOperator.Contains, oEvent.getSource().getValue())]
+			oBinding = oTable.getBinding("items"),
+			
+			// aFilters = [new Filter("AgreeId", FilterOperator.Contains, oEvent.getSource().getValue()), new Filter("Rate", FilterOperator.Contains, oEvent.getSource().getValue())];
+			aFilters = [new Filter("AgreeId", FilterOperator.Contains, oEvent.getSource().getValue())]
 			// apply filter settings
 			oBinding.filter(aFilters);
 		},
+
+		onCustomerFilter: function (oEvent) {
+			var oTable = this.byId("idPriceTable"),
+			oBinding = oTable.getBinding("items"),
+			
+			// aFilters = [new Filter("AgreeId", FilterOperator.Contains, oEvent.getSource().getValue()), new Filter("Rate", FilterOperator.Contains, oEvent.getSource().getValue())];
+			bFilters = [new Filter("BpCodeInAgree", FilterOperator.Contains, oEvent.getSource().getValue())]
+			// apply filter settings
+			oBinding.filter(bFilters);
+		},
+
 		createColumnConfig: function() {
 			return [{
 				property: 'Province',

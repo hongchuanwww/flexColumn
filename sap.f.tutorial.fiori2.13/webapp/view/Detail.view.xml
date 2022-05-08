@@ -290,25 +290,30 @@
 								<m:headerToolbar>
 									<m:OverflowToolbar>
 										<m:ToolbarSpacer/>
-										<m:SearchField ariaLabelledBy="text1" id="maxPrice" liveChange="onFilter">
+										<m:SearchField placeholder="{i18n>Agreement}" ariaLabelledBy="text1" id="searchAgreement" liveChange="onAgreementFilter">
 											<m:layoutData>
-												<m:OverflowToolbarLayoutData maxWidth="300px" shrinkable="true" priority="NeverOverflow"/>
+												<m:OverflowToolbarLayoutData maxWidth="150px" shrinkable="true" priority="NeverOverflow"/>
 											</m:layoutData>
 										</m:SearchField>
-									<m:OverflowToolbarButton
-										type="Transparent"
-										tooltip="Sort"
-										icon="sap-icon://sort"
-										press=".handleSortButtonPressed" />
-									<m:OverflowToolbarButton
-										type="Transparent"
-										icon="sap-icon://check-availability"
-										press=".openDialog" />
-									<m:OverflowToolbarButton
-										type="Transparent"
-										tooltip="Export"
-										icon="sap-icon://excel-attachment"
-										press=".onExport" />
+										<m:SearchField placeholder="{i18n>Customer}" ariaLabelledBy="text2" id="searchCustomer" liveChange="onCustomerFilter">
+											<m:layoutData>
+												<m:OverflowToolbarLayoutData maxWidth="150px" shrinkable="true" priority="NeverOverflow"/>
+											</m:layoutData>
+										</m:SearchField>
+										<m:OverflowToolbarButton
+											type="Transparent"
+											tooltip="Sort"
+											icon="sap-icon://sort"
+											press=".handleSortButtonPressed" />
+										<m:OverflowToolbarButton
+											type="Transparent"
+											icon="sap-icon://check-availability"
+											press=".openDialog" />
+										<m:OverflowToolbarButton
+											type="Transparent"
+											tooltip="Export"
+											icon="sap-icon://excel-attachment"
+											press=".onExport" />
 									</m:OverflowToolbar>
 								</m:headerToolbar>
 								<m:columns>
