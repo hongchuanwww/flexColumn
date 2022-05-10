@@ -110,7 +110,7 @@
 												}"
 											>
 												<!-- <core:Item key="{product>Product}" text="{product>Product}-{product>ProductDescZh}" /> -->
-												<core:Item key="{product>Product}" text="{product>ProductDescZh}" />
+												<core:Item key="{product>Product}" text="{product>Product}" />
 											</m:Input>
 										</m:cells>
 										<m:cells>

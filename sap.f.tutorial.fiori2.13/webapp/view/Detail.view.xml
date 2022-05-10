@@ -260,7 +260,7 @@
 										<m:cells>
 											<m:HBox>
 												<m:ObjectIdentifier text="{detail>GrpDelivery}" visible="{= !${state>/bEdit}}"/>
-												<m:StepInput width="110px" value="{detail>GrpDelivery}" visible="{= !!${state>/bEdit}}" min="1"/>
+												<m:Input width="110px" value="{detail>GrpDelivery}" visible="{= !!${state>/bEdit}}"/>
 											</m:HBox>
 											<!-- <m:ObjectIdentifier text="{detail>GrpDelivery}" enabled="{= !!${state>/bEdit}}"/> -->
 										</m:cells>

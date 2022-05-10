@@ -218,7 +218,8 @@
 											<m:CheckBox selected="{new>GrpQtycheck}"/>
 										</m:cells>
 										<m:cells>
-											<m:StepInput value="{new>GrpDelivery}" min="1"/>
+											<!-- <m:StepInput value="{new>GrpDelivery}" min="1"/> -->
+											<m:Input value="{new>GrpDelivery}"/>
 										</m:cells>
 										<m:cells>
 											<m:Button icon="sap-icon://delete" type="Transparent" press="deleteGroup" ariaLabelledBy="editButtonLabel"/>
@@ -238,7 +239,9 @@
                             <m:OverflowToolbarButton
                                 type="Transparent"
                                 icon="sap-icon://add"
-                                press=".addPrice" />
+                                press=".addPrice" 
+								visible="false"/>
+							<m:Text text="{i18n>HelpText}"/>
                         </actions>
 						<blocks>
 							<m:Table
