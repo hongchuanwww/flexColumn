@@ -114,7 +114,7 @@
 											</m:Input>
 										</m:cells>
 										<m:cells>
-											<m:Text text="{new>ProductDescZh}"/>
+											<m:Text text="{new>ProducDesc}"/>
 										</m:cells>
 										<m:cells>
 											<!-- <m:ObjectIdentifier text="{new>ValidFrom}"/> -->
