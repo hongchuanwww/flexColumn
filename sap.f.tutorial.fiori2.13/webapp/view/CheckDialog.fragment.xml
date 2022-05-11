@@ -134,7 +134,7 @@
                                     src="sap-icon://warning2"
                                     class="size1"
                                     visible="{= ${check>MessageType} === 'W' }"
-                                    color="#ffff24" >
+                                    color="#ffde24" >
                                     <core:layoutData>
                                         <m:FlexItemData growFactor="1" />
                                     </core:layoutData>
