@@ -60,7 +60,7 @@
                     <m:Column>
                         <m:Text text="{i18n>ValidTo}"/>
                     </m:Column>
-                    <m:Column>
+                    <m:Column width = "5%">
                     </m:Column>
                     <m:Column>
                     </m:Column>
@@ -111,7 +111,7 @@
 							}" valueFormat="yyyy-MM-dd"/>
                         </m:cells>
                         <m:cells>
-                            <m:HBox width="20px">
+                            <m:HBox>
                                 <core:Icon
                                     src="sap-icon://status-error"
                                     class="size1"
