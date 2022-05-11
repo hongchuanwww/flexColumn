@@ -111,7 +111,7 @@
 							}" valueFormat="yyyy-MM-dd"/>
                         </m:cells>
                         <m:cells>
-                            <m:HBox width="60px">
+                            <m:HBox width="20px">
                                 <core:Icon
                                     src="sap-icon://status-error"
                                     class="size1"
