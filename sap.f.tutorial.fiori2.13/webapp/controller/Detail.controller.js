@@ -294,8 +294,6 @@ sap.ui.define([
 				this._DatePipe(price,'ValidFrom');
 				this._DatePipe(price,'ValidTo');
 				price.Changeflag = "C";
-				delete price.MessageType;
-				delete price.MessageText;
 			});
 			this.oDataModel.create(sPath, data, mParameters);
 		},
@@ -463,6 +461,12 @@ sap.ui.define([
 			},{
 				property: 'ValidTo',
 				type: EdmType.Date
+			},{
+				property: 'MessageType',
+				type: EdmType.String
+			},{
+				property: 'MessageText',
+				type: EdmType.String
 			}];
 		},
 		onExport: function() {
