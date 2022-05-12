@@ -461,6 +461,12 @@ sap.ui.define([
 			},{
 				property: 'ValidTo',
 				type: EdmType.Date
+			},{
+				property: 'MessageType',
+				type: EdmType.String
+			},{
+				property: 'MessageText',
+				type: EdmType.String
 			}];
 		},
 		onExport: function() {
