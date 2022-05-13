@@ -228,7 +228,7 @@ sap.ui.define([
 							} else {
 								item.Changeflag = "U";
 							}
-							
+							delete item.ProductDescZh
 							item.GrpId = group.GrpId;
 							item.GrpScope = group.GrpScope.split(' ')[0];
 						});

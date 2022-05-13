@@ -154,6 +154,7 @@ sap.ui.define([
 					this._DatePipe(item,'ValidFrom');
 					this._DatePipe(item,'ValidTo');
 					item.Changeflag = "C";
+					delete item.ProductDescZh;
 				});
 			});
 			oDataModel.create(sPath, data, mParameters);
