@@ -326,6 +326,11 @@ sap.ui.define([
 			data.ToPrice.forEach(price => {
 				this._DatePipe(price,'ValidFrom');
 				this._DatePipe(price,'ValidTo');
+				
+				delete price.HeadId
+				delete price.MessageType
+				delete price.MessageText
+
 				price.Changeflag = "C";
 			});
 			this.oDataModel.create(sPath, data, mParameters);
