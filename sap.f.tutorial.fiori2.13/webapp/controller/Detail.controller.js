@@ -299,6 +299,7 @@ sap.ui.define([
 		},
 
 		check: function () {
+			this.getView().getModel('save').setData({enabled: false});
 			var fnSuccess = function (data) {
 				var price = data.ToPrice.results || [];
 				price.sort((p1, p2) => (p1.MessageType > p2.MessageType) ? -1: 1)
