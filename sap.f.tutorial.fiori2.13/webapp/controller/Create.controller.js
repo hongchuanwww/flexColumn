@@ -149,7 +149,7 @@ sap.ui.define([
 			data.ToGroup.forEach(group => {
 				group.Changeflag = "C";
 				[group.GrpScope, group.GrpScopeDesc] = group.GrpScope?.split(' ') || [];
-				group.GrpQty = group.GrpQty.toString() || '';
+				group.GrpQty = group.GrpQty === undefined ? '' : group.GrpQty.toString();
 				group.ToItem.forEach(item => {
 					this._DatePipe(item,'ValidFrom');
 					this._DatePipe(item,'ValidTo');
