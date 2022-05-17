@@ -305,9 +305,8 @@
 											tooltip="Sort"
 											icon="sap-icon://sort"
 											press=".handleSortButtonPressed" />
-										<m:OverflowToolbarButton
-											type="Transparent"
-											icon="sap-icon://check-availability"
+										<m:Button
+											text="{i18n>openCheck}"
 											press=".openDialog" />
 										<m:OverflowToolbarButton
 											type="Transparent"

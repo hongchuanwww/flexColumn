@@ -373,6 +373,22 @@ sap.ui.define([
 			this.getView().getModel('check').setData(data);
 		},
 
+		onAddPrice: function (e) {
+			var price = this.getView().getModel('check').getData();
+			price.push({});
+			this.getView().getModel('check').setData(price);
+		},
+
+		onDeletePrice: function (e) {
+			var btn = e.getSource(),
+			row = btn.getParent(),
+			table = row.getParent(),
+			index = table.indexOfItem(row),
+			prices = this.getView().getModel('check').getData();
+			prices.splice(index,1);
+			this.getView().getModel('check').setData(prices);
+		},
+
 		isNavigated: function(sNavigatedItemId, sItemId) {
 			return sNavigatedItemId === sItemId;
 		},
