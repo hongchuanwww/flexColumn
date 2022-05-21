@@ -66,7 +66,7 @@
 			<m:HBox justifyContent="SpaceBetween">
 				<m:VBox>
 					<m:HBox>
-						<m:Label text="BU {i18n>HeaderDesc} : " design="Bold"/>
+						<m:Label text="BU ID : " design="Bold"/>
 						<m:Select
 							selectedKey="{new>/BuId}"
 							forceSelection="false"

@@ -172,7 +172,7 @@ sap.ui.define([
 			var data = this.oNewModel.getData();
 			this.BuId = data.BuId?.split(' ')[0];
 			if(!this.GrpScope || !this.BuId) {
-				MessageBox.error('请先选择BU ID和Group Scope');
+				MessageBox.error('Please select BU ID and Group Scope');
 				return;
 			}
 			this._oInput = oEvent.getSource();

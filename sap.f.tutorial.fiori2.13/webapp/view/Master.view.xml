@@ -54,7 +54,7 @@
 					<fb:FilterGroupItem
 						groupName="__$MASTER$"
 						name="BdPromType"
-						label="Promotion Type"
+						label="{i18n>promotionType}"
 						visibleInFilterBar="true"
 					>
 						<fb:control>
@@ -73,7 +73,7 @@
 					<fb:FilterGroupItem
 						groupName="__$MASTER$"
 						name="ValidFrom"
-						label="Valid From"
+						label="{i18n>ValidFrom}"
 						visibleInFilterBar="true"
 					>
 						<fb:control>

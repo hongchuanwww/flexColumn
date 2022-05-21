@@ -23,7 +23,7 @@ sap.ui.define([
 				if (value) {
 					aResult.push(new Filter({
 						path: oControl.getName(),
-						operator: i > 3 ? FilterOperator.EQ : FilterOperator.Contains,
+						operator: i == 4 ? FilterOperator.GT : FilterOperator.EQ,
 						value1: value
 					}));
 				}
