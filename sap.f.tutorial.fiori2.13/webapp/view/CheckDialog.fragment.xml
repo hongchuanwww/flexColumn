@@ -37,7 +37,7 @@
                     <m:Column>
                         <m:Text text="{i18n>ProvinceDesc}"/>
                     </m:Column>
-                    <m:Column>
+                    <m:Column width = "5%">
                         <m:Text text="{i18n>ProtocolID}"/>
                     </m:Column>
                     <m:Column>
@@ -49,10 +49,10 @@
                     <m:Column>
                         <m:Text text="{i18n>Rate}"/>
                     </m:Column>
-                    <m:Column>
+                    <m:Column width = "5%">
                         <m:Text text="{i18n>RateUnit}"/>
                     </m:Column>
-                    <m:Column>
+                    <m:Column width = "5%">
                         <m:Text text="{i18n>CAP}"/>
                     </m:Column>
                     <m:Column>
@@ -63,9 +63,9 @@
                     </m:Column>
                     <m:Column width = "5%">
                     </m:Column>
-                    <m:Column>
+                    <m:Column width = "5%">
                     </m:Column>
-                    <m:Column>
+                    <m:Column width = "5%">
                     </m:Column>
                 </m:columns>
                 <m:items>
