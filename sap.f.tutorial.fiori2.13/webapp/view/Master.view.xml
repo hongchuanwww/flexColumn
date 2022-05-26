@@ -72,13 +72,13 @@
 
 					<fb:FilterGroupItem
 						groupName="__$MASTER$"
-						name="ValidFrom"
-						label="{i18n>ValidFrom}"
+						name="ValidTo"
+						label="{i18n>ValidTo}"
 						visibleInFilterBar="true"
 					>
 						<fb:control>
 							<m:DatePicker 
-								name="ValidFrom"
+								name="ValidTo"
 								minDate="{setting>/minDate}"/>
 						</fb:control>
 					</fb:FilterGroupItem>
