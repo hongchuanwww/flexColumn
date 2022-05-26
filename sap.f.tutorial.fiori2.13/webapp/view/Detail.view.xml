@@ -322,7 +322,7 @@
 									<m:Column>
 										<m:Text text="{i18n>ProvinceDesc}"/>
 									</m:Column>
-									<m:Column width = "5%">
+									<m:Column width = "10%">
 										<m:Text text="{i18n>ProtocolID}"/>
 									</m:Column>
 									<m:Column>
