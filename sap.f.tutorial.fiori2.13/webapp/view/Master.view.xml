@@ -129,25 +129,25 @@
 						<Column>
 							<Text text="{i18n>BdHeadNumber}"/>
 						</Column>
-						<Column>
+						<Column minScreenWidth="Tablet">
 							<Text text="{i18n>promotionType}"/>
 						</Column>
-						<Column>
+						<Column minScreenWidth="Tablet">
 							<Text text="{i18n>promotionTypeDesc}"/>
 						</Column>
-						<Column>
+						<Column minScreenWidth="Tablet">
 							<Text text="{i18n>SortCode}"/>
 						</Column>
-						<Column>
+						<Column minScreenWidth="Tablet">
 							<Text text="{i18n>BdDesc}"/>
 						</Column>
-						<Column>
+						<Column minScreenWidth="Tablet">
 							<Text text="{i18n>BuDesc}"/>
 						</Column>
-						<Column>
+						<Column minScreenWidth="Tablet">
 							<Text text="{i18n>ValidFrom}"/>
 						</Column>
-						<Column>
+						<Column minScreenWidth="Tablet">
 							<Text text="{i18n>ValidTo}"/>
 						</Column>
 					</columns>
