@@ -129,25 +129,25 @@
 						<Column>
 							<Text text="{i18n>BdHeadNumber}"/>
 						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true">>
+						<Column minScreenWidth="Tablet" demandPopin="true">
 							<Text text="{i18n>promotionType}"/>
 						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true">>
+						<Column minScreenWidth="Tablet" demandPopin="true">
 							<Text text="{i18n>promotionTypeDesc}"/>
 						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true">>
+						<Column minScreenWidth="Tablet" demandPopin="true">
 							<Text text="{i18n>SortCode}"/>
 						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true">>
+						<Column minScreenWidth="Tablet" demandPopin="true">
 							<Text text="{i18n>BdDesc}"/>
 						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true">>
+						<Column minScreenWidth="Tablet" demandPopin="true">
 							<Text text="{i18n>BuDesc}"/>
 						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true">>
+						<Column minScreenWidth="Tablet" demandPopin="true">
 							<Text text="{i18n>ValidFrom}"/>
 						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true">>
+						<Column minScreenWidth="Tablet" demandPopin="true">
 							<Text text="{i18n>ValidTo}"/>
 						</Column>
 					</columns>
