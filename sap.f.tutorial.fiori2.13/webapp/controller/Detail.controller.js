@@ -200,6 +200,7 @@ sap.ui.define([
 			this._DatePipe(data,'ValidTo');
 
 			data.Changeflag = "U";
+			data.Qty = data.Qty.toString();
 			data.ToPrice = data.ToPrice.results;
 			if (data.ToPrice.length != 0) {
 				data.ToPrice.forEach(price => {
