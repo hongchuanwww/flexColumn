@@ -96,7 +96,7 @@ sap.ui.define([
 			return this._getFcl().then(function(oFCL) {
 				var oSettings = {
 					defaultTwoColumnLayoutType: fioriLibrary.LayoutType.TwoColumnsMidExpanded,
-					defaultThreeColumnLayoutType: fioriLibrary.LayoutType.ThreeColumnsMidExpanded,
+					defaultThreeColumnLayoutType: fioriLibrary.LayoutType.EndColumnFullScreen,
 					defaultEndColumnLayoutType: fioriLibrary.LayoutType.EndColumnFullScreen,
 					initialColumnsCount: 1,
 					maxColumnsCount: 3
