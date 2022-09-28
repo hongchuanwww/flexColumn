@@ -55,7 +55,8 @@ sap.ui.define([
 				}
 				
 				this.oRouter.navTo("detailDetail", {
-					layout: oNextUIState.layout,
+					layout: 'EndColumnFullScreen',
+					// layout: oNextUIState.layout,
 					item: item,
 					bundle: this._bundle
 				});

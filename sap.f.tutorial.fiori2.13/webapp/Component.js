@@ -72,7 +72,7 @@ sap.ui.define([
 			// var sServiceUrl = "https://dev.abbott-md.cn:4443/sap/opu/odata/SAP/ZYCHCN_API_ORDER_002_SRV/",
 			// 	bJSON = true,
 			// 	sUser = "huangs03",
-			// 	sPwd = "1qaz@WSX";
+			// 	sPwd = "P@ssword10";
 			// oODataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, bJSON, sUser, sPwd);
 			this.setModel(oODataModel,'invoice');
 			['PROM_TYPE','PROD_SCOPE'].forEach(key => this._getOptions(key));
@@ -96,7 +96,7 @@ sap.ui.define([
 			return this._getFcl().then(function(oFCL) {
 				var oSettings = {
 					defaultTwoColumnLayoutType: fioriLibrary.LayoutType.TwoColumnsMidExpanded,
-					defaultThreeColumnLayoutType: fioriLibrary.LayoutType.ThreeColumnsMidExpanded,
+					defaultThreeColumnLayoutType: fioriLibrary.LayoutType.EndColumnFullScreen,
 					defaultEndColumnLayoutType: fioriLibrary.LayoutType.EndColumnFullScreen,
 					initialColumnsCount: 1,
 					maxColumnsCount: 3
