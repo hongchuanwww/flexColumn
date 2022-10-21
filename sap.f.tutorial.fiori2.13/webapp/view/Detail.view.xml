@@ -308,6 +308,10 @@
 										<m:Button
 											text="{i18n>openCheck}"
 											press=".openDialog" />
+										<m:Button
+											text="{i18n>batchUpdate}"
+											press=".setValidTo" 
+											visible="{= !${state>/bEdit}}"/>
 										<m:OverflowToolbarButton
 											type="Transparent"
 											tooltip="Export"
@@ -383,14 +387,24 @@
 											</m:HBox>
 										</m:cells>
 										<m:cells>
-											<m:ObjectIdentifier text="{
-												path: 'detail>ValidFrom',
-												type: 'sap.ui.model.type.Date',
-												formatOptions: {
-													style: 'medium',
-													pattern: 'yyyy-MM-dd'
-												}
-											}"/>
+											<m:HBox>
+												<m:ObjectIdentifier text="{
+													path: 'detail>ValidFrom',
+													type: 'sap.ui.model.type.Date',
+													formatOptions: {
+														style: 'medium',
+														pattern: 'yyyy-MM-dd'
+													}
+												}" visible="{= !${state>/bEdit}}"/>
+												<m:DatePicker value="{
+													path: 'detail>ValidFrom',
+													type: 'sap.ui.model.type.Date',
+													formatOptions: {
+														style: 'medium',
+														pattern: 'yyyy-MM-dd'
+													}
+												}" visible="{= !!${state>/bEdit}}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/>
+											</m:HBox>
 										</m:cells>
 										<m:cells>
 											<m:HBox>
