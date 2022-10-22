@@ -69,11 +69,11 @@ sap.ui.define([
 			
 			oODataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, bJSON);
 
-			var sServiceUrl = "https://dev.abbott-md.cn:4443/sap/opu/odata/SAP/ZYCHCN_API_ORDER_002_SRV/?saml2=disabled",
-				bJSON = true,
-				sUser = "BDTEST01",
-				sPwd = "In!tial26";
-			oODataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, bJSON, sUser, sPwd);
+			// var sServiceUrl = "https://dev.abbott-md.cn:4443/sap/opu/odata/SAP/ZYCHCN_API_ORDER_002_SRV/?saml2=disabled",
+			// 	bJSON = true,
+			// 	sUser = "BDTEST01",
+			// 	sPwd = "In!tial26";
+			// oODataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, bJSON, sUser, sPwd);
 			this.setModel(oODataModel,'invoice');
 			['PROM_TYPE','PROD_SCOPE'].forEach(key => this._getOptions(key));
 			oRouter = this.getRouter();
