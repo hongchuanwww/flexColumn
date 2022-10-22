@@ -27,6 +27,7 @@ sap.ui.define([
 			this.oRouter.getRoute("detail").attachPatternMatched(this._onProductMatched, this);
 			this.oRouter.getRoute("detailDetail").attachPatternMatched(this._onProductMatched, this);
 			this.getView().setModel(new JSONModel([]), 'check');
+			this.getView().setModel(new JSONModel(), 'detail1');
 			this.getView().setModel(new JSONModel({enabled: false}), 'save');
 			this.getView().getModel('check').setSizeLimit(10000);
 			this.DIC = [
@@ -46,21 +47,38 @@ sap.ui.define([
 		onSupplierPress: function (oEvent) {
 			var itemPath = oEvent.getSource().getBindingContext('detail').getPath(),
 			item = itemPath.split("/").slice(-1).pop();
-			var	oNextUIState;
-			this.oOwnerComponent.getHelper().then(function (oHelper) {
-				if (this.oStateModel.getProperty('/bEdit') == true) {
-					oNextUIState = oHelper.getNextUIState(3);
-				} else {
-					oNextUIState = oHelper.getNextUIState(2);
-				}
+			// var	oNextUIState;
+			// this.oOwnerComponent.getHelper().then(function (oHelper) {
+			// 	if (this.oStateModel.getProperty('/bEdit') == true) {
+			// 		oNextUIState = oHelper.getNextUIState(3);
+			// 	} else {
+			// 		oNextUIState = oHelper.getNextUIState(2);
+			// 	}
 				
-				this.oRouter.navTo("detailDetail", {
-					layout: 'EndColumnFullScreen',
-					// layout: oNextUIState.layout,
-					item: item,
-					bundle: this._bundle
+			// 	this.oRouter.navTo("detailDetail", {
+			// 		layout: 'EndColumnFullScreen',
+			// 		// layout: oNextUIState.layout,
+			// 		item: item,
+			// 		bundle: this._bundle
+			// 	});
+			// }.bind(this));
+			var oView = this.getView();
+			oView.getModel('detail1').setData(oView.getModel('detail').getProperty("/ToGroup/results/" + item));
+			// create dialog lazily
+			if (!this.byId("detailDialog")) {
+				// load asynchronous XML fragment
+				Fragment.load({
+					id: oView.getId(),
+					name: "zychcn.zbundle01.view.DetailDialog",
+					controller: this
+				}).then(function (oDialog) {
+					// connect dialog to the root view of this component (models, lifecycle)
+					oView.addDependent(oDialog);
+					oDialog.open();
 				});
-			}.bind(this));
+			} else {
+				this.byId("detailDialog").open();
+			}
 		},
 
 		_refreshDetail () {
@@ -268,6 +286,10 @@ sap.ui.define([
 			var that = this;
 			that.getView().getModel('check').setData([]);
 			this.byId("checkDialog").close();
+		},
+
+		onCloseDetailDialog: function () {
+			this.byId("detailDialog").close();
 		},
 
 		onConfirmDialog: function () {
