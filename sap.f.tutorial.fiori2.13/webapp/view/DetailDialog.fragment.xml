@@ -154,7 +154,7 @@
         </ObjectPageLayout>
         <m:endButton>
             <m:Button
-                text="{i18n>Cancel}"
+                text="{i18n>Close}"
                 press=".onCloseDetailDialog"/>
         </m:endButton>
     </m:Dialog>
