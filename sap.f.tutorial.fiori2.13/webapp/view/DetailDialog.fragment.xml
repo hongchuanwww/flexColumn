@@ -33,9 +33,9 @@
                         </core:layoutData>
                     </core:Icon>
                     <m:VBox>
-                        <m:Text text="{i18n>groupID}: {detail1>/GrpCode}"/>
-                        <m:Text text="{i18n>GruopScope}: {detail1>/GrpScopeDesc}-{detail1>/GrpScope}"/>
-                        <m:Text text="{i18n>GroupDesc}: {detail1>/GrpText}"/>
+                        <m:Text text="{i18n>groupID}: {detailProduct>/GrpCode}"/>
+                        <m:Text text="{i18n>GruopScope}: {detailProduct>/GrpScopeDesc}-{detailProduct>/GrpScope}"/>
+                        <m:Text text="{i18n>GroupDesc}: {detailProduct>/GrpText}"/>
                     </m:VBox>
                 </m:HBox>
             </headerContent>
@@ -59,7 +59,7 @@
                             <blocks>
                                 <m:Table
                                     id="itemTable"
-                                    items="{path : 'detail1>/ToItem/results'}"
+                                    items="{path : 'detailProduct>/ToItem/results'}"
                                     paste=".onPaste">
                                     <m:columns>
                                         <m:Column>
@@ -83,9 +83,9 @@
                                         <m:ColumnListItem>
                                             <m:cells>
                                                 <m:HBox>
-                                                    <m:ObjectIdentifier text="{detail1>Product}" visible="{= !${state>/bEdit}}"/>
+                                                    <m:ObjectIdentifier text="{detailProduct>Product}" visible="{= !${state>/bEdit}}"/>
                                                     <m:Input 
-                                                        value="{detail1>Product}" 
+                                                        value="{detailProduct>Product}" 
                                                         showValueHelp="true"
                                                         valueHelpOnly="false"
                                                         valueHelpRequest=".onValueHelpRequested"
@@ -102,13 +102,13 @@
                                             </m:cells>
                                             <m:cells>
                                                 <m:VBox>
-                                                    <m:ObjectIdentifier text="{detail1>ProducDesc}"/>
+                                                    <m:ObjectIdentifier text="{detailProduct>ProducDesc}"/>
                                                 </m:VBox>
                                             </m:cells>
                                             <m:cells>
                                                 <m:HBox>
                                                     <m:ObjectIdentifier text="{
-                                                            path: 'detail1>ValidFrom',
+                                                            path: 'detailProduct>ValidFrom',
                                                             type: 'sap.ui.model.type.Date',
                                                             formatOptions: {
                                                                 style: 'medium',
@@ -120,7 +120,7 @@
                                             <m:cells>
                                                 <m:HBox>
                                                     <m:ObjectIdentifier text="{
-                                                            path: 'detail1>ValidTo',
+                                                            path: 'detailProduct>ValidTo',
                                                             type: 'sap.ui.model.type.Date',
                                                             formatOptions: {
                                                                 style: 'medium',
@@ -128,7 +128,7 @@
                                                             }
                                                         }" visible="{= !${state>/bEdit}}"/>
                                                     <m:DatePicker value="{
-                                                        path: 'detail1>ValidTo',
+                                                        path: 'detailProduct>ValidTo',
                                                         type: 'sap.ui.model.type.Date',
                                                         formatOptions: {
                                                             style: 'medium',
@@ -138,10 +138,11 @@
                                                 </m:HBox>
                                             </m:cells>
                                             <m:cells>
-                                                <m:CheckBox selected="{detail1>Sellable}" editable="false"/>
+                                                <m:CheckBox selected="{detailProduct>Sellable}" editable="false"/>
                                             </m:cells>
                                             <m:cells>
-                                                <m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteRow" ariaLabelledBy="editButtonLabel" visible="{= !${detail1>__metadata} }"/>
+                                                <!-- <m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteRow" ariaLabelledBy="editButtonLabel" visible="{= !${detailProduct>__metadata} }"/> -->
+                                                <m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteRow" ariaLabelledBy="editButtonLabel" visible="{= !!${state>/bEdit}}"/>
                                             </m:cells>
                                         </m:ColumnListItem>
                                     </m:items>

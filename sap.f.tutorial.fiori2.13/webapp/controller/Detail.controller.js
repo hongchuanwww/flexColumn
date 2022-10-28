@@ -9,7 +9,8 @@ sap.ui.define([
 	'sap/ui/model/Sorter',
 	'sap/ui/export/Spreadsheet',
 	'sap/ui/export/library',
-], function (Controller, MessageToast, MessageBox, JSONModel, Fragment, Filter, FilterOperator, Sorter, Spreadsheet, exportLibrary) {
+	'sap/ui/core/BusyIndicator'
+], function (Controller, MessageToast, MessageBox, JSONModel, Fragment, Filter, FilterOperator, Sorter, Spreadsheet, exportLibrary, BusyIndicator) {
 	"use strict";
 	var EdmType = exportLibrary.EdmType;
 	return Controller.extend("zychcn.zbundle01.controller.Detail", {
@@ -23,11 +24,13 @@ sap.ui.define([
 			this._DatePipe = this.oOwnerComponent.DatePipe;
 			this.oDetailModel = this.oOwnerComponent.getModel('detail');
 			this.oStateModel = this.oOwnerComponent.getModel('state');
+			this.oProductModel = this.oOwnerComponent.getModel('product');
+			this.oColModel = this.oOwnerComponent.getModel('columns');
 			// this.oRouter.getRoute("master").attachPatternMatched(this._onProductMatched, this);
 			this.oRouter.getRoute("detail").attachPatternMatched(this._onProductMatched, this);
 			this.oRouter.getRoute("detailDetail").attachPatternMatched(this._onProductMatched, this);
 			this.getView().setModel(new JSONModel([]), 'check');
-			this.getView().setModel(new JSONModel(), 'detail1');
+			this.getView().setModel(new JSONModel(), 'detailProduct');
 			this.getView().setModel(new JSONModel({enabled: false}), 'save');
 			this.getView().getModel('check').setSizeLimit(10000);
 			this.DIC = [
@@ -47,6 +50,7 @@ sap.ui.define([
 		onSupplierPress: function (oEvent) {
 			var itemPath = oEvent.getSource().getBindingContext('detail').getPath(),
 			item = itemPath.split("/").slice(-1).pop();
+			this._item = item;
 			// var	oNextUIState;
 			// this.oOwnerComponent.getHelper().then(function (oHelper) {
 			// 	if (this.oStateModel.getProperty('/bEdit') == true) {
@@ -63,7 +67,7 @@ sap.ui.define([
 			// 	});
 			// }.bind(this));
 			var oView = this.getView();
-			oView.getModel('detail1').setData(oView.getModel('detail').getProperty("/ToGroup/results/" + item));
+			oView.getModel('detailProduct').setData(oView.getModel('detail').getProperty("/ToGroup/results/" + item));
 			// create dialog lazily
 			if (!this.byId("detailDialog")) {
 				// load asynchronous XML fragment
@@ -291,6 +295,162 @@ sap.ui.define([
 		onCloseDetailDialog: function () {
 			this.byId("detailDialog").close();
 		},
+
+		// DetailProduct view methods ---------
+
+		editAddProduct: function() {
+			var data = this.getView().getModel('detailProduct').getProperty("/ToItem/results/")
+			data.push({})
+			this.getView().getModel('detailProduct').setProperty("/ToItem/results/", data)
+		},
+
+		_getProductList: function() {
+			var that = this;
+			BusyIndicator.show();
+			this.getView().getModel('invoice').read('/SHScopeSet?$filter=GrpScope%20eq%20%27'+this.GrpScope+'%27%20and%20BuId%20eq%20%27'+this.BuId+'%27', {
+				success: function (oData) {
+					that.oProductModel.setData(oData.results);
+					that._openValueHelp();
+					BusyIndicator.hide();
+				},
+				error: function (error) {
+					MessageBox.error(error);
+					BusyIndicator.hide();
+				}
+			});
+		},
+
+		firePaste: function(oEvent) {
+			var oTable = this.getView().byId("itemTable");
+			navigator.clipboard.readText().then(
+				function(text) {
+					if (text.length > 0 && text.substring(text.length - 2) == '\r\n') {
+						text = text.substring(0, text.length - 2);
+					}
+					var _arr = text.split('\r\n');
+					for (var i in _arr) {
+						_arr[i] = _arr[i].split('\t');
+					}
+					oTable.firePaste({
+						"data": _arr
+					});
+				}.bind(this)
+			);
+		},
+
+		onPaste: function (e) {
+			var pasteData = e.getParameters().data;
+			var data = this.getView().getModel('detailProduct').getProperty("/ToItem/results/");
+            var newData = pasteData.map(row => {
+				var obj = {};
+				for(var i = 0; i < row.length; i++) {
+					obj[this.DIC[i]] = row[i];
+					if(this.DIC[i].startsWith('Valid')) {
+						this._DatePipe(obj,this.DIC[i]);
+					}
+				}
+				return obj;
+			});
+			
+			for (var i = 0; i < newData.length; i++) {
+				data.push(newData[i]);
+			}
+			this.getView().getModel('detailProduct').setProperty("/ToItem/results/", data)
+		},
+
+		editDeleteRow : function(e) {
+			var btn = e.getSource(),
+				row = btn.getParent(),
+				table = row.getParent(),
+				index = table.indexOfItem(row),
+				data = this.getView().getModel('detailProduct').getProperty("/ToItem/results/");
+			data.splice(index,1);
+
+			this.getView().getModel('detailProduct').setProperty("/ToItem/results/", data)
+		},
+
+		_openValueHelp: function () {
+			var aCols = this.oColModel.getData().cols;
+			Fragment.load({
+				name: "zychcn.zbundle01.view.ValueHelpDialogSelect",
+				controller: this
+			}).then(function name(oFragment) {
+				this._oValueHelpDialog = oFragment;
+				this.getView().addDependent(this._oValueHelpDialog);
+
+				this._oValueHelpDialog.getTableAsync().then(function (oTable) {
+					oTable.setModel(this.oProductModel);
+					oTable.setModel(this.oColModel, "columns");
+
+					if (oTable.bindRows) {
+						oTable.bindAggregation("rows", "/");
+					}
+
+					if (oTable.bindItems) {
+						oTable.bindAggregation("items", "/", function () {
+							return new ColumnListItem({
+								cells: aCols.map(function (column) {
+									return new Label({ text: "{" + column.template + "}" });
+								})
+							});
+						});
+					}
+
+					this._oValueHelpDialog.update();
+				}.bind(this));
+				
+				// var oToken = new Token();
+				// oToken.setKey(this._oInput.getSelectedKey());
+				// oToken.setText(this._oInput.getValue());
+				// this._oValueHelpDialog.setTokens([oToken]);
+				this._oValueHelpDialog.open();
+			}.bind(this));
+		},
+
+		onValueHelpRequested: function(oEvent) {
+			var group = this.getView().getModel('detail').getProperty( "/ToGroup/results/" + this._item);
+			this.GrpScope = group?.GrpScope?.split(' ')[0];
+			var data = this.getView().getModel('detail').getData();
+			this.BuId = data.BuId?.split(' ')[0];
+			if(!this.GrpScope || !this.BuId) {
+				MessageBox.error('Please select BU ID and Group Scope');
+				return;
+			}
+			this._oInput = oEvent.getSource();
+			this._getProductList();
+		},
+
+		onValueHelpOkPress: function (oEvent) {
+			var aTokens = oEvent.getParameter("tokens");
+			// this._oInput.setTokens(aTokens);
+			if (aTokens.length == 0) {
+				this._oInput.setSelectedKey(aTokens[i].getKey());
+			} else {
+				// var data = this.getView().getModel('detail').getProperty("/ToGroup/results/" + this._item + '/ToItem/results');
+				var data = this.getView().getModel('detailProduct').getProperty("/ToItem/results/")
+				data.splice(data.length - 1, 1);
+				for (var i = 0; i < aTokens.length; i++) {
+					data.push({
+						"Product": aTokens[i].getKey(),
+						"ProductDescZh": aTokens[i].getText()
+					});
+				}
+				this.getView().getModel('detailProduct').setProperty("/ToItem/results/", data)
+				// this.getView().getModel('detail').setProperty("/ToGroup/results/" + this._item + '/ToItem/results', data);
+			}
+			
+			this._oValueHelpDialog.close();
+		},
+
+		onValueHelpCancelPress: function () {
+			this._oValueHelpDialog.close();
+		},
+
+		onValueHelpAfterClose: function () {
+			this._oValueHelpDialog.destroy();
+		},
+
+		// DetailProduct view methods end ----------------
 
 		onConfirmDialog: function () {
 			var fnSuccess = function (data) {
