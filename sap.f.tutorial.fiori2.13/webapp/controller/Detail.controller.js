@@ -192,6 +192,36 @@ sap.ui.define([
 			}
 		},
 
+		delete: function () {
+			var fnSuccess = function (e) {
+				MessageToast.show('success');
+				this.oStateModel.setProperty('/bEdit', false);
+				this.oDataModel.refresh();
+				var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/midColumn/closeColumn");
+				this.oRouter.navTo("master", {layout: sNextLayout});
+			}.bind(this);
+
+			var fnError = function (oError) {
+				var errMsg = "";
+				var res = JSON.parse(oError.response.body).error.innererror.errordetails; 
+
+				res.forEach(r => {
+					errMsg += r.message + '\r\n';
+				});
+
+				MessageBox.error(errMsg);
+			}.bind(this);
+			var sPath = "/" + this._bundle;
+			var mParameters = {
+				error: fnError,
+				success: fnSuccess
+			};
+
+			this.oDataModel.remove(sPath, mParameters);
+			this.oDataModel.refresh();
+			this._refreshDetail();
+		},
+
 		save: function () {
 			var fnSuccess = function (e) {
 				MessageToast.show('success');
