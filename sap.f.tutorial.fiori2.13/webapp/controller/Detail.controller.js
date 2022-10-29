@@ -197,8 +197,11 @@ sap.ui.define([
 				MessageToast.show('success');
 				this.oStateModel.setProperty('/bEdit', false);
 				this.oDataModel.refresh();
+
+				// Successful delete nvigation part need to verify
 				var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/midColumn/closeColumn");
 				this.oRouter.navTo("master", {layout: sNextLayout});
+				// 
 			}.bind(this);
 
 			var fnError = function (oError) {
