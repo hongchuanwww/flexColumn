@@ -150,6 +150,9 @@
 						<Column minScreenWidth="Tablet" demandPopin="true">
 							<Text text="{i18n>ValidTo}"/>
 						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="{i18n>Expired}"/>
+						</Column>
 					</columns>
 					<items>
 						<ColumnListItem type="Navigation" press=".onListItemPress">
@@ -176,6 +179,7 @@
 										pattern: 'yyyy-MM-dd'
 									}
 								}" />
+								<Label text="{invoice>Expiredflag}"/>
 							</cells>
 						</ColumnListItem>
 					</items>
