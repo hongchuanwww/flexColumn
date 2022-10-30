@@ -50,17 +50,17 @@
                                     press=".editAddProduct" 
                                     visible="{= !!${state>/bEdit}}" />
                                 <m:OverflowToolbarButton
-                                    id="editPasteButton"
+                                    id="editProductPasteButton"
                                     type="Transparent"
                                     icon="sap-icon://paste"
                                     visible="{= !!${state>/bEdit}}"
-                                    press="firePaste" />
+                                    press="fireProductPaste" />
                             </actions>
                             <blocks>
                                 <m:Table
                                     id="itemTable"
                                     items="{path : 'detailProduct>/ToItem/results'}"
-                                    paste=".onPaste">
+                                    paste=".onProductPaste">
                                     <m:columns>
                                         <m:Column>
                                             <m:Text text="{i18n>Product}"/>

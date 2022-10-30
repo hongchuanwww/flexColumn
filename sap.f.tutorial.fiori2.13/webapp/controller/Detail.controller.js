@@ -353,7 +353,7 @@ sap.ui.define([
 			});
 		},
 
-		firePaste: function(oEvent) {
+		fireProductPaste: function(oEvent) {
 			var oTable = this.getView().byId("itemTable");
 			navigator.clipboard.readText().then(
 				function(text) {
@@ -371,7 +371,7 @@ sap.ui.define([
 			);
 		},
 
-		onPaste: function (e) {
+		onProductPaste: function (e) {
 			var pasteData = e.getParameters().data;
 			var data = this.getView().getModel('detailProduct').getProperty("/ToItem/results/");
             var newData = pasteData.map(row => {
