@@ -114,7 +114,15 @@
                                                                 style: 'medium',
                                                                 pattern: 'yyyy-MM-dd'
                                                             }
-                                                        }"/>
+                                                        }" visible="{= !${state>/bEdit}}"/>
+                                                    <m:DatePicker value="{
+                                                        path: 'detailProduct>ValidFrom',
+                                                        type: 'sap.ui.model.type.Date',
+                                                        formatOptions: {
+                                                            style: 'medium',
+                                                            pattern: 'yyyy-MM-dd'
+                                                        }
+                                                    }" visible="{= !!${state>/bEdit}}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/>
                                                 </m:HBox>
                                             </m:cells>
                                             <m:cells>
@@ -141,8 +149,8 @@
                                                 <m:CheckBox selected="{detailProduct>Sellable}" editable="false"/>
                                             </m:cells>
                                             <m:cells>
-                                                <!-- <m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteRow" ariaLabelledBy="editButtonLabel" visible="{= !${detailProduct>__metadata} }"/> -->
-                                                <m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteRow" ariaLabelledBy="editButtonLabel" visible="{= !!${state>/bEdit}}"/>
+                                                <m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteRow" ariaLabelledBy="editButtonLabel" visible="{= !${detailProduct>__metadata} }"/>
+                                                <!-- <m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteRow" ariaLabelledBy="editButtonLabel" visible="{= !!${state>/bEdit}}"/> -->
                                             </m:cells>
                                         </m:ColumnListItem>
                                     </m:items>
