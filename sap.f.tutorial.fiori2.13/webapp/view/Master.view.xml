@@ -138,19 +138,19 @@
 						<Column>
 							<Text text="{i18n>SortCode}"/>
 						</Column>
-						<Column demandPopin="true">
+						<Column minScreenWidth="Tablet" demandPopin="true">
 							<Text text="{i18n>BdDesc}"/>
 						</Column>
-						<Column demandPopin="true">
+						<Column minScreenWidth="Tablet" demandPopin="true">
 							<Text text="{i18n>BuDesc}"/>
 						</Column>
-						<Column demandPopin="true">
+						<Column minScreenWidth="Tablet" demandPopin="true">
 							<Text text="{i18n>ValidFrom}"/>
 						</Column>
-						<Column demandPopin="true">
+						<Column minScreenWidth="Tablet" demandPopin="true">
 							<Text text="{i18n>ValidTo}"/>
 						</Column>
-						<Column demandPopin="true">
+						<Column minScreenWidth="Tablet" demandPopin="true">
 							<Text text="{i18n>Expired}"/>
 						</Column>
 					</columns>
