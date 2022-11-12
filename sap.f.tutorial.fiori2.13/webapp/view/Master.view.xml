@@ -120,7 +120,6 @@
 				<Table
 					id="productsTable"
 					inset="false"
-					autoPopinMode="true"
 					items="{
 						path: 'invoice>/BundleListSet'
 					}"
