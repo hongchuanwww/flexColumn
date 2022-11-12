@@ -120,6 +120,7 @@
 				<Table
 					id="productsTable"
 					inset="false"
+					autoPopinMode="true"
 					items="{
 						path: 'invoice>/BundleListSet'
 					}"
@@ -184,6 +185,7 @@
 						</ColumnListItem>
 					</items>
 				</Table>
+				<PagingButton/>
 			</VBox>
 		</semantic:content>
 

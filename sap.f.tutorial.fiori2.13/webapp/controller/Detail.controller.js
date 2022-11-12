@@ -769,6 +769,41 @@ sap.ui.define([
 				oSheet.destroy();
 			});
 		},
-
+		copy: function () {
+			var detailData = this.oDetailModel.getData();
+			var oData = {};
+			[
+				'SortCode',
+				'BdDesc',
+				'BdPromType',
+				'ValidFrom',
+				'ValidTo',
+				'Delivery',
+				'Eqip'
+			].forEach(prop => {
+				oData[prop] = detailData[prop];
+			});
+			oData['BuId'] = `${detailData['BuId']} ${detailData['BuDesc']}`;
+			oData['BdPromType'] = `${detailData['BdPromType']} ${detailData['BdPromTypeDesc']}`;
+			oData['ToPrice'] = this._deepCopy(detailData.ToPrice.results);
+			oData['ToGroup'] = detailData.ToGroup.results.map(item => {
+				var group = {};
+				for(let prop in item) {
+					if(prop === 'ToItem') {
+						group['ToItem'] = this._deepCopy(item.ToItem.results);
+						continue;
+					} else {
+						group[prop] = this._deepCopy(item[prop]);
+					}
+				}
+				group['GrpScope'] = `${group['GrpScope']} ${group['GrpScopeDesc']}`
+				return group;
+			});
+			this.oOwnerComponent.getModel('new').setData(oData);
+			this.oRouter.navTo("create", {
+				// layout: oNextUIState.layout
+				layout: 'MidColumnFullScreen'
+			});
+		}
 	});
 });

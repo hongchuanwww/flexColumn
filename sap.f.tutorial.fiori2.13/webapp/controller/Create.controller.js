@@ -14,7 +14,7 @@ sap.ui.define([
 			this._DatePipe = this.oOwnerComponent.DatePipe;
 			this._deepCopy = this.oOwnerComponent.deepCopy;
 			this.oCreateModel =  this.oOwnerComponent.getModel('new');
-			this._initCreateModel();
+			// this._initCreateModel();
 			var settingModel = new JSONModel({
 				minDate: new Date(),
 			});

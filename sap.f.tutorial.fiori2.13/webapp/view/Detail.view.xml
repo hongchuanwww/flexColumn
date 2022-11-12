@@ -437,6 +437,7 @@
 		<footer>
 			<m:OverflowToolbar>
 				<m:ToolbarSpacer/>
+				<m:Button type="Emphasized" text="{i18n>Copy}" visible="{= !${state>/bEdit}}" press=".copy"/>
 				<m:Button type="Emphasized" text="{i18n>Edit}" visible="{= !${state>/bEdit}}" press=".edit"/>
 				<m:Button type="Emphasized" text="{i18n>Save}" visible="{= !!${state>/bEdit}}" press=".save"/>
 				<m:Button type="Emphasized" text="{i18n>Delete}" visible="{= !!${state>/bEdit}}" press=".delete"/>
