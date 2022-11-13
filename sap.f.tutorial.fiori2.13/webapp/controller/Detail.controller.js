@@ -778,11 +778,14 @@ sap.ui.define([
 			[
 				'SortCode',
 				'BdDesc',
-				'BdPromType',
 				'ValidFrom',
 				'ValidTo',
 				'Delivery',
-				'Eqip'
+				'DistrChan',
+				'Eqip',
+				'Qty',
+				'SalesOrg',
+				'SalesOrgResp'
 			].forEach(prop => {
 				oData[prop] = detailData[prop];
 			});
