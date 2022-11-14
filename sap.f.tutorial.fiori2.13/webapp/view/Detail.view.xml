@@ -199,9 +199,6 @@
 										<m:Text text="{i18n>QuantityCoefficient}"/>
 									</m:Column>
 									<m:Column width = "5%">
-										<m:Text text="{i18n>Unit}"/>
-									</m:Column>
-									<m:Column width = "5%">
 										<m:Text text="{i18n>FreeItem}"/>
 									</m:Column>
 									<m:Column width = "5%">
@@ -209,6 +206,9 @@
 									</m:Column>
 									<m:Column width = "5%">
 										<m:Text text="{i18n>Optional}"/>
+									</m:Column>
+									<m:Column width = "10%">
+										<m:Text text="{i18n>GrpPriceSharing}"/>
 									</m:Column>
 									<m:Column width = "15%">
 										<m:Text text="{i18n>ShipmentGroup}"/>
@@ -253,13 +253,7 @@
 										<m:cells>
 											<m:HBox>
 												<m:ObjectIdentifier text="{detail>GrpQty}" visible="{= !${state>/bEdit}}"/>
-												<m:StepInput width="110px" value="{detail>GrpQty}" visible="{= !!${state>/bEdit}}" min="1"/>
-											</m:HBox>
-										</m:cells>
-										<m:cells>
-											<m:HBox>
-												<m:ObjectIdentifier text="{detail>GrpUnit}" visible="{= !${state>/bEdit}}"/>
-												<m:Input width="110px" value="{detail>GrpUnit}" visible="{= !!${state>/bEdit}}"/>
+												<m:StepInput width="20px" value="{detail>GrpQty}" visible="{= !!${state>/bEdit}}" min="1"/>
 											</m:HBox>
 										</m:cells>
 										<m:cells>
@@ -272,15 +266,21 @@
 										<m:cells>
 											<m:HBox>
 												<m:ObjectIdentifier text="{detail>GrpOptional}" visible="{= !${state>/bEdit}}"/>
-												<m:Input width="110px" value="{detail>GrpOptional}" visible="{= !!${state>/bEdit}}"/>
+												<m:Input width="20px" value="{detail>GrpOptional}" visible="{= !!${state>/bEdit}}"/>
 											</m:HBox>
 										</m:cells>
 										<m:cells>
 											<m:HBox>
 												<m:ObjectIdentifier text="{detail>GrpDelivery}" visible="{= !${state>/bEdit}}"/>
-												<m:Input width="110px" value="{detail>GrpDelivery}" visible="{= !!${state>/bEdit}}"/>
+												<m:Input width="20px" value="{detail>GrpDelivery}" visible="{= !!${state>/bEdit}}"/>
 											</m:HBox>
 											<!-- <m:ObjectIdentifier text="{detail>GrpDelivery}" enabled="{= !!${state>/bEdit}}"/> -->
+										</m:cells>
+										<m:cells>
+											<m:HBox>
+												<m:ObjectIdentifier text="{detail>GrpPriceSharing}" visible="{= !${state>/bEdit}}"/>
+												<m:Input width="20px" value="{detail>GrpPriceSharing}" visible="{= !!${state>/bEdit}}"/>
+											</m:HBox>
 										</m:cells>
 										<m:cells>
 											<m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteGroup" ariaLabelledBy="editButtonLabel" visible="{= !${detail>__metadata} }"/>

@@ -791,7 +791,7 @@ sap.ui.define([
 			});
 			oData['BuId'] = `${detailData['BuId']} ${detailData['BuDesc']}`;
 			oData['BdPromType'] = `${detailData['BdPromType']} ${detailData['BdPromTypeDesc']}`;
-			oData['ToPrice'] = this._deepCopy(detailData.ToPrice.results);
+			// oData['ToPrice'] = this._deepCopy(detailData.ToPrice.results);
 			oData['ToGroup'] = detailData.ToGroup.results.map(item => {
 				var group = {};
 				for(let prop in item) {

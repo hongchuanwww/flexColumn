@@ -183,7 +183,13 @@
 									<m:Column width = "10%">
 										<m:Text text="{i18n>QuantityCheck}"/>
 									</m:Column>
-									<m:Column width = "10%">
+									<m:Column width = "5%">
+										<m:Text text="{i18n>Optional}"/>
+									</m:Column>
+									<m:Column width = "5%">
+										<m:Text text="{i18n>GrpPriceSharing}"/>
+									</m:Column>
+									<m:Column width = "5%">
 										<m:Text text="{i18n>ShipmentGroup}"/>
 									</m:Column>
 									<m:Column width="4%"/>	
@@ -216,6 +222,12 @@
 										</m:cells>
 										<m:cells>
 											<m:CheckBox selected="{new>GrpQtycheck}"/>
+										</m:cells>
+										<m:cells>
+											<m:Input value="{detail>GrpOptional}"/>
+										</m:cells>
+										<m:cells>
+											<m:Input value="{detail>GrpPriceSharing}"/>
 										</m:cells>
 										<m:cells>
 											<!-- <m:StepInput value="{new>GrpDelivery}" min="1"/> -->
