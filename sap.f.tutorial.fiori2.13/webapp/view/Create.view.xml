@@ -232,8 +232,8 @@
 											<m:CheckBox selected="{new>GrpPriceSharing}"/>
 										</m:cells>
 										<m:cells>
-											<!-- <m:StepInput value="{new>GrpDelivery}" min="1"/> -->
-											<m:CheckBox selected="{new>GrpDelivery}"/>
+											<m:StepInput value="{new>GrpDelivery}" min="1"/>
+											<!-- <m:CheckBox selected="{new>GrpDelivery}"/> -->
 										</m:cells>
 										<m:cells>
 											<m:Button icon="sap-icon://delete" type="Transparent" press="deleteGroup" ariaLabelledBy="editButtonLabel"/>

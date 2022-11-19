@@ -278,12 +278,12 @@
 											<m:CheckBox selected="{= !!${detail>GrpPriceSharing}}" enabled="{= !!${state>/bEdit}}"/>
 										</m:cells>
 										<m:cells>
-											<!-- <m:HBox>
+											<m:HBox>
 												<m:ObjectIdentifier text="{detail>GrpDelivery}" visible="{= !${state>/bEdit}}"/>
 												<m:Input width="20px" value="{detail>GrpDelivery}" visible="{= !!${state>/bEdit}}"/>
-											</m:HBox> -->
-											<!-- <m:ObjectIdentifier text="{detail>GrpDelivery}" enabled="{= !!${state>/bEdit}}"/> -->
-											<m:CheckBox selected="{= !!${detail>GrpDelivery}}" enabled="{= !!${state>/bEdit}}"/>
+											</m:HBox>
+											<m:ObjectIdentifier text="{detail>GrpDelivery}" enabled="{= !!${state>/bEdit}}"/>
+											<!-- <m:CheckBox selected="{= !!${detail>GrpDelivery}}" enabled="{= !!${state>/bEdit}}"/> -->
 										</m:cells>
 										<m:cells>
 											<m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteGroup" ariaLabelledBy="editButtonLabel" visible="{= !${detail>__metadata} }"/>
