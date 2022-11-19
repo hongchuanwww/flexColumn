@@ -1,0 +1,152 @@
+<core:FragmentDefinition
+    xmlns="sap.uxap"
+	xmlns:m="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	>
+    <m:Dialog
+        id="createDetailDialog"
+    >
+        <ObjectPageLayout
+            alwaysShowContentHeader="false"
+            preserveHeaderStateOnScroll="false"
+            headerContentPinnable="true"
+            showFooter="true"
+            isChildPage="true"
+            upperCaseAnchorBar="false">
+            <headerTitle>
+                <ObjectPageDynamicHeaderTitle>
+                    <navigationActions>
+                    </navigationActions>
+                </ObjectPageDynamicHeaderTitle>
+            </headerTitle>
+
+            <headerContent>
+                <m:HBox>
+                    <core:Icon
+                        src="sap-icon://add-coursebook"
+                        size="4rem"
+                        backgroundColor="cornflowerblue"
+                        color="white">
+                        <core:layoutData>
+                            <m:FlexItemData growFactor="1" />
+                        </core:layoutData>
+                    </core:Icon>
+                    <m:VBox>
+                        <m:Text text="{i18n>groupID}: {newProduct>/GrpCode}"/>
+                        <m:Text text="{i18n>GruopScope}: {newProduct>/GrpScopeDesc}-{newProduct>/GrpScope}"/>
+                        <m:Text text="{i18n>GroupDesc}: {newProduct>/GrpText}"/>
+                    </m:VBox>
+                </m:HBox>
+            </headerContent>
+            <sections>
+                <ObjectPageSection title="{i18n>addProduct}">
+                    <subSections>
+                        <ObjectPageSubSection>
+                            <actions>
+                                <m:OverflowToolbarButton
+                                    type="Transparent"
+                                    icon="sap-icon://add"
+                                    press=".addRow" />
+                                <m:OverflowToolbarButton
+                                    id="editProductPasteButton"
+                                    type="Transparent"
+                                    icon="sap-icon://paste"
+                                    visible="{= !!${state>/bEdit}}"
+                                    press="fireProductPaste" />
+                            </actions>
+                            <blocks>
+                                <m:Table
+                                    id="itemTable"
+                                    items="{path : 'newProduct>ToItem/'}"
+                                    paste=".onProductPaste">
+                                    <m:columns>
+                                        <m:Column>
+                                            <m:Text text="{i18n>Product}"/>
+                                        </m:Column>
+                                        <m:Column>
+                                            <m:Text text="{i18n>ProductDesc}"/>
+                                        </m:Column>
+                                        <m:Column>
+                                            <m:Text text="{i18n>ValidFrom}"/>
+                                        </m:Column>
+                                        <m:Column>
+                                            <m:Text text="{i18n>ValidTo}"/>
+                                        </m:Column>
+                                        <m:Column>
+                                            <m:Text text="{i18n>ProductSelectable}"/>
+                                        </m:Column>
+                                        <m:Column width="5%" visible="{= !!${state>/bEdit}}"/>								
+                                    </m:columns>
+                                    <m:items>
+                                        <m:ColumnListItem>
+                                            <m:cells>
+                                                <m:HBox>
+                                                    <!-- <m:ObjectIdentifier text="{detailProduct>Product}" visible="{= !${state>/bEdit}}"/> -->
+                                                    <m:Input 
+                                                        value="{newProduct>Product}" 
+                                                        showValueHelp="true"
+                                                        valueHelpOnly="false"
+                                                        valueHelpRequest=".onValueHelpRequested"
+                                                        suggestionItems="{
+                                                            path: 'product>/',
+                                                            templateShareable: true
+                                                        }"
+                                                    >
+                                                        <!-- <core:Item key="{product>Product}" text="{product>Product}-{product>ProductDescZh}" /> -->
+                                                        <core:Item key="{newProduct>Product}" text="{newProduct>ProductDescZh}" />
+                                                    </m:Input>
+                                                </m:HBox>
+                                            </m:cells>
+                                            <m:cells>
+                                                <m:VBox>
+                                                    <m:ObjectIdentifier text="{newProduct>ProductDescZh}"/>
+                                                </m:VBox>
+                                            </m:cells>
+                                            <m:cells>
+                                                <m:HBox>
+                                                    <m:DatePicker value="{
+                                                        path: 'newProduct>ValidFrom',
+                                                        type: 'sap.ui.model.type.Date',
+                                                        formatOptions: {
+                                                            style: 'medium',
+                                                            pattern: 'yyyy-MM-dd'
+                                                        }
+                                                    }" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/>
+                                                </m:HBox>
+                                            </m:cells>
+                                            <m:cells>
+                                                <m:HBox>
+                                                    <m:DatePicker value="{
+                                                        path: 'newProduct>ValidTo',
+                                                        type: 'sap.ui.model.type.Date',
+                                                        formatOptions: {
+                                                            style: 'medium',
+                                                            pattern: 'yyyy-MM-dd'
+                                                        }
+                                                    }" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/>
+                                                </m:HBox>
+                                            </m:cells>
+                                            <m:cells>
+                                                <m:CheckBox selected="{newProduct>Sellable}"/>
+                                            </m:cells>
+                                            <m:cells>
+                                                <m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteRow" ariaLabelledBy="editButtonLabel"/>
+                                                <!-- <m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteRow" ariaLabelledBy="editButtonLabel" visible="{= !!${state>/bEdit}}"/> -->
+                                            </m:cells>
+                                        </m:ColumnListItem>
+                                    </m:items>
+                                </m:Table>
+                            </blocks>
+                        </ObjectPageSubSection>
+                    </subSections>
+                </ObjectPageSection>
+            </sections>
+        </ObjectPageLayout>
+        <m:endButton>
+            <m:Button
+                text="{i18n>Close}"
+                press=".onCloseDetailDialog"/>
+        </m:endButton>
+    </m:Dialog>
+</core:FragmentDefinition>

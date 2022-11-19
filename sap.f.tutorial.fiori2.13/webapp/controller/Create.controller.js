@@ -3,7 +3,8 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	'sap/m/MessageToast',
 	"sap/m/MessageBox",
-], function (JSONModel, Controller, MessageToast, MessageBox) {
+	"sap/ui/core/Fragment",
+], function (JSONModel, Controller, MessageToast, MessageBox, Fragment) {
 	"use strict";
 
 	return Controller.extend("zychcn.zbundle01.controller.Create", {
@@ -18,6 +19,7 @@ sap.ui.define([
 			var settingModel = new JSONModel({
 				minDate: new Date(),
 			});
+			this.getView().setModel(new JSONModel(), 'newProduct');
 			this.getView().setModel(settingModel, 'setting');
 		},
 
@@ -46,15 +48,43 @@ sap.ui.define([
 		},
 
 		onGroupPress: function (oEvent) {
-			var	oNextUIState, 
-				group = oEvent.getSource().getBindingContextPath().split('/').pop();
-			this.oOwnerComponent.getHelper().then(function (oHelper) {
-				oNextUIState = oHelper.getNextUIState(2);
-				this.oRouter.navTo("createDetail", {
-					layout: oNextUIState.layout,
-					group
+			// var	oNextUIState, 
+			// 	group = oEvent.getSource().getBindingContextPath().split('/').pop();
+			// this.oOwnerComponent.getHelper().then(function (oHelper) {
+			// 	oNextUIState = oHelper.getNextUIState(2);
+			// 	this.oRouter.navTo("createDetail", {
+			// 		layout: oNextUIState.layout,
+			// 		group
+			// 	});
+			// }.bind(this));
+			var group = oEvent.getSource().getBindingContextPath().split('/').pop();
+			this._group = group;
+			
+			var oView = this.getView();
+			oView.getModel('newProduct').setData(oView.getModel('new').getProperty("/ToGroup/" + group));
+			
+			// if(this.group) {
+            //     this.getView().bindElement({
+            //         path: "/ToGroup/" + this.group,
+			// 		model: "new"
+            //     });
+			// }
+			// oView.getModel('detailProduct').setData(oView.getModel('detail').getProperty("/ToGroup/results/" + item));
+			// create dialog lazily
+			if (!this.byId("createDetailDialog")) {
+				// load asynchronous XML fragment
+				Fragment.load({
+					id: oView.getId(),
+					name: "zychcn.zbundle01.view.CreateDetailDialog",
+					controller: this
+				}).then(function (oDialog) {
+					// connect dialog to the root view of this component (models, lifecycle)
+					oView.addDependent(oDialog);
+					oDialog.open();
 				});
-			}.bind(this));
+			} else {
+				this.byId("createDetailDialog").open();
+			}
 		},
 
 		handleFullScreen: function () {
@@ -159,6 +189,19 @@ sap.ui.define([
 				});
 			});
 			oDataModel.create(sPath, data, mParameters);
+		},
+
+
+		/// Product maintain page
+		addRow: function (e) {
+			var productData = this.getView().getModel('newProduct').getProperty("/ToItem/");
+			productData.push({});
+			this.getView().getModel('newProduct').setProperty("/ToItem/", productData);
+		},
+
+		onCloseDetailDialog: function () {
+			var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/midColumn/closeColumn");
+			this.oRouter.navTo("master", {layout: sNextLayout});
 		},
 	});
 });

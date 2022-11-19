@@ -186,10 +186,10 @@
 							<m:Table
 								items="{path : 'detail>/ToGroup/results'}">
 								<m:columns>
-									<m:Column width = "10%">
+									<m:Column width = "8%">
 										<m:Text text="{i18n>groupID}"/>
 									</m:Column>
-									<m:Column width = "20%">
+									<m:Column width = "15%">
 										<m:Text text="{i18n>GroupDesc}"/>
 									</m:Column>	
 									<m:Column width = "10%">
@@ -198,19 +198,19 @@
 									<m:Column width = "10%">
 										<m:Text text="{i18n>QuantityCoefficient}"/>
 									</m:Column>
-									<m:Column width = "5%">
+									<m:Column width = "8%">
 										<m:Text text="{i18n>FreeItem}"/>
 									</m:Column>
-									<m:Column width = "5%">
+									<m:Column width = "8%">
 										<m:Text text="{i18n>QuantityCheck}"/>
 									</m:Column>
-									<m:Column width = "5%">
+									<m:Column width = "8%">
 										<m:Text text="{i18n>Optional}"/>
 									</m:Column>
-									<m:Column width = "10%">
+									<m:Column width = "8%">
 										<m:Text text="{i18n>GrpPriceSharing}"/>
 									</m:Column>
-									<m:Column width = "15%">
+									<m:Column width = "8%">
 										<m:Text text="{i18n>ShipmentGroup}"/>
 									</m:Column>
 									<m:Column width="5%" visible="{= !!${state>/bEdit}}"/>
@@ -264,23 +264,26 @@
 											<m:CheckBox selected="{= !!${detail>GrpQtycheck}}" enabled="{= !!${state>/bEdit}}"/>
 										</m:cells>
 										<m:cells>
-											<m:HBox>
+											<!-- <m:HBox>
 												<m:ObjectIdentifier text="{detail>GrpOptional}" visible="{= !${state>/bEdit}}"/>
 												<m:Input width="20px" value="{detail>GrpOptional}" visible="{= !!${state>/bEdit}}"/>
-											</m:HBox>
+											</m:HBox> -->
+											<m:CheckBox selected="{= !!${detail>GrpOptional}}" enabled="{= !!${state>/bEdit}}"/>
 										</m:cells>
 										<m:cells>
-											<m:HBox>
-												<m:ObjectIdentifier text="{detail>GrpDelivery}" visible="{= !${state>/bEdit}}"/>
-												<m:Input width="20px" value="{detail>GrpDelivery}" visible="{= !!${state>/bEdit}}"/>
-											</m:HBox>
-											<!-- <m:ObjectIdentifier text="{detail>GrpDelivery}" enabled="{= !!${state>/bEdit}}"/> -->
-										</m:cells>
-										<m:cells>
-											<m:HBox>
+											<!-- <m:HBox>
 												<m:ObjectIdentifier text="{detail>GrpPriceSharing}" visible="{= !${state>/bEdit}}"/>
 												<m:Input width="20px" value="{detail>GrpPriceSharing}" visible="{= !!${state>/bEdit}}"/>
-											</m:HBox>
+											</m:HBox> -->
+											<m:CheckBox selected="{= !!${detail>GrpPriceSharing}}" enabled="{= !!${state>/bEdit}}"/>
+										</m:cells>
+										<m:cells>
+											<!-- <m:HBox>
+												<m:ObjectIdentifier text="{detail>GrpDelivery}" visible="{= !${state>/bEdit}}"/>
+												<m:Input width="20px" value="{detail>GrpDelivery}" visible="{= !!${state>/bEdit}}"/>
+											</m:HBox> -->
+											<!-- <m:ObjectIdentifier text="{detail>GrpDelivery}" enabled="{= !!${state>/bEdit}}"/> -->
+											<m:CheckBox selected="{= !!${detail>GrpDelivery}}" enabled="{= !!${state>/bEdit}}"/>
 										</m:cells>
 										<m:cells>
 											<m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteGroup" ariaLabelledBy="editButtonLabel" visible="{= !${detail>__metadata} }"/>

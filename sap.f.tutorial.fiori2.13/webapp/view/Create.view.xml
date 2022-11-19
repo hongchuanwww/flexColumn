@@ -165,34 +165,34 @@
 							<m:Table
 								items="{path : 'new>/ToGroup'}">
 								<m:columns>
-									<m:Column width = "10%">
+									<m:Column width = "8%">
 										<m:Text text="{i18n>groupID}"/>
 									</m:Column>
-									<m:Column width = "20%">
+									<m:Column width = "15%">
 										<m:Text text="{i18n>GroupDesc}"/>
 									</m:Column>	
-									<m:Column width = "15%">
+									<m:Column width = "10%">
 										<m:Text text="{i18n>GruopScope}"/>
 									</m:Column>
 									<m:Column width = "10%">
 										<m:Text text="{i18n>QuantityCoefficient}"/>
 									</m:Column>
-									<m:Column width = "10%">
+									<m:Column width = "8%">
 										<m:Text text="{i18n>FreeItem}"/>
 									</m:Column>
-									<m:Column width = "10%">
+									<m:Column width = "8%">
 										<m:Text text="{i18n>QuantityCheck}"/>
 									</m:Column>
-									<m:Column width = "5%">
+									<m:Column width = "8%">
 										<m:Text text="{i18n>Optional}"/>
 									</m:Column>
-									<m:Column width = "5%">
+									<m:Column width = "8%">
 										<m:Text text="{i18n>GrpPriceSharing}"/>
 									</m:Column>
-									<m:Column width = "5%">
+									<m:Column width = "8%">
 										<m:Text text="{i18n>ShipmentGroup}"/>
 									</m:Column>
-									<m:Column width="4%"/>	
+									<m:Column width="5%"/>	
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem type="Navigation" press=".onGroupPress">
@@ -224,14 +224,16 @@
 											<m:CheckBox selected="{new>GrpQtycheck}"/>
 										</m:cells>
 										<m:cells>
-											<m:Input value="{detail>GrpOptional}"/>
+											<!-- <m:Input value="{detail>GrpOptional}"/> -->
+											<m:CheckBox selected="{new>GrpOptional}"/>
 										</m:cells>
 										<m:cells>
-											<m:Input value="{detail>GrpPriceSharing}"/>
+											<!-- <m:Input value="{detail>GrpPriceSharing}"/> -->
+											<m:CheckBox selected="{new>GrpPriceSharing}"/>
 										</m:cells>
 										<m:cells>
 											<!-- <m:StepInput value="{new>GrpDelivery}" min="1"/> -->
-											<m:Input value="{new>GrpDelivery}"/>
+											<m:CheckBox selected="{new>GrpDelivery}"/>
 										</m:cells>
 										<m:cells>
 											<m:Button icon="sap-icon://delete" type="Transparent" press="deleteGroup" ariaLabelledBy="editButtonLabel"/>
