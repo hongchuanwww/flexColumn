@@ -48,28 +48,12 @@ sap.ui.define([
 		},
 
 		onGroupPress: function (oEvent) {
-			// var	oNextUIState, 
-			// 	group = oEvent.getSource().getBindingContextPath().split('/').pop();
-			// this.oOwnerComponent.getHelper().then(function (oHelper) {
-			// 	oNextUIState = oHelper.getNextUIState(2);
-			// 	this.oRouter.navTo("createDetail", {
-			// 		layout: oNextUIState.layout,
-			// 		group
-			// 	});
-			// }.bind(this));
 			var group = oEvent.getSource().getBindingContextPath().split('/').pop();
 			this._group = group;
 			
 			var oView = this.getView();
 			oView.getModel('newProduct').setData(oView.getModel('new').getProperty("/ToGroup/" + group));
 			
-			// if(this.group) {
-            //     this.getView().bindElement({
-            //         path: "/ToGroup/" + this.group,
-			// 		model: "new"
-            //     });
-			// }
-			// oView.getModel('detailProduct').setData(oView.getModel('detail').getProperty("/ToGroup/results/" + item));
 			// create dialog lazily
 			if (!this.byId("createDetailDialog")) {
 				// load asynchronous XML fragment
@@ -200,8 +184,7 @@ sap.ui.define([
 		},
 
 		onCloseDetailDialog: function () {
-			var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/midColumn/closeColumn");
-			this.oRouter.navTo("master", {layout: sNextLayout});
+			this.byId("createDetailDialog").close();
 		},
 	});
 });

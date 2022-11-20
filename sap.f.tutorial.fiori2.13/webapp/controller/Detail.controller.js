@@ -51,21 +51,6 @@ sap.ui.define([
 			var itemPath = oEvent.getSource().getBindingContext('detail').getPath(),
 			item = itemPath.split("/").slice(-1).pop();
 			this._item = item;
-			// var	oNextUIState;
-			// this.oOwnerComponent.getHelper().then(function (oHelper) {
-			// 	if (this.oStateModel.getProperty('/bEdit') == true) {
-			// 		oNextUIState = oHelper.getNextUIState(3);
-			// 	} else {
-			// 		oNextUIState = oHelper.getNextUIState(2);
-			// 	}
-				
-			// 	this.oRouter.navTo("detailDetail", {
-			// 		layout: 'EndColumnFullScreen',
-			// 		// layout: oNextUIState.layout,
-			// 		item: item,
-			// 		bundle: this._bundle
-			// 	});
-			// }.bind(this));
 			var oView = this.getView();
 			oView.getModel('detailProduct').setData(oView.getModel('detail').getProperty("/ToGroup/results/" + item));
 			// create dialog lazily

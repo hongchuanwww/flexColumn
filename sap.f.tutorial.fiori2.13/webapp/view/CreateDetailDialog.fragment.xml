@@ -52,13 +52,12 @@
                                     id="editProductPasteButton"
                                     type="Transparent"
                                     icon="sap-icon://paste"
-                                    visible="{= !!${state>/bEdit}}"
                                     press="fireProductPaste" />
                             </actions>
                             <blocks>
                                 <m:Table
                                     id="itemTable"
-                                    items="{path : 'newProduct>ToItem/'}"
+                                    items="{path : 'newProduct>/ToItem'}"
                                     paste=".onProductPaste">
                                     <m:columns>
                                         <m:Column>
