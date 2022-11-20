@@ -7,7 +7,7 @@
 	xmlns:core="sap.ui.core"
 	xmlns:fb="sap.ui.comp.filterbar"
 	xmlns:mvc="sap.ui.core.mvc">
-	<semantic:SemanticPage id="dynamicPageId" toggleHeaderOnTitleClick="true" showFooter="true">
+	<semantic:SemanticPage id="dynamicPageId" toggleHeaderOnTitleClick="true" showFooter="true" preserveHeaderStateOnScroll="true">
 		<!-- DynamicPage Title -->
 		<semantic:titleHeading>
 			<f:DynamicPageTitle>
@@ -84,35 +84,6 @@
 					</fb:FilterGroupItem>
 				</fb:filterGroupItems>
 			</fb:FilterBar>
-			<!-- <m:HBox justifyContent="SpaceBetween">
-				<m:VBox width="20%">
-					<m:Label text="Bundle ID"/>
-					<m:Input value="{tableData>boundno}"/>
-				</m:VBox>
-				<m:VBox width="20%">
-					<m:Label text="Bundle Type"/>
-					<m:Input value="{tableData>boundno}"/>
-				</m:VBox>
-				<m:VBox width="20%">
-					<m:Label text="Promotion Type"/>
-					<m:Input value="{tableData>boundno}"/>
-				</m:VBox>
-				<m:ToolbarSpacer/>
-				<m:VBox width="20%">
-					<m:Label text="Valid From"/>
-					<m:DatePicker value="{
-							path: 'new>ValidFrom',
-							type: 'sap.ui.model.type.Date',
-							formatOptions: {
-								style: 'medium',
-								pattern: 'yyyy-MM-dd'
-							}
-						}" valueFormat="yyyy-MM-dd" minDate="{setting>/minDate}"/>
-				</m:VBox>
-				<m:VBox>
-					<m:Button width="5%" icon="sap-icon://search" type="Transparent" press=".onSearch"/>
-				</m:VBox>
-			</m:HBox> -->
 		</semantic:headerContent>
 		<!-- DynamicPage Content -->
 		<semantic:content>

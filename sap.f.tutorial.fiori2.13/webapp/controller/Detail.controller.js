@@ -51,21 +51,6 @@ sap.ui.define([
 			var itemPath = oEvent.getSource().getBindingContext('detail').getPath(),
 			item = itemPath.split("/").slice(-1).pop();
 			this._item = item;
-			// var	oNextUIState;
-			// this.oOwnerComponent.getHelper().then(function (oHelper) {
-			// 	if (this.oStateModel.getProperty('/bEdit') == true) {
-			// 		oNextUIState = oHelper.getNextUIState(3);
-			// 	} else {
-			// 		oNextUIState = oHelper.getNextUIState(2);
-			// 	}
-				
-			// 	this.oRouter.navTo("detailDetail", {
-			// 		layout: 'EndColumnFullScreen',
-			// 		// layout: oNextUIState.layout,
-			// 		item: item,
-			// 		bundle: this._bundle
-			// 	});
-			// }.bind(this));
 			var oView = this.getView();
 			oView.getModel('detailProduct').setData(oView.getModel('detail').getProperty("/ToGroup/results/" + item));
 			// create dialog lazily
@@ -320,8 +305,7 @@ sap.ui.define([
 			}
 		}, 
 		onCloseDialog: function () {
-			var that = this;
-			that.getView().getModel('check').setData([]);
+			this.getView().getModel('check').setData([]);
 			this.byId("checkDialog").close();
 		},
 
@@ -772,7 +756,7 @@ sap.ui.define([
 				oSheet.destroy();
 			});
 		},
-		copy: function () {
+		_openDetailDialog: function () {
 			var detailData = this.oDetailModel.getData();
 			var oData = {};
 			[
@@ -809,6 +793,15 @@ sap.ui.define([
 			this.oRouter.navTo("create", {
 				// layout: oNextUIState.layout
 				layout: 'MidColumnFullScreen'
+			});
+		},
+		copy: function() {
+			this.oOwnerComponent.onApproveDialogPress({
+				content : "你想复制?" ,
+				title : "确认一下",
+				confirmText : "是的",
+				cancelText : "算了",
+				successFn: this._openDetailDialog.bind(this),
 			});
 		}
 	});
