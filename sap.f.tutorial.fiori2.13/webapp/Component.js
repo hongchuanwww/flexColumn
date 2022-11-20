@@ -2,8 +2,13 @@ sap.ui.define([
 	'sap/ui/core/UIComponent',
 	'sap/ui/model/json/JSONModel',
 	'sap/f/FlexibleColumnLayoutSemanticHelper',
-	'sap/f/library'
-], function(UIComponent, JSONModel, FlexibleColumnLayoutSemanticHelper, fioriLibrary) {
+	'sap/f/library',
+	"sap/m/Dialog",
+	"sap/m/ButtonType",
+	"sap/m/Button",
+	"sap/m/Text",
+	"sap/m/DialogType"
+], function(UIComponent, JSONModel, FlexibleColumnLayoutSemanticHelper, fioriLibrary, Dialog, ButtonType, Button, Text, DialogType) {
 	'use strict';
 
 	return UIComponent.extend('zychcn.zbundle01.Component', {
@@ -162,6 +167,40 @@ sap.ui.define([
 				// var m = Math.floor((Math.abs(offSetVal) * 60) % 60);
 				obj[prop] = new Date(obj[prop].setHours(h, 0, 0, 0));
 			}
+		},
+		
+		onApproveDialogPress: function ({ // all parametes are optional
+			content = "Are you sure?" ,
+			title = "Confirm",
+			confirmText = "OK",
+			cancelText = "Cancel",
+			successFn, 
+			cancelFn
+		}) {
+			if (!this.oApproveDialog) {
+				this.oApproveDialog = new Dialog({
+					type: DialogType.Message,
+					title,
+					content: new Text({ text: content }),
+					beginButton: new Button({
+						type: ButtonType.Emphasized,
+						text:confirmText,
+						press: function () {
+							successFn?.();
+							this.oApproveDialog.close();
+						}.bind(this)
+					}),
+					endButton: new Button({
+						text: cancelText,
+						press: function () {
+							cancelFn?.();
+							this.oApproveDialog.close();
+						}.bind(this)
+					})
+				});
+			}
+
+			this.oApproveDialog.open();
 		},
 	});
 });

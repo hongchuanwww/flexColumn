@@ -305,8 +305,7 @@ sap.ui.define([
 			}
 		}, 
 		onCloseDialog: function () {
-			var that = this;
-			that.getView().getModel('check').setData([]);
+			this.getView().getModel('check').setData([]);
 			this.byId("checkDialog").close();
 		},
 
@@ -757,7 +756,7 @@ sap.ui.define([
 				oSheet.destroy();
 			});
 		},
-		copy: function () {
+		_openDetailDialog: function () {
 			var detailData = this.oDetailModel.getData();
 			var oData = {};
 			[
@@ -794,6 +793,15 @@ sap.ui.define([
 			this.oRouter.navTo("create", {
 				// layout: oNextUIState.layout
 				layout: 'MidColumnFullScreen'
+			});
+		},
+		copy: function() {
+			this.oOwnerComponent.onApproveDialogPress({
+				content : "你想复制?" ,
+				title : "确认一下",
+				confirmText : "是的",
+				cancelText : "算了",
+				successFn: this._openDetailDialog.bind(this),
 			});
 		}
 	});
