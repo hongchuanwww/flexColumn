@@ -9,7 +9,7 @@
     >
         <ObjectPageLayout
             alwaysShowContentHeader="false"
-            preserveHeaderStateOnScroll="false"
+            preserveHeaderStateOnScroll="true"
             headerContentPinnable="true"
             showFooter="true"
             isChildPage="true"
@@ -56,7 +56,8 @@
                             </actions>
                             <blocks>
                                 <m:Table
-                                    id="itemTable"
+                                    id="createItemTable"
+                                    preserveHeaderStateOnScroll="true"
                                     items="{path : 'newProduct>/ToItem'}"
                                     paste=".onProductPaste">
                                     <m:columns>
