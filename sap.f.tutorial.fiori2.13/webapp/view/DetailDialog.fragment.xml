@@ -8,8 +8,8 @@
         id="detailDialog"
     >
         <ObjectPageLayout
-            alwaysShowContentHeader="false"
-            preserveHeaderStateOnScroll="false"
+            alwaysShowContentHeader="true"
+            preserveHeaderStateOnScroll="true"
             headerContentPinnable="true"
             showFooter="true"
             isChildPage="true"
@@ -22,21 +22,10 @@
             </headerTitle>
 
             <headerContent>
-                <m:HBox>
-                    <core:Icon
-                        src="sap-icon://add-coursebook"
-                        size="4rem"
-                        backgroundColor="cornflowerblue"
-                        color="white">
-                        <core:layoutData>
-                            <m:FlexItemData growFactor="1" />
-                        </core:layoutData>
-                    </core:Icon>
-                    <m:VBox>
-                        <m:Text text="{i18n>groupID}: {detailProduct>/GrpCode}"/>
-                        <m:Text text="{i18n>GruopScope}: {detailProduct>/GrpScopeDesc}-{detailProduct>/GrpScope}"/>
-                        <m:Text text="{i18n>GroupDesc}: {detailProduct>/GrpText}"/>
-                    </m:VBox>
+                <m:HBox justifyContent="SpaceBetween" width="50%">
+                    <m:Text text="{i18n>groupID}: {detailProduct>/GrpCode}"/>
+                    <m:Text text="{i18n>GruopScope}: {detailProduct>/GrpScopeDesc}-{detailProduct>/GrpScope}"/>
+                    <m:Text text="{i18n>GroupDesc}: {detailProduct>/GrpText}"/>
                 </m:HBox>
             </headerContent>
             <sections>
@@ -60,7 +49,9 @@
                                 <m:Table
                                     id="itemTable"
                                     items="{path : 'detailProduct>/ToItem/results'}"
-                                    paste=".onProductPaste">
+                                    paste=".onProductPaste"
+                                    stickyColumnHeader="true"
+                                    fixedRowCount="10">
                                     <m:columns>
                                         <m:Column>
                                             <m:Text text="{i18n>Product}"/>

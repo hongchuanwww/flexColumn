@@ -9,8 +9,8 @@
 	<ObjectPageLayout
 		id="ObjectPageLayout"
 		showTitleInHeaderContent="true"
-		alwaysShowContentHeader="false"
-		preserveHeaderStateOnScroll="false"
+		alwaysShowContentHeader="true"
+		preserveHeaderStateOnScroll="true"
 		headerContentPinnable="true"
 		isChildPage="true"
 		showFooter="true"
@@ -460,7 +460,7 @@
 				<m:Button type="Emphasized" text="{i18n>Copy}" visible="{= !${state>/bEdit}}" press=".copy"/>
 				<m:Button type="Emphasized" text="{i18n>Edit}" visible="{= !${state>/bEdit}}" press=".edit"/>
 				<m:Button type="Emphasized" text="{i18n>Save}" visible="{= !!${state>/bEdit}}" press=".save"/>
-				<m:Button type="Emphasized" text="{i18n>Delete}" visible="{= !!${state>/bEdit}}" press=".delete"/>
+				<m:Button type="Reject" text="{i18n>Delete}" visible="{= !!${state>/bEdit}}" press=".delete"/>
 				<m:Button text="{i18n>Cancel}" visible="{= !!${state>/bEdit}}" press=".cancel"/>
 			</m:OverflowToolbar>
 		</footer>

@@ -9,8 +9,8 @@
 	<ObjectPageLayout
 		id="ObjectPageLayout"
 		showTitleInHeaderContent="true"
-		alwaysShowContentHeader="false"
-		preserveHeaderStateOnScroll="false"
+		alwaysShowContentHeader="true"
+		preserveHeaderStateOnScroll="true"
 		headerContentPinnable="true"
 		isChildPage="true"
 		showFooter="true"

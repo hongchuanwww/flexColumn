@@ -725,11 +725,12 @@ sap.ui.define([
 		},
 
 		delete: function() {
-			this.oOwnerComponent.onApproveDialogPress({
-				content : "Do you want to delete the bundle?" ,
-				title : "Delete",
-				confirmText : "Yes",
-				cancelText : "No",
+			var oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
+			this.oOwnerComponent.onDeleteDialogPress({
+				content : oResourceBundle.getText("DeleteSentence") + this.oDetailModel.getData().BdHeadNumber,
+				title : oResourceBundle.getText("DeleteTitle"),
+				confirmText : oResourceBundle.getText("Yes"),
+				cancelText : oResourceBundle.getText("No"),
 				successFn: this._openDeleteDialog.bind(this),
 			});
 		},
@@ -808,11 +809,12 @@ sap.ui.define([
 			});
 		},
 		copy: function() {
+			var oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
 			this.oOwnerComponent.onApproveDialogPress({
-				content : "你想复制?" ,
-				title : "确认一下",
-				confirmText : "是的",
-				cancelText : "算了",
+				content : oResourceBundle.getText("CopySentence") + this.oDetailModel.getData().BdHeadNumber,
+				title : oResourceBundle.getText("CopyTitle"),
+				confirmText : oResourceBundle.getText("Yes"),
+				cancelText : oResourceBundle.getText("No"),
 				successFn: this._openDetailDialog.bind(this),
 			});
 		}

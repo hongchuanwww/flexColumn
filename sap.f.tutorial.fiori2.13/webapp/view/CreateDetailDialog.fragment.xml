@@ -8,7 +8,7 @@
         id="createDetailDialog"
     >
         <ObjectPageLayout
-            alwaysShowContentHeader="false"
+            alwaysShowContentHeader="true"
             preserveHeaderStateOnScroll="true"
             headerContentPinnable="true"
             showFooter="true"
@@ -22,21 +22,10 @@
             </headerTitle>
 
             <headerContent>
-                <m:HBox>
-                    <core:Icon
-                        src="sap-icon://add-coursebook"
-                        size="4rem"
-                        backgroundColor="cornflowerblue"
-                        color="white">
-                        <core:layoutData>
-                            <m:FlexItemData growFactor="1" />
-                        </core:layoutData>
-                    </core:Icon>
-                    <m:VBox>
-                        <m:Text text="{i18n>groupID}: {newProduct>/GrpCode}"/>
-                        <m:Text text="{i18n>GruopScope}: {newProduct>/GrpScopeDesc}-{newProduct>/GrpScope}"/>
-                        <m:Text text="{i18n>GroupDesc}: {newProduct>/GrpText}"/>
-                    </m:VBox>
+                <m:HBox justifyContent="SpaceBetween" width="50%">
+                    <m:Text text="{i18n>groupID}: {newProduct>/GrpCode}"/>
+                    <m:Text text="{i18n>GruopScope}: {newProduct>/GrpScopeDesc}-{newProduct>/GrpScope}"/>
+                    <m:Text text="{i18n>GroupDesc}: {newProduct>/GrpText}"/>
                 </m:HBox>
             </headerContent>
             <sections>
