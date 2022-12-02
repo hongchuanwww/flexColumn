@@ -24,7 +24,7 @@
             <headerContent>
                 <m:HBox justifyContent="SpaceBetween" width="50%">
                     <m:Text text="{i18n>groupID}: {newProduct>/GrpCode}"/>
-                    <m:Text text="{i18n>GruopScope}: {newProduct>/GrpScopeDesc}-{newProduct>/GrpScope}"/>
+                    <m:Text text="{i18n>GroupScope}: {newProduct>/GrpScopeDesc}-{newProduct>/GrpScope}"/>
                     <m:Text text="{i18n>GroupDesc}: {newProduct>/GrpText}"/>
                 </m:HBox>
             </headerContent>

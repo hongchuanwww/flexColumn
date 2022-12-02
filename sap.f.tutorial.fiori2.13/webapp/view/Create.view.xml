@@ -172,10 +172,10 @@
 										<m:Text text="{i18n>GroupDesc}"/>
 									</m:Column>	
 									<m:Column width = "10%">
-										<m:Text text="{i18n>GruopScope}"/>
+										<m:Text text="{i18n>GroupScope}"/>
 									</m:Column>
 									<m:Column width = "10%">
-										<m:Text text="{i18n>QuantityCoefficient}"/>
+										<m:Text text="{i18n>GrpQty}"/>
 									</m:Column>
 									<m:Column width = "8%">
 										<m:Text text="{i18n>FreeItem}"/>

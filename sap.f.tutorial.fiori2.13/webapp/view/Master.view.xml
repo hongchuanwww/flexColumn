@@ -154,7 +154,9 @@
 										pattern: 'yyyy-MM-dd'
 									}
 								}" />
-								<Label text="{invoice>Expiredflag}"/>
+								<!-- <Label text="{invoice>Expiredflag}"/> -->
+								<CheckBox selected="{(invoice>Expiredflag === '')}"/> 
+								<!-- <Label text="{(invoice>Expiredflag != '') ? 1 : 2}"/>  -->
 							</cells>
 						</ColumnListItem>
 					</items>
