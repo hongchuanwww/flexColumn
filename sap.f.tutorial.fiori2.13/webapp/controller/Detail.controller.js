@@ -794,12 +794,14 @@ sap.ui.define([
 				for(let prop in item) {
 					if(prop === 'ToItem') {
 						group['ToItem'] = this._deepCopy(item.ToItem.results);
+						group['ToItem']
 						continue;
 					} else {
 						group[prop] = this._deepCopy(item[prop]);
 					}
 				}
 				group['GrpScope'] = `${group['GrpScope']} ${group['GrpScopeDesc']}`
+				delete group.__metadata
 				return group;
 			});
 			this.oOwnerComponent.getModel('new').setData(oData);

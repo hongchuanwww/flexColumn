@@ -144,6 +144,7 @@
 						<m:Label text="{i18n>SalesVolume} : " design="Bold"/>
 						<m:HBox>
 							<m:ObjectIdentifier text="{detail>/Qty}" visible="{= !${state>/bEdit}}"/>
+							<!-- TODO Set the minium width https://github.com/SAP/ui5-webcomponents/pull/4884/files StepInput UI有一个bug，我能找到PR但估计版本跟不上，我们可以自己apply这个css吗？ -->
 							<m:StepInput width="10px" value="{detail>/Qty}" visible="{= !!${state>/bEdit}}" min="1"/>
 						</m:HBox>
 						<!-- <m:Text text="{detail>Qty}" editable="{= !!${state>/bEdit}}"/> -->

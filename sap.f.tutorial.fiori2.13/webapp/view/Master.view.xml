@@ -154,9 +154,9 @@
 										pattern: 'yyyy-MM-dd'
 									}
 								}" />
-								<!-- <Label text="{invoice>Expiredflag}"/> -->
+								<!-- TODO Base on Expiredflag to show 是/否 -->
 								<CheckBox selected="{(invoice>Expiredflag === '')}"/> 
-								<!-- <Label text="{(invoice>Expiredflag != '') ? 1 : 2}"/>  -->
+								<!-- <Label text="{(invoice>Expiredflag != '') ? i18n>Yes : i18n>No}"/>  -->
 							</cells>
 						</ColumnListItem>
 					</items>

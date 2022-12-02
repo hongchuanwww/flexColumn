@@ -175,11 +175,13 @@ sap.ui.define([
 					this._DatePipe(price,'ValidFrom');
 					this._DatePipe(price,'ValidTo');
 					price.Changeflag = "C";
+					if (price.__metadata) delete price.__metadata;
 				});
 			}
 
 			data.ToGroup.forEach(group => {
 				group.Changeflag = "C";
+				if (group.__metadata) delete group.__metadata;
 				[group.GrpScope, group.GrpScopeDesc] = group.GrpScope?.split(' ') || [];
 				group.GrpQty = group.GrpQty === undefined ? '' : group.GrpQty.toString();
 				group.ToItem.forEach(item => {
@@ -187,6 +189,7 @@ sap.ui.define([
 					this._DatePipe(item,'ValidTo');
 					item.Changeflag = "C";
 					delete item.ProductDescZh;
+					if (item.__metadata) delete item.__metadata;
 				});
 			});
 			oDataModel.create(sPath, data, mParameters);

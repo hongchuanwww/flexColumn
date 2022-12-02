@@ -71,7 +71,7 @@
                                         <m:ColumnListItem>
                                             <m:cells>
                                                 <m:HBox>
-                                                    <!-- <m:ObjectIdentifier text="{detailProduct>Product}" visible="{= !${state>/bEdit}}"/> -->
+                                                    <!-- TODO Press Enter button to search the product -->
                                                     <m:Input 
                                                         value="{newProduct>Product}" 
                                                         showValueHelp="true"
