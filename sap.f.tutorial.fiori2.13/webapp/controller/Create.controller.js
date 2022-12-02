@@ -166,6 +166,7 @@ sap.ui.define([
 			this._DatePipe(data,'ValidFrom');
 			this._DatePipe(data,'ValidTo');
 
+			if (!data.Changeflag) data.Changeflag = "C";
 			data.Qty = data.Qty.toString();
 			[data.BuId, data.BuDesc] = data.BuId?.split(' ') || [];
 			[data.BdPromType, data.BdPromTypeDesc] = data.BdPromType?.split(' ') || [];
