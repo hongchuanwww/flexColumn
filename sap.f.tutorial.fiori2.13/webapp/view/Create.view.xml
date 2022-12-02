@@ -232,7 +232,7 @@
 											<m:CheckBox selected="{new>GrpPriceSharing}"/>
 										</m:cells>
 										<m:cells>
-											<m:StepInput value="{new>GrpDelivery}" min="1"/>
+											<m:Input value="{new>GrpDelivery}"/>
 											<!-- <m:CheckBox selected="{new>GrpDelivery}"/> -->
 										</m:cells>
 										<m:cells>
