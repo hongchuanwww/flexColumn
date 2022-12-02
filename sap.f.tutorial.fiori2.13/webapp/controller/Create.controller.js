@@ -170,14 +170,14 @@ sap.ui.define([
 			[data.BuId, data.BuDesc] = data.BuId?.split(' ') || [];
 			[data.BdPromType, data.BdPromTypeDesc] = data.BdPromType?.split(' ') || [];
 			
-			if (data.ToPrice.length > 0) {
+			if (data.ToPrice) {
 				data.ToPrice.forEach(price => {
 					this._DatePipe(price,'ValidFrom');
 					this._DatePipe(price,'ValidTo');
 					price.Changeflag = "C";
 				});
 			}
-			
+
 			data.ToGroup.forEach(group => {
 				group.Changeflag = "C";
 				[group.GrpScope, group.GrpScopeDesc] = group.GrpScope?.split(' ') || [];
