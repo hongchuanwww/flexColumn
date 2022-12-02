@@ -323,6 +323,17 @@ sap.ui.define([
 			this.getView().getModel('newProduct').setProperty("/ToItem/", productData);
 		},
 
+		deleteRow : function(e) {
+			var btn = e.getSource(),
+				row = btn.getParent(),
+				table = row.getParent(),
+				index = table.indexOfItem(row),
+				data = this.getView().getModel('newProduct').getProperty("/ToItem/");
+			data.splice(index,1);
+
+			this.getView().getModel('newProduct').setProperty("/ToItem/", data);
+		},
+
 		onCloseDetailDialog: function () {
 			this.byId("createDetailDialog").close();
 		},

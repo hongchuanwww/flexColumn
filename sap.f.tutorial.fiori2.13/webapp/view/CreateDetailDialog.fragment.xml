@@ -117,10 +117,10 @@
                                                 </m:HBox>
                                             </m:cells>
                                             <m:cells>
-                                                <m:CheckBox selected="{newProduct>Sellable}"/>
+                                                <m:CheckBox selected="{newProduct>Sellable}"  editable="false"/>
                                             </m:cells>
                                             <m:cells>
-                                                <m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteRow" ariaLabelledBy="editButtonLabel"/>
+                                                <m:Button icon="sap-icon://delete" type="Transparent" press="deleteRow" ariaLabelledBy="editButtonLabel"/>
                                                 <!-- <m:Button icon="sap-icon://delete" type="Transparent" press="editDeleteRow" ariaLabelledBy="editButtonLabel" visible="{= !!${state>/bEdit}}"/> -->
                                             </m:cells>
                                         </m:ColumnListItem>
