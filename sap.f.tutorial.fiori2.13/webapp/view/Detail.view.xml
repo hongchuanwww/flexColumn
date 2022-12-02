@@ -253,7 +253,7 @@
 										<m:cells>
 											<m:HBox>
 												<m:ObjectIdentifier text="{detail>GrpQty}" visible="{= !${state>/bEdit}}"/>
-												<m:StepInput width="20px" value="{detail>GrpQty}" visible="{= !!${state>/bEdit}}" min="1"/>
+												<m:StepInput width="15px" value="{detail>GrpQty}" visible="{= !!${state>/bEdit}}" min="1"/>
 											</m:HBox>
 										</m:cells>
 										<m:cells>
@@ -282,7 +282,6 @@
 												<m:ObjectIdentifier text="{detail>GrpDelivery}" visible="{= !${state>/bEdit}}"/>
 												<m:Input width="20px" value="{detail>GrpDelivery}" visible="{= !!${state>/bEdit}}"/>
 											</m:HBox>
-											<m:ObjectIdentifier text="{detail>GrpDelivery}" enabled="{= !!${state>/bEdit}}"/>
 											<!-- <m:CheckBox selected="{= !!${detail>GrpDelivery}}" enabled="{= !!${state>/bEdit}}"/> -->
 										</m:cells>
 										<m:cells>
