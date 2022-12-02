@@ -169,11 +169,15 @@ sap.ui.define([
 			data.Qty = data.Qty.toString();
 			[data.BuId, data.BuDesc] = data.BuId?.split(' ') || [];
 			[data.BdPromType, data.BdPromTypeDesc] = data.BdPromType?.split(' ') || [];
-			data.ToPrice.forEach(price => {
-				this._DatePipe(price,'ValidFrom');
-				this._DatePipe(price,'ValidTo');
-				price.Changeflag = "C";
-			});
+			
+			if (data.ToPrice.length > 0) {
+				data.ToPrice.forEach(price => {
+					this._DatePipe(price,'ValidFrom');
+					this._DatePipe(price,'ValidTo');
+					price.Changeflag = "C";
+				});
+			}
+			
 			data.ToGroup.forEach(group => {
 				group.Changeflag = "C";
 				[group.GrpScope, group.GrpScopeDesc] = group.GrpScope?.split(' ') || [];
