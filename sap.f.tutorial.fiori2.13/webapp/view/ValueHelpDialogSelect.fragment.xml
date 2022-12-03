@@ -22,7 +22,11 @@
 						visibleInFilterBar="true"
 					>
 						<fb:control>
-							<m:Input name="Product" />
+							<m:Input 
+								name="Product"
+								submit=".onFilterBarSearch" 
+							>
+							</m:Input>
 						</fb:control>
 					</fb:FilterGroupItem>
 					<fb:FilterGroupItem

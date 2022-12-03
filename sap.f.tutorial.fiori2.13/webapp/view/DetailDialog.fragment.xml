@@ -49,9 +49,7 @@
                                 <m:Table
                                     id="itemTable"
                                     items="{path : 'detailProduct>/ToItem/results'}"
-                                    paste=".onProductPaste"
-                                    stickyColumnHeader="true"
-                                    fixedRowCount="10">
+                                    paste=".onProductPaste">
                                     <m:columns>
                                         <m:Column>
                                             <m:Text text="{i18n>Product}"/>

@@ -140,7 +140,7 @@
 											
 					<m:HBox>
 						<m:Label text="{i18n>SalesVolume} : " design="Bold"/>
-						<m:StepInput width="110px" value="{new>/Qty}" min="1"/>
+						<m:StepInput class="input-Qty" width="5px" value="{new>/Qty}" min="1"/>
 					</m:HBox>
 				</m:VBox>
 				<m:VBox>
@@ -215,7 +215,7 @@
 											</m:Select>
 										</m:cells>
 										<m:cells>
-											<m:StepInput value="{new>GrpQty}" min="1"/>
+											<m:StepInput class="input-Qty" width="5px" value="{new>GrpQty}" min="1"/>
 										</m:cells>
 										<m:cells>
 											<m:CheckBox selected="{new>GrpFree}"/>
