@@ -1,3 +1,7 @@
-.input-Qty {
-    min-width: 5px;
+.input-Qty .sapMInputBaseIcon  {
+    min-width: 1.5rem;
+    width: 1.5rem;
+}
+.input-Qty .sapMInputBaseContentWrapper  {
+    min-width: 5rem !important;
 }

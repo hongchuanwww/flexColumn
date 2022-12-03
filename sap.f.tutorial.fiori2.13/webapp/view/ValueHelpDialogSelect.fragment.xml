@@ -13,7 +13,7 @@
 		descriptionKey="ProductDescZh"
 	>
 		<filterBar>
-			<fb:FilterBar advancedMode="true" search=".onFilterBarSearch" isRunningInValueHelpDialog="true">
+			<fb:FilterBar id="filterBar" advancedMode="true" search=".onFilterBarSearch" isRunningInValueHelpDialog="true">
 				<fb:filterGroupItems>
 					<fb:FilterGroupItem
 						groupName="__$INTERNAL$"

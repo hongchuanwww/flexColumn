@@ -821,8 +821,8 @@ sap.ui.define([
 			});
 		},
 
-		onFilterBarSearch: function (oEvent) {
-			var aSelectionSet = oEvent.getParameter("selectionSet");
+		onFilterBarSearch: function () {
+			var aSelectionSet = sap.ui.getCore().byId("filterBar")._retrieveCurrentSelectionSet();
 			var aFilters = aSelectionSet.reduce(function (aResult, oControl) {
 				if (oControl.getValue()) {
 					aResult.push(new Filter({
