@@ -71,7 +71,6 @@
                                         <m:ColumnListItem>
                                             <m:cells>
                                                 <m:HBox>
-                                                    <!-- TODO Press Enter button to search the product -->
                                                     <m:Input 
                                                         value="{newProduct>Product}" 
                                                         showValueHelp="true"
@@ -81,6 +80,7 @@
                                                             path: 'product>/',
                                                             templateShareable: true
                                                         }"
+                                                        submit=".onValueHelpRequested"
                                                     >
                                                         <!-- <core:Item key="{product>Product}" text="{product>Product}-{product>ProductDescZh}" /> -->
                                                         <core:Item key="{newProduct>Product}" text="{newProduct>ProductDescZh}" />

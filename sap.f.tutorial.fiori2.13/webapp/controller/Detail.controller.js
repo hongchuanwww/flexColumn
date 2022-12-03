@@ -726,7 +726,7 @@ sap.ui.define([
 
 		delete: function() {
 			var oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
-			this.oOwnerComponent.onDeleteDialogPress({
+			this.oOwnerComponent.onApproveDialogPress({
 				content : oResourceBundle.getText("DeleteSentence") + this.oDetailModel.getData().BdHeadNumber,
 				title : oResourceBundle.getText("DeleteTitle"),
 				confirmText : oResourceBundle.getText("Yes"),

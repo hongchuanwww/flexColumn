@@ -177,64 +177,28 @@ sap.ui.define([
 			successFn, 
 			cancelFn
 		}) {
-			if (!this.oApproveDialog) {
-				this.oApproveDialog = new Dialog({
-					type: DialogType.Message,
-					title,
-					content: new Text({ text: content }),
-					beginButton: new Button({
-						type: ButtonType.Emphasized,
-						text:confirmText,
-						press: function () {
-							successFn?.();
-							this.oApproveDialog.close();
-						}.bind(this)
-					}),
-					endButton: new Button({
-						text: cancelText,
-						press: function () {
-							cancelFn?.();
-							this.oApproveDialog.close();
-						}.bind(this)
-					})
-				});
-			}
+			this.oApproveDialog = new Dialog({
+				type: DialogType.Message,
+				title,
+				content: new Text({ text: content }),
+				beginButton: new Button({
+					type: ButtonType.Emphasized,
+					text:confirmText,
+					press: function () {
+						successFn?.();
+						this.oApproveDialog.close();
+					}.bind(this)
+				}),
+				endButton: new Button({
+					text: cancelText,
+					press: function () {
+						cancelFn?.();
+						this.oApproveDialog.close();
+					}.bind(this)
+				})
+			});
 
 			this.oApproveDialog.open();
-		},
-
-		onDeleteDialogPress: function ({ // all parametes are optional
-			content = "Are you sure?" ,
-			title = "Confirm",
-			confirmText = "OK",
-			cancelText = "Cancel",
-			successFn, 
-			cancelFn
-		}) {
-			if (!this.onDeleteDialog) {
-				this.onDeleteDialog = new Dialog({
-					type: DialogType.Message,
-					title,
-					content: new Text({ text: content }),
-					beginButton: new Button({
-						type: ButtonType.Emphasized,
-						text:confirmText,
-						press: function () {
-							successFn?.();
-							this.onDeleteDialog.close();
-						}.bind(this)
-					}),
-					endButton: new Button({
-						text: cancelText,
-						press: function () {
-							cancelFn?.();
-							this.onDeleteDialog.close();
-						}.bind(this)
-					})
-				});
-			}
-
-			this.onDeleteDialog.open();
 		},
 	});
 });
