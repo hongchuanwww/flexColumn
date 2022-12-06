@@ -259,24 +259,24 @@
 										</m:cells>
 										<m:cells>
 											<!-- <m:CheckBox selected="{= !!${detail>GrpFree}}" enabled="{= !!${state>/bEdit}}"/> -->
-											<m:CheckBox selected="{detail>GrpFree}" enabled="{= !!${state>/bEdit}}"/>
+											<m:CheckBox selected="{detail>GrpFree}" editable="{= !!${state>/bEdit}}"/>
 										</m:cells>
 										<m:cells>
-											<m:CheckBox selected="{= !!${detail>GrpQtycheck}}" enabled="{= !!${state>/bEdit}}"/>
+											<m:CheckBox selected="{detail>GrpQtycheck}" editable="{= !!${state>/bEdit}}"/>
 										</m:cells>
 										<m:cells>
 											<!-- <m:HBox>
 												<m:ObjectIdentifier text="{detail>GrpOptional}" visible="{= !${state>/bEdit}}"/>
 												<m:Input width="20px" value="{detail>GrpOptional}" visible="{= !!${state>/bEdit}}"/>
 											</m:HBox> -->
-											<m:CheckBox selected="{= !!${detail>GrpOptional}}" enabled="{= !!${state>/bEdit}}"/>
+											<m:CheckBox selected="{detail>GrpOptional}" editable="{= !!${state>/bEdit}}"/>
 										</m:cells>
 										<m:cells>
 											<!-- <m:HBox>
 												<m:ObjectIdentifier text="{detail>GrpPriceSharing}" visible="{= !${state>/bEdit}}"/>
 												<m:Input width="20px" value="{detail>GrpPriceSharing}" visible="{= !!${state>/bEdit}}"/>
 											</m:HBox> -->
-											<m:CheckBox selected="{= !!${detail>GrpPriceSharing}}" enabled="{= !!${state>/bEdit}}"/>
+											<m:CheckBox selected="{detail>GrpPriceSharing}" editable="{= !!${state>/bEdit}}"/>
 										</m:cells>
 										<m:cells>
 											<m:HBox>
