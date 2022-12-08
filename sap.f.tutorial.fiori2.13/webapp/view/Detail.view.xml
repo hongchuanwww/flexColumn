@@ -193,28 +193,28 @@
 									<m:Column width = "15%">
 										<m:Text text="{i18n>GroupDesc}"/>
 									</m:Column>	
-									<m:Column width = "10%">
+									<m:Column width = "13%">
 										<m:Text text="{i18n>GroupScope}"/>
 									</m:Column>
-									<m:Column width = "10%">
+									<m:Column width = "13%">
 										<m:Text text="{i18n>GrpQty}"/>
 									</m:Column>
-									<m:Column width = "8%">
+									<m:Column width = "7%">
 										<m:Text text="{i18n>FreeItem}"/>
 									</m:Column>
-									<m:Column width = "8%">
+									<m:Column width = "7%">
 										<m:Text text="{i18n>QuantityCheck}"/>
 									</m:Column>
-									<m:Column width = "8%">
+									<m:Column width = "7%">
 										<m:Text text="{i18n>Optional}"/>
 									</m:Column>
-									<m:Column width = "8%">
+									<m:Column width = "7%">
 										<m:Text text="{i18n>GrpPriceSharing}"/>
 									</m:Column>
-									<m:Column width = "8%">
+									<m:Column width = "7%">
 										<m:Text text="{i18n>ShipmentGroup}"/>
 									</m:Column>
-									<m:Column width="5%" visible="{= !!${state>/bEdit}}"/>
+									<m:Column width="4%" visible="{= !!${state>/bEdit}}"/>
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem type="Navigation" press=".onSupplierPress" navigated="{

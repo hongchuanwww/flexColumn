@@ -131,7 +131,7 @@ sap.ui.define([
 
 		editAddGroup: function() {
 			var groups = this.oDetailModel.getData().ToGroup.results;
-			var GrpCode = 'GRP' + (groups.length + 1).toString().padStart(2,'0');
+			var GrpCode = groups.length == 0 ? 'GRP01' : 'GRP' + (parseInt(groups[groups.length - 1]['GrpCode'].slice(3)) + 1).toString().padStart(2,'0');
 			var Changeflag = 'C';
 			groups.push({
 				GrpCode,
