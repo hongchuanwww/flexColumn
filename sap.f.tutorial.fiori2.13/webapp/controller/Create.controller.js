@@ -61,7 +61,7 @@ sap.ui.define([
 		},
 
 		onGroupPress: function (oEvent) {
-			var group = oEvent.getSource().getBindingContextPath().split('/').pop();
+			var group = oEvent.getSource().getBindingContext('new').sPath.split('/').pop();
 			this._group = group;
 			
 			var oView = this.getView();
